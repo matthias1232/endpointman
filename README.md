@@ -9,7 +9,7 @@ Your Open Source Asterisk PBX GUI Solution
 ```
 ### What?
 mihuendpoint
- 
+
 This is a fork of FreePBX OSS Endpoint Manager module.
 
 This version has his own updater and package urls maintained by mitterhuemer.
