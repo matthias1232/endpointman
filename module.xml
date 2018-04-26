@@ -23,6 +23,7 @@
 		Pull Requests can be made to either of these and are encouraged.
 	</description>
 	<changelog>
+		*14.0.0.2* Fix Template Manager Custom File Selector. To edit and create files please use the Editor in the Global Advanced settings
 		*14.0.0.1* Initial release of fork from OSS EPM inlcuding right Navigation, Bootstrap Device View and OSS Information Page
 		*13.0.7.18* Fix missing function numRows Fix DateTimeZone class init Use count() instead of broken numRow() function Fix selected in template editor dropdown Changed some Spanish words to English on non-locales files
 		*13.0.7.17* Fix Save button in custom template page
