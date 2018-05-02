@@ -30,17 +30,17 @@ class Mihuendpoint_Advanced
         } else {
             die("Can't Load Local Endpoint Manager Directory!");
         }
-		if (file_exists($this->MODULES_PATH . "_ep_phone_modules/")) {
-            $this->PHONE_MODULES_PATH = $this->MODULES_PATH . "_ep_phone_modules/";
+		if (file_exists($this->MODULES_PATH . "_mihu_phone_modules/")) {
+            $this->PHONE_MODULES_PATH = $this->MODULES_PATH . "_mihu_phone_modules/";
         } else {
-            $this->PHONE_MODULES_PATH = $this->MODULES_PATH . "_ep_phone_modules/";
+            $this->PHONE_MODULES_PATH = $this->MODULES_PATH . "_mihu_phone_modules/";
             if (!file_exists($this->PHONE_MODULES_PATH)) {
                 mkdir($this->PHONE_MODULES_PATH, 0775);
             }
             if (file_exists($this->PHONE_MODULES_PATH . "setup.php")) {
                 unlink($this->PHONE_MODULES_PATH . "setup.php");
             }
-            if (!file_exists($this->MODULES_PATH . "_ep_phone_modules/")) {
+            if (!file_exists($this->MODULES_PATH . "_mihu_phone_modules/")) {
                 die('Endpoint Manager can not create the modules folder!');
             }
         }
@@ -1092,7 +1092,7 @@ class Mihuendpoint_Advanced
 
 				out(_("Click this link to download:"). "<br />");
 				out("<a href='config.php?display=epm_advanced&subpage=manual_upload&command=export_brands_availables_file&file_package=".$row['directory']."-".$time.".tgz' class='btn btn-success btn-lg active btn-block' role='button' target='_blank'>" . _("Here")."</a>");
-				//echo "Done! Click this link to download:<a href='modules/_ep_phone_modules/temp/export/".$row['directory']."-".$time.".tgz' target='_blank'>Here</a>";
+				//echo "Done! Click this link to download:<a href='modules/_mihu_phone_modules/temp/export/".$row['directory']."-".$time.".tgz' target='_blank'>Here</a>";
 			}
 			unset ($dget);
 		}

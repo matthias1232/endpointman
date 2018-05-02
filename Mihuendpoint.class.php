@@ -110,17 +110,17 @@ define("LOCAL_PATH", $this->LOCAL_PATH);
         }
 
         //Define the location of phone modules, keeping it outside of the module directory so that when the user updates mihuendpointager they don't lose all of their phones
-        if (file_exists($this->MODULES_PATH . "_ep_phone_modules/")) {
-            $this->PHONE_MODULES_PATH = $this->MODULES_PATH . "_ep_phone_modules/";
+        if (file_exists($this->MODULES_PATH . "_mihu_phone_modules/")) {
+            $this->PHONE_MODULES_PATH = $this->MODULES_PATH . "_mihu_phone_modules/";
         } else {
-            $this->PHONE_MODULES_PATH = $this->MODULES_PATH . "_ep_phone_modules/";
+            $this->PHONE_MODULES_PATH = $this->MODULES_PATH . "_mihu_phone_modules/";
             if (!file_exists($this->PHONE_MODULES_PATH)) {
                 mkdir($this->PHONE_MODULES_PATH, 0775);
             }
             if (file_exists($this->PHONE_MODULES_PATH . "setup.php")) {
                 unlink($this->PHONE_MODULES_PATH . "setup.php");
             }
-            if (!file_exists($this->MODULES_PATH . "_ep_phone_modules/")) {
+            if (!file_exists($this->MODULES_PATH . "_mihu_phone_modules/")) {
                 die('Endpoint Manager can not create the modules folder!');
             }
         }
@@ -183,10 +183,10 @@ define("PHONE_MODULES_PATH", $this->PHONE_MODULES_PATH);
 		$modulesdir = $webroot . '/admin/modules/';
 		$files = array();
 		$files[] = array('type' => 'dir',
-						'path' => $modulesdir . '/_ep_phone_modules/',
+						'path' => $modulesdir . '/_mihu_phone_modules/',
 						'perms' => 0755);
 		$files[] = array('type' => 'file',
-						'path' => $modulesdir . '/_ep_phone_modules/setup.php',
+						'path' => $modulesdir . '/_mihu_phone_modules/setup.php',
 						'perms' => 0755);
 		$files[] = array('type' => 'dir',
 						'path' => '/tftpboot',

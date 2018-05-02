@@ -33,17 +33,17 @@ class Mihuendpoint_Config
         } else {
             die("Can't Load Local Endpoint Manager Directory!");
         }
-        if (file_exists($this->MODULES_PATH . "_ep_phone_modules/")) {
-            $this->PHONE_MODULES_PATH = $this->MODULES_PATH . "_ep_phone_modules/";
+        if (file_exists($this->MODULES_PATH . "_mihu_phone_modules/")) {
+            $this->PHONE_MODULES_PATH = $this->MODULES_PATH . "_mihu_phone_modules/";
         } else {
-            $this->PHONE_MODULES_PATH = $this->MODULES_PATH . "_ep_phone_modules/";
+            $this->PHONE_MODULES_PATH = $this->MODULES_PATH . "_mihu_phone_modules/";
             if (!file_exists($this->PHONE_MODULES_PATH)) {
                 mkdir($this->PHONE_MODULES_PATH, 0775);
             }
             if (file_exists($this->PHONE_MODULES_PATH . "setup.php")) {
                 unlink($this->PHONE_MODULES_PATH . "setup.php");
             }
-            if (!file_exists($this->MODULES_PATH . "_ep_phone_modules/")) {
+            if (!file_exists($this->MODULES_PATH . "_mihu_phone_modules/")) {
                 die('Endpoint Manager can not create the modules folder!');
             }
         }

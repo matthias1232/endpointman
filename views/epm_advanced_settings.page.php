@@ -16,7 +16,7 @@
 				chdir(dirname(FreePBX::Mihuendpoint()->PHONE_MODULES_PATH));
 				FreePBX::Mihuendpoint()->rmrf(FreePBX::Mihuendpoint()->PHONE_MODULES_PATH);
 				$path = FreePBX::Mihuendpoint()->has_git();
-				exec($path . ' clone https://github.com/provisioner/Provisioner.git _ep_phone_modules', $output);
+				exec($path . ' clone https://github.com/provisioner/Provisioner.git _mihu_phone_modules', $output);
 				chdir($o);
 			}
 		} else {

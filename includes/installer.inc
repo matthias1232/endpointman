@@ -41,7 +41,7 @@ if($_REQUEST['type'] == "brand") {
             }
             $time = time();
             exec("tar zcf ".PHONE_MODULES_PATH."temp/export/".$row['directory']."-".$time.".tgz --exclude .svn --exclude firmware -C ".PHONE_MODULES_PATH."/endpoint ".$row['directory']);
-            echo "Done! Click this link to download:<a href='modules/_ep_phone_modules/temp/export/".$row['directory']."-".$time.".tgz'>Here</a>";
+            echo "Done! Click this link to download:<a href='modules/_mihu_phone_modules/temp/export/".$row['directory']."-".$time.".tgz'>Here</a>";
             break;
         case "upload_master_xml":
             if (file_exists(PHONE_MODULES_PATH."temp/master.xml")) {

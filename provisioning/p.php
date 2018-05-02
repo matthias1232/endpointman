@@ -23,7 +23,7 @@ if (!@include_once(getenv('FREEPBX_CONF') ? getenv('FREEPBX_CONF') : '/etc/freep
 $epm = FreePBX::create()->Mihuendpoint;
 
 
-define('PROVISIONER_BASE', $amp_conf['AMPWEBROOT'].'/admin/modules/_ep_phone_modules/');
+define('PROVISIONER_BASE', $amp_conf['AMPWEBROOT'].'/admin/modules/_mihu_phone_modules/');
 $server_type = FreePBX::Mihuendpoint()->configmod->get("server_type");
 
 

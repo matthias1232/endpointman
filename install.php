@@ -47,7 +47,7 @@ global $db;
 
 out("Endpoint Manager Installer");
 
-//define("PHONE_MODULES_PATH", $amp_conf['AMPWEBROOT'] . '/admin/modules/_ep_phone_modules/');
+//define("PHONE_MODULES_PATH", $amp_conf['AMPWEBROOT'] . '/admin/modules/_mihu_phone_modules/');
 //define("LOCAL_PATH", $amp_conf['AMPWEBROOT'] . '/admin/modules/mihuendpoint/');
 
 
@@ -850,8 +850,8 @@ if (version_compare_freepbx($epmdbversion,'14.0.0.4','<')) {
         $sql = "UPDATE  mihuendpoint_model_list SET  enabled =  '0', template_data = '" . serialize(array()) . "'";
         $db->query($sql);
 
-        out("Moving old brand data for backups, its now in " . $amp_conf['AMPWEBROOT'] . "/admin/modules/_ep_phone_modules_old");
-        exec("mv " . $amp_conf['AMPWEBROOT'] . "/admin/modules/_ep_phone_modules" . " " . $amp_conf['AMPWEBROOT'] . "/admin/modules/_ep_phone_modules_old");
+        out("Moving old brand data for backups, its now in " . $amp_conf['AMPWEBROOT'] . "/admin/modules/_mihu_phone_modules_old");
+        exec("mv " . $amp_conf['AMPWEBROOT'] . "/admin/modules/_mihu_phone_modules" . " " . $amp_conf['AMPWEBROOT'] . "/admin/modules/_mihu_phone_modules_old");
 
         if (!file_exists(PHONE_MODULES_PATH)) {
             mkdir(PHONE_MODULES_PATH, 0764);

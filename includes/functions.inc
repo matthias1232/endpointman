@@ -72,13 +72,13 @@ class mihuendpointager {
         }
 
         //Define the location of phone modules, keeping it outside of the module directory so that when the user updates mihuendpointager they don't lose all of their phones
-        if (file_exists(MODULES_PATH . "_ep_phone_modules/")) {
+        if (file_exists(MODULES_PATH . "_mihu_phone_modules/")) {
 					if(!defined("PHONE_MODULES_PATH")) {
-						define("PHONE_MODULES_PATH", MODULES_PATH . "_ep_phone_modules/");
+						define("PHONE_MODULES_PATH", MODULES_PATH . "_mihu_phone_modules/");
 					}
         } else {
 					if(!defined("PHONE_MODULES_PATH")) {
-						define("PHONE_MODULES_PATH", MODULES_PATH . "_ep_phone_modules/");
+						define("PHONE_MODULES_PATH", MODULES_PATH . "_mihu_phone_modules/");
 					}
             if (!file_exists(PHONE_MODULES_PATH)) {
                 mkdir(PHONE_MODULES_PATH, 0775);
@@ -88,7 +88,7 @@ class mihuendpointager {
                 unlink(PHONE_MODULES_PATH . "setup.php");
             }
 
-            if (!file_exists(MODULES_PATH . "_ep_phone_modules/")) {
+            if (!file_exists(MODULES_PATH . "_mihu_phone_modules/")) {
                 die('Endpoint Manager can not create the modules folder!');
             }
         }
