@@ -42,7 +42,7 @@ class phonesettings {
         $ret = "";
         $exten = $_SESSION['ari_user']['extension'];
 
-        $sql = "SELECT * FROM endpointman_global_vars WHERE var_name = 'enable_ari'";
+        $sql = "SELECT * FROM mihuendpoint_global_vars WHERE var_name = 'enable_ari'";
         $results = $_SESSION['dbh_asterisk']->getAll($sql, DB_FETCHMODE_ASSOC);
 
         // and we are not logged in as admin
@@ -64,12 +64,12 @@ class phonesettings {
     function action($args) {
         global $endpoint, $global_cfg;
 
-        $doc_root =	$_SERVER["DOCUMENT_ROOT"] ."/admin/modules/endpointman/";
+        $doc_root =	$_SERVER["DOCUMENT_ROOT"] ."/admin/modules/mihuendpoint/";
         require($doc_root . "includes/functions.inc");
 
-        $endpoint = new endpointmanager();
+        $endpoint = new mihuendpointager();
 
-        $sql = "SELECT mac_id, line FROM endpointman_line_list WHERE ext = '".$_SESSION['ari_user']['extension']."' ";
+        $sql = "SELECT mac_id, line FROM mihuendpoint_line_list WHERE ext = '".$_SESSION['ari_user']['extension']."' ";
         $mac_row = $endpoint->db->getRow($sql, array(), DB_FETCHMODE_ASSOC);
 
         $mac_id = $mac_row['mac_id'];
@@ -106,7 +106,7 @@ class phonesettings {
 
         $custom_cfg_data = serialize($custom_cfg_data);
 
-        $sql = "UPDATE endpointman_mac_list SET global_user_cfg_data = '".$custom_cfg_data."' WHERE id = ". $mac_id;
+        $sql = "UPDATE mihuendpoint_mac_list SET global_user_cfg_data = '".$custom_cfg_data."' WHERE id = ". $mac_id;
         $endpoint->db->query($sql);
 
         //refresh the data before we prepare so we get acurate data
@@ -149,12 +149,12 @@ class phonesettings {
             die('No Database?');
         }
 
-        $doc_root =	$_SERVER["DOCUMENT_ROOT"] ."/admin/modules/endpointman/";
+        $doc_root =	$_SERVER["DOCUMENT_ROOT"] ."/admin/modules/mihuendpoint/";
         require($doc_root . "includes/functions.inc");
 
-        $endpoint = new endpointmanager();
+        $endpoint = new mihuendpointager();
 
-        $sql = "SELECT mac_id, line FROM endpointman_line_list WHERE ext = '".$_SESSION['ari_user']['extension']."' ";
+        $sql = "SELECT mac_id, line FROM mihuendpoint_line_list WHERE ext = '".$_SESSION['ari_user']['extension']."' ";
 
         $res = $endpoint->db->query($sql);
         if(count($res)) {

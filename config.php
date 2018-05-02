@@ -10,7 +10,7 @@
 include 'includes/functions.inc';
 
 $debug = NULL;
-$endpoint = new endpointmanager();
+$endpoint = new mihuendpointager();
 
 if (!is_writeable(PHONE_MODULES_PATH)) {
     chmod(PHONE_MODULES_PATH, 0764);

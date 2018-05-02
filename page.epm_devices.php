@@ -29,7 +29,7 @@ if(file_exists('/tftpboot')) {
 include 'includes/functions.inc';
 global $endpoint, $debug;
 $debug = NULL;
-$endpoint = new endpointmanager();
+$endpoint = new mihuendpointager();
 global $global_cfg, $debug;
 if(!is_writeable(LOCAL_PATH)) {
 	chmod(LOCAL_PATH, 0764);

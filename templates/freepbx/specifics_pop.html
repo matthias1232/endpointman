@@ -3,7 +3,7 @@
 <title>PBX Endpoint Configuration Manager</title>
 <script type="text/javascript" src="assets/js/jquery-1.7.1.min.js" language="javascript"></script>
 <script type="text/javascript" src="assets/js/jquery-ui-1.8.9.min.js" language="javascript"></script>
-<link href="assets/endpointman/css/main.css" rel="stylesheet" type="text/css">
+<link href="assets/mihuendpoint/css/main.css" rel="stylesheet" type="text/css">
 <link href="assets/css/mainstyle.css" rel="stylesheet" type="text/css" />
 <link href="assets/css/jquery-ui.css" rel="stylesheet" type="text/css" />
 <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">

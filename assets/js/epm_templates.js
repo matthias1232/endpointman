@@ -3,7 +3,7 @@ var cmeditor = null;
 
 function epm_templates_document_ready () {
 	
-	var arrayJs = ['assets/endpointman/js/addon/simplescrollbars.js', 'assets/endpointman/js/mode/xml.js'];
+	var arrayJs = ['assets/mihuendpoint/js/addon/simplescrollbars.js', 'assets/mihuendpoint/js/mode/xml.js'];
 	arrayJs.forEach(function (item, index, array) {
 		var x = document.createElement('script');
 		x.src = item;
@@ -212,7 +212,7 @@ function epm_templates_add_NewProductSelect_Change (obj)
 			type: 'POST',
 			url: "ajax.php",
 			data: {
-				module: "endpointman",
+				module: "mihuendpoint",
 				module_sec: "epm_templates",
 				module_tab: "manager",
 				command: "model_clone",
@@ -263,7 +263,7 @@ function epm_templates_grid_del (iddel)
 			type: 'POST',
 			url: "ajax.php",
 			data: {
-				module: "endpointman",
+				module: "mihuendpoint",
 				module_sec: "epm_templates",
 				module_tab: "manager",
 				command: "del_template",
@@ -299,7 +299,7 @@ function epm_templates_grid_add()
 			type: 'POST',
 			url: "ajax.php",
 			data: {
-				module: "endpointman",
+				module: "mihuendpoint",
 				module_sec: "epm_templates",
 				module_tab: "manager",
 				command: "add_template",
@@ -337,7 +337,7 @@ function epm_template_custom_config_get_global(elmnt)
 		type: 'POST',
 		url: "ajax.php",
 		data: {
-			module: "endpointman",
+			module: "mihuendpoint",
 			module_sec: "epm_templates",
 			module_tab: "editor",
 			command: "custom_config_get_gloabl",
@@ -374,7 +374,7 @@ function epm_template_custom_config_update_global(elmnt)
 		type: 'POST',
 		url: "ajax.php",
 		data: {
-			module: "endpointman",
+			module: "mihuendpoint",
 			module_sec: "epm_templates",
 			module_tab: "editor",
 			command: "custom_config_update_gloabl",
@@ -408,7 +408,7 @@ function epm_template_custom_config_reset_global(elmnt)
 		type: 'POST',
 		url: "ajax.php",
 		data: {
-			module: "endpointman",
+			module: "mihuendpoint",
 			module_sec: "epm_templates",
 			module_tab: "editor",
 			command: "custom_config_reset_gloabl",
@@ -471,7 +471,7 @@ function epm_template_edit_select_area_list (obj)
 		
 			// --> PHP
 			$template_editor = TRUE;
-			$sql = "UPDATE  endpointman_mac_list SET  model =  '".$_REQUEST['model_list']."' WHERE  id =".$_REQUEST['edit_id']; -> id cambiar por template_id
+			$sql = "UPDATE  mihuendpoint_mac_list SET  model =  '".$_REQUEST['model_list']."' WHERE  id =".$_REQUEST['edit_id']; -> id cambiar por template_id
 			$endpoint->eda->sql($sql);
 			$endpoint->tpl->assign("silent_mode", 1);
 	
@@ -520,14 +520,14 @@ function epm_template_edit_select_area_list (obj)
 	
 	/*
 		//edit
-		//<a href="#" onclick="return popitup('config.php?type=tool&display=epm_config&amp;quietmode=1&amp;handler=file&amp;file=popup.html.php&amp;module=endpointman&amp;pop_type=alt_cfg_edit', '<?php echo $row['name']; ?>')">
+		//<a href="#" onclick="return popitup('config.php?type=tool&display=epm_config&amp;quietmode=1&amp;handler=file&amp;file=popup.html.php&amp;module=mihuendpoint&amp;pop_type=alt_cfg_edit', '<?php echo $row['name']; ?>')">
 		function popitup(url, name) {
             newwindow=window.open(url + '&custom=' + document.getElementById('custom').value + '&tid=' + document.getElementById('id').value + '&value=' + document.getElementById('altconfig_'+ name).value + '&rand=' + new Date().getTime(),'name','height=710,width=800,scrollbars=yes,location=no');
                 if (window.focus) {newwindow.focus()}
                 return false;
         }
 		//edit
-		//<a href='#' onclick='return popitup2("config.php?type=tool&display=epm_config&amp;quietmode=1&amp;handler=file&amp;file=popup.html.php&amp;module=endpointman&amp;pop_type=alt_cfg_edit", "<?php echo $row['name']?>")'>
+		//<a href='#' onclick='return popitup2("config.php?type=tool&display=epm_config&amp;quietmode=1&amp;handler=file&amp;file=popup.html.php&amp;module=mihuendpoint&amp;pop_type=alt_cfg_edit", "<?php echo $row['name']?>")'>
         function popitup2(url, name) {
             newwindow=window.open(url + '&custom=' + document.getElementById('custom').value + '&tid=' + document.getElementById('id').value + '&value=0_' + name + '&rand=' + new Date().getTime(),'name','height=700,width=800,scrollbars=yes,location=no');
                 if (window.focus) {newwindow.focus()}

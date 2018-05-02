@@ -3,7 +3,7 @@ var cmeditor = null;
 
 function epm_advanced_document_ready () {
 
-	var arrayJs = ['assets/endpointman/js/addon/simplescrollbars.js', 'assets/endpointman/js/mode/xml.js', 'assets/endpointman/js/addon/fullscreen.js'];
+	var arrayJs = ['assets/mihuendpoint/js/addon/simplescrollbars.js', 'assets/mihuendpoint/js/mode/xml.js', 'assets/mihuendpoint/js/addon/fullscreen.js'];
 	arrayJs.forEach(function (item, index, array) {
 		var x = document.createElement('script');
 		x.src = item;
@@ -130,7 +130,7 @@ function epm_advanced_tab_manual_upload_list_files_brand_expor()
 			type: 'POST',
 			url: "ajax.php",
 			data: {
-				module: "endpointman",
+				module: "mihuendpoint",
 				module_sec: "epm_advanced",
 				module_tab: "manual_upload",
 				command: "list_files_brands_export"
@@ -278,7 +278,7 @@ waitingDialog.show();
 		type: 'POST',
 		url: "ajax.php",
 		data: {
-			module: "endpointman",
+			module: "mihuendpoint",
 			module_sec: "epm_advanced",
 			module_tab: "poce",
 			command: "poce_list_brands",
@@ -368,7 +368,7 @@ waitingDialog.show();
 		type: 'POST',
 		url: "ajax.php",
 		data: {
-			module: "endpointman",
+			module: "mihuendpoint",
 			module_sec: "epm_advanced",
 			module_tab: "poce",
 			command: "poce_select",
@@ -447,7 +447,7 @@ waitingDialog.show();
 		type: 'POST',
 		url: "ajax.php",
 		data: {
-			module: "endpointman",
+			module: "mihuendpoint",
 			module_sec: "epm_advanced",
 			module_tab: "poce",
 			command: "poce_select_file",
@@ -567,7 +567,7 @@ function epm_advanced_tab_poce_bt_acction (command)
     		if (confirm("Are you sure to save your changes will be overwritten irreversibly?") === false) { return; }
     		
     		cfg_data = {
-    			module: "endpointman",
+    			module: "mihuendpoint",
     			module_sec: "epm_advanced",
     			module_tab: "poce",
     			command: "poce_save_file",
@@ -583,7 +583,7 @@ function epm_advanced_tab_poce_bt_acction (command)
     	
     	case "button_save_as":
     		cfg_data = {
-    			module: "endpointman",
+    			module: "mihuendpoint",
     			module_sec: "epm_advanced",
     			module_tab: "poce",
     			command: "poce_save_as_file",
@@ -601,7 +601,7 @@ function epm_advanced_tab_poce_bt_acction (command)
     		if (confirm("Are you sure you want to delete this file from the database?") === false) { return; }
     		
     		cfg_data = {
-    			module: "endpointman",
+    			module: "mihuendpoint",
     			module_sec: "epm_advanced",
     			module_tab: "poce",
     			command: "poce_delete_config_custom",
@@ -613,7 +613,7 @@ function epm_advanced_tab_poce_bt_acction (command)
     	
     	case "button_share":
     		cfg_data = {
-    			module: "endpointman",
+    			module: "mihuendpoint",
     			module_sec: "epm_advanced",
     			module_tab: "poce",
     			command: "poce_sendid",
@@ -742,7 +742,7 @@ function epm_advanced_tab_oui_manager_bt_new()
 		fpbxToast('New: No select Brand!','Warning!','warning');
 	}
 	else {
-		var data_ajax = { module: "endpointman", module_sec: "epm_advanced", module_tab: "oui_manager", command: "oui_add", number_new_oui: new_oui, brand_new_oui: new_brand };
+		var data_ajax = { module: "mihuendpoint", module_sec: "epm_advanced", module_tab: "oui_manager", command: "oui_add", number_new_oui: new_oui, brand_new_oui: new_brand };
 		if (epm_advanced_tab_oui_manager_ajax(data_ajax) === true) {
 			fpbxToast("New OUI add Ok!", '', 'success');
 			$("#mygrid").bootstrapTable('refresh');
@@ -759,7 +759,7 @@ function epm_advanced_tab_oui_manager_bt_del(id_del)
 		fpbxToast('Delete: No ID set!','Warning!','warning');
 	}
 	else {
-		var data_ajax = { module: "endpointman", module_sec: "epm_advanced", module_tab: "oui_manager", command: "oui_del", id_del: id_del };
+		var data_ajax = { module: "mihuendpoint", module_sec: "epm_advanced", module_tab: "oui_manager", command: "oui_del", id_del: id_del };
 		if (epm_advanced_tab_oui_manager_ajax(data_ajax) === true) {
 			fpbxToast("OUI delete Ok!", '', 'success');	
 			$("#mygrid").bootstrapTable('refresh');
@@ -825,7 +825,7 @@ function epm_advanced_tab_setting_input_change(obt)
 		type: 'POST',
 		url: "ajax.php",
 		data: {
-			module: "endpointman",
+			module: "mihuendpoint",
 			module_sec: "epm_advanced",
 			module_tab: idtab,
 			command: "saveconfig",

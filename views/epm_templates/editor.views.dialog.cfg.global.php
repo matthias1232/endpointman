@@ -1,11 +1,11 @@
 <?php
 	/*
-	$product_list = "SELECT * FROM endpointman_product_list WHERE id > 0";
+	$product_list = "SELECT * FROM mihuendpoint_product_list WHERE id > 0";
 	$product_list =& sql($product_list,'getAll', DB_FETCHMODE_ASSOC);
 	*/
 	
     //Because we are working with global variables we probably updated them, so lets refresh those variables
-    //$endpoint->global_cfg = $endpoint->eda->sql("SELECT var_name, value FROM endpointman_global_vars",'getAssoc');	
+    //$endpoint->global_cfg = $endpoint->eda->sql("SELECT var_name, value FROM mihuendpoint_global_vars",'getAssoc');	
 ?>
 
 
@@ -134,13 +134,13 @@
       							<select class="form-control selectpicker show-tick" data-style="" data-live-search-placeholder="Search" data-live-search="true" name="tz" id="tz">
                                 <?php
 									//TODO: Pendiente actualizar a ajax!!!!
-									foreach (FreePBX::Endpointman()->listTZ("") as $row) {
+									foreach (FreePBX::Mihuendpoint()->listTZ("") as $row) {
 										echo '<option data-icon="fa fa-clock-o" value="'.$row['value'].'" > '.$row['text'].'</option>';
 									}
 								?>
 								</select>
       							<span class="input-group-btn">
-        							<button class="btn btn-default" type="button" id='tzphp' onclick="epm_global_input_value_change_bt('#tz', sValue = '<?php echo FreePBX::Endpointman()->config->get('PHPTIMEZONE'); ?>');"><i class="fa fa-clock-o"></i> <?php echo _("TimeZone PBX")?></button>
+        							<button class="btn btn-default" type="button" id='tzphp' onclick="epm_global_input_value_change_bt('#tz', sValue = '<?php echo FreePBX::Mihuendpoint()->config->get('PHPTIMEZONE'); ?>');"><i class="fa fa-clock-o"></i> <?php echo _("TimeZone PBX")?></button>
       							</span>
     						</div>
 						</div>

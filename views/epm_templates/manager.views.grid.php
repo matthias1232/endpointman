@@ -7,7 +7,7 @@
 			</div>
 			
 			<table id="mygrid"
-				data-url="ajax.php?module=endpointman&amp;module_sec=epm_templates&amp;module_tab=manager&amp;command=list_current_template"
+				data-url="ajax.php?module=mihuendpoint&amp;module_sec=epm_templates&amp;module_tab=manager&amp;command=list_current_template"
 				data-cache="false"
 				data-cookie="true"
 				data-cookie-id-table="template_custom_table"

@@ -40,16 +40,16 @@ switch ($_REQUEST['subpage']) {
             }
         } elseif(isset($_REQUEST['button_disable'])) {
             if(isset($_REQUEST['model'])) {
-                $sql = "UPDATE endpointman_model_list SET enabled = 0 WHERE id = '".$_REQUEST['model']."'";
+                $sql = "UPDATE mihuendpoint_model_list SET enabled = 0 WHERE id = '".$_REQUEST['model']."'";
             } elseif(isset($_REQUEST['brand'])) {
-                $sql = "UPDATE endpointman_brand_list SET enabled = 0 WHERE id = '".$_REQUEST['model']."'";
+                $sql = "UPDATE mihuendpoint_brand_list SET enabled = 0 WHERE id = '".$_REQUEST['model']."'";
             }
             $endpoint->eda->sql($sql);
         } elseif(isset($_REQUEST['button_enable'])) {
             if(isset($_REQUEST['model'])) {
-                $sql = "UPDATE endpointman_model_list SET enabled = 1 WHERE id = '".$_REQUEST['model']."'";
+                $sql = "UPDATE mihuendpoint_model_list SET enabled = 1 WHERE id = '".$_REQUEST['model']."'";
             } elseif(isset($_REQUEST['brand'])) {
-                $sql = "UPDATE endpointman_brand_list SET enabled = 1 WHERE id = '".$_REQUEST['model']."'";
+                $sql = "UPDATE mihuendpoint_brand_list SET enabled = 1 WHERE id = '".$_REQUEST['model']."'";
             }
             $endpoint->eda->sql($sql);
         } elseif(isset($_REQUEST['button_uninstall'])) {
@@ -66,7 +66,7 @@ switch ($_REQUEST['subpage']) {
                 $installer = array("type" => 'js-multiple', "id" => $_REQUEST['hidden']);
         }
 
-        $sql="SELECT * from endpointman_brand_list WHERE id > 0 AND hidden = 0 ORDER BY id ASC ";
+        $sql="SELECT * from mihuendpoint_brand_list WHERE id > 0 AND hidden = 0 ORDER BY id ASC ";
         $brand_list = $endpoint->eda->sql($sql,'getAll',DB_FETCHMODE_ASSOC);
         $i = 0;
         $note = "";
@@ -94,7 +94,7 @@ switch ($_REQUEST['subpage']) {
             }
             if($row['installed']){
                 $j = 0;
-                $sql = 'SELECT * FROM endpointman_product_list WHERE hidden = 0 AND brand = '.$row['id'].' ORDER BY long_name ASC';
+                $sql = 'SELECT * FROM mihuendpoint_product_list WHERE hidden = 0 AND brand = '.$row['id'].' ORDER BY long_name ASC';
                         $product_list = $endpoint->eda->sql($sql,'getAll',DB_FETCHMODE_ASSOC);
                         foreach($product_list as $row2) {
                     $row_out[$i]['products'][$j] = $row2;
@@ -112,7 +112,7 @@ switch ($_REQUEST['subpage']) {
 
 
                     if(1 == 1) {
-                        $sql = "SELECT * FROM endpointman_model_list WHERE hidden = 0 AND product_id = '".$row2['id']."'";
+                        $sql = "SELECT * FROM mihuendpoint_model_list WHERE hidden = 0 AND product_id = '".$row2['id']."'";
                                         $model_list = $endpoint->eda->sql($sql,'getAll',DB_FETCHMODE_ASSOC);
                         $k = 0;
                         foreach($model_list as $row3) {
@@ -168,24 +168,24 @@ switch ($_REQUEST['subpage']) {
     case "editor":
         if (isset($_REQUEST['button_hide'])) {
             if (isset($_REQUEST['model'])) {
-                $sql = "UPDATE endpointman_model_list SET hidden = 1 WHERE id = '" . $_REQUEST['model'] . "'";
+                $sql = "UPDATE mihuendpoint_model_list SET hidden = 1 WHERE id = '" . $_REQUEST['model'] . "'";
             } elseif (isset($_REQUEST['brand'])) {
-                $sql = "UPDATE endpointman_brand_list SET hidden = 1 WHERE id = " . $_REQUEST['brand'];
+                $sql = "UPDATE mihuendpoint_brand_list SET hidden = 1 WHERE id = " . $_REQUEST['brand'];
             } elseif (isset($_REQUEST['product'])) {
-                $sql = "UPDATE endpointman_product_list SET hidden = 1 WHERE id = '" . $_REQUEST['product'] . "'";
+                $sql = "UPDATE mihuendpoint_product_list SET hidden = 1 WHERE id = '" . $_REQUEST['product'] . "'";
             }
             $endpoint->eda->sql($sql);
         } elseif (isset($_REQUEST['button_show'])) {
             if (isset($_REQUEST['model'])) {
-                $sql = "UPDATE endpointman_model_list SET hidden = 0 WHERE id = '" . $_REQUEST['model'] . "'";
+                $sql = "UPDATE mihuendpoint_model_list SET hidden = 0 WHERE id = '" . $_REQUEST['model'] . "'";
             } elseif (isset($_REQUEST['brand'])) {
-                $sql = "UPDATE endpointman_brand_list SET hidden = 0 WHERE id = " . $_REQUEST['brand'];
+                $sql = "UPDATE mihuendpoint_brand_list SET hidden = 0 WHERE id = " . $_REQUEST['brand'];
             } elseif (isset($_REQUEST['product'])) {
-                $sql = "UPDATE endpointman_product_list SET hidden = 0 WHERE id = '" . $_REQUEST['product'] . "'";
+                $sql = "UPDATE mihuendpoint_product_list SET hidden = 0 WHERE id = '" . $_REQUEST['product'] . "'";
             }
             $endpoint->eda->sql($sql);
         }
-        $sql = "SELECT * from endpointman_brand_list WHERE id > 0 ORDER BY id ASC ";
+        $sql = "SELECT * from mihuendpoint_brand_list WHERE id > 0 ORDER BY id ASC ";
         $result = & $endpoint->eda->sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
         $i = 0;
         foreach ($result as $row) {
@@ -193,12 +193,12 @@ switch ($_REQUEST['subpage']) {
             $row_out[$i]['count'] = $i;
             if ($row['installed']) {
                 $j = 0;
-                $sql = 'SELECT * FROM endpointman_product_list WHERE brand = ' . $row['id'] . ' ORDER BY long_name ASC';
+                $sql = 'SELECT * FROM mihuendpoint_product_list WHERE brand = ' . $row['id'] . ' ORDER BY long_name ASC';
                 $result2 = & $endpoint->eda->sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
                 $xml_data = "";
                 foreach ($result2 as $row2) {
                     $row_out[$i]['products'][$j] = $row2;
-                    $sql = 'SELECT * FROM endpointman_model_list WHERE product_id = ' . $row2['id'];
+                    $sql = 'SELECT * FROM mihuendpoint_model_list WHERE product_id = ' . $row2['id'];
                     $result3 = & $endpoint->eda->sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
                     $k = 0;
                     foreach ($result3 as $row3) {

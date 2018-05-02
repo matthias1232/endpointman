@@ -23,7 +23,7 @@
 	}
 	else{
 ?>
-        <link href="assets/endpointman/theme/coda-slider.css" media="screen, projection" rel="stylesheet" type="text/css" />
+        <link href="assets/mihuendpoint/theme/coda-slider.css" media="screen, projection" rel="stylesheet" type="text/css" />
 
 <script language="javascript" type="text/javascript">
     $().ready(function() {
@@ -95,7 +95,7 @@
         <?php
 			if( isset($var["silent_mode"]) ){
 ?>
-        <select name="area_list" onchange="window.location.href='config.php?display=epm_config&quietmode=1&handler=file&file=popup.html.php&module=endpointman&pop_type=edit_template&edit_id=<?php echo $var["hidden_id"];?>&model_list=126&template_list=0&rand='+ new Date().getTime() + '&maxlines='+this.options[this.selectedIndex].value">
+        <select name="area_list" onchange="window.location.href='config.php?display=epm_config&quietmode=1&handler=file&file=popup.html.php&module=mihuendpoint&pop_type=edit_template&edit_id=<?php echo $var["hidden_id"];?>&model_list=126&template_list=0&rand='+ new Date().getTime() + '&maxlines='+this.options[this.selectedIndex].value">
         <?php
 			}
 			else{
@@ -125,7 +125,7 @@
 		}
 ?>
         <br />
-        <strong><?php echo _('Edit Global Settings Overrides')?>: </strong> <a href="#" onclick="return popitup3('config.php?type=tool&display=epm_config&amp;quietmode=1&amp;handler=file&amp;file=popup.html.php&amp;module=endpointman&amp;pop_type=global_over')"><?php echo _('Global Settings')?> <i class='icon-pencil blue' ALT='<?php echo _('Edit')?>'></i></a>
+        <strong><?php echo _('Edit Global Settings Overrides')?>: </strong> <a href="#" onclick="return popitup3('config.php?type=tool&display=epm_config&amp;quietmode=1&amp;handler=file&amp;file=popup.html.php&amp;module=mihuendpoint&amp;pop_type=global_over')"><?php echo _('Global Settings')?> <i class='icon-pencil blue' ALT='<?php echo _('Edit')?>'></i></a>
         <br />
 	<?php
 		if( $var["alt"] != 0 ){
@@ -136,7 +136,7 @@
 				foreach( $var["alt_configs"] as $key1 => $value1 ){ 
 ?>
             <p><strong><?php echo _('Edit File Configurations for:')?></strong>
-            <a href="#" onclick="return popitup('config.php?type=tool&display=epm_config&amp;quietmode=1&amp;handler=file&amp;file=popup.html.php&amp;module=endpointman&amp;pop_type=alt_cfg_edit', '<?php echo $value1["name"];?>')">
+            <a href="#" onclick="return popitup('config.php?type=tool&display=epm_config&amp;quietmode=1&amp;handler=file&amp;file=popup.html.php&amp;module=mihuendpoint&amp;pop_type=alt_cfg_edit', '<?php echo $value1["name"];?>')">
             <code><?php echo $value1["name"];?></code> <i class='icon-pencil blue' ALT='<?php echo _('Edit')?> <?php echo $value1["name"];?>'></i></a>
             <br>
             <strong><?php echo _('Select Alternative File Configurations for')?> <code><?php echo $value1["name"];?></code></strong>
@@ -174,7 +174,7 @@
 			foreach( $var["only_configs"] as $key1 => $value1 ){ 
 ?>
             <strong><?php echo _('Edit File Configurations for:')?></strong>&nbsp;
-            <a href="#" onclick="return popitup2('config.php?type=tool&display=epm_config&amp;quietmode=1&amp;handler=file&amp;file=popup.html.php&amp;module=endpointman&amp;pop_type=alt_cfg_edit', '<?php echo $value1["name"];?>')"><code><?php echo $value1["name"];?></code>&nbsp;<i class='icon-pencil blue' ALT='<?php echo _('Edit')?>'></i></a>
+            <a href="#" onclick="return popitup2('config.php?type=tool&display=epm_config&amp;quietmode=1&amp;handler=file&amp;file=popup.html.php&amp;module=mihuendpoint&amp;pop_type=alt_cfg_edit', '<?php echo $value1["name"];?>')"><code><?php echo $value1["name"];?></code>&nbsp;<i class='icon-pencil blue' ALT='<?php echo _('Edit')?>'></i></a>
             <br/>
         <?php
 				$counter1++;

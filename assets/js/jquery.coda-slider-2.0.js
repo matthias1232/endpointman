@@ -9,7 +9,7 @@ $(function(){
 	$("body").removeClass("coda-slider-no-js");
 	// Preloader
         // TODO: fix
-	//$(".coda-slider").children('.panel').hide().end().prepend('<p class="loading">Loading...<br /><img src="/admin/modules/endpointman/templates/images/ajax-loader.gif" alt="loading..." /></p>');
+	//$(".coda-slider").children('.panel').hide().end().prepend('<p class="loading">Loading...<br /><img src="/admin/modules/mihuendpoint/templates/images/ajax-loader.gif" alt="loading..." /></p>');
 });
 
 var sliderCount = 1;

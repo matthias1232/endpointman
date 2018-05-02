@@ -3,14 +3,14 @@
         <title>PBX Endpoint Configuration Manager</title>
         <script type="text/javascript" src="assets/js/jquery-1.7.1.min.js" language="javascript"></script>
         <script type="text/javascript" src="assets/js/jquery-ui-1.8.9.min.js" language="javascript"></script>
-        <script type="text/javascript" src="assets/endpointman/js/jquery.tools.min.js"></script>
-        <script type="text/javascript" src="assets/endpointman/js/jquery.easing.1.3.js"></script>
-        <script type="text/javascript" src="assets/endpointman/js/jquery.coda-slider-3.0.js"></script>
+        <script type="text/javascript" src="assets/mihuendpoint/js/jquery.tools.min.js"></script>
+        <script type="text/javascript" src="assets/mihuendpoint/js/jquery.easing.1.3.js"></script>
+        <script type="text/javascript" src="assets/mihuendpoint/js/jquery.coda-slider-3.0.js"></script>
         <script type="text/javascript" src="assets/js/pbxlib.js"></script>
         <link href="assets/css/mainstyle.css" rel="stylesheet" type="text/css">
         <link href="assets/css/jquery-ui.css" rel="stylesheet" type="text/css">
         <!-- <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"> -->
-        <link href="assets/endpointman/css/main.css" rel="stylesheet" type="text/css">
+        <link href="assets/mihuendpoint/css/main.css" rel="stylesheet" type="text/css">
     </head>
     <body name="advanced_settings_settings_pop">
       <div id="page_body">

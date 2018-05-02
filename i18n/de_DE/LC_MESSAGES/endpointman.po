@@ -2,7 +2,7 @@
 #
 # For licensing information, please see the file named LICENSE located in the module directory
 #
-# FreePBX language template for endpointman
+# FreePBX language template for mihuendpoint
 # Copyright (C) 2008-2015 Sangoma, Inc.
 #
 msgid ""
@@ -13,7 +13,7 @@ msgstr ""
 "PO-Revision-Date: 2015-11-12 14:01+0200\n"
 "Last-Translator: Matthias <it@mitterhuemer.at>\n"
 "Language-Team: German <http://weblate.freepbx.org/projects/fpbxcn/"
-"endpointman/de_DE/>\n"
+"mihuendpoint/de_DE/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -196,34 +196,34 @@ msgstr ""
 msgid "+E:"
 msgstr ""
 
-#: Endpointman_Config.class.php:1435
+#: Mihuendpoint_Config.class.php:1435
 #, php-format
 msgid "- Copied %s to %s."
 msgstr ""
 
-#: Endpointman_Config.class.php:1081
+#: Mihuendpoint_Config.class.php:1081
 #, php-format
 msgid "- Error Moving %s!"
 msgstr ""
 
-#: Endpointman_Config.class.php:1432
+#: Mihuendpoint_Config.class.php:1432
 #, php-format
 msgid "- Failed To Copy %s!"
 msgstr ""
 
-#: Endpointman_Config.class.php:1139
+#: Mihuendpoint_Config.class.php:1139
 msgid "-- Updating Model Lines ... "
 msgstr ""
 
-#: Endpointman_Config.class.php:1150
+#: Mihuendpoint_Config.class.php:1150
 msgid "----Old Data Detected! Migrating ... "
 msgstr ""
 
-#: Endpointman_Config.class.php:1245
+#: Mihuendpoint_Config.class.php:1245
 msgid "---Inserting Model %_NAMEMOD_%"
 msgstr ""
 
-#: Endpointman_Config.class.php:1241
+#: Mihuendpoint_Config.class.php:1241
 msgid "---Updating Model %_NAMEMOD_%"
 msgstr ""
 
@@ -231,7 +231,7 @@ msgstr ""
 msgid "/tftpboot is not writable"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1198
+#: Mihuendpoint_Advanced.class.php:1198
 msgid ""
 "<font color='#FF0000'><b>Please reboot & rebuild all imported phones</b></"
 "font>"
@@ -274,7 +274,7 @@ msgstr ""
 msgid "Add New Template"
 msgstr ""
 
-#: Endpointman_Templates.class.php:374
+#: Mihuendpoint_Templates.class.php:374
 msgid "Add New Template OK!"
 msgstr ""
 
@@ -290,13 +290,13 @@ msgstr ""
 msgid "Advanced"
 msgstr ""
 
-#: endpointman.i18n.php:16 page.epm_advanced.php:19
+#: mihuendpoint.i18n.php:16 page.epm_advanced.php:19
 #: views/epm_devices_main.page.php:39
 msgid "Advanced Settings"
 msgstr ""
 
-#: Endpointman_Config.class.php:1088 Endpointman_Config.class.php:1282
-#: Endpointman_Config.class.php:1340
+#: Mihuendpoint_Config.class.php:1088 Mihuendpoint_Config.class.php:1282
+#: Mihuendpoint_Config.class.php:1340
 msgid "All Done!"
 msgstr ""
 
@@ -308,7 +308,7 @@ msgstr ""
 msgid "Allow Saving Over Default Configuration Files"
 msgstr ""
 
-#: Endpointman_Config.class.php:1053
+#: Mihuendpoint_Config.class.php:1053
 msgid "Appears to be a valid Provisioner.net JSON file.....Continuing"
 msgstr ""
 
@@ -339,7 +339,7 @@ msgstr ""
 msgid "Brand Configurations/Setup"
 msgstr ""
 
-#: Endpointman_Config.class.php:925
+#: Mihuendpoint_Config.class.php:925
 #, php-format
 msgid "Brand Directory '%s' Doesn't Exist! (%s)"
 msgstr ""
@@ -370,7 +370,7 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: Endpointman_Config.class.php:1603
+#: Mihuendpoint_Config.class.php:1603
 msgid "Cant find file:"
 msgstr ""
 
@@ -378,7 +378,7 @@ msgstr ""
 msgid "Change Selected Phones to"
 msgstr ""
 
-#: Endpointman_Config.class.php:75
+#: Mihuendpoint_Config.class.php:75
 msgid "Check Online "
 msgstr ""
 
@@ -386,35 +386,35 @@ msgstr ""
 msgid "Check for Update"
 msgstr ""
 
-#: Endpointman_Config.class.php:74
+#: Mihuendpoint_Config.class.php:74
 msgid "Check for Update "
 msgstr ""
 
-#: Endpointman_Config.class.php:92
+#: Mihuendpoint_Config.class.php:92
 msgid "Check for Updates..."
 msgstr ""
 
-#: Endpointman_Config.class.php:93
+#: Mihuendpoint_Config.class.php:93
 msgid "Check for Updates... Ok!"
 msgstr ""
 
-#: Endpointman_Config.class.php:1415
+#: Mihuendpoint_Config.class.php:1415
 msgid "Checking MD5sum of Package... "
 msgstr ""
 
-#: Endpointman_Config.class.php:1005
+#: Mihuendpoint_Config.class.php:1005
 msgid "Checking MD5sum of Package.... "
 msgstr ""
 
-#: Endpointman_Config.class.php:750 Endpointman_Config.class.php:774
+#: Mihuendpoint_Config.class.php:750 Mihuendpoint_Config.class.php:774
 msgid "Click Here!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1093
+#: Mihuendpoint_Advanced.class.php:1093
 msgid "Click this link to download:"
 msgstr ""
 
-#: Endpointman_Templates.class.php:360
+#: Mihuendpoint_Templates.class.php:360
 msgid "Clone Model send is negative!"
 msgstr ""
 
@@ -426,11 +426,11 @@ msgstr ""
 msgid "Clone of Model:"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:104 Endpointman_Advanced.class.php:132
-#: Endpointman_Advanced.class.php:141 Endpointman_Advanced.class.php:175
-#: Endpointman_Advanced.class.php:188 Endpointman_Config.class.php:113
-#: Endpointman_Devices.class.php:52 Endpointman_Templates.class.php:75
-#: Endpointman_Templates.class.php:106
+#: Mihuendpoint_Advanced.class.php:104 Mihuendpoint_Advanced.class.php:132
+#: Mihuendpoint_Advanced.class.php:141 Mihuendpoint_Advanced.class.php:175
+#: Mihuendpoint_Advanced.class.php:188 Mihuendpoint_Config.class.php:113
+#: Mihuendpoint_Devices.class.php:52 Mihuendpoint_Templates.class.php:75
+#: Mihuendpoint_Templates.class.php:106
 msgid "Command not found!"
 msgstr ""
 
@@ -442,17 +442,17 @@ msgstr ""
 msgid "Config File Placeholder Values"
 msgstr ""
 
-#: endpointman.i18n.php:18 views/rnav.php:13
+#: mihuendpoint.i18n.php:18 views/rnav.php:13
 msgid "Config File Placeholders"
 msgstr ""
 
-#: Endpointman.class.php:152
+#: Mihuendpoint.class.php:152
 msgid ""
 "Configuration Directory is not a directory or does not exist! Please change "
 "the location here:"
 msgstr ""
 
-#: Endpointman.class.php:144
+#: Mihuendpoint.class.php:144
 msgid "Configuration Directory is not writable!"
 msgstr ""
 
@@ -465,7 +465,7 @@ msgstr ""
 msgid "Configure"
 msgstr ""
 
-#: endpointman.i18n.php:6
+#: mihuendpoint.i18n.php:6
 msgid "Connectivity"
 msgstr "Verbindung"
 
@@ -474,24 +474,24 @@ msgstr "Verbindung"
 msgid "Content of the file:"
 msgstr ""
 
-#: Endpointman_Config.class.php:1446
+#: Mihuendpoint_Config.class.php:1446
 msgid "Copy Error Detected! Aborting Install!"
 msgstr ""
 
-#: Endpointman_Config.class.php:1061
+#: Mihuendpoint_Config.class.php:1061
 #, php-format
 msgid "Creating Directory Structure for Brand '%s' and Moving Files..."
 msgstr ""
 
-#: Endpointman_Config.class.php:982
+#: Mihuendpoint_Config.class.php:982
 msgid "Creating EPM temp directory"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:919
+#: Mihuendpoint_Advanced.class.php:919
 msgid "Creating EPM temp directory..."
 msgstr ""
 
-#: Endpointman_Advanced.class.php:997
+#: Mihuendpoint_Advanced.class.php:997
 msgid "Creating Provisioner Directory... "
 msgstr ""
 
@@ -499,7 +499,7 @@ msgstr ""
 msgid "Current Managed Extensions"
 msgstr ""
 
-#: Endpointman_Templates.class.php:28
+#: Mihuendpoint_Templates.class.php:28
 msgid "Current Templates"
 msgstr ""
 
@@ -511,14 +511,14 @@ msgstr ""
 msgid "Default Mirror FreePBX"
 msgstr ""
 
-#: Endpointman_Templates.class.php:136
+#: Mihuendpoint_Templates.class.php:136
 #: views/epm_advanced/poce.views.textarea.file.php:36
 #: views/epm_devices_main.page.php:473 views/epm_devices_main.page.php:491
 #: views/epm_devices_main.page.php:504 views/epm_devices_main.page.php:514
 msgid "Delete"
 msgstr ""
 
-#: Endpointman_Templates.class.php:331
+#: Mihuendpoint_Templates.class.php:331
 msgid "Delete Template OK!"
 msgstr ""
 
@@ -530,7 +530,7 @@ msgstr ""
 msgid "Device"
 msgstr ""
 
-#: endpointman.i18n.php:10
+#: mihuendpoint.i18n.php:10
 msgid "Device List"
 msgstr ""
 
@@ -550,19 +550,19 @@ msgstr ""
 msgid "Device's Username (usually the extension)"
 msgstr ""
 
-#: Endpointman_Devices.class.php:26
+#: Mihuendpoint_Devices.class.php:26
 msgid "Devices"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:340 Endpointman_Templates.class.php:238
+#: Mihuendpoint_Advanced.class.php:340 Mihuendpoint_Templates.class.php:238
 msgid "Directory Not Writable!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:889
+#: Mihuendpoint_Advanced.class.php:889
 msgid "Directory no exists: "
 msgstr ""
 
-#: Endpointman_Config.class.php:83
+#: Mihuendpoint_Config.class.php:83
 msgid "Disable"
 msgstr ""
 
@@ -592,17 +592,17 @@ msgstr ""
 msgid "Display:"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:921 Endpointman_Advanced.class.php:936
-#: Endpointman_Advanced.class.php:994 Endpointman_Advanced.class.php:999
-#: Endpointman_Advanced.class.php:1014 Endpointman_Advanced.class.php:1090
-#: Endpointman_Config.class.php:890 Endpointman_Config.class.php:993
-#: Endpointman_Config.class.php:1007 Endpointman_Config.class.php:1012
-#: Endpointman_Config.class.php:1101 Endpointman_Config.class.php:1106
-#: Endpointman_Config.class.php:1170 Endpointman_Config.class.php:1206
-#: Endpointman_Config.class.php:1235 Endpointman_Config.class.php:1278
-#: Endpointman_Config.class.php:1293 Endpointman_Config.class.php:1303
-#: Endpointman_Config.class.php:1358 Endpointman_Config.class.php:1451
-#: Endpointman_Config.class.php:1484
+#: Mihuendpoint_Advanced.class.php:921 Mihuendpoint_Advanced.class.php:936
+#: Mihuendpoint_Advanced.class.php:994 Mihuendpoint_Advanced.class.php:999
+#: Mihuendpoint_Advanced.class.php:1014 Mihuendpoint_Advanced.class.php:1090
+#: Mihuendpoint_Config.class.php:890 Mihuendpoint_Config.class.php:993
+#: Mihuendpoint_Config.class.php:1007 Mihuendpoint_Config.class.php:1012
+#: Mihuendpoint_Config.class.php:1101 Mihuendpoint_Config.class.php:1106
+#: Mihuendpoint_Config.class.php:1170 Mihuendpoint_Config.class.php:1206
+#: Mihuendpoint_Config.class.php:1235 Mihuendpoint_Config.class.php:1278
+#: Mihuendpoint_Config.class.php:1293 Mihuendpoint_Config.class.php:1303
+#: Mihuendpoint_Config.class.php:1358 Mihuendpoint_Config.class.php:1451
+#: Mihuendpoint_Config.class.php:1484
 msgid "Done!"
 msgstr ""
 
@@ -615,19 +615,19 @@ msgstr ""
 msgid "Downloading %s ..."
 msgstr ""
 
-#: Endpointman_Config.class.php:989
+#: Mihuendpoint_Config.class.php:989
 msgid "Downloading Brand JSON..... "
 msgstr ""
 
-#: Endpointman_Config.class.php:998
+#: Mihuendpoint_Config.class.php:998
 msgid "Downloading Brand Package..."
 msgstr ""
 
-#: Endpointman_Config.class.php:1399 Endpointman_Config.class.php:1407
+#: Mihuendpoint_Config.class.php:1399 Mihuendpoint_Config.class.php:1407
 msgid "Downloading firmware..."
 msgstr ""
 
-#: Endpointman.class.php:462
+#: Mihuendpoint.class.php:462
 msgid "Dropping all relevant tables"
 msgstr ""
 
@@ -643,7 +643,7 @@ msgstr ""
 msgid "Edit Global Settings Overrides"
 msgstr ""
 
-#: Endpointman_Config.class.php:82
+#: Mihuendpoint_Config.class.php:82
 msgid "Enable"
 msgstr ""
 
@@ -685,173 +685,173 @@ msgstr ""
 msgid "Error 500 Internal Server Error"
 msgstr ""
 
-#: Endpointman_Config.class.php:1030
+#: Mihuendpoint_Config.class.php:1030
 msgid ""
 "Error Connecting to the Package Repository. Module not installed. Please Try "
 "again later."
 msgstr ""
 
-#: Endpointman_Config.class.php:1026
+#: Mihuendpoint_Config.class.php:1026
 msgid "Error download Brand package!"
 msgstr ""
 
-#: Endpointman_Config.class.php:1401 Endpointman_Config.class.php:1409
+#: Mihuendpoint_Config.class.php:1401 Mihuendpoint_Config.class.php:1409
 msgid "Error download frimware package!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:89 Endpointman_Advanced.class.php:924
-#: Endpointman_Advanced.class.php:1002 Endpointman_Config.class.php:87
-#: Endpointman_Config.class.php:1029
+#: Mihuendpoint_Advanced.class.php:89 Mihuendpoint_Advanced.class.php:924
+#: Mihuendpoint_Advanced.class.php:1002 Mihuendpoint_Config.class.php:87
+#: Mihuendpoint_Config.class.php:1029
 msgid "Error!"
 msgstr ""
 
-#: Endpointman_Config.class.php:1253 lib/epm_system.class.php:200
+#: Mihuendpoint_Config.class.php:1253 lib/epm_system.class.php:200
 msgid "Error: "
 msgstr ""
 
-#: Endpointman_Advanced.class.php:904 Endpointman_Advanced.class.php:978
-#: Endpointman_Advanced.class.php:1131
+#: Mihuendpoint_Advanced.class.php:904 Mihuendpoint_Advanced.class.php:978
+#: Mihuendpoint_Advanced.class.php:1131
 #, php-format
 msgid "Error: %s"
 msgstr ""
 
-#: Endpointman_Config.class.php:774
+#: Mihuendpoint_Config.class.php:774
 msgid ""
 "Error: Aborting Brand Downloads. Can't Get Master File, Assuming Timeout "
 "Issues!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:897 Endpointman_Advanced.class.php:970
-#: Endpointman_Advanced.class.php:1121
+#: Mihuendpoint_Advanced.class.php:897 Mihuendpoint_Advanced.class.php:970
+#: Mihuendpoint_Advanced.class.php:1121
 msgid "Error: Can Not Find Uploaded Files!"
 msgstr ""
 
-#: Endpointman_Config.class.php:1023
+#: Mihuendpoint_Config.class.php:1023
 msgid "Error: Can't Find Downloaded File!"
 msgstr ""
 
-#: Endpointman_Config.class.php:281 Endpointman_Config.class.php:321
+#: Mihuendpoint_Config.class.php:281 Mihuendpoint_Config.class.php:321
 msgid "Error: Command not found!"
 msgstr ""
 
-#: Endpointman_Config.class.php:984
+#: Mihuendpoint_Config.class.php:984
 #, php-format
 msgid "Error: Failed to create the directory '%s', please Check Permissions!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1140
+#: Mihuendpoint_Advanced.class.php:1140
 #, php-format
 msgid "Error: File %s size is 0!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1018
+#: Mihuendpoint_Advanced.class.php:1018
 msgid "Error: File Temp no Exists!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1078
+#: Mihuendpoint_Advanced.class.php:1078
 msgid "Error: ID Package send not valid, brand not exist!"
 msgstr ""
 
-#: Endpointman_Config.class.php:1035
+#: Mihuendpoint_Config.class.php:1035
 msgid "Error: Installing brands is disabled while in repo mode!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1187
+#: Mihuendpoint_Advanced.class.php:1187
 #, php-format
 msgid "Error: Invalid Brand Specified on line %d!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1181
+#: Mihuendpoint_Advanced.class.php:1181
 #, php-format
 msgid "Error: Invalid Extension Specified on line %d!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:960 Endpointman_Advanced.class.php:1021
+#: Mihuendpoint_Advanced.class.php:960 Mihuendpoint_Advanced.class.php:1021
 msgid "Error: Invalid File Extension!"
 msgstr ""
 
-#: Endpointman_Config.class.php:1295
+#: Mihuendpoint_Config.class.php:1295
 #, php-format
 msgid "Error: Invalid JSON Structure in %s/brand_data.json"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1190
+#: Mihuendpoint_Advanced.class.php:1190
 #, php-format
 msgid "Error: Invalid Mac on line %d!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1184
+#: Mihuendpoint_Advanced.class.php:1184
 #, php-format
 msgid "Error: Invalid Model Specified on line %d!"
 msgstr ""
 
-#: Endpointman_Config.class.php:1298
+#: Mihuendpoint_Config.class.php:1298
 msgid "Error: No 'brand_data.xml' file exists!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:955
+#: Mihuendpoint_Advanced.class.php:955
 msgid "Error: No File Provided!"
 msgstr ""
 
-#: Endpointman_Config.class.php:750
+#: Mihuendpoint_Config.class.php:750
 #, php-format
 msgid "Error: No Local File for %s !"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1066
+#: Mihuendpoint_Advanced.class.php:1066
 msgid "Error: No package set!"
 msgstr ""
 
-#: Endpointman_Config.class.php:254 Endpointman_Config.class.php:294
+#: Mihuendpoint_Config.class.php:254 Mihuendpoint_Config.class.php:294
 msgid "Error: No send value!"
 msgstr ""
 
-#: Endpointman_Config.class.php:654
+#: Mihuendpoint_Config.class.php:654
 msgid ""
 "Error: Not able to connect to repository. Using local master file instead."
 msgstr ""
 
-#: Endpointman_Config.class.php:1361
+#: Mihuendpoint_Config.class.php:1361
 msgid "Error: Not allowed in repo mode!!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1069
+#: Mihuendpoint_Advanced.class.php:1069
 msgid "Error: Package not valid!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1200
+#: Mihuendpoint_Advanced.class.php:1200
 msgid "Error: Possible file upload attack!"
 msgstr ""
 
-#: Endpointman_Config.class.php:1252
+#: Mihuendpoint_Config.class.php:1252
 msgid "Error: System Error in Sync Model Function, Load Failure!"
 msgstr ""
 
-#: Endpointman_Config.class.php:859
+#: Mihuendpoint_Config.class.php:859
 #, php-format
 msgid "Error: System Error in Sync Model [%s] Function, Load Failure!"
 msgstr ""
 
-#: Endpointman_Config.class.php:781
+#: Mihuendpoint_Config.class.php:781
 msgid ""
 "Error: The Remote Server Is Currently Syncing With the Master Server, Please "
 "try again later"
 msgstr ""
 
-#: Endpointman_Config.class.php:1383
+#: Mihuendpoint_Config.class.php:1383
 msgid ""
 "Error: The package name of the firmware to be downloaded is Null or blank!"
 msgstr ""
 
-#: Endpointman_Config.class.php:1378
+#: Mihuendpoint_Config.class.php:1378
 msgid "Error: The version of the firmware package is blank!"
 msgstr ""
 
-#: Endpointman_Config.class.php:262 Endpointman_Config.class.php:302
+#: Mihuendpoint_Config.class.php:262 Mihuendpoint_Config.class.php:302
 msgid "Error: Value send is not number!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1137
+#: Mihuendpoint_Advanced.class.php:1137
 #, php-format
 msgid "Error: We support only CVS and TXT files, type file %s no support!"
 msgstr ""
@@ -893,7 +893,7 @@ msgstr ""
 msgid "Export data configuracion devices."
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1081
+#: Mihuendpoint_Advanced.class.php:1081
 #, php-format
 msgid "Exporting %s ... "
 msgstr ""
@@ -910,32 +910,32 @@ msgstr ""
 msgid "Extension Number"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:991
+#: Mihuendpoint_Advanced.class.php:991
 msgid "Extracting Provisioner Package... "
 msgstr ""
 
-#: Endpointman_Advanced.class.php:930
+#: Mihuendpoint_Advanced.class.php:930
 #, php-format
 msgid "Extracting Tarball %s to %s... "
 msgstr ""
 
-#: Endpointman_Advanced.class.php:932
+#: Mihuendpoint_Advanced.class.php:932
 msgid "Extracting Tarball... "
 msgstr ""
 
-#: Endpointman_Config.class.php:1009
+#: Mihuendpoint_Config.class.php:1009
 msgid "Extracting Tarball........ "
 msgstr ""
 
-#: Endpointman_Config.class.php:80
+#: Mihuendpoint_Config.class.php:80
 msgid "FW Delete"
 msgstr ""
 
-#: Endpointman_Config.class.php:79
+#: Mihuendpoint_Config.class.php:79
 msgid "FW Install"
 msgstr ""
 
-#: Endpointman_Config.class.php:81
+#: Mihuendpoint_Config.class.php:81
 msgid "FW Update"
 msgstr ""
 
@@ -943,11 +943,11 @@ msgstr ""
 msgid "Failed to install "
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1303
+#: Mihuendpoint_Advanced.class.php:1303
 msgid "Failed to write file to disk"
 msgstr ""
 
-#: Endpointman_Config.class.php:933
+#: Mihuendpoint_Config.class.php:933
 #, php-format
 msgid "File 'family_data.json' Doesn't exist in directory: %s"
 msgstr ""
@@ -961,19 +961,19 @@ msgstr ""
 msgid "File not Found!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:592
+#: Mihuendpoint_Advanced.class.php:592
 msgid "File not readable, check the permission! "
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1305
+#: Mihuendpoint_Advanced.class.php:1305
 msgid "File upload stopped by extension"
 msgstr ""
 
-#: Endpointman_Config.class.php:1455
+#: Mihuendpoint_Config.class.php:1455
 msgid "Firmware MD5 didn't match!"
 msgstr ""
 
-#: Endpointman_Config.class.php:1120
+#: Mihuendpoint_Config.class.php:1120
 msgid "Firmware Requirment Detected!.........."
 msgstr ""
 
@@ -985,11 +985,11 @@ msgstr ""
 msgid "GIT Branch"
 msgstr ""
 
-#: Endpointman_Templates.class.php:404
+#: Mihuendpoint_Templates.class.php:404
 msgid "Generate list Ok!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:322 views/epm_advanced_settings.page.php:23
+#: Mihuendpoint_Advanced.class.php:322 views/epm_advanced_settings.page.php:23
 msgid "Git not installed!"
 msgstr ""
 
@@ -1013,7 +1013,7 @@ msgstr ""
 msgid "Global"
 msgstr ""
 
-#: Endpointman_Templates.class.php:199
+#: Mihuendpoint_Templates.class.php:199
 msgid "Global Config Read OK!"
 msgstr ""
 
@@ -1026,7 +1026,7 @@ msgstr ""
 msgid "Global Phone Options"
 msgstr ""
 
-#: Endpointman_Templates.class.php:302
+#: Mihuendpoint_Templates.class.php:302
 msgid "Globals Reset to Default!"
 msgstr ""
 
@@ -1039,8 +1039,8 @@ msgstr ""
 msgid "Heads up!"
 msgstr ""
 
-#: Endpointman.class.php:145 Endpointman.class.php:152
-#: Endpointman_Advanced.class.php:1094
+#: Mihuendpoint.class.php:145 Mihuendpoint.class.php:152
+#: Mihuendpoint_Advanced.class.php:1094
 msgid "Here"
 msgstr ""
 
@@ -1052,39 +1052,39 @@ msgstr ""
 msgid "Hidden Packages"
 msgstr ""
 
-#: Endpointman_Config.class.php:85
+#: Mihuendpoint_Config.class.php:85
 msgid "Hide"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1217
+#: Mihuendpoint_Advanced.class.php:1217
 msgid "ID  not valid!"
 msgstr ""
 
-#: Endpointman_Config.class.php:180
+#: Mihuendpoint_Config.class.php:180
 msgid "ID Brand not is numbre"
 msgstr ""
 
-#: Endpointman_Config.class.php:165
+#: Mihuendpoint_Config.class.php:165
 msgid "ID Producto not is number"
 msgstr ""
 
-#: Endpointman_Templates.class.php:318
+#: Mihuendpoint_Templates.class.php:318
 msgid "ID is not number!"
 msgstr ""
 
-#: Endpointman_Templates.class.php:321
+#: Mihuendpoint_Templates.class.php:321
 msgid "ID send is negative!"
 msgstr ""
 
-#: Endpointman_Templates.class.php:386
+#: Mihuendpoint_Templates.class.php:386
 msgid "ID send is not number!"
 msgstr ""
 
-#: Endpointman_Templates.class.php:389
+#: Mihuendpoint_Templates.class.php:389
 msgid "ID send is number not valid!"
 msgstr ""
 
-#: Endpointman_Config.class.php:381
+#: Mihuendpoint_Config.class.php:381
 msgid "IDType invalid: "
 msgstr ""
 
@@ -1097,11 +1097,11 @@ msgstr ""
 msgid "IP address of the PBX server that will use the terminals."
 msgstr ""
 
-#: Endpointman_Config.class.php:363
+#: Mihuendpoint_Config.class.php:363
 msgid "IdType not valid to typesavecfg!"
 msgstr ""
 
-#: Endpointman_Config.class.php:69
+#: Mihuendpoint_Config.class.php:69
 msgid ""
 "If we can activate the model set terminals of the models.<br /> If this "
 "model is disabled will not appear in the list of models that can be "
@@ -1134,21 +1134,21 @@ msgstr ""
 msgid "Import a package brand in manual mode."
 msgstr ""
 
-#: Endpointman_Advanced.class.php:65
+#: Mihuendpoint_Advanced.class.php:65
 msgid "Import/Export My Devices List"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1128
+#: Mihuendpoint_Advanced.class.php:1128
 #, php-format
 msgid "Importing CVS file %s ...<br />"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:975
+#: Mihuendpoint_Advanced.class.php:975
 #, php-format
 msgid "Importing Provisioner file %s..."
 msgstr ""
 
-#: Endpointman_Advanced.class.php:901
+#: Mihuendpoint_Advanced.class.php:901
 #, php-format
 msgid "Importing brand file %s..."
 msgstr ""
@@ -1157,40 +1157,40 @@ msgstr ""
 msgid "Info Template"
 msgstr ""
 
-#: Endpointman_Config.class.php:1448
+#: Mihuendpoint_Config.class.php:1448
 msgid "Info: Please Check Directory/Permissions!"
 msgstr ""
 
-#: Endpointman_Config.class.php:1103
+#: Mihuendpoint_Config.class.php:1103
 #, php-format
 msgid "Inserting %s brand data ..."
 msgstr ""
 
-#: Endpointman_Config.class.php:76
+#: Mihuendpoint_Config.class.php:76
 msgid "Install"
 msgstr ""
 
-#: Endpointman_Config.class.php:977
+#: Mihuendpoint_Config.class.php:977
 msgid "Install/Update Brand..."
 msgstr ""
 
-#: Endpointman_Config.class.php:1370
+#: Mihuendpoint_Config.class.php:1370
 msgid "Installa frimware... "
 msgstr ""
 
-#: Endpointman_Config.class.php:1424
+#: Mihuendpoint_Config.class.php:1424
 msgid "Installing Firmware..."
 msgstr ""
 
-#: Endpointman_Advanced.class.php:92 Endpointman_Config.class.php:95
+#: Mihuendpoint_Advanced.class.php:92 Mihuendpoint_Config.class.php:95
 msgid "Invalid Option!"
 msgstr ""
 
-#: Endpointman_Config.class.php:354
+#: Mihuendpoint_Config.class.php:354
 msgid "Invalid Value!"
 msgstr ""
 
-#: Endpointman.class.php:248 Endpointman.class.php:294
+#: Mihuendpoint.class.php:248 Mihuendpoint.class.php:294
 msgid "Invalid section module!"
 msgstr ""
 
@@ -1202,7 +1202,7 @@ msgstr ""
 msgid "Learn how to create your own brand package at "
 msgstr ""
 
-#: Endpointman_Config.class.php:750 Endpointman_Config.class.php:774
+#: Mihuendpoint_Config.class.php:750 Mihuendpoint_Config.class.php:774
 msgid "Learn how to manually upload packages here (it's easy!):"
 msgstr ""
 
@@ -1233,7 +1233,7 @@ msgstr ""
 msgid "List Bran's Availables empty."
 msgstr ""
 
-#: Endpointman_Advanced.class.php:880
+#: Mihuendpoint_Advanced.class.php:880
 msgid "List Done!"
 msgstr ""
 
@@ -1271,11 +1271,11 @@ msgid ""
 "Location where configuration files and firmware for terminals are housed."
 msgstr ""
 
-#: Endpointman_Advanced.class.php:944
+#: Mihuendpoint_Advanced.class.php:944
 msgid "Looking file and update brand's ... "
 msgstr ""
 
-#: Endpointman_Advanced.class.php:942
+#: Mihuendpoint_Advanced.class.php:942
 #, php-format
 msgid "Looking for file %s to pass on to update_brand() ... "
 msgstr ""
@@ -1285,33 +1285,33 @@ msgstr ""
 msgid "MAC Address"
 msgstr ""
 
-#: Endpointman_Config.class.php:1018
+#: Mihuendpoint_Config.class.php:1018
 msgid "MD5 Did not match!"
 msgstr ""
 
-#: Endpointman_Config.class.php:1020
+#: Mihuendpoint_Config.class.php:1020
 #, php-format
 msgid "MD5 PKG: %s"
 msgstr ""
 
-#: Endpointman_Config.class.php:1019
+#: Mihuendpoint_Config.class.php:1019
 #, php-format
 msgid "MD5 XML: %s"
 msgstr ""
 
-#: Endpointman_Config.class.php:1591
+#: Mihuendpoint_Config.class.php:1591
 msgid "Malformed UTF-8 characters, possibly incorrectly encoded"
 msgstr ""
 
-#: Endpointman_Config.class.php:1417
+#: Mihuendpoint_Config.class.php:1417
 msgid "Matches!"
 msgstr ""
 
-#: Endpointman_Config.class.php:1579
+#: Mihuendpoint_Config.class.php:1579
 msgid "Maximum stack depth exceeded"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1301
+#: Mihuendpoint_Advanced.class.php:1301
 msgid "Missing a temporary folder"
 msgstr ""
 
@@ -1336,12 +1336,12 @@ msgstr ""
 msgid "Model of Phone"
 msgstr ""
 
-#: Endpointman_Config.class.php:1266
+#: Mihuendpoint_Config.class.php:1266
 #, php-format
 msgid "Moving/Removing Model '%s' not present in JSON file ... "
 msgstr ""
 
-#: Endpointman_Config.class.php:876
+#: Mihuendpoint_Config.class.php:876
 #, php-format
 msgid "Moving/Removing Model '%s' not present in JSON file......"
 msgstr ""
@@ -1370,11 +1370,11 @@ msgstr ""
 msgid "NTP server that syncs the time the terminals."
 msgstr ""
 
-#: Endpointman_Advanced.class.php:402
+#: Mihuendpoint_Advanced.class.php:402
 msgid "Name invalid: "
 msgstr ""
 
-#: Endpointman_Templates.class.php:354
+#: Mihuendpoint_Templates.class.php:354
 msgid "Name is null!"
 msgstr ""
 
@@ -1382,7 +1382,7 @@ msgstr ""
 msgid "New Name Template...."
 msgstr ""
 
-#: Endpointman_Config.class.php:72
+#: Mihuendpoint_Config.class.php:72
 msgid "New Package Modified"
 msgstr ""
 
@@ -1401,11 +1401,11 @@ msgstr ""
 msgid "No Brand Selected for Reboot"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1239
+#: Mihuendpoint_Advanced.class.php:1239
 msgid "No Brand set!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:346 Endpointman_Templates.class.php:246
+#: Mihuendpoint_Advanced.class.php:346 Mihuendpoint_Templates.class.php:246
 msgid "No Configuration Location Defined!"
 msgstr ""
 
@@ -1417,11 +1417,11 @@ msgstr ""
 msgid "No Devices Found"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1214
+#: Mihuendpoint_Advanced.class.php:1214
 msgid "No ID set!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1236
+#: Mihuendpoint_Advanced.class.php:1236
 msgid "No OUI set!"
 msgstr ""
 
@@ -1443,82 +1443,82 @@ msgstr ""
 msgid "No Selected"
 msgstr ""
 
-#: Endpointman.class.php:243
+#: Mihuendpoint.class.php:243
 msgid "No command was sent!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1299
+#: Mihuendpoint_Advanced.class.php:1299
 msgid "No file was uploaded"
 msgstr ""
 
-#: Endpointman_Templates.class.php:165 Endpointman_Templates.class.php:209
-#: Endpointman_Templates.class.php:280
+#: Mihuendpoint_Templates.class.php:165 Mihuendpoint_Templates.class.php:209
+#: Mihuendpoint_Templates.class.php:280
 msgid "No send Custom Value!"
 msgstr ""
 
-#: Endpointman_Templates.class.php:315 Endpointman_Templates.class.php:383
+#: Mihuendpoint_Templates.class.php:315 Mihuendpoint_Templates.class.php:383
 msgid "No send ID!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:438 Endpointman_Advanced.class.php:646
+#: Mihuendpoint_Advanced.class.php:438 Mihuendpoint_Advanced.class.php:646
 msgid "No send Product Select!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:652
+#: Mihuendpoint_Advanced.class.php:652
 msgid "No send SendID!"
 msgstr ""
 
-#: Endpointman_Templates.class.php:168 Endpointman_Templates.class.php:212
-#: Endpointman_Templates.class.php:283
+#: Mihuendpoint_Templates.class.php:168 Mihuendpoint_Templates.class.php:212
+#: Mihuendpoint_Templates.class.php:283
 msgid "No send TID!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:649
+#: Mihuendpoint_Advanced.class.php:649
 msgid "No send Type File!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:276 Endpointman_Advanced.class.php:531
-#: Endpointman_Advanced.class.php:696 Endpointman_Advanced.class.php:810
-#: Endpointman_Config.class.php:333 Endpointman_Templates.class.php:342
+#: Mihuendpoint_Advanced.class.php:276 Mihuendpoint_Advanced.class.php:531
+#: Mihuendpoint_Advanced.class.php:696 Mihuendpoint_Advanced.class.php:810
+#: Mihuendpoint_Config.class.php:333 Mihuendpoint_Templates.class.php:342
 msgid "No send value!"
 msgstr ""
 
-#: Endpointman_Templates.class.php:242
+#: Mihuendpoint_Templates.class.php:242
 msgid "Not a Vaild Directory"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:343
+#: Mihuendpoint_Advanced.class.php:343
 msgid "Not a Vaild Directory.<br /> Try to run 'mkdir "
 msgstr ""
 
-#: Endpointman_Config.class.php:672
+#: Mihuendpoint_Config.class.php:672
 msgid "Not able to connect to repository. Using local Provisioner.net Package"
 msgstr ""
 
-#: Endpointman_Config.class.php:707
+#: Mihuendpoint_Config.class.php:707
 #, php-format
 msgid "Not able to connect to repository. Using local brand [%s] file instead."
 msgstr ""
 
-#: Endpointman_Advanced.class.php:886
+#: Mihuendpoint_Advanced.class.php:886
 msgid "Not is directory: "
 msgstr ""
 
-#: endpointman.i18n.php:20
+#: mihuendpoint.i18n.php:20
 msgid "OSS Endpoint Manager"
 msgstr ""
 
-#: endpointman.i18n.php:4
+#: mihuendpoint.i18n.php:4
 msgid "OSS PBX End Point Manager"
 msgstr "OSS PBX End Point Manager"
 
-#: endpointman.i18n.php:8
+#: mihuendpoint.i18n.php:8
 msgid ""
 "OSS PBX End Point Manager is the free supported PBX Endpoint Manager for "
 "FreePBX.\t\tIt is ***NOT*** supported by Schmoozecom. If you are looking for "
 "a supported endpoint manager please look into the Commercial Endpoint "
 "Manager by Schmoozecom, INC.\t\tThe front end gui is hosted at: https://"
-"github.com/FreePBX/endpointman\t\tThe backend configurator is hosted at: "
+"github.com/FreePBX/mihuendpoint\t\tThe backend configurator is hosted at: "
 "https://github.com/provisioner/Provisioner\t\tPull Requests can be made to "
 "either of these and are encouraged."
 msgstr ""
@@ -1532,15 +1532,15 @@ msgstr ""
 msgid "OUI Brand"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:57
+#: Mihuendpoint_Advanced.class.php:57
 msgid "OUI Manager"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:432
+#: Mihuendpoint_Advanced.class.php:432
 msgid "Ok!"
 msgstr ""
 
-#: Endpointman_Config.class.php:1190 Endpointman_Config.class.php:1215
+#: Mihuendpoint_Config.class.php:1190 Mihuendpoint_Config.class.php:1215
 msgid "Old Data Detected! Migrating ... "
 msgstr ""
 
@@ -1548,19 +1548,19 @@ msgstr ""
 msgid "Open Source Information"
 msgstr ""
 
-#: Endpointman.class.php:146
+#: Mihuendpoint.class.php:146
 msgid "Or run this command on SSH:"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:69
+#: Mihuendpoint_Advanced.class.php:69
 msgid "Package Import/Export"
 msgstr ""
 
-#: Endpointman_Config.class.php:73
+#: Mihuendpoint_Config.class.php:73
 msgid "Package Last Modified"
 msgstr ""
 
-#: endpointman.i18n.php:14 page.epm_config.php:17 views/rnav.php:10
+#: mihuendpoint.i18n.php:14 page.epm_config.php:17 views/rnav.php:10
 msgid "Package Manager"
 msgstr ""
 
@@ -1602,7 +1602,7 @@ msgstr ""
 msgid "Placeholder"
 msgstr ""
 
-#: Endpointman.class.php:145
+#: Mihuendpoint.class.php:145
 msgid "Please change the location:"
 msgstr ""
 
@@ -1610,7 +1610,7 @@ msgstr ""
 msgid "Please create /tftpboot, even if you won't use it"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:950
+#: Mihuendpoint_Advanced.class.php:950
 msgid "Please name the Package the same name as your brand!"
 msgstr ""
 
@@ -1654,15 +1654,15 @@ msgid ""
 "with your line number)"
 msgstr ""
 
-#: Endpointman_Config.class.php:1048
+#: Mihuendpoint_Config.class.php:1048
 msgid "Processing "
 msgstr ""
 
-#: Endpointman_Advanced.class.php:61
+#: Mihuendpoint_Advanced.class.php:61
 msgid "Product Configuration Editor"
 msgstr ""
 
-#: Endpointman_Config.class.php:929
+#: Mihuendpoint_Config.class.php:929
 #, php-format
 msgid "Product Directory '%s' Doesn't Exist! (%s)"
 msgstr ""
@@ -1675,15 +1675,15 @@ msgstr ""
 msgid "Product Select"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:441 Endpointman_Advanced.class.php:535
+#: Mihuendpoint_Advanced.class.php:441 Mihuendpoint_Advanced.class.php:535
 msgid "Product Select send is not number!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:444 Endpointman_Advanced.class.php:538
+#: Mihuendpoint_Advanced.class.php:444 Mihuendpoint_Advanced.class.php:538
 msgid "Product Select send is number not valid!"
 msgstr ""
 
-#: Endpointman_Templates.class.php:357
+#: Mihuendpoint_Templates.class.php:357
 msgid "Product send is negative!"
 msgstr ""
 
@@ -1691,7 +1691,7 @@ msgstr ""
 msgid "Provisioner Package"
 msgstr ""
 
-#: Endpointman_Config.class.php:86
+#: Mihuendpoint_Config.class.php:86
 msgid "Ready!"
 msgstr ""
 
@@ -1728,15 +1728,15 @@ msgstr ""
 msgid "Reload Config"
 msgstr ""
 
-#: Endpointman.class.php:450
+#: Mihuendpoint.class.php:450
 msgid "Removing Phone Modules Directory"
 msgstr ""
 
-#: Endpointman_Config.class.php:1301
+#: Mihuendpoint_Config.class.php:1301
 msgid "Removing Temporary Files... "
 msgstr ""
 
-#: Endpointman.class.php:454
+#: Mihuendpoint.class.php:454
 msgid "Removing symlink to web provisioner"
 msgstr ""
 
@@ -1748,7 +1748,7 @@ msgstr ""
 msgid "Reset Global Overrides to Default"
 msgstr ""
 
-#: Endpointman_Templates.class.php:142
+#: Mihuendpoint_Templates.class.php:142
 #: views/epm_advanced/poce.views.textarea.file.php:35
 #: views/epm_devices_main.page.php:312
 #: views/epm_templates/editor.views.dialog.edit.cfg.php:19
@@ -1765,11 +1765,11 @@ msgstr ""
 msgid "Saved"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:90 Endpointman_Config.class.php:89
+#: Mihuendpoint_Advanced.class.php:90 Mihuendpoint_Config.class.php:89
 msgid "Saving Changes..."
 msgstr ""
 
-#: Endpointman_Advanced.class.php:91 Endpointman_Config.class.php:90
+#: Mihuendpoint_Advanced.class.php:91 Mihuendpoint_Config.class.php:90
 msgid "Saving Changes... Ok!"
 msgstr ""
 
@@ -1851,7 +1851,7 @@ msgstr ""
 msgid "Setting Provision"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:53
+#: Mihuendpoint_Advanced.class.php:53
 #: views/epm_templates/editor.views.template.php:70 views/rnav.php:7
 msgid "Settings"
 msgstr ""
@@ -1860,7 +1860,7 @@ msgstr ""
 msgid "Share"
 msgstr ""
 
-#: Endpointman_Config.class.php:84
+#: Mihuendpoint_Config.class.php:84
 msgid "Show"
 msgstr ""
 
@@ -1928,7 +1928,7 @@ msgstr ""
 msgid "Shows your Protocol your extension is using"
 msgstr ""
 
-#: Endpointman_Config.class.php:1397
+#: Mihuendpoint_Config.class.php:1397
 msgid "Skipping download, updated local version..."
 msgstr ""
 
@@ -1956,7 +1956,7 @@ msgstr ""
 msgid "Success"
 msgstr ""
 
-#: Endpointman_Config.class.php:1588
+#: Mihuendpoint_Config.class.php:1588
 msgid "Syntax error, malformed JSON"
 msgstr ""
 
@@ -1964,16 +1964,16 @@ msgstr ""
 msgid "System Failure!"
 msgstr ""
 
-#: Endpointman_Templates.class.php:171 Endpointman_Templates.class.php:215
-#: Endpointman_Templates.class.php:286
+#: Mihuendpoint_Templates.class.php:171 Mihuendpoint_Templates.class.php:215
+#: Mihuendpoint_Templates.class.php:286
 msgid "TID is not number!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:193
+#: Mihuendpoint_Advanced.class.php:193
 msgid "Tab is not valid!"
 msgstr ""
 
-#: Endpointman_Devices.class.php:57 Endpointman_Templates.class.php:111
+#: Mihuendpoint_Devices.class.php:57 Mihuendpoint_Templates.class.php:111
 msgid "Tab not found!"
 msgstr ""
 
@@ -1981,11 +1981,11 @@ msgstr ""
 msgid "Template"
 msgstr ""
 
-#: Endpointman_Templates.class.php:32
+#: Mihuendpoint_Templates.class.php:32
 msgid "Template Editor"
 msgstr ""
 
-#: endpointman.i18n.php:12 views/rnav.php:12
+#: mihuendpoint.i18n.php:12 views/rnav.php:12
 msgid "Template Manager"
 msgstr ""
 
@@ -2006,7 +2006,7 @@ msgstr ""
 msgid "Texto Ayuda."
 msgstr ""
 
-#: Endpointman_Config.class.php:71
+#: Mihuendpoint_Config.class.php:71
 msgid ""
 "The \"Install\" button installs the configuration package brand models we "
 "selected.<br /> The \"Uninstall\" button removes the package configuration "
@@ -2019,7 +2019,7 @@ msgstr ""
 msgid "The Endpoint Configuration Manager was originally written by"
 msgstr ""
 
-#: Endpointman_Config.class.php:70
+#: Mihuendpoint_Config.class.php:70
 msgid ""
 "The button \"Install Firmware\" installs the necessary files to the server "
 "for the terminal alone are updated via TFTP or HTTP.<br /> The button "
@@ -2045,21 +2045,21 @@ msgstr ""
 msgid "The project is maintained at"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1295
+#: Mihuendpoint_Advanced.class.php:1295
 msgid ""
 "The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in "
 "the HTML form"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1293
+#: Mihuendpoint_Advanced.class.php:1293
 msgid "The uploaded file exceeds the upload_max_filesize directive in php.ini"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1297
+#: Mihuendpoint_Advanced.class.php:1297
 msgid "The uploaded file was only partially uploaded"
 msgstr ""
 
-#: Endpointman_Config.class.php:1032
+#: Mihuendpoint_Config.class.php:1032
 msgid "Then Use Manual Upload in Advanced Settings."
 msgstr ""
 
@@ -2126,11 +2126,11 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:824
+#: Mihuendpoint_Advanced.class.php:824
 msgid "Type File not valid!"
 msgstr ""
 
-#: Endpointman_Config.class.php:350
+#: Mihuendpoint_Config.class.php:350
 msgid "Type Save Config is not valid!"
 msgstr ""
 
@@ -2150,23 +2150,23 @@ msgstr ""
 msgid "URL download files and packages the configuration terminals."
 msgstr ""
 
-#: Endpointman_Config.class.php:1582
+#: Mihuendpoint_Config.class.php:1582
 msgid "Underflow or the modes mismatch"
 msgstr ""
 
-#: Endpointman_Config.class.php:1585
+#: Mihuendpoint_Config.class.php:1585
 msgid "Unexpected control character found"
 msgstr ""
 
-#: Endpointman_Config.class.php:77
+#: Mihuendpoint_Config.class.php:77
 msgid "Uninstall"
 msgstr ""
 
-#: Endpointman_Config.class.php:1311
+#: Mihuendpoint_Config.class.php:1311
 msgid "Uninstalla Brand..."
 msgstr ""
 
-#: Endpointman_Config.class.php:1468
+#: Mihuendpoint_Config.class.php:1468
 msgid "Uninstalla frimware... "
 msgstr ""
 
@@ -2174,11 +2174,11 @@ msgstr ""
 msgid "Unknown"
 msgstr ""
 
-#: Endpointman_Config.class.php:1594
+#: Mihuendpoint_Config.class.php:1594
 msgid "Unknown error"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1307
+#: Mihuendpoint_Advanced.class.php:1307
 msgid "Unknown upload error"
 msgstr ""
 
@@ -2186,21 +2186,21 @@ msgstr ""
 msgid "Unmanaged Extensions"
 msgstr ""
 
-#: Endpointman_Config.class.php:78 views/epm_devices_main.page.php:516
+#: Mihuendpoint_Config.class.php:78 views/epm_devices_main.page.php:516
 msgid "Update"
 msgstr ""
 
-#: Endpointman_Config.class.php:1044
+#: Mihuendpoint_Config.class.php:1044
 #, php-format
 msgid "Update Brand %s ... "
 msgstr ""
 
-#: Endpointman_Config.class.php:701
+#: Mihuendpoint_Config.class.php:701
 #, php-format
 msgid "Update Brand (%s):"
 msgstr ""
 
-#: Endpointman_Config.class.php:94
+#: Mihuendpoint_Config.class.php:94
 msgid "Update Content..."
 msgstr ""
 
@@ -2208,33 +2208,33 @@ msgstr ""
 msgid "Update Global Overrides"
 msgstr ""
 
-#: Endpointman_Config.class.php:88
+#: Mihuendpoint_Config.class.php:88
 msgid "Update!"
 msgstr ""
 
-#: Endpointman_Templates.class.php:270 views/epm_advanced_settings.page.php:92
+#: Mihuendpoint_Templates.class.php:270 views/epm_advanced_settings.page.php:92
 #: views/epm_templates/editor.views.dialog.cfg.global.php:76
 msgid "Updated!"
 msgstr ""
 
-#: Endpointman_Config.class.php:1098
+#: Mihuendpoint_Config.class.php:1098
 #, php-format
 msgid "Updating %s brand data ..."
 msgstr ""
 
-#: Endpointman_Config.class.php:1111
+#: Mihuendpoint_Config.class.php:1111
 msgid "Updating Family Lines ..."
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1011
+#: Mihuendpoint_Advanced.class.php:1011
 msgid "Updating Last Modified... "
 msgstr ""
 
-#: Endpointman_Config.class.php:1285
+#: Mihuendpoint_Config.class.php:1285
 msgid "Updating OUI list in DB ... "
 msgstr ""
 
-#: Endpointman_Config.class.php:91
+#: Mihuendpoint_Config.class.php:91
 msgid "Upload Content!"
 msgstr ""
 
@@ -2272,7 +2272,7 @@ msgstr ""
 msgid "Username for the Extension (most likely the endpoint extension number)"
 msgstr ""
 
-#: Endpointman_Config.class.php:340 Endpointman_Templates.class.php:349
+#: Mihuendpoint_Config.class.php:340 Mihuendpoint_Templates.class.php:349
 msgid "Value send is not number!"
 msgstr ""
 
@@ -2315,24 +2315,24 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: Endpointman_Config.class.php:1031
+#: Mihuendpoint_Config.class.php:1031
 msgid ""
 "You Can Also Manually Update The Repository By Downloading Files here: <a "
 "href='http://www.provisioner.net/releases3' target='_blank'> Release Repo </"
 "a>"
 msgstr ""
 
-#: Endpointman_Config.class.php:737
+#: Mihuendpoint_Config.class.php:737
 #, php-format
 msgid ""
 "You can not add the mark (%s) as the ID (%d) already exists in the database!"
 msgstr ""
 
-#: Endpointman_Config.class.php:1459
+#: Mihuendpoint_Config.class.php:1459
 msgid "Your Firmware is already up to date."
 msgstr ""
 
-#: Endpointman_Advanced.class.php:386
+#: Mihuendpoint_Advanced.class.php:386
 msgid "Your permissions are wrong on "
 msgstr ""
 

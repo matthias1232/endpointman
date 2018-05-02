@@ -16,7 +16,7 @@ if(!include_once 'Console/Getopt.php') {
 }
 
 $debug = NULL;
-$endpoint = new endpointmanager();
+$endpoint = new mihuendpointager();
 echo $colors->fg_color("bold_red", "Endpoint Manager CLI\n\n");
 
 $cg = new Console_Getopt();

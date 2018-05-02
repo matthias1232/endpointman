@@ -8,7 +8,7 @@
  */
 
 require 'functions.inc';
-$endpoint = new endpointmanager();
+$endpoint = new mihuendpointager();
 
 include 'json.inc';
 
@@ -30,30 +30,30 @@ if(($_REQUEST['id'] == "") OR ($_REQUEST['id'] == "0")) {
 }
 
 if($_REQUEST['atype'] == "model") {
-	$sql = "SELECT * FROM endpointman_model_list WHERE enabled = 1 AND brand =". $_GET['id'];
+	$sql = "SELECT * FROM mihuendpoint_model_list WHERE enabled = 1 AND brand =". $_GET['id'];
 } elseif ($_REQUEST['atype'] == "template") {
-	$sql = "SELECT id, name as model FROM  endpointman_template_list WHERE  product_id = '". $_GET['id']."'";
+	$sql = "SELECT id, name as model FROM  mihuendpoint_template_list WHERE  product_id = '". $_GET['id']."'";
 } elseif ($_REQUEST['atype'] == "mtemplate") {
-	$sql = "SELECT id, name as model FROM  endpointman_template_list WHERE  model_id = '". $_GET['id']."'";
+	$sql = "SELECT id, name as model FROM  mihuendpoint_template_list WHERE  model_id = '". $_GET['id']."'";
 } elseif ($_REQUEST['atype'] == "template2") {
-	$sql = "SELECT DISTINCT endpointman_template_list.id, endpointman_template_list.name as model FROM endpointman_template_list, endpointman_model_list, endpointman_product_list WHERE endpointman_template_list.product_id = endpointman_model_list.product_id AND endpointman_model_list.product_id = endpointman_product_list.id AND endpointman_model_list.id = '". $_GET['id']."'";
+	$sql = "SELECT DISTINCT mihuendpoint_template_list.id, mihuendpoint_template_list.name as model FROM mihuendpoint_template_list, mihuendpoint_model_list, mihuendpoint_product_list WHERE mihuendpoint_template_list.product_id = mihuendpoint_model_list.product_id AND mihuendpoint_model_list.product_id = mihuendpoint_product_list.id AND mihuendpoint_model_list.id = '". $_GET['id']."'";
 } elseif ($_REQUEST['atype'] == "model_clone") {
-        $sql = "SELECT endpointman_model_list.id, endpointman_model_list.model as model FROM endpointman_model_list, endpointman_product_list WHERE endpointman_product_list.id = endpointman_model_list.product_id AND endpointman_model_list.enabled = 1 AND endpointman_model_list.hidden = 0 AND product_id = '". $_GET['id']."'";
+        $sql = "SELECT mihuendpoint_model_list.id, mihuendpoint_model_list.model as model FROM mihuendpoint_model_list, mihuendpoint_product_list WHERE mihuendpoint_product_list.id = mihuendpoint_model_list.product_id AND mihuendpoint_model_list.enabled = 1 AND mihuendpoint_model_list.hidden = 0 AND product_id = '". $_GET['id']."'";
 } elseif ($_REQUEST['atype'] == "lines") {
     if(isset($_REQUEST['macid'])) {
-        $sql = "SELECT endpointman_model_list.max_lines FROM endpointman_model_list,endpointman_line_list,endpointman_mac_list WHERE endpointman_mac_list.id = endpointman_line_list.mac_id AND endpointman_model_list.id = endpointman_mac_list.model AND endpointman_line_list.luid = ". $_REQUEST['macid'];
+        $sql = "SELECT mihuendpoint_model_list.max_lines FROM mihuendpoint_model_list,mihuendpoint_line_list,mihuendpoint_mac_list WHERE mihuendpoint_mac_list.id = mihuendpoint_line_list.mac_id AND mihuendpoint_model_list.id = mihuendpoint_mac_list.model AND mihuendpoint_line_list.luid = ". $_REQUEST['macid'];
     } elseif(isset($_REQUEST['mac'])) {
-        $sql = "SELECT id FROM endpointman_mac_list WHERE mac = '".$endpoint->mac_check_clean($_REQUEST['mac'])."'";
+        $sql = "SELECT id FROM mihuendpoint_mac_list WHERE mac = '".$endpoint->mac_check_clean($_REQUEST['mac'])."'";
         $macid = $endpoint->eda->sql($sql,'getOne');
         if($macid) {
             $_REQUEST['mac'] = $macid;
-            $sql = "SELECT endpointman_model_list.max_lines FROM endpointman_model_list,endpointman_line_list,endpointman_mac_list WHERE endpointman_mac_list.id = endpointman_line_list.mac_id AND endpointman_model_list.id = endpointman_mac_list.model AND endpointman_mac_list.id = ". $macid;
+            $sql = "SELECT mihuendpoint_model_list.max_lines FROM mihuendpoint_model_list,mihuendpoint_line_list,mihuendpoint_mac_list WHERE mihuendpoint_mac_list.id = mihuendpoint_line_list.mac_id AND mihuendpoint_model_list.id = mihuendpoint_mac_list.model AND mihuendpoint_mac_list.id = ". $macid;
         } else {
             unset($_REQUEST['mac']);
-            $sql = "SELECT max_lines FROM endpointman_model_list WHERE id = '". $_GET['id']."'";
+            $sql = "SELECT max_lines FROM mihuendpoint_model_list WHERE id = '". $_GET['id']."'";
         }
     } else {
-        $sql = "SELECT max_lines FROM endpointman_model_list WHERE id = '". $_GET['id']."'";
+        $sql = "SELECT max_lines FROM mihuendpoint_model_list WHERE id = '". $_GET['id']."'";
     }
 }
 

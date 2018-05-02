@@ -10,7 +10,7 @@
   overflow:scroll;
 }
 .ls-preloader {  
-  background: url("/admin/assets/endpointman/images/ic_progress_azul.gif") #64C3FF no-repeat center 50%;
+  background: url("/admin/assets/mihuendpoint/images/ic_progress_azul.gif") #64C3FF no-repeat center 50%;
   opacity:1;
   width:100%;
   height:100%;
@@ -173,7 +173,7 @@
 	height: 35px;
 	overflow: hidden;
 	
-	background-image: url("/admin/assets/endpointman/images/menu.png");
+	background-image: url("/admin/assets/mihuendpoint/images/menu.png");
 	background-repeat: no-repeat;
     background-position: right 10px center; 
 	background-color: #4CAF50;
@@ -252,7 +252,7 @@
 [class$="-arrow"] {
   width: 25px;
   height: 25px;
-  background-image: url("/admin/assets/endpointman/images/arrow.png");
+  background-image: url("/admin/assets/mihuendpoint/images/arrow.png");
   background-repeat: no-repeat;
   margin-top: 50px;
   position:relative;

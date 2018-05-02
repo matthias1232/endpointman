@@ -9,10 +9,10 @@
 $no_add = FALSE;
 $default_display = FALSE;
 
-$product_list = "SELECT * FROM endpointman_product_list WHERE id > 0";
+$product_list = "SELECT * FROM mihuendpoint_product_list WHERE id > 0";
 $product_list = $endpoint->eda->sql($product_list,'getAll', DB_FETCHMODE_ASSOC);
 
-$mac_list = "SELECT * FROM endpointman_mac_list";
+$mac_list = "SELECT * FROM mihuendpoint_mac_list";
 $mac_list = $endpoint->eda->sql($mac_list, 'getAll', DB_FETCHMODE_ASSOC);
 
 if((!$product_list) && (!$mac_list)) {
@@ -30,16 +30,16 @@ if(isset($_REQUEST['edit_template'])) {
         $endpoint->error['general'] = "No Valid Model/Template/Name Selected!";
         $default_display = TRUE;
     } else {
-        $sql = "INSERT INTO endpointman_template_list (product_id, name, model_id) VALUES ('".$_REQUEST['model_class']."','".$_REQUEST['template_name']."','".$_REQUEST['model_clone']."')";
+        $sql = "INSERT INTO mihuendpoint_template_list (product_id, name, model_id) VALUES ('".$_REQUEST['model_class']."','".$_REQUEST['template_name']."','".$_REQUEST['model_clone']."')";
         $endpoint->eda->sql($sql);
-        $sql = "SELECT id FROM endpointman_template_list WHERE product_id = '".$_REQUEST['model_class']."' AND name = '".$_REQUEST['template_name']."'";
+        $sql = "SELECT id FROM mihuendpoint_template_list WHERE product_id = '".$_REQUEST['model_class']."' AND name = '".$_REQUEST['template_name']."'";
         $id = $endpoint->eda->sql($sql,'getOne');
         $endpoint->edit_template_display($id,0);
     }
 } elseif(isset($_REQUEST['delete_template'])) {
-    $sql = "DELETE FROM endpointman_template_list WHERE id = ". $_REQUEST['id'];
+    $sql = "DELETE FROM mihuendpoint_template_list WHERE id = ". $_REQUEST['id'];
     $endpoint->eda->sql($sql);
-    $sql = "UPDATE endpointman_mac_list SET template_id = 0 WHERE template_id = ".$_REQUEST['id'];
+    $sql = "UPDATE mihuendpoint_mac_list SET template_id = 0 WHERE template_id = ".$_REQUEST['id'];
     $endpoint->eda->sql($sql);
     $default_display = TRUE;
     $endpoint->message['general'] = _('Deleted');
@@ -54,7 +54,7 @@ if(isset($_REQUEST['edit_template'])) {
 }
 
 if($default_display) {
-    $sql = 'SELECT endpointman_template_list.*, endpointman_product_list.short_name as model_class, endpointman_model_list.model as model_clone, endpointman_model_list.enabled FROM endpointman_template_list, endpointman_model_list, endpointman_product_list WHERE endpointman_model_list.hidden = 0 AND endpointman_template_list.model_id = endpointman_model_list.id AND endpointman_template_list.product_id = endpointman_product_list.id';
+    $sql = 'SELECT mihuendpoint_template_list.*, mihuendpoint_product_list.short_name as model_class, mihuendpoint_model_list.model as model_clone, mihuendpoint_model_list.enabled FROM mihuendpoint_template_list, mihuendpoint_model_list, mihuendpoint_product_list WHERE mihuendpoint_model_list.hidden = 0 AND mihuendpoint_template_list.model_id = mihuendpoint_model_list.id AND mihuendpoint_template_list.product_id = mihuendpoint_product_list.id';
     $template_list = $endpoint->eda->sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
     $i = 0;
     $row_out = array();
@@ -67,11 +67,11 @@ if($default_display) {
         $i++;
     }
 
-    $sql = 'SELECT endpointman_mac_list.mac, endpointman_mac_list.id, endpointman_mac_list.model, endpointman_model_list.model as model_clone, endpointman_product_list.short_name as model_class FROM endpointman_mac_list, endpointman_model_list, endpointman_product_list WHERE  endpointman_product_list.id = endpointman_model_list.product_id AND endpointman_mac_list.global_custom_cfg_data IS NOT NULL AND endpointman_model_list.id = endpointman_mac_list.model AND endpointman_mac_list.template_id = 0';
+    $sql = 'SELECT mihuendpoint_mac_list.mac, mihuendpoint_mac_list.id, mihuendpoint_mac_list.model, mihuendpoint_model_list.model as model_clone, mihuendpoint_product_list.short_name as model_class FROM mihuendpoint_mac_list, mihuendpoint_model_list, mihuendpoint_product_list WHERE  mihuendpoint_product_list.id = mihuendpoint_model_list.product_id AND mihuendpoint_mac_list.global_custom_cfg_data IS NOT NULL AND mihuendpoint_model_list.id = mihuendpoint_mac_list.model AND mihuendpoint_mac_list.template_id = 0';
 
     $template_list = $db->getAll($sql, array(), DB_FETCHMODE_ASSOC);
     foreach($template_list as $row) {
-        $sql = 'SELECT  description , line FROM  endpointman_line_list WHERE  mac_id ='. $row['id'].' ORDER BY line ASC';
+        $sql = 'SELECT  description , line FROM  mihuendpoint_line_list WHERE  mac_id ='. $row['id'].' ORDER BY line ASC';
         $line_list = $db->getAll($sql, array(), DB_FETCHMODE_ASSOC);
         $description = "";
         $c = 0;
@@ -88,7 +88,7 @@ if($default_display) {
         $i++;
     }
 
-    $sql = "SELECT DISTINCT endpointman_product_list.* FROM endpointman_product_list, endpointman_model_list WHERE endpointman_product_list.id = endpointman_model_list.product_id AND endpointman_model_list.hidden = 0 AND endpointman_model_list.enabled = 1 AND endpointman_product_list.hidden != 1 AND endpointman_product_list.cfg_dir !=  ''";
+    $sql = "SELECT DISTINCT mihuendpoint_product_list.* FROM mihuendpoint_product_list, mihuendpoint_model_list WHERE mihuendpoint_product_list.id = mihuendpoint_model_list.product_id AND mihuendpoint_model_list.hidden = 0 AND mihuendpoint_model_list.enabled = 1 AND mihuendpoint_product_list.hidden != 1 AND mihuendpoint_product_list.cfg_dir !=  ''";
 
     $template_list = $db->getAll($sql, array(), DB_FETCHMODE_ASSOC);
     $i = 1;

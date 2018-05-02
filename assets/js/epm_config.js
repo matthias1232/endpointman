@@ -60,7 +60,7 @@ function epm_config_document_ready () {
 			default:
 				type_send = "";
 		}
-		var url = "ajax.php?module=endpointman&module_sec=epm_config&command=saveconfig&typesavecfg=hidden&idtype=" + type_send + "&value=0&idbt=" + id;
+		var url = "ajax.php?module=mihuendpoint&module_sec=epm_config&command=saveconfig&typesavecfg=hidden&idtype=" + type_send + "&value=0&idbt=" + id;
 		$.getJSON(url, function(data)
 		{
 			if (data.status == true) {
@@ -110,7 +110,7 @@ function epm_config_manager_ajax_hide (e)
 {
 	var id = e.getAttribute('data-id');
 	var idtype  = e.getAttribute('data-label');
-	var url = "ajax.php?module=endpointman&module_sec=epm_config&command=saveconfig&typesavecfg=hidden&idtype=" + idtype + "&value=1&idbt=" + id;
+	var url = "ajax.php?module=mihuendpoint&module_sec=epm_config&command=saveconfig&typesavecfg=hidden&idtype=" + idtype + "&value=1&idbt=" + id;
 	$.getJSON(url, function(data)
 	{
 		if (data.status == true) {
@@ -218,7 +218,7 @@ function epm_config_LoadContenidoAjax()
 		type: 'POST',
 		url: "ajax.php",
 		data: {
-			module: "endpointman",
+			module: "mihuendpoint",
 			module_sec: "epm_config",
 			command: "list_all_brand"
 		},
@@ -948,7 +948,7 @@ function epm_config_tab_manager_bt_enable_disable_change(obt, idtype, idbt, iL2)
 		type: 'POST',
 		url: "ajax.php",
 		data: {
-			module: "endpointman",
+			module: "mihuendpoint",
 			module_sec: "epm_config",
 			command: "saveconfig",
 			typesavecfg:  "enabled",

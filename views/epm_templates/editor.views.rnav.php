@@ -5,7 +5,7 @@
 	<a href="config.php?display=epm_templates" class="btn btn-default"><i class="fa fa-list"></i>&nbsp; <?php echo _("List Tempalte Custom") ?></a>
 </div>
 <table 
-	data-url="ajax.php?module=endpointman&amp;module_sec=epm_templates&amp;module_tab=manager&amp;command=list_current_template"
+	data-url="ajax.php?module=mihuendpoint&amp;module_sec=epm_templates&amp;module_tab=manager&amp;command=list_current_template"
 	data-cache="false"
     data-toolbar="#toolbar-qrnav"
     data-toggle="table"

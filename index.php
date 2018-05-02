@@ -6,4 +6,4 @@
  * @license MPL / GPLv2 / LGPL
  * @package Endpoint Manager
  */
-include('page.endpointman.php');
+include('page.mihuendpoint.php');

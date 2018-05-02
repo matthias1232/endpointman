@@ -23,7 +23,7 @@
    $(function(){
         $("select#brand_edit").change(function(){
             $.ajaxSetup({ cache: false });
-            $.getJSON("config.php?type=tool&quietmode=1&handler=file&module=endpointman&file=ajax_select.html.php&atype=model",{id: $(this).val()}, function(j){
+            $.getJSON("config.php?type=tool&quietmode=1&handler=file&module=mihuendpoint&file=ajax_select.html.php&atype=model",{id: $(this).val()}, function(j){
                 var options = '';
                 for (var i = 0; i < j.length; i++) {
                     options += '<option value="' + j[i].optionValue + '">' + j[i].optionDisplay + '</option>';
@@ -38,7 +38,7 @@
     $(function(){
         $("select#product_select").change(function(){
             $.ajaxSetup({ cache: false });
-            $.getJSON("config.php?type=tool&quietmode=1&handler=file&module=endpointman&file=ajax_select.html.php&atype=template",{id: $(this).val()}, function(j){
+            $.getJSON("config.php?type=tool&quietmode=1&handler=file&module=mihuendpoint&file=ajax_select.html.php&atype=template",{id: $(this).val()}, function(j){
                 var options = '';
                 for (var i = 0; i < j.length; i++) {
                     options += '<option value="' + j[i].optionValue + '">' + j[i].optionDisplay + '</option>';
@@ -51,7 +51,7 @@
     $(function(){
         $("select#model_select").change(function(){
             $.ajaxSetup({ cache: false });
-            $.getJSON("config.php?type=tool&quietmode=1&handler=file&module=endpointman&file=ajax_select.html.php&atype=mtemplate",{id: $(this).val()}, function(j){
+            $.getJSON("config.php?type=tool&quietmode=1&handler=file&module=mihuendpoint&file=ajax_select.html.php&atype=mtemplate",{id: $(this).val()}, function(j){
                 var options = '';
                 for (var i = 0; i < j.length; i++) {
                     options += '<option value="' + j[i].optionValue + '">' + j[i].optionDisplay + '</option>';
@@ -64,7 +64,7 @@
     $(function(){
         $("select#model_new").change(function(){
             $.ajaxSetup({ cache: false });
-            $.getJSON("config.php?type=tool&quietmode=1&handler=file&module=endpointman&file=ajax_select.html.php&atype=template2",{id: $(this).val()}, function(j){
+            $.getJSON("config.php?type=tool&quietmode=1&handler=file&module=mihuendpoint&file=ajax_select.html.php&atype=template2",{id: $(this).val()}, function(j){
                 var options = '';
                 for (var i = 0; i < j.length; i++) {
                     options += '<option value="' + j[i].optionValue + '">' + j[i].optionDisplay + '</option>';
@@ -73,7 +73,7 @@
                 $('#template_list option:first').attr('selected', 'selected');
             }),
             $.ajaxSetup({ cache: false });
-            $.getJSON("config.php?type=tool&quietmode=1&handler=file&module=endpointman&file=ajax_select.html.php&atype=lines",{id: $(this).val()}, function(j){
+            $.getJSON("config.php?type=tool&quietmode=1&handler=file&module=mihuendpoint&file=ajax_select.html.php&atype=lines",{id: $(this).val()}, function(j){
                 var options = '';
                 for (var i = 0; i < j.length; i++) {
                     options += '<option value="' + j[i].optionValue + '">' + j[i].optionDisplay + '</option>';
@@ -87,7 +87,7 @@
     $(function(){
         $("select#brand_list_selected").change(function(){
             $.ajaxSetup({ cache: false });
-            $.getJSON("config.php?type=tool&quietmode=1&handler=file&module=endpointman&file=ajax_select.html.php&atype=model",{id: $(this).val()}, function(j){
+            $.getJSON("config.php?type=tool&quietmode=1&handler=file&module=mihuendpoint&file=ajax_select.html.php&atype=model",{id: $(this).val()}, function(j){
                 var options = '';
                 for (var i = 0; i < j.length; i++) {
                     options += '<option value="' + j[i].optionValue + '">' + j[i].optionDisplay + '</option>';
@@ -205,7 +205,7 @@
     }
 
     function submit_stype(type,id) {
-        newwindow=window.open('config.php?display=epm_config&quietmode=1&handler=file&file=popup.html.php&module=endpointman&pop_type=edit_specifics&edit_id=' + id + '&rand=' + new Date().getTime(),'name2','height=700,width=750,scrollbars=yes,location=no');
+        newwindow=window.open('config.php?display=epm_config&quietmode=1&handler=file&file=popup.html.php&module=mihuendpoint&pop_type=edit_specifics&edit_id=' + id + '&rand=' + new Date().getTime(),'name2','height=700,width=750,scrollbars=yes,location=no');
         if (window.focus) {newwindow.focus()}
         return false;
     }

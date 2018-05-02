@@ -9,7 +9,7 @@
 
 namespace FreePBX\modules;
 
-class Endpointman_Devices
+class Mihuendpoint_Devices
 {
 	public function __construct($freepbx = null, $cfgmod = null) 
 	{

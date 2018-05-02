@@ -22,9 +22,9 @@
 	$edit = NULL;
 	$mode = NULL;
 	
-	$family_list = FreePBX::Endpointman()->eda->all_products();
-	$full_device_list = FreePBX::Endpointman()->eda->all_devices();
-	$ava_exts = FreePBX::Endpointman()->display_registration_list();
+	$family_list = FreePBX::Mihuendpoint()->eda->all_products();
+	$full_device_list = FreePBX::Mihuendpoint()->eda->all_devices();
+	$ava_exts = FreePBX::Mihuendpoint()->display_registration_list();
 	
 	if((empty($family_list)) && (empty($full_device_list))) 
 	{
@@ -33,7 +33,7 @@
 		echo '</div>';
 //$endpoint->global_cfg['new'] = 1;
 	} 
-	elseif(FreePBX::Endpointman()->configmod->get("srvip") == "") 
+	elseif(FreePBX::Mihuendpoint()->configmod->get("srvip") == "") 
 	{
 		echo '<div class="alert alert-warning" role="alert">';
 		echo '<strong>'._("Warning!").'</strong>'.(" Your Global Variables are not set! Please head on over to ").'<a href="config.php?display=epm_advanced"><b>'._("Advanced Settings").'</b></a>'._(" to setup your configuration");
@@ -60,7 +60,7 @@
 	
 	$i = 0;
 	$list = array();
-	$device_statuses = shell_exec(FreePBX::Endpointman()->configmod->get("asterisk_location")." -rx 'sip show peers'");
+	$device_statuses = shell_exec(FreePBX::Mihuendpoint()->configmod->get("asterisk_location")." -rx 'sip show peers'");
 	
 	$device_statuses = explode("\n", $device_statuses);
 	$devices_status = array();
@@ -78,7 +78,7 @@
 	}
 	
 	foreach($devices_list as $devices_row) {
-		$line_list = FreePBX::Endpointman()->eda->get_lines_from_device($devices_row['id']);
+		$line_list = FreePBX::Mihuendpoint()->eda->get_lines_from_device($devices_row['id']);
 		$list[$i] = $devices_row;
 		$z = 0;
 		if (($devices_row['template_id'] == 0) && (isset($devices_row['global_custom_cfg_data'])) ) {
@@ -86,7 +86,7 @@
 		} elseif((!isset($devices_row['custom_cfg_data'])) && ($devices_row['template_id'] == 0)) {
 			$list[$i]['template_name'] = "N/A";
 		} else {
-			$sql = "SELECT name FROM endpointman_template_list WHERE id =".$devices_row['template_id'];
+			$sql = "SELECT name FROM mihuendpoint_template_list WHERE id =".$devices_row['template_id'];
 			$template_name = sql($sql,'getOne');
 			$list[$i]['template_name'] = $template_name;
 		}
@@ -111,12 +111,12 @@
 		$i++;
 	}
 	
-	$unknown_list = FreePBX::Endpointman()->eda->all_unknown_devices();
+	$unknown_list = FreePBX::Mihuendpoint()->eda->all_unknown_devices();
 	
 	foreach($unknown_list as $row) {	#Displays unknown phones in the database with edit and delete buttons
 		$list[$i] = $row;
 	
-		$brand_info = FreePBX::Endpointman()->get_brand_from_mac($row['mac']);
+		$brand_info = FreePBX::Mihuendpoint()->get_brand_from_mac($row['mac']);
 	
 		$list[$i]['name'] = $brand_info['name'];
 		$list[$i]['template_name'] = "N/A";
@@ -128,7 +128,7 @@ $amp_send['AMPDBUSER'] = $amp_conf['AMPDBUSER'];
 $amp_send['AMPDBPASS'] = $amp_conf['AMPDBPASS'];
 $amp_send['AMPDBNAME'] = $amp_conf['AMPDBNAME'];
 	
-	$sql = "SELECT DISTINCT endpointman_product_list.* FROM endpointman_product_list, endpointman_model_list WHERE endpointman_product_list.id = endpointman_model_list.product_id AND endpointman_model_list.hidden = 0 AND endpointman_model_list.enabled = 1 AND endpointman_product_list.hidden != 1 AND endpointman_product_list.cfg_dir !=  ''";
+	$sql = "SELECT DISTINCT mihuendpoint_product_list.* FROM mihuendpoint_product_list, mihuendpoint_model_list WHERE mihuendpoint_product_list.id = mihuendpoint_model_list.product_id AND mihuendpoint_model_list.hidden = 0 AND mihuendpoint_model_list.enabled = 1 AND mihuendpoint_product_list.hidden != 1 AND mihuendpoint_product_list.cfg_dir !=  ''";
 	$template_list = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
 	$i = 1;
 	$product_list = array();
@@ -140,7 +140,7 @@ $amp_send['AMPDBNAME'] = $amp_conf['AMPDBNAME'];
 		$i++;
 	}
 	
-	$sql = "SELECT DISTINCT endpointman_model_list.* FROM endpointman_product_list, endpointman_model_list WHERE endpointman_product_list.id = endpointman_model_list.product_id AND endpointman_model_list.hidden = 0 AND endpointman_model_list.enabled = 1 AND endpointman_product_list.hidden != 1 AND endpointman_product_list.cfg_dir !=  ''";
+	$sql = "SELECT DISTINCT mihuendpoint_model_list.* FROM mihuendpoint_product_list, mihuendpoint_model_list WHERE mihuendpoint_product_list.id = mihuendpoint_model_list.product_id AND mihuendpoint_model_list.hidden = 0 AND mihuendpoint_model_list.enabled = 1 AND mihuendpoint_product_list.hidden != 1 AND mihuendpoint_product_list.cfg_dir !=  ''";
 	$template_list = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
 	$i = 1;
 	$model_list = array();
@@ -262,7 +262,7 @@ if (isset($mode) && ($mode == "EDIT")) {
 				{$name}
 				<select name="brand_list" id="brand_edit">		
 				<?php
-				$brand_ava = FreePBX::Endpointman()->brands_available();
+				$brand_ava = FreePBX::Mihuendpoint()->brands_available();
 				foreach ($brand_ava as $row) 
 				{
 					echo '<option value="'.$row['value'].'" '.(isset($row['selected']) ? "selected" : "").'>'.$row['text'].'</option>';
@@ -305,7 +305,7 @@ if (isset($mode) && ($mode == "EDIT")) {
     					<select name="template_list" id="template_list">
                 			<option value="{$value.value}" {if condition="isset($value.selected)"}selected{/if}>{$value.text}</option>
             			</select>
-            			<a href="#" onclick="return popitup('config.php?display=epm_config&amp;quietmode=1&amp;handler=file&amp;file=popup.html.php&amp;module=endpointman&amp;pop_type=edit_template&amp;edit_id={$edit_id}', 'Template Editor', '{$edit_id}')"><i class='icon-pencil'></i></a>
+            			<a href="#" onclick="return popitup('config.php?display=epm_config&amp;quietmode=1&amp;handler=file&amp;file=popup.html.php&amp;module=mihuendpoint&amp;pop_type=edit_template&amp;edit_id={$edit_id}', 'Template Editor', '{$edit_id}')"><i class='icon-pencil'></i></a>
             		</div>
         		</label>
         	</td>
@@ -586,7 +586,7 @@ return;
 <br/><?php echo _("The Endpoint Configuration Manager was originally written by")?> <a target="_blank" href=http://www.mymcs.us>Ed Macri</a>, <a target="_blank" href=http://www.cohutta.com> John Mullinix.</a> and <a target="_blank" href=http://www.colsolgrp.com>Tony Shiffer</a>
 <br/>Endpoint Configuration Manager uses code from the MPL licensed project Provisioner.net at <a href="http://provisioner.net" target="_blank">http://www.provisioner.net</a> co-written by Darren Schreiber &amp Andrew Nagy
 <br> <?php echo _("The project is maintained at")?> 
-<a target="_blank" href="http://projects.colsolgrp.net/projects/show/endpointman"> CSG Software Projects.</a>
+<a target="_blank" href="http://projects.colsolgrp.net/projects/show/mihuendpoint"> CSG Software Projects.</a>
 -->
 
 
@@ -625,7 +625,7 @@ return;
 $(function(){
 	$("select#brand_edit").change(function(){
 		$.ajaxSetup({ cache: false });
-		$.getJSON("config.php?type=tool&quietmode=1&handler=file&module=endpointman&file=ajax_select.html.php&atype=model",{id: $(this).val()}, function(j){
+		$.getJSON("config.php?type=tool&quietmode=1&handler=file&module=mihuendpoint&file=ajax_select.html.php&atype=model",{id: $(this).val()}, function(j){
 			var options = '';
 			for (var i = 0; i < j.length; i++) {
 				options += '<option value="' + j[i].optionValue + '">' + j[i].optionDisplay + '</option>';
@@ -640,7 +640,7 @@ $(function(){
 $(function(){
 	$("select#product_select").change(function(){
 		$.ajaxSetup({ cache: false });
-		$.getJSON("config.php?type=tool&quietmode=1&handler=file&module=endpointman&file=ajax_select.html.php&atype=template",{id: $(this).val()}, function(j){
+		$.getJSON("config.php?type=tool&quietmode=1&handler=file&module=mihuendpoint&file=ajax_select.html.php&atype=template",{id: $(this).val()}, function(j){
 			var options = '';
 			for (var i = 0; i < j.length; i++) {
 				options += '<option value="' + j[i].optionValue + '">' + j[i].optionDisplay + '</option>';
@@ -653,7 +653,7 @@ $(function(){
 $(function(){
 	$("select#model_select").change(function(){
 		$.ajaxSetup({ cache: false });
-		$.getJSON("config.php?type=tool&quietmode=1&handler=file&module=endpointman&file=ajax_select.html.php&atype=mtemplate",{id: $(this).val()}, function(j){
+		$.getJSON("config.php?type=tool&quietmode=1&handler=file&module=mihuendpoint&file=ajax_select.html.php&atype=mtemplate",{id: $(this).val()}, function(j){
 			var options = '';
 			for (var i = 0; i < j.length; i++) {
 				options += '<option value="' + j[i].optionValue + '">' + j[i].optionDisplay + '</option>';
@@ -666,7 +666,7 @@ $(function(){
 $(function(){
 	$("select#model_new").change(function(){
 		$.ajaxSetup({ cache: false });
-		$.getJSON("config.php?type=tool&quietmode=1&handler=file&module=endpointman&file=ajax_select.html.php&atype=template2",{id: $(this).val()}, function(j){
+		$.getJSON("config.php?type=tool&quietmode=1&handler=file&module=mihuendpoint&file=ajax_select.html.php&atype=template2",{id: $(this).val()}, function(j){
 			var options = '';
 			for (var i = 0; i < j.length; i++) {
 				options += '<option value="' + j[i].optionValue + '">' + j[i].optionDisplay + '</option>';
@@ -675,7 +675,7 @@ $(function(){
 			$('#template_list option:first').attr('selected', 'selected');
 		}),
 		$.ajaxSetup({ cache: false });
-		$.getJSON("config.php?type=tool&quietmode=1&handler=file&module=endpointman&file=ajax_select.html.php&atype=lines",{id: $(this).val()}, function(j){
+		$.getJSON("config.php?type=tool&quietmode=1&handler=file&module=mihuendpoint&file=ajax_select.html.php&atype=lines",{id: $(this).val()}, function(j){
 			var options = '';
 			for (var i = 0; i < j.length; i++) {
 				options += '<option value="' + j[i].optionValue + '">' + j[i].optionDisplay + '</option>';
@@ -689,7 +689,7 @@ $(function(){
 $(function(){
 	$("select#brand_list_selected").change(function(){
 		$.ajaxSetup({ cache: false });
-		$.getJSON("config.php?type=tool&quietmode=1&handler=file&module=endpointman&file=ajax_select.html.php&atype=model",{id: $(this).val()}, function(j){
+		$.getJSON("config.php?type=tool&quietmode=1&handler=file&module=mihuendpoint&file=ajax_select.html.php&atype=model",{id: $(this).val()}, function(j){
 			var options = '';
 			for (var i = 0; i < j.length; i++) {
 				options += '<option value="' + j[i].optionValue + '">' + j[i].optionDisplay + '</option>';
@@ -807,7 +807,7 @@ function popitup(url, name, id) {
 }
 
 function submit_stype(type,id) {
-	newwindow=window.open('config.php?display=epm_config&quietmode=1&handler=file&file=popup.html.php&module=endpointman&pop_type=edit_specifics&edit_id=' + id + '&rand=' + new Date().getTime(),'name2','height=700,width=750,scrollbars=yes,location=no');
+	newwindow=window.open('config.php?display=epm_config&quietmode=1&handler=file&file=popup.html.php&module=mihuendpoint&pop_type=edit_specifics&edit_id=' + id + '&rand=' + new Date().getTime(),'name2','height=700,width=750,scrollbars=yes,location=no');
 	if (window.focus) {newwindow.focus()}
 	return false;
 }
@@ -896,7 +896,7 @@ switch ($sub_type) {
                     $endpoint->error['page:devices_manager'] = _("No Device Selected to Edit!")."!";
                 } else {
                     $template_editor = TRUE;
-                    $sql = "UPDATE  endpointman_mac_list SET  model =  '".$_REQUEST['model_list']."' WHERE  id =".$_REQUEST['edit_id'];
+                    $sql = "UPDATE  mihuendpoint_mac_list SET  model =  '".$_REQUEST['model_list']."' WHERE  id =".$_REQUEST['edit_id'];
                     $endpoint->eda->sql($sql);
                     if ($_REQUEST['template_list'] == 0) {
                         $endpoint->edit_template_display($_REQUEST['edit_id'],1);
@@ -907,7 +907,7 @@ switch ($sub_type) {
                 break;
             case "button_save":
 
-                $sql = 'SELECT * FROM endpointman_line_list WHERE mac_id = '. $_REQUEST['edit_id'];
+                $sql = 'SELECT * FROM mihuendpoint_line_list WHERE mac_id = '. $_REQUEST['edit_id'];
 
                 $lines_list = $endpoint->eda->sql($sql,'getAll',DB_FETCHMODE_ASSOC);
 
@@ -915,11 +915,11 @@ switch ($sub_type) {
                     $sql = "SELECT description FROM devices WHERE id = ".$_REQUEST['ext_list_'.$row['luid']];
                     $name = $endpoint->eda->sql($sql,'getOne');
 
-                    $sql = "UPDATE endpointman_line_list SET line = '".$_REQUEST['line_list_'.$row['luid']]."', ext = '".$_REQUEST['ext_list_'.$row['luid']]."', description = '".$endpoint->eda->escapeSimple($name)."' WHERE luid =  ". $row['luid'];
+                    $sql = "UPDATE mihuendpoint_line_list SET line = '".$_REQUEST['line_list_'.$row['luid']]."', ext = '".$_REQUEST['ext_list_'.$row['luid']]."', description = '".$endpoint->eda->escapeSimple($name)."' WHERE luid =  ". $row['luid'];
                     $endpoint->eda->sql($sql);
                 }
 
-                $sql = "UPDATE endpointman_mac_list SET template_id = '".$_REQUEST['template_list']."', model = '".$_REQUEST['model_list']."' WHERE id =  ". $_REQUEST['edit_id'];
+                $sql = "UPDATE mihuendpoint_mac_list SET template_id = '".$_REQUEST['template_list']."', model = '".$_REQUEST['model_list']."' WHERE id =  ". $_REQUEST['edit_id'];
                 $endpoint->eda->sql($sql);
 
 
@@ -930,7 +930,7 @@ switch ($sub_type) {
                 $mode = NULL;
                 break;
             case "delete":
-                $sql = 'SELECT mac_id FROM endpointman_line_list WHERE luid = '.$_REQUEST['edit_id'] ;
+                $sql = 'SELECT mac_id FROM mihuendpoint_line_list WHERE luid = '.$_REQUEST['edit_id'] ;
                 $mac_id = $endpoint->eda->sql($sql,'getOne');
                 $row = $endpoint->get_phone_info($mac_id);
 
@@ -961,7 +961,7 @@ switch ($sub_type) {
             $endpoint->error['page:devices_manager'] = _("No Device Selected to Edit!")."!";
         } else {
             $template_editor = TRUE;
-            $sql = "UPDATE  endpointman_mac_list SET  model =  '".$_REQUEST['model_list']."' WHERE  id =".$_REQUEST['edit_id'];
+            $sql = "UPDATE  mihuendpoint_mac_list SET  model =  '".$_REQUEST['model_list']."' WHERE  id =".$_REQUEST['edit_id'];
             $endpoint->eda->sql($sql);
             if ($_REQUEST['template_list'] == 0) {
                 $endpoint->edit_template_display($_REQUEST['edit_id'],1);
@@ -1020,12 +1020,12 @@ switch ($sub_type) {
 		
 		
     case "rebuild_configs_for_all_phones" :
-        $sql = "SELECT endpointman_mac_list.id FROM endpointman_mac_list, endpointman_brand_list, endpointman_product_list, endpointman_model_list WHERE endpointman_brand_list.id = endpointman_product_list.brand AND endpointman_product_list.id = endpointman_model_list.product_id AND endpointman_mac_list.model = endpointman_model_list.id ORDER BY endpointman_product_list.cfg_dir ASC";
+        $sql = "SELECT mihuendpoint_mac_list.id FROM mihuendpoint_mac_list, mihuendpoint_brand_list, mihuendpoint_product_list, mihuendpoint_model_list WHERE mihuendpoint_brand_list.id = mihuendpoint_product_list.brand AND mihuendpoint_product_list.id = mihuendpoint_model_list.product_id AND mihuendpoint_mac_list.model = mihuendpoint_model_list.id ORDER BY mihuendpoint_product_list.cfg_dir ASC";
         $mac_list =& $endpoint->eda->sql($sql,'getAll',DB_FETCHMODE_ASSOC);
         foreach($mac_list as $data) {
             $phone_info = $endpoint->get_phone_info($data['id']);
             foreach($phone_info['line'] as $line) {
-                $sql = "UPDATE endpointman_line_list SET description = '".$endpoint->eda->escapeSimple($line['description'])."' WHERE luid = ".$line['luid'];
+                $sql = "UPDATE mihuendpoint_line_list SET description = '".$endpoint->eda->escapeSimple($line['description'])."' WHERE luid = ".$line['luid'];
                 $endpoint->eda->sql($sql);
             }
             if(isset($_REQUEST['reboot'])) {
@@ -1044,7 +1044,7 @@ switch ($sub_type) {
 		
     case "reboot_brand" :
         if($_REQUEST['rb_brand'] != "") {
-            $sql = 'SELECT endpointman_mac_list.id FROM endpointman_mac_list , endpointman_model_list , endpointman_brand_list , endpointman_product_list WHERE endpointman_brand_list.id = endpointman_model_list.brand AND endpointman_model_list.id = endpointman_mac_list.model AND endpointman_model_list.product_id = endpointman_product_list.id AND endpointman_brand_list.id = '.$_REQUEST['rb_brand'].' ORDER BY endpointman_product_list.cfg_dir ASC';
+            $sql = 'SELECT mihuendpoint_mac_list.id FROM mihuendpoint_mac_list , mihuendpoint_model_list , mihuendpoint_brand_list , mihuendpoint_product_list WHERE mihuendpoint_brand_list.id = mihuendpoint_model_list.brand AND mihuendpoint_model_list.id = mihuendpoint_mac_list.model AND mihuendpoint_model_list.product_id = mihuendpoint_product_list.id AND mihuendpoint_brand_list.id = '.$_REQUEST['rb_brand'].' ORDER BY mihuendpoint_product_list.cfg_dir ASC';
             $data =& $endpoint->eda->sql($sql,'getAll',DB_FETCHMODE_ASSOC);
             if(!empty($data)) {
                 foreach($data as $row) {
@@ -1099,7 +1099,7 @@ switch ($sub_type) {
 		
 		
     case "go" :
-        $sql = "UPDATE endpointman_global_vars SET value = '".$_REQUEST['netmask']."' WHERE var_name = 'nmap_search'";
+        $sql = "UPDATE mihuendpoint_global_vars SET value = '".$_REQUEST['netmask']."' WHERE var_name = 'nmap_search'";
         $endpoint->eda->sql($sql);
         $endpoint->global_cfg['nmap_search'] = $_REQUEST['netmask'];
         if ((isset($_REQUEST['nmap'])) AND ($_REQUEST['nmap'] == 1)) {
@@ -1112,7 +1112,7 @@ switch ($sub_type) {
             if ((!$data['endpoint_managed']) AND ($data['brand'])) {
                 $final[$key] = $data;
                 $final[$key]['id'] = $key;
-                $sqln = "SELECT * FROM endpointman_model_list WHERE enabled = 1 AND brand =".$data['brand_id'];
+                $sqln = "SELECT * FROM mihuendpoint_model_list WHERE enabled = 1 AND brand =".$data['brand_id'];
                 $model_list =& $endpoint->eda->sql($sqln,'getAll',DB_FETCHMODE_ASSOC);
                 $j = 0;
                 foreach($model_list as $row) {
@@ -1155,7 +1155,7 @@ switch ($sub_type) {
         if(isset($_REQUEST['selected'])) {
             if(($_REQUEST['brand_list_selected'] > 0) AND ($_REQUEST['model_list_selected'] > 0)) {
                 foreach($_REQUEST['selected'] as $key => $data) {
-                    $sql = "UPDATE endpointman_mac_list SET global_custom_cfg_data = '', template_id = 0, global_user_cfg_data = '', config_files_override = '', model = '".$_REQUEST['model_list_selected']."' WHERE id =  ". $_REQUEST['selected'][$key];
+                    $sql = "UPDATE mihuendpoint_mac_list SET global_custom_cfg_data = '', template_id = 0, global_user_cfg_data = '', config_files_override = '', model = '".$_REQUEST['model_list_selected']."' WHERE id =  ". $_REQUEST['selected'][$key];
                     $endpoint->eda->sql($sql);
 
                     $phone_info = $endpoint->get_phone_info($_REQUEST['selected'][$key]);
@@ -1185,10 +1185,10 @@ switch ($sub_type) {
         } elseif($_REQUEST['template_selector'] == "") {
             $message = _("Please select a template");
         } else {
-            $sql = "SELECT endpointman_mac_list.id FROM endpointman_mac_list, endpointman_brand_list, endpointman_product_list, endpointman_model_list WHERE endpointman_brand_list.id = endpointman_product_list.brand AND endpointman_product_list.id = endpointman_model_list.product_id AND endpointman_mac_list.model = endpointman_model_list.id AND endpointman_product_list.id = '".$_REQUEST['product_select']."'";
+            $sql = "SELECT mihuendpoint_mac_list.id FROM mihuendpoint_mac_list, mihuendpoint_brand_list, mihuendpoint_product_list, mihuendpoint_model_list WHERE mihuendpoint_brand_list.id = mihuendpoint_product_list.brand AND mihuendpoint_product_list.id = mihuendpoint_model_list.product_id AND mihuendpoint_mac_list.model = mihuendpoint_model_list.id AND mihuendpoint_product_list.id = '".$_REQUEST['product_select']."'";
             $data = $endpoint->eda->sql($sql,'getAll',DB_FETCHMODE_ASSOC);
             foreach($data as $row) {
-                $sql = "UPDATE endpointman_mac_list SET template_id = '".$_REQUEST['template_selector']."' WHERE id =  ". $row['id'];
+                $sql = "UPDATE mihuendpoint_mac_list SET template_id = '".$_REQUEST['template_selector']."' WHERE id =  ". $row['id'];
                 $endpoint->eda->sql($sql);
                 $phone_info = $endpoint->get_phone_info($row['id']);
                 if(isset($_REQUEST['reboot'])) {
@@ -1199,7 +1199,7 @@ switch ($sub_type) {
                     $rebooted_msg = "";
                 }
                 foreach($phone_info['line'] as $line) {
-                    $sql = "UPDATE endpointman_line_list SET description = '".$endpoint->eda->escapeSimple($line['description'])."' WHERE luid = ".$line['luid'];
+                    $sql = "UPDATE mihuendpoint_line_list SET description = '".$endpoint->eda->escapeSimple($line['description'])."' WHERE luid = ".$line['luid'];
                     $endpoint->eda->sql($sql);
                 }
             }
@@ -1215,10 +1215,10 @@ switch ($sub_type) {
         } elseif($_REQUEST['model_template_selector'] == "") {
             $message = _("Please select a template");
         } else {
-            $sql = "SELECT endpointman_mac_list.id FROM endpointman_mac_list, endpointman_brand_list, endpointman_product_list, endpointman_model_list WHERE endpointman_brand_list.id = endpointman_product_list.brand AND endpointman_product_list.id = endpointman_model_list.product_id AND endpointman_mac_list.model = endpointman_model_list.id AND endpointman_model_list.id = '".$_REQUEST['model_select']."'";
+            $sql = "SELECT mihuendpoint_mac_list.id FROM mihuendpoint_mac_list, mihuendpoint_brand_list, mihuendpoint_product_list, mihuendpoint_model_list WHERE mihuendpoint_brand_list.id = mihuendpoint_product_list.brand AND mihuendpoint_product_list.id = mihuendpoint_model_list.product_id AND mihuendpoint_mac_list.model = mihuendpoint_model_list.id AND mihuendpoint_model_list.id = '".$_REQUEST['model_select']."'";
             $data = $endpoint->eda->sql($sql,'getAll',DB_FETCHMODE_ASSOC);
             foreach($data as $row) {
-                $sql = "UPDATE endpointman_mac_list SET template_id = '".$_REQUEST['model_template_selector']."' WHERE id =  ". $row['id'];
+                $sql = "UPDATE mihuendpoint_mac_list SET template_id = '".$_REQUEST['model_template_selector']."' WHERE id =  ". $row['id'];
                 $endpoint->eda->sql($sql);
                 $phone_info = $endpoint->get_phone_info($row['id']);
                 if(isset($_REQUEST['reboot'])) {
@@ -1229,7 +1229,7 @@ switch ($sub_type) {
                     $rebooted_msg = "";
                 }
                 foreach($phone_info['line'] as $line) {
-                    $sql = "UPDATE endpointman_line_list SET description = '".$endpoint->eda->escapeSimple($line['description'])."' WHERE luid = ".$line['luid'];
+                    $sql = "UPDATE mihuendpoint_line_list SET description = '".$endpoint->eda->escapeSimple($line['description'])."' WHERE luid = ".$line['luid'];
                     $endpoint->eda->sql($sql);
                 }
             }

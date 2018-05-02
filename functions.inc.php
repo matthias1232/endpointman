@@ -7,7 +7,7 @@
  * @license MPL / GPLv2 / LGPL
  * @package Endpoint Manager
  */
-function endpointman_get_config($engine) {
+function mihuendpoint_get_config($engine) {
     global $db;
     global $ext;
     global $core_conf;
@@ -31,7 +31,7 @@ function endpointman_get_config($engine) {
     }
 }
 
-function endpointman_configpageinit($pagename) {
+function mihuendpoint_configpageinit($pagename) {
     global $currentcomponent, $amp_conf, $db;
 
     $display = isset($_REQUEST['display']) ? $_REQUEST['display'] : null;
@@ -79,15 +79,15 @@ function endpointman_configpageinit($pagename) {
 	    $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : null;
 	    $delete = isset($_REQUEST['epm_delete']) ? $_REQUEST['epm_delete'] : null;
 
-        $doc_root = $amp_conf['AMPWEBROOT'] . "/admin/modules/endpointman/";
+        $doc_root = $amp_conf['AMPWEBROOT'] . "/admin/modules/mihuendpoint/";
         if (file_exists($doc_root . "includes/functions.inc")) {
             require($doc_root . "includes/functions.inc");
 
-            $endpoint = new endpointmanager();
+            $endpoint = new mihuendpointager();
             ini_set('display_errors', 0);
 
             if ($action == "del") {
-                $sql = "SELECT mac_id,luid FROM endpointman_line_list WHERE ext = " . $extdisplay;
+                $sql = "SELECT mac_id,luid FROM mihuendpoint_line_list WHERE ext = " . $extdisplay;
                 $macid = $endpoint->eda->sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
                 if ($macid) {
                     $endpoint->delete_line($macid['luid'], TRUE);
@@ -96,7 +96,7 @@ function endpointman_configpageinit($pagename) {
 
             if (($action == "edit") OR ($action == "add")) {
                 if (isset($delete)) {
-                    $sql = "SELECT mac_id,luid FROM endpointman_line_list WHERE ext = " . $extdisplay;
+                    $sql = "SELECT mac_id,luid FROM mihuendpoint_line_list WHERE ext = " . $extdisplay;
                     $macid = $endpoint->eda->sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
                     if ($macid) {
                         $endpoint->delete_line($macid['luid'], TRUE);
@@ -130,12 +130,12 @@ function endpointman_configpageinit($pagename) {
                     $reboot = isset($_REQUEST['epm_reboot']) ? $_REQUEST['epm_reboot'] : null;
 
                     if ($endpoint->mac_check_clean($mac)) {
-                        $sql = "SELECT id FROM endpointman_mac_list WHERE mac = '" . $endpoint->mac_check_clean($mac) . "'";
+                        $sql = "SELECT id FROM mihuendpoint_mac_list WHERE mac = '" . $endpoint->mac_check_clean($mac) . "'";
                         $macid = $endpoint->eda->sql($sql, 'getOne');
                         if ($macid) {
                             //In Database already
 
-                            $sql = 'SELECT * FROM endpointman_line_list WHERE ext = ' . $extdisplay . ' AND mac_id = ' . $macid;
+                            $sql = 'SELECT * FROM mihuendpoint_line_list WHERE ext = ' . $extdisplay . ' AND mac_id = ' . $macid;
                             $lines_list = & $endpoint->eda->sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
 
                             if (($lines_list) AND (isset($model)) AND (isset($line)) AND (!isset($delete)) AND (isset($temp))) {
@@ -179,23 +179,23 @@ function endpointman_configpageinit($pagename) {
                     }
                 }
             }
-            endpointman_applyhooks();
+            mihuendpoint_applyhooks();
         } else {
             //System can't find the include file.
         }
     }
 }
 
-function endpointman_applyhooks() {
+function mihuendpoint_applyhooks() {
     global $currentcomponent;
 
     // Add the 'process' function - this gets called when the page is loaded, to hook into
     // displaying stuff on the page.
-    $currentcomponent->addguifunc('endpointman_configpageload');
+    $currentcomponent->addguifunc('mihuendpoint_configpageload');
 }
 
 // This is called before the page is actually displayed, so we can use addguielem().
-function endpointman_configpageload() {
+function mihuendpoint_configpageload() {
     global $currentcomponent, $endpoint, $db, $astman;
     $display = isset($_REQUEST['display']) ? $_REQUEST['display'] : null;
     $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : null;
@@ -218,7 +218,7 @@ function endpointman_configpageload() {
             $js = "
                         $.ajaxSetup({ cache: false });
 
-                        $.getJSON(\"config.php?type=tool&quietmode=1&handler=file&module=endpointman&file=ajax_select.html.php&atype=model\",{id: value}, function(j){
+                        $.getJSON(\"config.php?type=tool&quietmode=1&handler=file&module=mihuendpoint&file=ajax_select.html.php&atype=model\",{id: value}, function(j){
                                 var options = '';
                                 for (var i = 0; i < j.length; i++) {
                                         options += '<option value=\"' + j[i].optionValue + '\">' + j[i].optionDisplay + '</option>';
@@ -235,13 +235,13 @@ function endpointman_configpageload() {
 
             $section = _('End Point Manager');
 
-            $sql = "SELECT mac_id,luid,line FROM endpointman_line_list WHERE ext = '" . $extdisplay . "' ";
+            $sql = "SELECT mac_id,luid,line FROM mihuendpoint_line_list WHERE ext = '" . $extdisplay . "' ";
             $line_info = $endpoint->eda->sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
             if ($line_info) {
 
                 $js = "
                         $.ajaxSetup({ cache: false });
-                        $.getJSON('config.php?type=tool&quietmode=1&handler=file&module=endpointman&file=ajax_select.html.php&atype=template2',{id: value}, function(j){
+                        $.getJSON('config.php?type=tool&quietmode=1&handler=file&module=mihuendpoint&file=ajax_select.html.php&atype=template2',{id: value}, function(j){
                                 var options = '';
                                 for (var i = 0; i < j.length; i++) {
                                         options += '<option value=\"' + j[i].optionValue + '\">' + j[i].optionDisplay + '</option>';
@@ -250,7 +250,7 @@ function endpointman_configpageload() {
                                 $('#epm_temps option:first').attr('selected', 'selected');
                         }),
                         $.ajaxSetup({ cache: false });
-                        $.getJSON('config.php?type=tool&quietmode=1&handler=file&module=endpointman&file=ajax_select.html.php&macid='+ macid +'&atype=lines',{id: value}, function(j){
+                        $.getJSON('config.php?type=tool&quietmode=1&handler=file&module=mihuendpoint&file=ajax_select.html.php&macid='+ macid +'&atype=lines',{id: value}, function(j){
                                 var options = '';
                                 for (var i = 0; i < j.length; i++) {
                                         options += '<option value=\"' + j[i].optionValue + '\">' + j[i].optionDisplay + '</option>';
@@ -296,7 +296,7 @@ function endpointman_configpageload() {
 
                 $js = "
                         $.ajaxSetup({ cache: false });
-                        $.getJSON('config.php?type=tool&quietmode=1&handler=file&module=endpointman&file=ajax_select.html.php&atype=template2',{id: value}, function(j){
+                        $.getJSON('config.php?type=tool&quietmode=1&handler=file&module=mihuendpoint&file=ajax_select.html.php&atype=template2',{id: value}, function(j){
                                 var options = '';
                                 for (var i = 0; i < j.length; i++) {
                                         options += '<option value=\"' + j[i].optionValue + '\">' + j[i].optionDisplay + '</option>';
@@ -305,7 +305,7 @@ function endpointman_configpageload() {
                                 $('#epm_temps option:first').attr('selected', 'selected');
                         }),
                         $.ajaxSetup({ cache: false });
-                        $.getJSON('config.php?type=tool&quietmode=1&handler=file&module=endpointman&file=ajax_select.html.php&mac='+ mac +'&atype=lines',{id: value}, function(j){
+                        $.getJSON('config.php?type=tool&quietmode=1&handler=file&module=mihuendpoint&file=ajax_select.html.php&mac='+ mac +'&atype=lines',{id: value}, function(j){
                                 var options = '';
                                 for (var i = 0; i < j.length; i++) {
                                         options += '<option value=\"' + j[i].optionValue + '\">' + j[i].optionDisplay + '</option>';
@@ -333,15 +333,15 @@ function endpointman_configpageload() {
     }
 }
 
-function endpointman_hookProcess_core($viewing_itemid, $request) {
+function mihuendpoint_hookProcess_core($viewing_itemid, $request) {
 
 }
 
-function endpointman_module_install_check_callback($mods = array()) {
+function mihuendpoint_module_install_check_callback($mods = array()) {
     global $active_modules;
 
     $ret = array();
-    $current_mod = 'endpointman';
+    $current_mod = 'mihuendpoint';
     $conflicting_mods = array('restart');
 
 	foreach($mods as $k => $v) {

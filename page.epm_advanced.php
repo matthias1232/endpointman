@@ -6,7 +6,7 @@
  * @license MPL / GPLv2 / LGPL
  * @package Endpoint Manager
  */
-$epm = FreePBX::create()->Endpointman;
+$epm = FreePBX::create()->Mihuendpoint;
 
 if ((! isset($_REQUEST['subpage'])) || ($_REQUEST['subpage'] == "")) {
 	$_REQUEST['subpage'] = "settings";

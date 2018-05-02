@@ -1,13 +1,14 @@
 <module>
-	<rawname>endpointman</rawname>
-	<repo>unsupported</repo>
-	<name>OSS PBX End Point Manager</name>
-	<version>14.0.0.4</version>
-	<type>setup</type>
-	<category>Settings</category>
-	<license>GPLv3+</license>
-	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
-	<menuitems>
+        <rawname>mihuendpoint</rawname>
+        <repo>local</repo>
+        <name>Mihu Endpoint Manager</name>
+        <version>14.0.0.4</version>
+         <publisher>Mitterhuemer</publisher>
+        <category>Settings</category>
+        <license>GPLv3+</license>
+        <licenselink>http://www.gnu.org/licenses/gpl-2.0.txt</licenselink>
+        <updateurl>https://provisioning.powerpro.at/mihuendpoint/module.json</updateurl>
+        <menuitems>
 		<epm_devices sort="1" hidden="true">Device List</epm_devices>
 		<epm_templates sort="2" hidden="true">Template Manager</epm_templates>
 		<epm_config sort="3" hidden="true">Package Manager</epm_config>
@@ -18,13 +19,13 @@
 	<description>
 		OSS PBX End Point Manager is the free supported PBX Endpoint Manager for FreePBX.
 		It is ***NOT*** supported by Schmoozecom. If you are looking for a supported endpoint manager please look into the Commercial Endpoint Manager by Schmoozecom, INC.
-		The front end gui is hosted at: https://github.com/FreePBX/endpointman
+		The front end gui is hosted at: https://github.com/FreePBX/mihuendpoint
 		The backend configurator is hosted at: https://github.com/provisioner/Provisioner
 		Pull Requests can be made to either of these and are encouraged.
 	</description>
 	<changelog>
 		*14.0.0.4* Add IPEI fields
-		*14.0.0.3* Endpointman 14.0.0.3 - Fix Template Manager
+		*14.0.0.3* Mihuendpoint 14.0.0.3 - Fix Template Manager
 		*14.0.0.2* Fix problems after merging 14.0.0.1
 		*14.0.0.1* Initial release of fork from OSS EPM inlcuding right Navigation, Bootstrap Device View and OSS Information Page
 		*13.0.7.18* Fix missing function numRows Fix DateTimeZone class init Use count() instead of broken numRow() function Fix selected in template editor dropdown Changed some Spanish words to English on non-locales files
@@ -72,7 +73,7 @@
 	</supported>
 	<hooks>
 		<framework namespace="FreePBX\Console\Command" class="Chown">
-			<method namespace="FreePBX\modules" class="Endpointman" callingMethod="fwcChownFiles">chownFreepbx</method>
+			<method namespace="FreePBX\modules" class="Mihuendpoint" callingMethod="fwcChownFiles">chownFreepbx</method>
 		</framework>
 	</hooks>
 </module>

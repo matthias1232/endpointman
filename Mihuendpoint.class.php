@@ -44,7 +44,7 @@ function generate_xml_from_array ($array, $node_name, &$tab = -1)
 }
 
 
-class Endpointman implements \BMO {
+class Mihuendpoint implements \BMO {
 
 	//public $epm_config;
 
@@ -78,7 +78,7 @@ class Endpointman implements \BMO {
 		$this->freepbx = $freepbx;
 		$this->db = $freepbx->Database;
 		$this->config = $freepbx->Config;
-		$this->configmod = new Endpointman\Config();
+		$this->configmod = new Mihuendpoint\Config();
 		$this->system = new epm_system();
 		$this->eda = new epm_data_abstraction($this->config, $this->configmod);
 
@@ -102,14 +102,14 @@ define("MODULES_PATH", $this->MODULES_PATH);
 
 
         //Determine if local path is correct!
-        if (file_exists($this->MODULES_PATH . "endpointman/")) {
-            $this->LOCAL_PATH = $this->MODULES_PATH . "endpointman/";
+        if (file_exists($this->MODULES_PATH . "mihuendpoint/")) {
+            $this->LOCAL_PATH = $this->MODULES_PATH . "mihuendpoint/";
 define("LOCAL_PATH", $this->LOCAL_PATH);
         } else {
             die("Can't Load Local Endpoint Manager Directory!");
         }
 
-        //Define the location of phone modules, keeping it outside of the module directory so that when the user updates endpointmanager they don't lose all of their phones
+        //Define the location of phone modules, keeping it outside of the module directory so that when the user updates mihuendpointager they don't lose all of their phones
         if (file_exists($this->MODULES_PATH . "_ep_phone_modules/")) {
             $this->PHONE_MODULES_PATH = $this->MODULES_PATH . "_ep_phone_modules/";
         } else {
@@ -154,27 +154,27 @@ define("PHONE_MODULES_PATH", $this->PHONE_MODULES_PATH);
             }
         }
 
-        //$this->tpl = new RainTPL(LOCAL_PATH . '_old/templates/freepbx', LOCAL_PATH . '_old/templates/freepbx/compiled', '/admin/assets/endpointman/images');
-		//$this->tpl = new RainTPL('/admin/assets/endpointman/images');
+        //$this->tpl = new RainTPL(LOCAL_PATH . '_old/templates/freepbx', LOCAL_PATH . '_old/templates/freepbx/compiled', '/admin/assets/mihuendpoint/images');
+		//$this->tpl = new RainTPL('/admin/assets/mihuendpoint/images');
 
 
-		require_once('Endpointman_Config.class.php');
-		$this->epm_config = new Endpointman_Config($freepbx, $this->configmod, $this->system);
+		require_once('Mihuendpoint_Config.class.php');
+		$this->epm_config = new Mihuendpoint_Config($freepbx, $this->configmod, $this->system);
 
-		require_once('Endpointman_Advanced.class.php');
-		$this->epm_advanced = new Endpointman_Advanced($freepbx, $this->configmod, $this->epm_config);
+		require_once('Mihuendpoint_Advanced.class.php');
+		$this->epm_advanced = new Mihuendpoint_Advanced($freepbx, $this->configmod, $this->epm_config);
 
-		require_once('Endpointman_Templates.class.php');
-		$this->epm_templates = new Endpointman_Templates($freepbx, $this->configmod, $this->epm_config, $this->eda);
+		require_once('Mihuendpoint_Templates.class.php');
+		$this->epm_templates = new Mihuendpoint_Templates($freepbx, $this->configmod, $this->epm_config, $this->eda);
 
-		require_once('Endpointman_Devices.class.php');
-		$this->epm_devices = new Endpointman_Devices($freepbx, $this->configmod);
+		require_once('Mihuendpoint_Devices.class.php');
+		$this->epm_devices = new Mihuendpoint_Devices($freepbx, $this->configmod);
 
-		require_once('Endpointman_Devices.class.php');
-		$this->epm_oss = new Endpointman_Devices($freepbx, $this->configmod);
+		require_once('Mihuendpoint_Devices.class.php');
+		$this->epm_oss = new Mihuendpoint_Devices($freepbx, $this->configmod);
 		
-		//require_once('Endpointman_Devices.class.php');
-		$this->epm_placeholders = new Endpointman_Devices($freepbx, $this->configmod);
+		//require_once('Mihuendpoint_Devices.class.php');
+		$this->epm_placeholders = new Mihuendpoint_Devices($freepbx, $this->configmod);
 
 	}
 
@@ -455,39 +455,39 @@ define("PHONE_MODULES_PATH", $this->PHONE_MODULES_PATH);
     	$provisioning_path = $this->config->get('AMPWEBROOT')."/provisioning";
     	if(is_link($provisioning_path)) { unlink($provisioning_path); }
 
-    	if(!is_link($this->config->get('AMPWEBROOT').'/admin/assets/endpointman')) {
-    		$this->system->rmrf($this->config->get('AMPWEBROOT').'/admin/assets/endpointman');
+    	if(!is_link($this->config->get('AMPWEBROOT').'/admin/assets/mihuendpoint')) {
+    		$this->system->rmrf($this->config->get('AMPWEBROOT').'/admin/assets/mihuendpoint');
     	}
 
     	out(_("Dropping all relevant tables"));
-    	$sql = "DROP TABLE `endpointman_brand_list`";
+    	$sql = "DROP TABLE `mihuendpoint_brand_list`";
     	$sth = $this->db->prepare($sql);
     	$sth->execute();
-    	$sql = "DROP TABLE `endpointman_global_vars`";
+    	$sql = "DROP TABLE `mihuendpoint_global_vars`";
     	$sth = $this->db->prepare($sql);
     	$sth->execute();
-    	$sql = "DROP TABLE `endpointman_mac_list`";
+    	$sql = "DROP TABLE `mihuendpoint_mac_list`";
     	$sth = $this->db->prepare($sql);
     	$sth->execute();
-    	$sql = "DROP TABLE `endpointman_line_list`";
+    	$sql = "DROP TABLE `mihuendpoint_line_list`";
     	$sth = $this->db->prepare($sql);
     	$sth->execute();
-    	$sql = "DROP TABLE `endpointman_model_list`";
+    	$sql = "DROP TABLE `mihuendpoint_model_list`";
     	$sth = $this->db->prepare($sql);
     	$sth->execute();
-    	$sql = "DROP TABLE `endpointman_oui_list`";
+    	$sql = "DROP TABLE `mihuendpoint_oui_list`";
     	$sth = $this->db->prepare($sql);
     	$sth->execute();
-    	$sql = "DROP TABLE `endpointman_product_list`";
+    	$sql = "DROP TABLE `mihuendpoint_product_list`";
     	$sth = $this->db->prepare($sql);
     	$sth->execute();
-    	$sql = "DROP TABLE `endpointman_template_list`";
+    	$sql = "DROP TABLE `mihuendpoint_template_list`";
     	$sth = $this->db->prepare($sql);
     	$sth->execute();
-    	$sql = "DROP TABLE `endpointman_time_zones`";
+    	$sql = "DROP TABLE `mihuendpoint_time_zones`";
     	$sth = $this->db->prepare($sql);
     	$sth->execute();
-    	$sql = "DROP TABLE `endpointman_custom_configs`";
+    	$sql = "DROP TABLE `mihuendpoint_custom_configs`";
     	$sth = $this->db->prepare($sql);
     	$sth->execute();
     	return true;
@@ -692,9 +692,9 @@ define("PHONE_MODULES_PATH", $this->PHONE_MODULES_PATH);
 	function tftp_check() {
         //create a simple block here incase people have strange issues going on as we will kill http
         //by running this if the server isn't really running!
-        $sql = 'SELECT value FROM endpointman_global_vars WHERE var_name = \'tftp_check\'';
+        $sql = 'SELECT value FROM mihuendpoint_global_vars WHERE var_name = \'tftp_check\'';
         if (sql($sql, 'getOne') != 1) {
-            $sql = 'UPDATE endpointman_global_vars SET value = \'1\' WHERE var_name = \'tftp_check\'';
+            $sql = 'UPDATE mihuendpoint_global_vars SET value = \'1\' WHERE var_name = \'tftp_check\'';
             sql($sql);
             $subject = shell_exec("netstat -luan --numeric-ports");
             if (preg_match('/:69\s/i', $subject)) {
@@ -724,7 +724,7 @@ echo 'Disabled is set to "yes" in /etc/xinetd.d/tftp. Please fix <br />Then rest
 echo 'TFTP Server is not running. <br />See here for instructions on how to install one: <a href="http://wiki.provisioner.net/index.php/Tftp" target="_blank">http://wiki.provisioner.net/index.php/Tftp</a>';
                 }
             }
-            $sql = 'UPDATE endpointman_global_vars SET value = \'0\' WHERE var_name = \'tftp_check\'';
+            $sql = 'UPDATE mihuendpoint_global_vars SET value = \'0\' WHERE var_name = \'tftp_check\'';
             sql($sql);
         } else {
             $this->error['tftp_check'] = 'TFTP Server check failed on last past. Skipping';
@@ -787,7 +787,7 @@ echo 'TFTP Server check failed on last past. Skipping';
     			return(FALSE);
     		} else {
     			if ($this->epm_config->sync_model($model)) {
-    				$sql = "SELECT id,template_id FROM endpointman_mac_list WHERE mac = '" . $mac . "'";
+    				$sql = "SELECT id,template_id FROM mihuendpoint_mac_list WHERE mac = '" . $mac . "'";
     				$dup = sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
 
     				if ($dup) {
@@ -795,7 +795,7 @@ echo 'TFTP Server check failed on last past. Skipping';
     						$template = $dup['template_id'];
     					}
 
-    					$sql = "UPDATE endpointman_mac_list SET model = " . $model . ", template_id =  " . $template . " WHERE id = " . $dup['id'];
+    					$sql = "UPDATE mihuendpoint_mac_list SET model = " . $model . ", template_id =  " . $template . " WHERE id = " . $dup['id'];
     					sql($sql);
 						$return = $this->add_line($dup['id'], $line, $ext);
     					if ($return) {
@@ -808,7 +808,7 @@ echo 'TFTP Server check failed on last past. Skipping';
     						$template = 0;
     					}
 
-    					$sql = "SELECT mac_id FROM endpointman_line_list WHERE ext = " . $ext;
+    					$sql = "SELECT mac_id FROM mihuendpoint_line_list WHERE ext = " . $ext;
     					$used = sql($sql, 'getOne');
 
 					if (($used) AND (! $this->configmod->get('show_all_registrations'))) {
@@ -826,10 +826,10 @@ echo 'TFTP Server check failed on last past. Skipping';
     						$name = $displayname;
     					}
 
-    					$sql = 'SELECT endpointman_product_list. * , endpointman_model_list.template_data, endpointman_brand_list.directory FROM endpointman_model_list, endpointman_brand_list, endpointman_product_list WHERE endpointman_model_list.id =  \'' . $model . '\' AND endpointman_model_list.brand = endpointman_brand_list.id AND endpointman_model_list.product_id = endpointman_product_list.id';
+    					$sql = 'SELECT mihuendpoint_product_list. * , mihuendpoint_model_list.template_data, mihuendpoint_brand_list.directory FROM mihuendpoint_model_list, mihuendpoint_brand_list, mihuendpoint_product_list WHERE mihuendpoint_model_list.id =  \'' . $model . '\' AND mihuendpoint_model_list.brand = mihuendpoint_brand_list.id AND mihuendpoint_model_list.product_id = mihuendpoint_product_list.id';
     					$row = sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
 
-    					$sql = "INSERT INTO `endpointman_mac_list` (`mac`, `model`, `template_id`) VALUES ('" . $mac . "', '" . $model . "', '" . $template . "')";
+    					$sql = "INSERT INTO `mihuendpoint_mac_list` (`mac`, `model`, `template_id`) VALUES ('" . $mac . "', '" . $model . "', '" . $template . "')";
     					sql($sql);
 
     					$sql = 'SELECT last_insert_id()';
@@ -839,7 +839,7 @@ echo 'TFTP Server check failed on last past. Skipping';
     						$line = 1;
     					}
 
-    					$sql = "INSERT INTO `endpointman_line_list` (`mac_id`, `ext`, `line`, `description`) VALUES ('" . $ext_id . "', '" . $ext . "', '" . $line . "', '" . addslashes($name) . "')";
+    					$sql = "INSERT INTO `mihuendpoint_line_list` (`mac_id`, `ext`, `line`, `description`) VALUES ('" . $ext_id . "', '" . $ext . "', '" . $line . "', '" . addslashes($name) . "')";
     					sql($sql);
 
 //$this->message['add_device'][] =
@@ -864,14 +864,14 @@ echo 'TFTP Server check failed on last past. Skipping';
     	if ((!isset($line)) AND (!isset($ext))) {
     		if ($this->linesAvailable(NULL, $mac_id)) {
     			if ($this->eda->all_unused_registrations()) {
-    				$sql = 'SELECT * FROM endpointman_line_list WHERE mac_id = ' . $mac_id;
+    				$sql = 'SELECT * FROM mihuendpoint_line_list WHERE mac_id = ' . $mac_id;
     				$lines_list = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
 
     				foreach ($lines_list as $row) {
     					$sql = "SELECT description FROM devices WHERE id = " . $row['ext'];
     					$name = sql($sql, 'getOne');
 
-    					$sql = "UPDATE endpointman_line_list SET line = '" . $row['line'] . "', ext = '" . $row['ext'] . "', description = '" . $this->eda->escapeSimple($name) . "' WHERE luid =  " . $row['luid'];
+    					$sql = "UPDATE mihuendpoint_line_list SET line = '" . $row['line'] . "', ext = '" . $row['ext'] . "', description = '" . $this->eda->escapeSimple($name) . "' WHERE luid =  " . $row['luid'];
     					sql($sql);
     				}
 
@@ -881,7 +881,7 @@ echo 'TFTP Server check failed on last past. Skipping';
     				$sql = "SELECT description FROM devices WHERE id = " . $reg[0]['value'];
     				$name = sql($sql, 'getOne');
 
-    				$sql = "INSERT INTO `endpointman_line_list` (`mac_id`, `ext`, `line`, `description`) VALUES ('" . $mac_id . "', '" . $reg[0]['value'] . "', '" . $lines[0]['value'] . "', '" . addslashes($name) . "')";
+    				$sql = "INSERT INTO `mihuendpoint_line_list` (`mac_id`, `ext`, `line`, `description`) VALUES ('" . $mac_id . "', '" . $reg[0]['value'] . "', '" . $lines[0]['value'] . "', '" . addslashes($name) . "')";
     				sql($sql);
 
 //$this->message['add_line'] =
@@ -902,7 +902,7 @@ echo 'TFTP Server check failed on last past. Skipping';
     			if ($this->eda->all_unused_registrations()) {
     				$lines = array_values($this->linesAvailable(NULL, $mac_id));
 
-    				$sql = "INSERT INTO `endpointman_line_list` (`mac_id`, `ext`, `line`, `description`) VALUES ('" . $mac_id . "', '" . $ext . "', '" . $lines[0]['value'] . "', '" . addslashes($displayname) . "')";
+    				$sql = "INSERT INTO `mihuendpoint_line_list` (`mac_id`, `ext`, `line`, `description`) VALUES ('" . $mac_id . "', '" . $ext . "', '" . $lines[0]['value'] . "', '" . addslashes($displayname) . "')";
     				sql($sql);
 
 //$this->message['add_line'] =
@@ -919,7 +919,7 @@ echo 'TFTP Server check failed on last past. Skipping';
     			return(FALSE);
     		}
     	} elseif ((isset($line)) AND (isset($ext))) {
-    		$sql = "SELECT luid FROM endpointman_line_list WHERE line = '" . $line . "' AND mac_id = " . $mac_id;
+    		$sql = "SELECT luid FROM mihuendpoint_line_list WHERE line = '" . $line . "' AND mac_id = " . $mac_id;
     		$luid = sql($sql, 'getOne');
     		if ($luid) {
 //$this->error['add_line'] =
@@ -933,7 +933,7 @@ echo 'TFTP Server check failed on last past. Skipping';
     				$name = $displayname;
     			}
 
-    			$sql = "INSERT INTO `endpointman_line_list` (`mac_id`, `ext`, `line`, `description`) VALUES ('" . $mac_id . "', '" . $ext . "', '" . $line . "', '" . addslashes($name) . "')";
+    			$sql = "INSERT INTO `mihuendpoint_line_list` (`mac_id`, `ext`, `line`, `description`) VALUES ('" . $mac_id . "', '" . $ext . "', '" . $line . "', '" . addslashes($name) . "')";
     			sql($sql);
 //$this->message['add_line'] =
 			out(_("Added ") . $name . _(" to line ") . $line . "<br/>");
@@ -945,15 +945,15 @@ echo 'TFTP Server check failed on last past. Skipping';
 
     function linesAvailable($lineid=NULL, $macid=NULL) {
     	if (isset($lineid)) {
-    		$sql = "SELECT max_lines FROM endpointman_model_list WHERE id = (SELECT endpointman_mac_list.model FROM endpointman_mac_list, endpointman_line_list WHERE endpointman_line_list.luid = " . $lineid . " AND endpointman_line_list.mac_id = endpointman_mac_list.id)";
+    		$sql = "SELECT max_lines FROM mihuendpoint_model_list WHERE id = (SELECT mihuendpoint_mac_list.model FROM mihuendpoint_mac_list, mihuendpoint_line_list WHERE mihuendpoint_line_list.luid = " . $lineid . " AND mihuendpoint_line_list.mac_id = mihuendpoint_mac_list.id)";
 
-    		$sql_l = "SELECT line, mac_id FROM `endpointman_line_list` WHERE luid = " . $lineid;
+    		$sql_l = "SELECT line, mac_id FROM `mihuendpoint_line_list` WHERE luid = " . $lineid;
     		$line = sql($sql_l, 'getRow', DB_FETCHMODE_ASSOC);
 
-    		$sql_lu = "SELECT line FROM endpointman_line_list WHERE mac_id = " . $line['mac_id'];
+    		$sql_lu = "SELECT line FROM mihuendpoint_line_list WHERE mac_id = " . $line['mac_id'];
     	} elseif (isset($macid)) {
-    		$sql = "SELECT max_lines FROM endpointman_model_list WHERE id = (SELECT model FROM endpointman_mac_list WHERE id =" . $macid . ")";
-    		$sql_lu = "SELECT line FROM endpointman_line_list WHERE mac_id = " . $macid;
+    		$sql = "SELECT max_lines FROM mihuendpoint_model_list WHERE id = (SELECT model FROM mihuendpoint_mac_list WHERE id =" . $macid . ")";
+    		$sql_lu = "SELECT line FROM mihuendpoint_line_list WHERE mac_id = " . $macid;
 
     		$line['line'] = 0;
     	}
@@ -1017,7 +1017,7 @@ echo 'TFTP Server check failed on last past. Skipping';
 
 
      * Send this function an ID from the mac devices list table and you'll get all the information we have on that particular phone
-     * @param integer $mac_id ID number reference from the MySQL database referencing the table endpointman_mac_list
+     * @param integer $mac_id ID number reference from the MySQL database referencing the table mihuendpoint_mac_list
      * @return array
      * @example
      * Final Output will look something similar to this
@@ -1068,13 +1068,13 @@ echo 'TFTP Server check failed on last past. Skipping';
 		out(_("Mac ID is not set"));
     		return(FALSE);
     	}
-    	$sql = "SELECT id FROM endpointman_mac_list WHERE model > 0 AND id =" . $mac_id;
+    	$sql = "SELECT id FROM mihuendpoint_mac_list WHERE model > 0 AND id =" . $mac_id;
 
     	//$res = sql($sql);
 		$res = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
     	if (count($res)) {
     		//Returns Brand Name, Brand Directory, Model Name, Mac Address, Extension (FreePBX), Custom Configuration Template, Custom Configuration Data, Product Name, Product ID, Product Configuration Directory, Product Configuration Version, Product XML name,
-    		$sql = "SELECT endpointman_mac_list.specific_settings, endpointman_mac_list.config_files_override, endpointman_mac_list.global_user_cfg_data, endpointman_model_list.id as model_id, endpointman_brand_list.id as brand_id, endpointman_brand_list.name, endpointman_brand_list.directory, endpointman_model_list.model, endpointman_mac_list.mac, endpointman_mac_list.template_id, endpointman_mac_list.global_custom_cfg_data, endpointman_product_list.long_name, endpointman_product_list.id as product_id, endpointman_product_list.cfg_dir, endpointman_product_list.cfg_ver, endpointman_model_list.template_data, endpointman_model_list.enabled, endpointman_mac_list.global_settings_override FROM endpointman_line_list, endpointman_mac_list, endpointman_model_list, endpointman_brand_list, endpointman_product_list WHERE endpointman_mac_list.model = endpointman_model_list.id AND endpointman_brand_list.id = endpointman_model_list.brand AND endpointman_product_list.id = endpointman_model_list.product_id AND endpointman_mac_list.id = endpointman_line_list.mac_id AND endpointman_mac_list.id = " . $mac_id;
+    		$sql = "SELECT mihuendpoint_mac_list.specific_settings, mihuendpoint_mac_list.config_files_override, mihuendpoint_mac_list.global_user_cfg_data, mihuendpoint_model_list.id as model_id, mihuendpoint_brand_list.id as brand_id, mihuendpoint_brand_list.name, mihuendpoint_brand_list.directory, mihuendpoint_model_list.model, mihuendpoint_mac_list.mac, mihuendpoint_mac_list.template_id, mihuendpoint_mac_list.global_custom_cfg_data, mihuendpoint_product_list.long_name, mihuendpoint_product_list.id as product_id, mihuendpoint_product_list.cfg_dir, mihuendpoint_product_list.cfg_ver, mihuendpoint_model_list.template_data, mihuendpoint_model_list.enabled, mihuendpoint_mac_list.global_settings_override FROM mihuendpoint_line_list, mihuendpoint_mac_list, mihuendpoint_model_list, mihuendpoint_brand_list, mihuendpoint_product_list WHERE mihuendpoint_mac_list.model = mihuendpoint_model_list.id AND mihuendpoint_brand_list.id = mihuendpoint_model_list.brand AND mihuendpoint_product_list.id = mihuendpoint_model_list.product_id AND mihuendpoint_mac_list.id = mihuendpoint_line_list.mac_id AND mihuendpoint_mac_list.id = " . $mac_id;
     		$phone_info = sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
 
     		if (!$phone_info) {
@@ -1084,11 +1084,11 @@ echo 'TFTP Server check failed on last past. Skipping';
 
     		//If there is a template associated with this phone then pull that information and put it into the array
     		if ($phone_info['template_id'] > 0) {
-    			$sql = "SELECT name, global_custom_cfg_data, config_files_override, global_settings_override FROM endpointman_template_list WHERE id = " . $phone_info['template_id'];
+    			$sql = "SELECT name, global_custom_cfg_data, config_files_override, global_settings_override FROM mihuendpoint_template_list WHERE id = " . $phone_info['template_id'];
     			$phone_info['template_data_info'] = sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
     		}
 
-    		$sql = "SELECT endpointman_line_list.*, sip.data as secret, devices.*, endpointman_line_list.description AS epm_description FROM endpointman_line_list, sip, devices WHERE endpointman_line_list.ext = devices.id AND endpointman_line_list.ext = sip.id AND sip.keyword = 'secret' AND mac_id = " . $mac_id . " ORDER BY endpointman_line_list.line ASC";
+    		$sql = "SELECT mihuendpoint_line_list.*, sip.data as secret, devices.*, mihuendpoint_line_list.description AS epm_description FROM mihuendpoint_line_list, sip, devices WHERE mihuendpoint_line_list.ext = devices.id AND mihuendpoint_line_list.ext = sip.id AND sip.keyword = 'secret' AND mac_id = " . $mac_id . " ORDER BY mihuendpoint_line_list.line ASC";
     		$lines_info = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
     		foreach ($lines_info as $line) {
     			$phone_info['line'][$line['line']] = $line;
@@ -1096,7 +1096,7 @@ echo 'TFTP Server check failed on last past. Skipping';
     			$phone_info['line'][$line['line']]['user_extension'] = $line['user'];
     		}
     	} else {
-    		$sql = "SELECT id, mac FROM endpointman_mac_list WHERE id =" . $mac_id;
+    		$sql = "SELECT id, mac FROM mihuendpoint_mac_list WHERE id =" . $mac_id;
     		//Phone is unknown, we need to display this to the end user so that they can make corrections
     		$row = sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
 
@@ -1114,7 +1114,7 @@ echo 'TFTP Server check failed on last past. Skipping';
     		$phone_info['product_id'] = 0;
     		$phone_info['custom_cfg_template'] = 0;
     		$phone_info['mac'] = $row['mac'];
-    		$sql = "SELECT endpointman_line_list.*, sip.data as secret, devices.* FROM endpointman_line_list, sip, devices WHERE endpointman_line_list.ext = devices.id AND endpointman_line_list.ext = sip.id AND sip.keyword = 'secret' AND mac_id = " . $mac_id;
+    		$sql = "SELECT mihuendpoint_line_list.*, sip.data as secret, devices.* FROM mihuendpoint_line_list, sip, devices WHERE mihuendpoint_line_list.ext = devices.id AND mihuendpoint_line_list.ext = sip.id AND sip.keyword = 'secret' AND mac_id = " . $mac_id;
     		$lines_info = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
     		foreach ($lines_info as $line) {
     			$phone_info['line'][$line['line']] = $line;
@@ -1138,7 +1138,7 @@ echo 'TFTP Server check failed on last past. Skipping';
     	//Get the OUI only
     	$oui = substr($this->mac_check_clean($mac), 0, 6);
     	//Find the matching brand model to the oui
-    	$oui_sql = "SELECT endpointman_brand_list.name, endpointman_brand_list.id FROM endpointman_oui_list, endpointman_brand_list WHERE oui LIKE '%" . $oui . "%' AND endpointman_brand_list.id = endpointman_oui_list.brand AND endpointman_brand_list.installed = 1 LIMIT 1";
+    	$oui_sql = "SELECT mihuendpoint_brand_list.name, mihuendpoint_brand_list.id FROM mihuendpoint_oui_list, mihuendpoint_brand_list WHERE oui LIKE '%" . $oui . "%' AND mihuendpoint_brand_list.id = mihuendpoint_oui_list.brand AND mihuendpoint_brand_list.installed = 1 LIMIT 1";
     	$brand = sql($oui_sql, 'getRow', DB_FETCHMODE_ASSOC);
 
     	$res = sql($oui_sql);
@@ -1246,7 +1246,7 @@ $this->error['parse_configs'] = 'Error Returned From Timezone Library: ' . $e->g
     				if (!empty($phone_info['template_data_info']['config_files_override'])) {
     					$temp = unserialize($phone_info['template_data_info']['config_files_override']);
     					foreach ($temp as $list) {
-    						$sql = "SELECT original_name,data FROM endpointman_custom_configs WHERE id = " . $list;
+    						$sql = "SELECT original_name,data FROM mihuendpoint_custom_configs WHERE id = " . $list;
     						//$res = sql($sql);
 							$res = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
     						if (count($res)) {
@@ -1261,7 +1261,7 @@ $this->error['parse_configs'] = 'Error Returned From Timezone Library: ' . $e->g
     				if (!empty($phone_info['config_files_override'])) {
     					$temp = unserialize($phone_info['config_files_override']);
     					foreach ($temp as $list) {
-    						$sql = "SELECT original_name,data FROM endpointman_custom_configs WHERE id = " . $list;
+    						$sql = "SELECT original_name,data FROM mihuendpoint_custom_configs WHERE id = " . $list;
     						//$res = sql($sql);
 							$res = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
     						if (count($res)) {
@@ -1810,7 +1810,7 @@ $this->error['parse_configs'] = "File not written to hard drive!";
                 $oui = substr($mac_strip, 0, 6);
 
                 //Find the matching brand model to the oui
-                $oui_sql = "SELECT endpointman_brand_list.name, endpointman_brand_list.id FROM endpointman_oui_list, endpointman_brand_list WHERE oui LIKE '%" . $oui . "%' AND endpointman_brand_list.id = endpointman_oui_list.brand AND endpointman_brand_list.installed = 1 LIMIT 1";
+                $oui_sql = "SELECT mihuendpoint_brand_list.name, mihuendpoint_brand_list.id FROM mihuendpoint_oui_list, mihuendpoint_brand_list WHERE oui LIKE '%" . $oui . "%' AND mihuendpoint_brand_list.id = mihuendpoint_oui_list.brand AND mihuendpoint_brand_list.installed = 1 LIMIT 1";
 
                 $brand = $this->eda->sql($oui_sql, 'getRow', DB_FETCHMODE_ASSOC);
 
@@ -1824,7 +1824,7 @@ $this->error['parse_configs'] = "File not written to hard drive!";
                 }
 
                 //Find out if endpoint has already been configured for this mac address
-                $epm_sql = "SELECT * FROM endpointman_mac_list WHERE mac LIKE  '%" . $mac_strip . "%'";
+                $epm_sql = "SELECT * FROM mihuendpoint_mac_list WHERE mac LIKE  '%" . $mac_strip . "%'";
                 $epm_row = $this->eda->sql($epm_sql, 'getRow', DB_FETCHMODE_ASSOC);
 
                 $res = $this->eda->sql($epm_sql);
@@ -1860,10 +1860,10 @@ $this->error['parse_configs'] = "File not written to hard drive!";
 
     function display_templates($product_id, $temp_select = NULL) {
         $i = 0;
-        $sql = "SELECT id FROM  endpointman_product_list WHERE endpointman_product_list.id ='" . $product_id . "'";
+        $sql = "SELECT id FROM  mihuendpoint_product_list WHERE mihuendpoint_product_list.id ='" . $product_id . "'";
         $id = sql($sql, 'getOne');
 
-        $sql = "SELECT * FROM  endpointman_template_list WHERE  product_id = '" . $id . "'";
+        $sql = "SELECT * FROM  mihuendpoint_template_list WHERE  product_id = '" . $id . "'";
         $data = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
 
         foreach ($data as $row) {
@@ -1908,7 +1908,7 @@ $this->error['parse_configs'] = "File not written to hard drive!";
     /**
 
     function update_device($macid, $model, $template, $luid=NULL, $name=NULL, $line=NULL, $update_lines=TRUE) {
-        $sql = "UPDATE endpointman_mac_list SET model = " . $model . ", template_id =  " . $template . " WHERE id = " . $macid;
+        $sql = "UPDATE mihuendpoint_mac_list SET model = " . $model . ", template_id =  " . $template . " WHERE id = " . $macid;
         sql($sql);
 
         if ($update_lines) {
@@ -1924,7 +1924,7 @@ $this->error['parse_configs'] = "File not written to hard drive!";
 
     function update_line($luid=NULL, $macid=NULL, $name=NULL, $line=NULL) {
         if (isset($luid)) {
-            $sql = "SELECT * FROM endpointman_line_list WHERE luid = " . $luid;
+            $sql = "SELECT * FROM mihuendpoint_line_list WHERE luid = " . $luid;
             $row = $this->eda->sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
 
             if (!isset($name)) {
@@ -1935,17 +1935,17 @@ $this->error['parse_configs'] = "File not written to hard drive!";
             if (!isset($line)) {
                 $line = $row['line'];
             }
-            $sql = "UPDATE endpointman_line_list SET line = '" . $line . "', ext = '" . $row['ext'] . "', description = '" . $this->eda->escapeSimple($name) . "' WHERE luid =  " . $row['luid'];
+            $sql = "UPDATE mihuendpoint_line_list SET line = '" . $line . "', ext = '" . $row['ext'] . "', description = '" . $this->eda->escapeSimple($name) . "' WHERE luid =  " . $row['luid'];
             sql($sql);
             return(TRUE);
         } else {
-            $sql = "SELECT * FROM endpointman_line_list WHERE mac_id = " . $macid;
+            $sql = "SELECT * FROM mihuendpoint_line_list WHERE mac_id = " . $macid;
             $lines_info = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
             foreach ($lines_info as $row) {
                 $sql = "SELECT description FROM devices WHERE id = " . $row['ext'];
                 $name = sql($sql, 'getOne');
 
-                $sql = "UPDATE endpointman_line_list SET line = '" . $row['line'] . "', ext = '" . $row['ext'] . "', description = '" . $this->eda->escapeSimple($name) . "' WHERE luid =  " . $row['luid'];
+                $sql = "UPDATE mihuendpoint_line_list SET line = '" . $row['line'] . "', ext = '" . $row['ext'] . "', description = '" . $this->eda->escapeSimple($name) . "' WHERE luid =  " . $row['luid'];
                 sql($sql);
             }
             return(TRUE);
@@ -1958,23 +1958,23 @@ $this->error['parse_configs'] = "File not written to hard drive!";
      * @return <type>
      
     function delete_line($lineid, $allow_device_remove=FALSE) {
-        $sql = 'SELECT mac_id FROM endpointman_line_list WHERE luid = ' . $lineid;
+        $sql = 'SELECT mac_id FROM mihuendpoint_line_list WHERE luid = ' . $lineid;
         $mac_id = sql($sql, 'getOne');
         $row = $this->get_phone_info($mac_id);
 
-        $sql = 'SELECT COUNT(*) FROM endpointman_line_list WHERE mac_id = ' . $mac_id;
+        $sql = 'SELECT COUNT(*) FROM mihuendpoint_line_list WHERE mac_id = ' . $mac_id;
         $num_lines = sql($sql, 'getOne');
         if ($num_lines > 1) {
-            $sql = "DELETE FROM endpointman_line_list WHERE luid=" . $lineid;
+            $sql = "DELETE FROM mihuendpoint_line_list WHERE luid=" . $lineid;
             sql($sql);
             $this->message['delete_line'] = "Deleted!";
             return(TRUE);
         } else {
             if ($allow_device_remove) {
-                $sql = "DELETE FROM endpointman_line_list WHERE luid=" . $lineid;
+                $sql = "DELETE FROM mihuendpoint_line_list WHERE luid=" . $lineid;
                 sql($sql);
 
-                $sql = "DELETE FROM endpointman_mac_list WHERE id=" . $mac_id;
+                $sql = "DELETE FROM mihuendpoint_mac_list WHERE id=" . $mac_id;
                 sql($sql);
                 $this->message['delete_line'] = "Deleted!";
                 return(TRUE);
@@ -1986,10 +1986,10 @@ $this->error['parse_configs'] = "File not written to hard drive!";
     }
 
     function delete_device($mac_id) {
-        $sql = "DELETE FROM endpointman_mac_list WHERE id=" . $mac_id;
+        $sql = "DELETE FROM mihuendpoint_mac_list WHERE id=" . $mac_id;
         sql($sql);
 
-        $sql = "DELETE FROM endpointman_line_list WHERE mac_id=" . $mac_id;
+        $sql = "DELETE FROM mihuendpoint_line_list WHERE mac_id=" . $mac_id;
         sql($sql);
         $this->message['delete_device'] = "Deleted!";
         return(TRUE);
@@ -2022,9 +2022,9 @@ $this->error['parse_configs'] = "File not written to hard drive!";
         //This function is reversed. Not sure why
 
         if ($custom != "0") {
-            $sql = "SELECT endpointman_model_list.max_lines, endpointman_product_list.config_files, endpointman_mac_list.*, endpointman_product_list.id as product_id, endpointman_product_list.long_name, endpointman_model_list.template_data, endpointman_product_list.cfg_dir, endpointman_brand_list.directory FROM endpointman_brand_list, endpointman_mac_list, endpointman_model_list, endpointman_product_list WHERE endpointman_mac_list.id=" . $id . " AND endpointman_mac_list.model = endpointman_model_list.id AND endpointman_model_list.brand = endpointman_brand_list.id AND endpointman_model_list.product_id = endpointman_product_list.id";
+            $sql = "SELECT mihuendpoint_model_list.max_lines, mihuendpoint_product_list.config_files, mihuendpoint_mac_list.*, mihuendpoint_product_list.id as product_id, mihuendpoint_product_list.long_name, mihuendpoint_model_list.template_data, mihuendpoint_product_list.cfg_dir, mihuendpoint_brand_list.directory FROM mihuendpoint_brand_list, mihuendpoint_mac_list, mihuendpoint_model_list, mihuendpoint_product_list WHERE mihuendpoint_mac_list.id=" . $id . " AND mihuendpoint_mac_list.model = mihuendpoint_model_list.id AND mihuendpoint_model_list.brand = mihuendpoint_brand_list.id AND mihuendpoint_model_list.product_id = mihuendpoint_product_list.id";
         } else {
-            $sql = "SELECT endpointman_model_list.max_lines, endpointman_brand_list.directory, endpointman_product_list.cfg_dir, endpointman_product_list.config_files, endpointman_product_list.long_name, endpointman_model_list.template_data, endpointman_model_list.id as model_id, endpointman_template_list.* FROM endpointman_brand_list, endpointman_product_list, endpointman_model_list, endpointman_template_list WHERE endpointman_product_list.id = endpointman_template_list.product_id AND endpointman_brand_list.id = endpointman_product_list.brand AND endpointman_template_list.model_id = endpointman_model_list.id AND endpointman_template_list.id = " . $id;
+            $sql = "SELECT mihuendpoint_model_list.max_lines, mihuendpoint_brand_list.directory, mihuendpoint_product_list.cfg_dir, mihuendpoint_product_list.config_files, mihuendpoint_product_list.long_name, mihuendpoint_model_list.template_data, mihuendpoint_model_list.id as model_id, mihuendpoint_template_list.* FROM mihuendpoint_brand_list, mihuendpoint_product_list, mihuendpoint_model_list, mihuendpoint_template_list WHERE mihuendpoint_product_list.id = mihuendpoint_template_list.product_id AND mihuendpoint_brand_list.id = mihuendpoint_product_list.brand AND mihuendpoint_template_list.model_id = mihuendpoint_model_list.id AND mihuendpoint_template_list.id = " . $id;
         }
 
         //Load template data
@@ -2124,11 +2124,11 @@ $this->error['parse_configs'] = "File not written to hard drive!";
 
         $save = serialize($custom_cfg_data_temp);
         if ($custom == "0") {
-            $sql = 'UPDATE endpointman_template_list SET config_files_override = \'' . addslashes($config_files_selected) . '\', global_custom_cfg_data = \'' . addslashes($save) . '\' WHERE id =' . $id;
+            $sql = 'UPDATE mihuendpoint_template_list SET config_files_override = \'' . addslashes($config_files_selected) . '\', global_custom_cfg_data = \'' . addslashes($save) . '\' WHERE id =' . $id;
             $location = "template_manager";
 			//print_r($sql);
         } else {
-            $sql = 'UPDATE endpointman_mac_list SET config_files_override = \'' . addslashes($config_files_selected) . '\', template_id = 0, global_custom_cfg_data = \'' . addslashes($save) . '\' WHERE id =' . $id;
+            $sql = 'UPDATE mihuendpoint_mac_list SET config_files_override = \'' . addslashes($config_files_selected) . '\', template_id = 0, global_custom_cfg_data = \'' . addslashes($save) . '\' WHERE id =' . $id;
             $location = "devices_manager";
         }
         sql($sql);
@@ -2143,7 +2143,7 @@ $this->error['parse_configs'] = "File not written to hard drive!";
                 $this->prepare_configs($phone_info, FALSE);
             }
         } else {
-            $sql = 'SELECT id FROM endpointman_mac_list WHERE template_id = ' . $id;
+            $sql = 'SELECT id FROM mihuendpoint_mac_list WHERE template_id = ' . $id;
             $phones = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
             foreach ($phones as $data) {
                 $phone_info = $this->get_phone_info($data['id']);
