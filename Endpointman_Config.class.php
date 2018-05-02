@@ -9,7 +9,7 @@
 
 namespace FreePBX\modules;
 
-class Mihuendpoint_Config
+class Endpointman_Config
 {
 	public $UPDATE_PATH;
     public $MODULES_PATH;
@@ -28,8 +28,8 @@ class Mihuendpoint_Config
 
 		$this->UPDATE_PATH = $this->configmod->get('update_server');
         $this->MODULES_PATH = $this->config->get('AMPWEBROOT') . '/admin/modules/';
-        if (file_exists($this->MODULES_PATH . "mihuendpoint/")) {
-            $this->LOCAL_PATH = $this->MODULES_PATH . "mihuendpoint/";
+        if (file_exists($this->MODULES_PATH . "endpointman/")) {
+            $this->LOCAL_PATH = $this->MODULES_PATH . "endpointman/";
         } else {
             die("Can't Load Local Endpoint Manager Directory!");
         }
@@ -163,8 +163,8 @@ class Mihuendpoint_Config
 	public function epm_config_hardware_get_list_models($id_product=NULL, $show_all = true, $byorder = "model")
 	{
 		if(! is_numeric($id_product)) { throw new \Exception( _("ID Producto not is number")." (".$id_product.")"); }
-		if($show_all == true) 	{ $sql = 'SELECT * FROM mihuendpoint_model_list WHERE product_id = '.$id_product.' ORDER BY '.$byorder.' ASC'; }
-		else 					{ $sql = 'SELECT * FROM mihuendpoint_model_list WHERE hidden = 0 AND product_id = '.$id_product.' ORDER BY '.$byorder.' ASC'; }
+		if($show_all == true) 	{ $sql = 'SELECT * FROM endpointman_model_list WHERE product_id = '.$id_product.' ORDER BY '.$byorder.' ASC'; }
+		else 					{ $sql = 'SELECT * FROM endpointman_model_list WHERE hidden = 0 AND product_id = '.$id_product.' ORDER BY '.$byorder.' ASC'; }
 		$result = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
 		return $result;
 	}
@@ -178,8 +178,8 @@ class Mihuendpoint_Config
 	public function epm_config_hardware_get_list_product($id_brand=NULL, $show_all = true, $byorder = "long_name")
 	{
 		if(! is_numeric($id_brand)) { throw new \Exception(_("ID Brand not is numbre")." (".$id_brand.")"); }
-		if ($show_all == true) 	{ $sql = 'SELECT * FROM mihuendpoint_product_list WHERE brand = '.$id_brand.' ORDER BY '.$byorder.' ASC'; }
-		else 					{ $sql = 'SELECT * FROM mihuendpoint_product_list WHERE hidden = 0 AND brand = '.$id_brand.' ORDER BY '.$byorder.' ASC'; }
+		if ($show_all == true) 	{ $sql = 'SELECT * FROM endpointman_product_list WHERE brand = '.$id_brand.' ORDER BY '.$byorder.' ASC'; }
+		else 					{ $sql = 'SELECT * FROM endpointman_product_list WHERE hidden = 0 AND brand = '.$id_brand.' ORDER BY '.$byorder.' ASC'; }
 		$result = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
 		return $result;
 	}
@@ -190,8 +190,8 @@ class Mihuendpoint_Config
      * @return array
      */
 	public function epm_config_hardware_get_list_brand($show_all = true, $byorder = "id") {
-		if ($show_all == true) 	{ $sql = "SELECT * from mihuendpoint_brand_list WHERE id > 0 ORDER BY " . $byorder . " ASC "; }
-		else 					{ $sql = "SELECT * from mihuendpoint_brand_list WHERE id > 0 AND hidden = 0 ORDER BY " . $byorder . " ASC "; }
+		if ($show_all == true) 	{ $sql = "SELECT * from endpointman_brand_list WHERE id > 0 ORDER BY " . $byorder . " ASC "; }
+		else 					{ $sql = "SELECT * from endpointman_brand_list WHERE id > 0 AND hidden = 0 ORDER BY " . $byorder . " ASC "; }
 		$result = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
 		return $result;
 	}
@@ -357,7 +357,7 @@ class Mihuendpoint_Config
 
 		if ($dget['typesavecfg'] == "enabled") {
 			if (($dget['idtype']) == "modelo") {
-				$sql = "UPDATE mihuendpoint_model_list SET enabled = " .$dget['value']. " WHERE id = '".$dget['id']."'";
+				$sql = "UPDATE endpointman_model_list SET enabled = " .$dget['value']. " WHERE id = '".$dget['id']."'";
 			}
 			else {
 				$retarr = array("status" => false, "message" => _("IdType not valid to typesavecfg!"));
@@ -366,15 +366,15 @@ class Mihuendpoint_Config
 		else {
 			switch($dget['idtype']) {
 				case "marca":
-					$sql = "UPDATE mihuendpoint_brand_list SET hidden = '".$dget['value'] ."' WHERE id = '".$dget['id']."'";
+					$sql = "UPDATE endpointman_brand_list SET hidden = '".$dget['value'] ."' WHERE id = '".$dget['id']."'";
 					break;
 
 				case "producto":
-					$sql = "UPDATE mihuendpoint_product_list SET hidden = '". $dget['value'] ."' WHERE id = '".$dget['id']."'";
+					$sql = "UPDATE endpointman_product_list SET hidden = '". $dget['value'] ."' WHERE id = '".$dget['id']."'";
 					break;
 
 				case "modelo":
-					$sql = "UPDATE mihuendpoint_model_list SET hidden = '". $dget['value'] ."' WHERE id = '".$dget['id']."'";
+					$sql = "UPDATE endpointman_model_list SET hidden = '". $dget['value'] ."' WHERE id = '".$dget['id']."'";
 					break;
 
 				default:
@@ -454,13 +454,13 @@ class Mihuendpoint_Config
 
 
 	//TODO: PENDIENTE ACTUALIZAR Y ELIMINAR DATOS NO NECESARIOS (TEMPLATES)
-	//http://pbx.cerebelum.lan/admin/ajax.php?module=mihuendpoint&module_sec=epm_config&module_tab=manager&command=list_all_brand
+	//http://pbx.cerebelum.lan/admin/ajax.php?module=endpointman&module_sec=epm_config&module_tab=manager&command=list_all_brand
 	public function epm_config_manager_hardware_get_list_all()
 	{
 		$row_out = array();
 		$i = 0;
 		$brand_list = $this->epm_config_hardware_get_list_brand(true, "name");
-		//FIX: https://github.com/FreePBX-ContributedModules/mihuendpoint/commit/2ad929d0b38f05c9da1b847426a4094c3314be3b
+		//FIX: https://github.com/FreePBX-ContributedModules/endpointman/commit/2ad929d0b38f05c9da1b847426a4094c3314be3b
 
 		foreach ($brand_list as $row)
 		{
@@ -544,7 +544,7 @@ class Mihuendpoint_Config
 	{
 		if ($brand_name_find == NULL) { return $this->brand_update_check_all(); }
 
-		$sql = "SELECT * FROM  mihuendpoint_brand_list WHERE directory = '" . $brand_name_find . "'";
+		$sql = "SELECT * FROM  endpointman_brand_list WHERE directory = '" . $brand_name_find . "'";
 		$row = sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
 
 		$out = array();
@@ -608,7 +608,7 @@ class Mihuendpoint_Config
 			}
 		}
 
-		$sql = 'SELECT * FROM  mihuendpoint_brand_list WHERE id > 0';
+		$sql = 'SELECT * FROM  endpointman_brand_list WHERE id > 0';
 		$row = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
 		foreach ($row as $ava_brands) {
 			$key = $this->system->arraysearchrecursive($ava_brands['directory'], $out, 'directory');
@@ -661,7 +661,7 @@ class Mihuendpoint_Config
             $endpoint_package = $temp['data']['package'];
             $endpoint_last_mod = $temp['data']['last_modified'];
 
-            $sql = "SELECT value FROM mihuendpoint_global_vars WHERE var_name LIKE 'endpoint_vers'";
+            $sql = "SELECT value FROM endpointman_global_vars WHERE var_name LIKE 'endpoint_vers'";
             $data = sql($sql, 'getOne');
 
             $contents = file_get_contents($this->UPDATE_PATH . "/update_status");
@@ -683,7 +683,7 @@ class Mihuendpoint_Config
                         rename($temp_location . "setup.php", $this->PHONE_MODULES_PATH . "autoload.php");
                         rename($temp_location . "endpoint/base.php", $this->PHONE_MODULES_PATH . "endpoint/base.php");
                         rename($temp_location . "endpoint/global_template_data.json", $this->PHONE_MODULES_PATH . "endpoint/global_template_data.json");
-                        $sql = "UPDATE mihuendpoint_global_vars SET value = '" . $endpoint_last_mod . "' WHERE var_name = 'endpoint_vers'";
+                        $sql = "UPDATE endpointman_global_vars SET value = '" . $endpoint_last_mod . "' WHERE var_name = 'endpoint_vers'";
                         sql($sql);
                     }
                 }
@@ -691,11 +691,11 @@ class Mihuendpoint_Config
                 $out = $temp['data']['brands'];
                 //Assume that if we can't connect and find the master.xml file then why should we try to find every other file.
                 if ($master_result) {
-                	$sql = 'SELECT * FROM  mihuendpoint_brand_list WHERE id > 0';
+                	$sql = 'SELECT * FROM  endpointman_brand_list WHERE id > 0';
                     $row = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
                     foreach ($out as $data) {
 
-                        $local = sql("SELECT local FROM mihuendpoint_brand_list WHERE  directory =  '" . $data['directory'] . "'", 'getOne');
+                        $local = sql("SELECT local FROM endpointman_brand_list WHERE  directory =  '" . $data['directory'] . "'", 'getOne');
                         if (!$local) {
                         	if ($echomsg == true) {
                         		out(sprintf(_("Update Brand (%s):"), $data['name']));
@@ -716,7 +716,7 @@ class Mihuendpoint_Config
                             $temp = $temp['data']['brands'];
 							if (array_key_exists('oui_list', $temp)) {
                             	foreach ($temp['oui_list'] as $oui) {
-									$sql = "REPLACE INTO mihuendpoint_oui_list (`oui`, `brand`, `custom`) VALUES ('" . $oui . "', '" . $temp['brand_id'] . "', '0')";
+									$sql = "REPLACE INTO endpointman_oui_list (`oui`, `brand`, `custom`) VALUES ('" . $oui . "', '" . $temp['brand_id'] . "', '0')";
                                		sql($sql);
 								}
 							}
@@ -731,7 +731,7 @@ class Mihuendpoint_Config
 
 							if (!($this->system->arraysearchrecursive($brand_name, $row, 'directory')))
 							{
-								$sql = 'SELECT directory FROM mihuendpoint_brand_list where id = "'.$temp['brand_id'].'"';
+								$sql = 'SELECT directory FROM endpointman_brand_list where id = "'.$temp['brand_id'].'"';
 								$datoif = sql($sql, 'getOne');
 								if ($datoif != "") {
 									$error['brand_update_id_exist_other_brand'] = sprintf(_("You can not add the mark (%s) as the ID (%d) already exists in the database!"), $temp['name'], $temp['brand_id']);
@@ -740,7 +740,7 @@ class Mihuendpoint_Config
 									}
 								}
 								else {
-                                	$sql = "INSERT INTO mihuendpoint_brand_list (id, name, directory, cfg_ver) VALUES ('" . $temp['brand_id'] . "', '" . $temp['name'] . "', '" . $temp['directory'] . "', '" . $version[$brand_name] . "')";
+                                	$sql = "INSERT INTO endpointman_brand_list (id, name, directory, cfg_ver) VALUES ('" . $temp['brand_id'] . "', '" . $temp['name'] . "', '" . $temp['directory'] . "', '" . $version[$brand_name] . "')";
                                 	sql($sql);
 								}
                             } else {
@@ -794,11 +794,11 @@ class Mihuendpoint_Config
             $endpoint_package = $temp['data']['package'];
             $endpoint_last_mod = $temp['data']['last_modified'];
 
-            $sql = "UPDATE mihuendpoint_global_vars SET value = '" . $endpoint_last_mod . "' WHERE var_name = 'endpoint_vers'";
+            $sql = "UPDATE endpointman_global_vars SET value = '" . $endpoint_last_mod . "' WHERE var_name = 'endpoint_vers'";
             sql($sql);
 
             $out = $temp['data']['brands'];
-            $row = sql('SELECT * FROM  mihuendpoint_brand_list WHERE id > 0', 'getAll', DB_FETCHMODE_ASSOC);
+            $row = sql('SELECT * FROM  endpointman_brand_list WHERE id > 0', 'getAll', DB_FETCHMODE_ASSOC);
 
             foreach ($out as $data) {
                 $temp = $this->file2json($this->PHONE_MODULES_PATH . 'endpoint/' . $data['directory'] . '/brand_data.json');
@@ -810,12 +810,12 @@ class Mihuendpoint_Config
                     $brand_id = $temp['data']['brands']['brand_id'];
                     $brand_version = $temp['data']['brands']['last_modified'];
 
-                    $b_data = sql("SELECT id FROM mihuendpoint_brand_list WHERE id = '" . $brand_id . "'", 'getOne');
+                    $b_data = sql("SELECT id FROM endpointman_brand_list WHERE id = '" . $brand_id . "'", 'getOne');
                     if ($b_data) {
-                        $sql = "UPDATE mihuendpoint_brand_list SET local = '1', name = '" . $brand_name . "', cfg_ver = '" . $brand_version . "', installed = 1, hidden = 0 WHERE id = " . $brand_id;
+                        $sql = "UPDATE endpointman_brand_list SET local = '1', name = '" . $brand_name . "', cfg_ver = '" . $brand_version . "', installed = 1, hidden = 0 WHERE id = " . $brand_id;
                         sql($sql);
                     } else {
-                        $sql = "INSERT INTO mihuendpoint_brand_list (id, name, directory, cfg_ver, local, installed) VALUES ('" . $brand_id . "', '" . $brand_name . "', '" . $directory . "', '" . $brand_version . "', '1', '1')";
+                        $sql = "INSERT INTO endpointman_brand_list (id, name, directory, cfg_ver, local, installed) VALUES ('" . $brand_id . "', '" . $brand_name . "', '" . $directory . "', '" . $brand_version . "', '1', '1')";
                         sql($sql);
                     }
 
@@ -835,23 +835,23 @@ class Mihuendpoint_Config
                          *
                          */
 
-                        $data = sql("SELECT id FROM mihuendpoint_product_list WHERE id='" . $brand_id . $family_line_xml['data']['id'] . "'", 'getOne');
+                        $data = sql("SELECT id FROM endpointman_product_list WHERE id='" . $brand_id . $family_line_xml['data']['id'] . "'", 'getOne');
                         $short_name = preg_replace("/\[(.*?)\]/si", "", $family_line_xml['data']['name']);
                         if ($data) {
-                            $sql = "UPDATE mihuendpoint_product_list SET short_name = '" . $short_name . "', long_name = '" . $family_line_xml['data']['name'] . "', cfg_ver = '" . $family_line_xml['data']['version'] . "', config_files='" . $family_line_xml['data']['configuration_files'] . "' WHERE id = '" . $brand_id . $family_line_xml['data']['id'] . "'";
+                            $sql = "UPDATE endpointman_product_list SET short_name = '" . $short_name . "', long_name = '" . $family_line_xml['data']['name'] . "', cfg_ver = '" . $family_line_xml['data']['version'] . "', config_files='" . $family_line_xml['data']['configuration_files'] . "' WHERE id = '" . $brand_id . $family_line_xml['data']['id'] . "'";
                         } else {
-                            $sql = "INSERT INTO mihuendpoint_product_list (`id`, `brand`, `short_name`, `long_name`, `cfg_dir`, `cfg_ver`, `config_files`, `hidden`) VALUES ('" . $brand_id . $family_line_xml['data']['id'] . "', '" . $brand_id . "', '" . $short_name . "', '" . $family_line_xml['data']['name'] . "', '" . $family_line_xml['data']['directory'] . "', '" . $family_line_xml['data']['last_modified'] . "','" . $family_line_xml['data']['configuration_files'] . "', '0')";
+                            $sql = "INSERT INTO endpointman_product_list (`id`, `brand`, `short_name`, `long_name`, `cfg_dir`, `cfg_ver`, `config_files`, `hidden`) VALUES ('" . $brand_id . $family_line_xml['data']['id'] . "', '" . $brand_id . "', '" . $short_name . "', '" . $family_line_xml['data']['name'] . "', '" . $family_line_xml['data']['directory'] . "', '" . $family_line_xml['data']['last_modified'] . "','" . $family_line_xml['data']['configuration_files'] . "', '0')";
                         }
                         sql($sql);
 
                         foreach ($family_line_xml['data']['model_list'] as $model_list) {
                             $template_list = implode(",", $model_list['template_data']);
 
-                            $m_data = sql("SELECT id FROM mihuendpoint_model_list WHERE id='" . $brand_id . $family_line_xml['data']['id'] . $model_list['id'] . "'", 'getOne');
+                            $m_data = sql("SELECT id FROM endpointman_model_list WHERE id='" . $brand_id . $family_line_xml['data']['id'] . $model_list['id'] . "'", 'getOne');
                             if ($m_data) {
-                                $sql = "UPDATE mihuendpoint_model_list SET max_lines = '" . $model_list['lines'] . "', model = '" . $model_list['model'] . "', template_list = '" . $template_list . "' WHERE id = '" . $brand_id . $family_line_xml['data']['id'] . $model_list['id'] . "'";
+                                $sql = "UPDATE endpointman_model_list SET max_lines = '" . $model_list['lines'] . "', model = '" . $model_list['model'] . "', template_list = '" . $template_list . "' WHERE id = '" . $brand_id . $family_line_xml['data']['id'] . $model_list['id'] . "'";
                             } else {
-                                $sql = "INSERT INTO mihuendpoint_model_list (`id`, `brand`, `model`, `max_lines`, `product_id`, `template_list`, `enabled`, `hidden`) VALUES ('" . $brand_id . $family_line_xml['data']['id'] . $model_list['id'] . "', '" . $brand_id . "', '" . $model_list['model'] . "', '" . $model_list['lines'] . "', '" . $brand_id . $family_line_xml['data']['id'] . "', '" . $template_list . "', '0', '0')";
+                                $sql = "INSERT INTO endpointman_model_list (`id`, `brand`, `model`, `max_lines`, `product_id`, `template_list`, `enabled`, `hidden`) VALUES ('" . $brand_id . $family_line_xml['data']['id'] . $model_list['id'] . "', '" . $brand_id . "', '" . $model_list['model'] . "', '" . $model_list['lines'] . "', '" . $brand_id . $family_line_xml['data']['id'] . "', '" . $template_list . "', '0', '0')";
                             }
                             sql($sql);
 
@@ -868,7 +868,7 @@ class Mihuendpoint_Config
                         }
                         //Phone Models Move Here
                         $family_id = $brand_id . $family_line_xml['data']['id'];
-                        $sql = "SELECT * FROM mihuendpoint_model_list WHERE product_id = " . $family_id;
+                        $sql = "SELECT * FROM endpointman_model_list WHERE product_id = " . $family_id;
                         $products = sql($sql, 'getall', DB_FETCHMODE_ASSOC);
                         foreach ($products as $data) {
 							if (!$this->system->arraysearchrecursive($data['model'], $family_line_xml['data']['model_list'], 'model')) {
@@ -877,14 +877,14 @@ class Mihuendpoint_Config
 								}
 
                                 $model_name = $data['model'];
-                                $sql = 'DELETE FROM mihuendpoint_model_list WHERE id = ' . $data['id'];
+                                $sql = 'DELETE FROM endpointman_model_list WHERE id = ' . $data['id'];
                                 sql($sql);
-                                $sql = "SELECT id FROM mihuendpoint_model_list WHERE model LIKE '" . $model_name . "'";
+                                $sql = "SELECT id FROM endpointman_model_list WHERE model LIKE '" . $model_name . "'";
                                 $new_model_id = sql($sql, 'getOne');
                                 if ($new_model_id) {
-                                    $sql = "UPDATE  mihuendpoint_mac_list SET  model =  '" . $new_model_id . "' WHERE  model = '" . $data['id'] . "'";
+                                    $sql = "UPDATE  endpointman_mac_list SET  model =  '" . $new_model_id . "' WHERE  model = '" . $data['id'] . "'";
                                 } else {
-                                    $sql = "UPDATE  mihuendpoint_mac_list SET  model =  '0' WHERE  model = '" . $data['id'] . "'";
+                                    $sql = "UPDATE  endpointman_mac_list SET  model =  '0' WHERE  model = '" . $data['id'] . "'";
                                 }
                                 sql($sql);
                                 out (_("Done!"));
@@ -892,7 +892,7 @@ class Mihuendpoint_Config
                         }
                     }
                     foreach ($temp['data']['brands']['oui_list'] as $oui) {
-                        $sql = "REPLACE INTO mihuendpoint_oui_list (`oui`, `brand`, `custom`) VALUES ('" . $oui . "', '" . $brand_id . "', '0')";
+                        $sql = "REPLACE INTO endpointman_oui_list (`oui`, `brand`, `custom`) VALUES ('" . $oui . "', '" . $brand_id . "', '0')";
                         sql($sql);
                     }
                 }
@@ -907,13 +907,13 @@ class Mihuendpoint_Config
      */
     function sync_model($model, &$error = array()) {
         if ((!empty($model)) OR ($model > 0)) {
-            $sql = "SELECT * FROM  mihuendpoint_model_list WHERE id='" . $model . "'";
+            $sql = "SELECT * FROM  endpointman_model_list WHERE id='" . $model . "'";
             $model_row = sql($sql, 'getrow', DB_FETCHMODE_ASSOC);
 
-            $sql = "SELECT * FROM  mihuendpoint_product_list WHERE id='" . $model_row['product_id'] . "'";
+            $sql = "SELECT * FROM  endpointman_product_list WHERE id='" . $model_row['product_id'] . "'";
             $product_row = sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
 
-            $sql = "SELECT * FROM  mihuendpoint_brand_list WHERE id=" . $model_row['brand'];
+            $sql = "SELECT * FROM  endpointman_brand_list WHERE id=" . $model_row['brand'];
             $brand_row = sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
 
 
@@ -947,7 +947,7 @@ class Mihuendpoint_Config
             }
             $maxlines = $family_line_json['data']['model_list'][$key[0]]['lines'];
 
-            $sql = "UPDATE mihuendpoint_model_list SET max_lines = '" . $maxlines . "', template_list = '" . $template_list . "' WHERE id = '" . $model . "'";
+            $sql = "UPDATE endpointman_model_list SET max_lines = '" . $maxlines . "', template_list = '" . $template_list . "' WHERE id = '" . $model . "'";
             sql($sql);
 
             $version = isset($family_line_json['data']['last_modified']) ? $family_line_json['data']['last_modified'] : '';
@@ -955,13 +955,13 @@ class Mihuendpoint_Config
             $short_name = preg_replace("/\[(.*?)\]/si", "", $family_line_json['data']['name']);
             $configuration_files = $family_line_json['data']['configuration_files'];
 
-            $sql = "UPDATE mihuendpoint_product_list SET long_name = '" . str_replace("'", "''", $long_name) . "', short_name = '" . str_replace("'", "''", $short_name) . "' , cfg_ver = '" . $version . "' WHERE id = '" . $product_row['id'] . "'";
+            $sql = "UPDATE endpointman_product_list SET long_name = '" . str_replace("'", "''", $long_name) . "', short_name = '" . str_replace("'", "''", $short_name) . "' , cfg_ver = '" . $version . "' WHERE id = '" . $product_row['id'] . "'";
             sql($sql);
 
             $template_data_array = array();
             $template_data_array = $this->merge_data($this->PHONE_MODULES_PATH . '/endpoint/' . $brand_row['directory'] . '/' . $product_row['cfg_dir'] . '/', $template_list_array);
 
-            $sql = "UPDATE mihuendpoint_model_list SET template_data = '" . serialize($template_data_array) . "' WHERE id = '" . $model . "'";
+            $sql = "UPDATE endpointman_model_list SET template_data = '" . serialize($template_data_array) . "' WHERE id = '" . $model . "'";
             sql($sql);
             return(TRUE);
         } else {
@@ -987,7 +987,7 @@ class Mihuendpoint_Config
 			}
 
 			outn(_("Downloading Brand JSON..... "));
-            $row = sql('SELECT * FROM  mihuendpoint_brand_list WHERE id =' . $id, 'getAll', DB_FETCHMODE_ASSOC);
+            $row = sql('SELECT * FROM  endpointman_brand_list WHERE id =' . $id, 'getAll', DB_FETCHMODE_ASSOC);
             $result = $this->system->download_file($this->UPDATE_PATH . $row[0]['directory'] . "/" . $row[0]['directory'] . ".json", $this->PHONE_MODULES_PATH . "endpoint/" . $row[0]['directory'] . "/brand_data.json");
             if ($result) {
             	out(_("Done!"));
@@ -1093,15 +1093,15 @@ class Mihuendpoint_Config
                     $local = 1;
                 }
 
-                $b_data = sql("SELECT id FROM mihuendpoint_brand_list WHERE id = '" . $brand_id . "'", 'getOne');
+                $b_data = sql("SELECT id FROM endpointman_brand_list WHERE id = '" . $brand_id . "'", 'getOne');
                 if ($b_data) {
                 	outn(sprintf(_("Updating %s brand data ..."), $brand_name));
-                    $sql = "UPDATE mihuendpoint_brand_list SET local = '" . $local . "', name = '" . $brand_name . "', cfg_ver = '" . $brand_version . "', installed = 1, hidden = 0 WHERE id = " . $brand_id;
+                    $sql = "UPDATE endpointman_brand_list SET local = '" . $local . "', name = '" . $brand_name . "', cfg_ver = '" . $brand_version . "', installed = 1, hidden = 0 WHERE id = " . $brand_id;
                     sql($sql);
                     out(_("Done!"));
                 } else {
                 	outn(sprintf(_("Inserting %s brand data ..."), $brand_name));
-					$sql = "INSERT INTO mihuendpoint_brand_list (id, name, directory, cfg_ver, local, installed) VALUES ('" . $brand_id . "', '" . $brand_name . "', '" . $directory . "', '" . $brand_version . "', '" . $local . "', '1')";
+					$sql = "INSERT INTO endpointman_brand_list (id, name, directory, cfg_ver, local, installed) VALUES ('" . $brand_id . "', '" . $brand_name . "', '" . $directory . "', '" . $brand_version . "', '" . $local . "', '1')";
                     sql($sql);
                     out(_("Done!"));
                 }
@@ -1121,16 +1121,16 @@ class Mihuendpoint_Config
 						$this->install_firmware($family_line_xml['data']['id']);
                     }
 
-                    $data = sql("SELECT id FROM mihuendpoint_product_list WHERE id='" . $brand_id . $family_line_xml['data']['id'] . "'", 'getOne');
+                    $data = sql("SELECT id FROM endpointman_product_list WHERE id='" . $brand_id . $family_line_xml['data']['id'] . "'", 'getOne');
                     $short_name = preg_replace("/\[(.*?)\]/si", "", $family_line_xml['data']['name']);
 
 					if ($data) {
 						if ($this->configmod->get('debug')) echo "-Updating Family ".$short_name."<br/>";
-                        $sql = "UPDATE mihuendpoint_product_list SET short_name = '" . str_replace("'", "''", $short_name) . "', long_name = '" . str_replace("'", "''", $family_line_xml['data']['name']) . "', cfg_ver = '" . $family_line_xml['data']['version'] . "', config_files='" . $family_line_xml['data']['configuration_files'] . "' WHERE id = '" . $brand_id . $family_line_xml['data']['id'] . "'";
+                        $sql = "UPDATE endpointman_product_list SET short_name = '" . str_replace("'", "''", $short_name) . "', long_name = '" . str_replace("'", "''", $family_line_xml['data']['name']) . "', cfg_ver = '" . $family_line_xml['data']['version'] . "', config_files='" . $family_line_xml['data']['configuration_files'] . "' WHERE id = '" . $brand_id . $family_line_xml['data']['id'] . "'";
                     }
 					else {
 						if ($this->configmod->get('debug')) echo "-Inserting Family ".$short_name."<br/>";
-                        $sql = "INSERT INTO mihuendpoint_product_list (`id`, `brand`, `short_name`, `long_name`, `cfg_dir`, `cfg_ver`, `config_files`, `hidden`) VALUES ('" . $brand_id . $family_line_xml['data']['id'] . "', '" . $brand_id . "', '" . str_replace("'", "''", $short_name) . "', '" . str_replace("'", "''", $family_line_xml['data']['name']) . "', '" . $family_line_xml['data']['directory'] . "', '" . $family_line_xml['data']['last_modified'] . "','" . $family_line_xml['data']['configuration_files'] . "', '0')";
+                        $sql = "INSERT INTO endpointman_product_list (`id`, `brand`, `short_name`, `long_name`, `cfg_dir`, `cfg_ver`, `config_files`, `hidden`) VALUES ('" . $brand_id . $family_line_xml['data']['id'] . "', '" . $brand_id . "', '" . str_replace("'", "''", $short_name) . "', '" . str_replace("'", "''", $family_line_xml['data']['name']) . "', '" . $family_line_xml['data']['directory'] . "', '" . $family_line_xml['data']['last_modified'] . "','" . $family_line_xml['data']['configuration_files'] . "', '0')";
                     }
 					sql($sql);
 
@@ -1141,7 +1141,7 @@ class Mihuendpoint_Config
 	                        $template_list = implode(",", $model_list['template_data']);
 
 	                        $model_final_id = $brand_id . $family_line_xml['data']['id'] . $model_list['id'];
-	                        $sql = 'SELECT id, global_custom_cfg_data, global_user_cfg_data FROM mihuendpoint_mac_list WHERE model = ' . $model_final_id;
+	                        $sql = 'SELECT id, global_custom_cfg_data, global_user_cfg_data FROM endpointman_mac_list WHERE model = ' . $model_final_id;
 	                        $old_data = NULL;
 	                        $old_data = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
 	                        foreach ($old_data as $data) {
@@ -1165,7 +1165,7 @@ outn(_("----Old Data Detected! Migrating ... "));
 	                                $final_data['data'] = $new_data;
 	                                $final_data['ari'] = $new_ari;
 	                                $final_data = serialize($final_data);
-	                                $sql = "UPDATE mihuendpoint_mac_list SET  global_custom_cfg_data =  '" . $final_data . "' WHERE  id =" . $data['id'];
+	                                $sql = "UPDATE endpointman_mac_list SET  global_custom_cfg_data =  '" . $final_data . "' WHERE  id =" . $data['id'];
 	                                sql($sql);
 									out(_("Done!"));
 	                            }
@@ -1201,13 +1201,13 @@ outn(_("Old Data Detected! Migrating ... "));
 	                                    }
 	                                }
 	                                $final_data = serialize($new_data);
-	                                $sql = "UPDATE mihuendpoint_mac_list SET  global_user_cfg_data =  '" . $final_data . "' WHERE  id =" . $data['id'];
+	                                $sql = "UPDATE endpointman_mac_list SET  global_user_cfg_data =  '" . $final_data . "' WHERE  id =" . $data['id'];
 	                                sql($sql);
 									out(_("Done!"));
 	                            }
 	                        }
 	                        $old_data = NULL;
-	                        $sql = 'SELECT id, global_custom_cfg_data FROM mihuendpoint_template_list WHERE model_id = ' . $model_final_id;
+	                        $sql = 'SELECT id, global_custom_cfg_data FROM endpointman_template_list WHERE model_id = ' . $model_final_id;
 	                        $old_data = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
 	                        foreach ($old_data as $data) {
 	                            $global_custom_cfg_data = unserialize($data['global_custom_cfg_data']);
@@ -1230,20 +1230,20 @@ out(_("Old Data Detected! Migrating ... "));
 	                                $final_data['data'] = $new_data;
 	                                $final_data['ari'] = $new_ari;
 	                                $final_data = serialize($final_data);
-	                                $sql = "UPDATE mihuendpoint_template_list SET  global_custom_cfg_data =  '" . $final_data . "' WHERE  id =" . $data['id'];
+	                                $sql = "UPDATE endpointman_template_list SET  global_custom_cfg_data =  '" . $final_data . "' WHERE  id =" . $data['id'];
 	                                sql($sql);
 									out(_("Done!"));
 	                            }
 	                        }
 
-	                        $m_data = sql("SELECT id FROM mihuendpoint_model_list WHERE id='" . $brand_id . $family_line_xml['data']['id'] . $model_list['id'] . "'", 'getOne');
+	                        $m_data = sql("SELECT id FROM endpointman_model_list WHERE id='" . $brand_id . $family_line_xml['data']['id'] . $model_list['id'] . "'", 'getOne');
 	                        if ($m_data) {
 if ($this->configmod->get('debug')) echo format_txt(_("---Updating Model %_NAMEMOD_%"), "", array("%_NAMEMOD_%" => $model_list['model']));
-	                            $sql = "UPDATE mihuendpoint_model_list SET max_lines = '" . $model_list['lines'] . "', model = '" . $model_list['model'] . "', template_list = '" . $template_list . "' WHERE id = '" . $brand_id . $family_line_xml['data']['id'] . $model_list['id'] . "'";
+	                            $sql = "UPDATE endpointman_model_list SET max_lines = '" . $model_list['lines'] . "', model = '" . $model_list['model'] . "', template_list = '" . $template_list . "' WHERE id = '" . $brand_id . $family_line_xml['data']['id'] . $model_list['id'] . "'";
 	                        }
 							else {
 if ($this->configmod->get('debug')) echo format_txt(_("---Inserting Model %_NAMEMOD_%"), "", array("%_NAMEMOD_%" => $model_list['model']));
-	                            $sql = "INSERT INTO mihuendpoint_model_list (`id`, `brand`, `model`, `max_lines`, `product_id`, `template_list`, `enabled`, `hidden`) VALUES ('" . $brand_id . $family_line_xml['data']['id'] . $model_list['id'] . "', '" . $brand_id . "', '" . $model_list['model'] . "', '" . $model_list['lines'] . "', '" . $brand_id . $family_line_xml['data']['id'] . "', '" . $template_list . "', '0', '0')";
+	                            $sql = "INSERT INTO endpointman_model_list (`id`, `brand`, `model`, `max_lines`, `product_id`, `template_list`, `enabled`, `hidden`) VALUES ('" . $brand_id . $family_line_xml['data']['id'] . $model_list['id'] . "', '" . $brand_id . "', '" . $model_list['model'] . "', '" . $model_list['lines'] . "', '" . $brand_id . $family_line_xml['data']['id'] . "', '" . $template_list . "', '0', '0')";
 	                        }
 	                        sql($sql);
 
@@ -1259,20 +1259,20 @@ if ($this->configmod->get('debug')) echo format_txt(_("---Inserting Model %_NAME
 
                     //Phone Models Move Here
                     $family_id = $brand_id . $family_line_xml['data']['id'];
-                    $sql = "SELECT * FROM mihuendpoint_model_list WHERE product_id = " . $family_id;
+                    $sql = "SELECT * FROM endpointman_model_list WHERE product_id = " . $family_id;
                     $products = sql($sql, 'getall', DB_FETCHMODE_ASSOC);
                     foreach ($products as $data) {
                         if (!$this->system->arraysearchrecursive($data['model'], $family_line_xml['data']['model_list'], 'model')) {
 							outn(sprintf(_("Moving/Removing Model '%s' not present in JSON file ... "), $data['model']));
                             $model_name = $data['model'];
-                            $sql = 'DELETE FROM mihuendpoint_model_list WHERE id = ' . $data['id'];
+                            $sql = 'DELETE FROM endpointman_model_list WHERE id = ' . $data['id'];
                             sql($sql);
-                            $sql = "SELECT id FROM mihuendpoint_model_list WHERE model LIKE '" . $model_name . "'";
+                            $sql = "SELECT id FROM endpointman_model_list WHERE model LIKE '" . $model_name . "'";
                             $new_model_id = sql($sql, 'getOne');
                             if ($new_model_id) {
-                                $sql = "UPDATE  mihuendpoint_mac_list SET  model =  '" . $new_model_id . "' WHERE  model = '" . $data['id'] . "'";
+                                $sql = "UPDATE  endpointman_mac_list SET  model =  '" . $new_model_id . "' WHERE  model = '" . $data['id'] . "'";
                             } else {
-                                $sql = "UPDATE  mihuendpoint_mac_list SET  model =  '0' WHERE  model = '" . $data['id'] . "'";
+                                $sql = "UPDATE  endpointman_mac_list SET  model =  '0' WHERE  model = '" . $data['id'] . "'";
                             }
                             sql($sql);
                             out(_("Done!"));
@@ -1286,7 +1286,7 @@ if ($this->configmod->get('debug')) echo format_txt(_("---Inserting Model %_NAME
 				if ((isset($temp['data']['brands']['oui_list'])) AND (count($temp['data']['brands']['oui_list']) > 0))
 				{
 	                foreach ($temp['data']['brands']['oui_list'] as $oui) {
-	                    $sql = "REPLACE INTO mihuendpoint_oui_list (`oui`, `brand`, `custom`) VALUES ('" . $oui . "', '" . $brand_id . "', '0')";
+	                    $sql = "REPLACE INTO endpointman_oui_list (`oui`, `brand`, `custom`) VALUES ('" . $oui . "', '" . $brand_id . "', '0')";
 	                    sql($sql);
 	                }
 				}
@@ -1311,7 +1311,7 @@ if ($this->configmod->get('debug')) echo format_txt(_("---Inserting Model %_NAME
 		out(_("Uninstalla Brand..."));
 
         if (!$this->configmod->get('use_repo')) {
-            $sql = "SELECT id, firmware_vers FROM mihuendpoint_product_list WHERE brand = '" . $id . "'";
+            $sql = "SELECT id, firmware_vers FROM endpointman_product_list WHERE brand = '" . $id . "'";
             $products = sql($sql, 'getall', DB_FETCHMODE_ASSOC);
 
             foreach ($products as $data) {
@@ -1320,39 +1320,39 @@ if ($this->configmod->get('debug')) echo format_txt(_("---Inserting Model %_NAME
                 }
             }
 
-			$sql = "SELECT directory FROM mihuendpoint_brand_list WHERE id = '" . $id . "'";
+			$sql = "SELECT directory FROM endpointman_brand_list WHERE id = '" . $id . "'";
             $brand_dir = sql($sql, 'getOne');
             $this->system->rmrf($this->PHONE_MODULES_PATH . "endpoint/" . $brand_dir);
 
-            $sql = "DELETE FROM mihuendpoint_model_list WHERE brand = '" . $id . "'";
+            $sql = "DELETE FROM endpointman_model_list WHERE brand = '" . $id . "'";
             sql($sql);
 
-            $sql = "DELETE FROM mihuendpoint_product_list WHERE brand = '" . $id . "'";
+            $sql = "DELETE FROM endpointman_product_list WHERE brand = '" . $id . "'";
             sql($sql);
 
-            $sql = "DELETE FROM mihuendpoint_oui_list WHERE brand = '" . $id . "'";
+            $sql = "DELETE FROM endpointman_oui_list WHERE brand = '" . $id . "'";
             sql($sql);
 
             $this->system->rmrf($this->PHONE_MODULES_PATH . $brand_dir);
-            $sql = "DELETE FROM mihuendpoint_brand_list WHERE id = '" . $id . "'";
+            $sql = "DELETE FROM endpointman_brand_list WHERE id = '" . $id . "'";
             sql($sql);
 
 			out(_("All Done!"));
         }
 		elseif ($force) {
-			$sql = "SELECT directory FROM mihuendpoint_brand_list WHERE id = '" . $id . "'";
+			$sql = "SELECT directory FROM endpointman_brand_list WHERE id = '" . $id . "'";
             $brand_dir = sql($sql, 'getOne');
 
-            $sql = "DELETE FROM mihuendpoint_model_list WHERE brand = '" . $id . "'";
+            $sql = "DELETE FROM endpointman_model_list WHERE brand = '" . $id . "'";
             sql($sql);
 
-            $sql = "DELETE FROM mihuendpoint_product_list WHERE brand = '" . $id . "'";
+            $sql = "DELETE FROM endpointman_product_list WHERE brand = '" . $id . "'";
             sql($sql);
 
-            $sql = "DELETE FROM mihuendpoint_oui_list WHERE brand = '" . $id . "'";
+            $sql = "DELETE FROM endpointman_oui_list WHERE brand = '" . $id . "'";
             sql($sql);
 
-            $sql = "DELETE FROM mihuendpoint_brand_list WHERE id = '" . $id . "'";
+            $sql = "DELETE FROM endpointman_brand_list WHERE id = '" . $id . "'";
             sql($sql);
 
 			out(_("Done!"));
@@ -1370,7 +1370,7 @@ if ($this->configmod->get('debug')) echo format_txt(_("---Inserting Model %_NAME
     	out(_("Installa frimware... "));
 
         $temp_directory = $this->system->sys_get_temp_dir() . "/epm_temp/";
-        $sql = 'SELECT mihuendpoint_product_list.*, mihuendpoint_brand_list.directory FROM mihuendpoint_product_list, mihuendpoint_brand_list WHERE mihuendpoint_product_list.brand = mihuendpoint_brand_list.id AND mihuendpoint_product_list.id = ' . $product_id;
+        $sql = 'SELECT endpointman_product_list.*, endpointman_brand_list.directory FROM endpointman_product_list, endpointman_brand_list WHERE endpointman_product_list.brand = endpointman_brand_list.id AND endpointman_product_list.id = ' . $product_id;
         $row = sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
         $json_data = $this->file2json($this->PHONE_MODULES_PATH . "endpoint/" . $row['directory'] . "/" . $row['cfg_dir'] . "/family_data.json");
 
@@ -1439,7 +1439,7 @@ if ($this->configmod->get('debug')) echo format_txt(_("---Inserting Model %_NAME
 
                 $this->system->rmrf($temp_directory . $row['directory']);
                 $list = implode(",", $list);
-                $sql = "UPDATE mihuendpoint_product_list SET firmware_vers = '" . $json_data['data']['firmware_ver'] . "', firmware_files = '" . $list . "' WHERE id = " . $row['id'];
+                $sql = "UPDATE endpointman_product_list SET firmware_vers = '" . $json_data['data']['firmware_ver'] . "', firmware_files = '" . $list . "' WHERE id = " . $row['id'];
                 sql($sql);
 
                 if (isset($copy_error)) {
@@ -1467,7 +1467,7 @@ if ($this->configmod->get('debug')) echo format_txt(_("---Inserting Model %_NAME
     function remove_firmware($id) {
 		outn(_("Uninstalla frimware... "));
 
-        $sql = "SELECT firmware_files FROM  mihuendpoint_product_list WHERE  id ='" . $id . "'";
+        $sql = "SELECT firmware_files FROM  endpointman_product_list WHERE  id ='" . $id . "'";
         $files = sql($sql, 'getOne');
 
         $file_list = explode(",", $files);
@@ -1478,7 +1478,7 @@ if ($this->configmod->get('debug')) echo format_txt(_("---Inserting Model %_NAME
 			if (! is_file($this->configmod->get('config_location') . $file)) { continue; }
 					unlink($this->configmod->get('config_location') . $file);
         }
-        $sql = "UPDATE mihuendpoint_product_list SET firmware_files = '', firmware_vers = '' WHERE id = '" . $id . "'";
+        $sql = "UPDATE endpointman_product_list SET firmware_files = '', firmware_vers = '' WHERE id = '" . $id . "'";
         sql($sql);
 
 		out(_("Done!"));
@@ -1493,10 +1493,10 @@ if ($this->configmod->get('debug')) echo format_txt(_("---Inserting Model %_NAME
      * @return bool True on yes False on no
      */
     function firmware_update_check($id=NULL) {
-        $sql = "SELECT * FROM  mihuendpoint_product_list WHERE  id ='" . $id . "'";
+        $sql = "SELECT * FROM  endpointman_product_list WHERE  id ='" . $id . "'";
         $row = sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
 
-        $sql = "SELECT directory FROM  mihuendpoint_brand_list WHERE id ='" . $row['brand'] . "'";
+        $sql = "SELECT directory FROM  endpointman_brand_list WHERE id ='" . $row['brand'] . "'";
         $brand_directory = sql($sql, 'getOne');
 
         //config drive unknown!
@@ -1522,13 +1522,13 @@ if ($this->configmod->get('debug')) echo format_txt(_("---Inserting Model %_NAME
      * @return string
      */
     function firmware_local_check($id=NULL) {
-        $sql = "SELECT * FROM  mihuendpoint_product_list WHERE hidden = 0 AND id ='" . $id . "'";
+        $sql = "SELECT * FROM  endpointman_product_list WHERE hidden = 0 AND id ='" . $id . "'";
         $res = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
 
         if (count($res) > 0) {
             $row = sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
 
-            $sql = "SELECT directory FROM  mihuendpoint_brand_list WHERE hidden = 0 AND id ='" . $row['brand'] . "'";
+            $sql = "SELECT directory FROM  endpointman_brand_list WHERE hidden = 0 AND id ='" . $row['brand'] . "'";
             $brand_directory = sql($sql, 'getOne');
 
             //config drive unknown!

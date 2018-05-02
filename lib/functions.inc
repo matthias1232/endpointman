@@ -7,7 +7,7 @@
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
  */
-class mihuendpointmanager {
+class endpointmanager {
 
     //Load this class upon construction of the class
 
@@ -26,18 +26,18 @@ class mihuendpointmanager {
 
 }
 
-function mihuendpoint_flush_buffers() {
+function endpointman_flush_buffers() {
     ob_end_flush();
     //ob_flush();
     flush();
     ob_start();
 }
 
-function mihuendpoint_update_progress_bar($out) {
+function endpointman_update_progress_bar($out) {
     echo '<script type="text/javascript">document.getElementById(\'DivExample\').innerHTML="%' . $out . '";</script>';
 }
 
-function mihuendpointmanager_read_header($ch, $string) {
+function endpointmanager_read_header($ch, $string) {
     global $file_size, $fout;
     $length = strlen($string);
     $regs = "";
@@ -46,11 +46,11 @@ function mihuendpointmanager_read_header($ch, $string) {
         $file_size = intval($regs[2]);
     }
     //ob_flush();
-    mihuendpoint_flush_buffers();
+    endpointman_flush_buffers();
     return $length;
 }
 
-function mihuendpointmanager_read_body($ch, $string) {
+function endpointmanager_read_body($ch, $string) {
     global $fout, $file_size, $downloaded, $lastseen, $progress_bar;
     $length = strlen($string);
     $downloaded += intval($length);
@@ -58,13 +58,13 @@ function mihuendpointmanager_read_body($ch, $string) {
     $downloadProgress = 100 - $downloadProgress;
     if ($lastseen <> $downloadProgress and $downloadProgress < 101) {
         if ($progress_bar) {
-            mihuendpoint_update_progress_bar($downloadProgress);
+            endpointman_update_progress_bar($downloadProgress);
         }
         $lastseen = $downloadProgress;
     }
     if ($fout)
         fwrite($fout, $string);
     //ob_flush();
-    mihuendpoint_flush_buffers();
+    endpointman_flush_buffers();
     return $length;
 }

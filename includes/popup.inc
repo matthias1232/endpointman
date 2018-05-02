@@ -5,7 +5,7 @@
 */
 require 'functions.inc';
 
-$endpoint = new mihuendpointmanager();
+$endpoint = new endpointmanager();
 
 if($_REQUEST['pop_type'] == 'edit_specifics') {
 
@@ -14,7 +14,7 @@ if($_REQUEST['pop_type'] == 'edit_specifics') {
 
         $phone_info = $endpoint->get_phone_info($_REQUEST['edit_id']);
 
-        $sql = 'SELECT max_lines FROM mihuendpoint_model_list WHERE id = '. $phone_info['model_id'];
+        $sql = 'SELECT max_lines FROM endpointman_model_list WHERE id = '. $phone_info['model_id'];
 
         $lines = $endpoint->eda->sql($sql, 'getOne');
         $merged = $endpoint->merge_data(PHONE_MODULES_PATH . 'endpoint/', $template_list,$lines);
@@ -41,10 +41,10 @@ if($_REQUEST['pop_type'] == 'edit_specifics') {
             }
             $specific_data['data']['use_dhcp'] = isset($specific_data['data']['use_dhcp']) ? TRUE : FALSE;
 
-            $sql = "UPDATE mihuendpoint_mac_list SET specific_settings = '" . serialize($specific_data) . "' WHERE id =" . $_REQUEST['edit_id'];
+            $sql = "UPDATE endpointman_mac_list SET specific_settings = '" . serialize($specific_data) . "' WHERE id =" . $_REQUEST['edit_id'];
             $endpoint->eda->sql($sql);
         } else {
-            $sql = 'SELECT specific_settings FROM mihuendpoint_mac_list WHERE id ='. $_REQUEST['edit_id'];
+            $sql = 'SELECT specific_settings FROM endpointman_mac_list WHERE id ='. $_REQUEST['edit_id'];
             $specific_data = unserialize($endpoint->eda->sql($sql, 'getOne'));
         }
 
@@ -81,7 +81,7 @@ if($_REQUEST['pop_type'] == 'edit_template') {
         }
     } else {
         $template_editor = TRUE;
-        $sql = "UPDATE  mihuendpoint_mac_list SET  model =  '".$_REQUEST['model_list']."' WHERE  id =".$_REQUEST['edit_id'];
+        $sql = "UPDATE  endpointman_mac_list SET  model =  '".$_REQUEST['model_list']."' WHERE  id =".$_REQUEST['edit_id'];
         $endpoint->eda->sql($sql);
         $endpoint->tpl->assign("silent_mode", 1);
 
@@ -128,11 +128,11 @@ if($_REQUEST['pop_type'] == 'global_over') {
         $settings_ser = serialize($settings);
         if($_REQUEST['custom'] == 0) {
             //This is a group template
-            $sql = "UPDATE mihuendpoint_template_list SET global_settings_override = '".addslashes($settings_ser)."' WHERE id = ".$_REQUEST['tid'];
+            $sql = "UPDATE endpointman_template_list SET global_settings_override = '".addslashes($settings_ser)."' WHERE id = ".$_REQUEST['tid'];
             $endpoint->eda->sql($sql);
         } else {
             //This is an individual template
-            $sql = "UPDATE mihuendpoint_mac_list SET global_settings_override = '".addslashes($settings_ser)."' WHERE id = ".$_REQUEST['tid'];
+            $sql = "UPDATE endpointman_mac_list SET global_settings_override = '".addslashes($settings_ser)."' WHERE id = ".$_REQUEST['tid'];
             $endpoint->eda->sql($sql);
         }
 
@@ -141,22 +141,22 @@ if($_REQUEST['pop_type'] == 'global_over') {
     if(isset($_REQUEST['button_reset_globals'])) {
         if($_REQUEST['custom'] == 0) {
             //This is a group template
-            $sql = "UPDATE mihuendpoint_template_list SET global_settings_override = NULL WHERE id = ".$_REQUEST['tid'];
+            $sql = "UPDATE endpointman_template_list SET global_settings_override = NULL WHERE id = ".$_REQUEST['tid'];
             $endpoint->eda->sql($sql);
         } else {
             //This is an individual template
-            $sql = "UPDATE mihuendpoint_mac_list SET global_settings_override = NULL WHERE id = ".$_REQUEST['tid'];
+            $sql = "UPDATE endpointman_mac_list SET global_settings_override = NULL WHERE id = ".$_REQUEST['tid'];
             $endpoint->eda->sql($sql);
         }
         $endpoint->message['advanced_settings'] = "Globals Reset to Default!";
     }
     if($_REQUEST['custom'] == 0) {
         //This is a group template
-        $sql = 'SELECT global_settings_override FROM mihuendpoint_template_list WHERE id = '.$_REQUEST['tid'];
+        $sql = 'SELECT global_settings_override FROM endpointman_template_list WHERE id = '.$_REQUEST['tid'];
         $settings = $endpoint->eda->sql($sql,'getOne');
     } else {
         //This is an individual template
-        $sql = 'SELECT global_settings_override FROM mihuendpoint_mac_list WHERE id = '.$_REQUEST['tid'];
+        $sql = 'SELECT global_settings_override FROM endpointman_mac_list WHERE id = '.$_REQUEST['tid'];
         $settings = $endpoint->eda->sql($sql,'getOne');
     }
     if(isset($settings)) {
@@ -169,7 +169,7 @@ if($_REQUEST['pop_type'] == 'global_over') {
         $settings['tz'] = $endpoint->listTZ($endpoint->global_cfg['tz']);
     }
     //Because we are working with global variables we probably updated them, so lets refresh those variables
-    $endpoint->global_cfg = $endpoint->eda->sql("SELECT var_name, value FROM mihuendpoint_global_vars",'getAssoc');
+    $endpoint->global_cfg = $endpoint->eda->sql("SELECT var_name, value FROM endpointman_global_vars",'getAssoc');
 
     $endpoint->tpl->assign("ip", $_SERVER["SERVER_ADDR"]);
     $endpoint->tpl->assign("srvip", $settings['srvip']);
@@ -195,11 +195,11 @@ if($_REQUEST['pop_type'] == "alt_cfg_edit") {
         if($cfg_id != 0) {
             //SQL Config Files
             if(isset($_REQUEST['button_save'])) {
-                $sql = "UPDATE mihuendpoint_custom_configs SET data = '".addslashes($_REQUEST['config_text'])."' WHERE id = ".$cfg_id;
+                $sql = "UPDATE endpointman_custom_configs SET data = '".addslashes($_REQUEST['config_text'])."' WHERE id = ".$cfg_id;
                 $endpoint->eda->sql($sql);
                 $endpoint->message['alt_config'] = "Saved to Database!";
             }
-            $sql = 'SELECT * FROM mihuendpoint_custom_configs WHERE id =' . $cfg_id;
+            $sql = 'SELECT * FROM endpointman_custom_configs WHERE id =' . $cfg_id;
             $row = $endpoint->eda->sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
             $endpoint->tpl->assign("save_as_name_value", $row['name']);
             $endpoint->tpl->assign("filename", $row['original_name']);
@@ -210,7 +210,7 @@ if($_REQUEST['pop_type'] == "alt_cfg_edit") {
 
         } else {
             //HD Config Files
-            $sql = "SELECT mihuendpoint_brand_list.directory, mihuendpoint_product_list.cfg_dir FROM mihuendpoint_brand_list, mihuendpoint_product_list WHERE mihuendpoint_brand_list.id = mihuendpoint_product_list.brand AND mihuendpoint_product_list.id = (SELECT product_id FROM mihuendpoint_template_list WHERE id = ".$_REQUEST['tid'].")";
+            $sql = "SELECT endpointman_brand_list.directory, endpointman_product_list.cfg_dir FROM endpointman_brand_list, endpointman_product_list WHERE endpointman_brand_list.id = endpointman_product_list.brand AND endpointman_product_list.id = (SELECT product_id FROM endpointman_template_list WHERE id = ".$_REQUEST['tid'].")";
             $row = $endpoint->eda->sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
             $file=PHONE_MODULES_PATH.'endpoint/'.$row['directory']."/".$row['cfg_dir']."/".$cfg_filename;
 
@@ -220,15 +220,15 @@ if($_REQUEST['pop_type'] == "alt_cfg_edit") {
                 $contents = file_get_contents($file);
             } elseif((isset($_REQUEST['button_save'])) && (!$endpoint->global_cfg['allow_hdfiles'])) {
                 $time = time();
-                $sql = 'SELECT mihuendpoint_template_list.name, mihuendpoint_template_list.config_files_override, mihuendpoint_template_list.product_id FROM mihuendpoint_template_list WHERE mihuendpoint_template_list.id = '.$_REQUEST['tid'];
+                $sql = 'SELECT endpointman_template_list.name, endpointman_template_list.config_files_override, endpointman_template_list.product_id FROM endpointman_template_list WHERE endpointman_template_list.id = '.$_REQUEST['tid'];
                 $row = $endpoint->eda->sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
                 $config_fs = unserialize($row['config_files_override']);
 
-                $sql = 'INSERT INTO mihuendpoint_custom_configs (name, original_name, product_id, data) VALUES ("'.$row['name'].'_'.$time.'","'.addslashes($cfg_filename).'","'.$row['product_id'].'","'.addslashes($_REQUEST['config_text']).'")';
+                $sql = 'INSERT INTO endpointman_custom_configs (name, original_name, product_id, data) VALUES ("'.$row['name'].'_'.$time.'","'.addslashes($cfg_filename).'","'.$row['product_id'].'","'.addslashes($_REQUEST['config_text']).'")';
                 $endpoint->eda->sql($sql);
                 $endpoint->message['alt_config'] = "Saved to Database!";
                 $new_id = $endpoint->eda->sql('SELECT last_insert_id()','getOne');
-                $sql = 'SELECT * FROM mihuendpoint_custom_configs WHERE id =' . $new_id;
+                $sql = 'SELECT * FROM endpointman_custom_configs WHERE id =' . $new_id;
                 $row = $endpoint->eda->sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
 
                 $contents = $row['data'];
@@ -241,7 +241,7 @@ if($_REQUEST['pop_type'] == "alt_cfg_edit") {
                 $row['original_name'] = str_replace(".","_",$row['original_name']);
                 $config_fs[$row['original_name']] = $new_id;
                 $config_files = serialize($config_fs);
-                $sql = "UPDATE mihuendpoint_template_list SET config_files_override = '".$config_files."' WHERE id = ".$_REQUEST['tid'];
+                $sql = "UPDATE endpointman_template_list SET config_files_override = '".$config_files."' WHERE id = ".$_REQUEST['tid'];
                 $endpoint->eda->sql($sql);
             } else {
                 $contents = file_get_contents($file);
@@ -258,11 +258,11 @@ if($_REQUEST['pop_type'] == "alt_cfg_edit") {
     } else {
         if($cfg_id != 0) {
             if(isset($_REQUEST['button_save'])) {
-                $sql = "UPDATE mihuendpoint_custom_configs SET data = '".addslashes($_REQUEST['config_text'])."' WHERE id = ".$cfg_id;
+                $sql = "UPDATE endpointman_custom_configs SET data = '".addslashes($_REQUEST['config_text'])."' WHERE id = ".$cfg_id;
                 $endpoint->eda->sql($sql);
                 $endpoint->message['alt_config'] = "Saved to Database!";
             }
-            $sql = 'SELECT * FROM mihuendpoint_custom_configs WHERE id =' . $cfg_id;
+            $sql = 'SELECT * FROM endpointman_custom_configs WHERE id =' . $cfg_id;
             $row = $endpoint->eda->sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
             $file = "SQL/".$row['original_name'];
             $endpoint->tpl->assign("file", basename($file));
@@ -273,7 +273,7 @@ if($_REQUEST['pop_type'] == "alt_cfg_edit") {
             $endpoint->tpl->assign("allow_hdfiles",$endpoint->global_cfg['allow_hdfiles']);
             $endpoint->tpl->assign("value", $value);
         } else {
-            $sql = "SELECT mihuendpoint_brand_list.directory, mihuendpoint_product_list.cfg_dir FROM mihuendpoint_brand_list, mihuendpoint_product_list WHERE mihuendpoint_brand_list.id = mihuendpoint_product_list.brand AND mihuendpoint_product_list.id = (SELECT mihuendpoint_model_list.product_id FROM mihuendpoint_model_list, mihuendpoint_mac_list WHERE mihuendpoint_mac_list.model = mihuendpoint_model_list.id AND mihuendpoint_mac_list.id = ".$_REQUEST['tid'].")";
+            $sql = "SELECT endpointman_brand_list.directory, endpointman_product_list.cfg_dir FROM endpointman_brand_list, endpointman_product_list WHERE endpointman_brand_list.id = endpointman_product_list.brand AND endpointman_product_list.id = (SELECT endpointman_model_list.product_id FROM endpointman_model_list, endpointman_mac_list WHERE endpointman_mac_list.model = endpointman_model_list.id AND endpointman_mac_list.id = ".$_REQUEST['tid'].")";
             $row = $endpoint->eda->sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
             $file=PHONE_MODULES_PATH.'endpoint/'.$row['directory']."/".$row['cfg_dir']."/".$cfg_filename;
 
@@ -283,15 +283,15 @@ if($_REQUEST['pop_type'] == "alt_cfg_edit") {
                 $contents = file_get_contents($file);
             } elseif((isset($_REQUEST['button_save'])) && (!$endpoint->global_cfg['allow_hdfiles'])) {
                 $time = time();
-                $sql = 'SELECT mihuendpoint_mac_list.mac, mihuendpoint_mac_list.config_files_override, mihuendpoint_model_list.product_id FROM mihuendpoint_mac_list, mihuendpoint_model_list WHERE mihuendpoint_mac_list.model = mihuendpoint_model_list.id AND mihuendpoint_mac_list.id = '.$_REQUEST['tid'];
+                $sql = 'SELECT endpointman_mac_list.mac, endpointman_mac_list.config_files_override, endpointman_model_list.product_id FROM endpointman_mac_list, endpointman_model_list WHERE endpointman_mac_list.model = endpointman_model_list.id AND endpointman_mac_list.id = '.$_REQUEST['tid'];
                 $row = $endpoint->eda->sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
                 $config_fs = unserialize($row['config_files_override']);
 
-                $sql = 'INSERT INTO mihuendpoint_custom_configs (name, original_name, product_id, data) VALUES ("'.$row['mac'].'_'.$time.'","'.addslashes($cfg_filename).'","'.$row['product_id'].'","'.addslashes($_REQUEST['config_text']).'")';
+                $sql = 'INSERT INTO endpointman_custom_configs (name, original_name, product_id, data) VALUES ("'.$row['mac'].'_'.$time.'","'.addslashes($cfg_filename).'","'.$row['product_id'].'","'.addslashes($_REQUEST['config_text']).'")';
                 $endpoint->eda->sql($sql);
                 $endpoint->message['alt_config'] = "Saved to Database!";
                 $new_id = $endpoint->eda->sql('SELECT last_insert_id()','getOne');
-                $sql = 'SELECT * FROM mihuendpoint_custom_configs WHERE id =' . $new_id;
+                $sql = 'SELECT * FROM endpointman_custom_configs WHERE id =' . $new_id;
                 $row = $endpoint->eda->sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
 
                 $contents = $row['data'];
@@ -304,7 +304,7 @@ if($_REQUEST['pop_type'] == "alt_cfg_edit") {
                 $row['original_name'] = str_replace(".","_",$row['original_name']);
                 $config_fs[$row['original_name']] = $new_id;
                 $config_files = serialize($config_fs);
-                $sql = "UPDATE mihuendpoint_mac_list SET config_files_override = '".$config_files."' WHERE id = ".$_REQUEST['tid'];
+                $sql = "UPDATE endpointman_mac_list SET config_files_override = '".$config_files."' WHERE id = ".$_REQUEST['tid'];
                 $endpoint->eda->sql($sql);
             } else {
                 $contents = file_get_contents($file);
@@ -322,7 +322,7 @@ if($_REQUEST['pop_type'] == "alt_cfg_edit") {
     }
 
     if(isset($_REQUEST['cfg_file'])) {
-        $sql = "SELECT cfg_dir,directory,config_files FROM mihuendpoint_product_list,mihuendpoint_brand_list WHERE mihuendpoint_product_list.brand = mihuendpoint_brand_list.id AND mihuendpoint_product_list.id = '". $_REQUEST['product_select'] ."'";
+        $sql = "SELECT cfg_dir,directory,config_files FROM endpointman_product_list,endpointman_brand_list WHERE endpointman_product_list.brand = endpointman_brand_list.id AND endpointman_product_list.id = '". $_REQUEST['product_select'] ."'";
         $row = $endpoint->eda->sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
 
         $config_files = explode(",",$row['config_files']);
@@ -332,7 +332,7 @@ if($_REQUEST['pop_type'] == "alt_cfg_edit") {
                 file_put_contents($file, $_REQUEST['config_text']);
                 $endpoint->message['alt_config'] = "Saved to Hard Drive!";
             }elseif(isset($_REQUEST['button_save_as'])) {
-                $sql = 'INSERT INTO mihuendpoint_custom_configs (name, original_name, product_id, data) VALUES ("'.addslashes($_REQUEST['save_as_name']).'","'.addslashes($config_files[$_REQUEST['cfg_file']]).'","'.$_REQUEST['product_select'].'","'.addslashes($_REQUEST['config_text']).'")';
+                $sql = 'INSERT INTO endpointman_custom_configs (name, original_name, product_id, data) VALUES ("'.addslashes($_REQUEST['save_as_name']).'","'.addslashes($config_files[$_REQUEST['cfg_file']]).'","'.$_REQUEST['product_select'].'","'.addslashes($_REQUEST['config_text']).'")';
                 $endpoint->eda->sql($sql);
                 $endpoint->message['alt_config'] = "Saved to Database!";
             }
@@ -358,20 +358,20 @@ if($_REQUEST['pop_type'] == "alt_cfg_edit") {
     } elseif(isset($_REQUEST['sql'])) {
         if(isset($_REQUEST['config_text'])) {
             if(isset($_REQUEST['button_save'])) {
-                $sql = "UPDATE mihuendpoint_custom_configs SET data = '".addslashes($_REQUEST['config_text'])."' WHERE id = ".$_REQUEST['sql'];
+                $sql = "UPDATE endpointman_custom_configs SET data = '".addslashes($_REQUEST['config_text'])."' WHERE id = ".$_REQUEST['sql'];
                 $endpoint->eda->sql($sql);
                 $endpoint->message['alt_config'] = "Saved to Database!";
             }elseif(isset($_REQUEST['button_save_as'])) {
-                $sql = 'SELECT original_name FROM mihuendpoint_custom_configs WHERE id = '.$_REQUEST['sql'];
+                $sql = 'SELECT original_name FROM endpointman_custom_configs WHERE id = '.$_REQUEST['sql'];
                 $file_name = $endpoint->eda->sql($sql,'getOne');
 
-                $sql = "INSERT INTO mihuendpoint_custom_configs (name, original_name, product_id, data) VALUES ('".addslashes($_REQUEST['save_as_name'])."','".addslashes($file_name)."','".$_REQUEST['product_select']."','".addslashes($_REQUEST['config_text'])."')";
+                $sql = "INSERT INTO endpointman_custom_configs (name, original_name, product_id, data) VALUES ('".addslashes($_REQUEST['save_as_name'])."','".addslashes($file_name)."','".$_REQUEST['product_select']."','".addslashes($_REQUEST['config_text'])."')";
                 $endpoint->eda->sql($sql);
                 $endpoint->message['alt_config'] = "Saved to Database!";
             }
         }
         if(isset($_REQUEST['sendid'])) {
-            $sql = "SELECT cfg_dir,directory,config_files FROM mihuendpoint_product_list,mihuendpoint_brand_list WHERE mihuendpoint_product_list.brand = mihuendpoint_brand_list.id AND mihuendpoint_product_list.id = '". $_REQUEST['product_select'] ."'";
+            $sql = "SELECT cfg_dir,directory,config_files FROM endpointman_product_list,endpointman_brand_list WHERE endpointman_product_list.brand = endpointman_brand_list.id AND endpointman_product_list.id = '". $_REQUEST['product_select'] ."'";
             $row22 = $endpoint->eda->sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
             if($endpoint->submit_config($row22['directory'],$row22['cfg_dir'],$config_files[$_REQUEST['cfg_file']],$contents)) {
                 $endpoint->message['alt_config'] = 'Sent! Thanks! :-)';
@@ -380,7 +380,7 @@ if($_REQUEST['pop_type'] == "alt_cfg_edit") {
             }
 
         }
-        $sql = 'SELECT * FROM mihuendpoint_custom_configs WHERE id =' . $_REQUEST['sql'];
+        $sql = 'SELECT * FROM endpointman_custom_configs WHERE id =' . $_REQUEST['sql'];
         $row = $endpoint->eda->sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
         $endpoint->tpl->assign("save_as_name_value", $row['name']);
         $endpoint->tpl->assign("filename", $row['original_name']);
@@ -389,7 +389,7 @@ if($_REQUEST['pop_type'] == "alt_cfg_edit") {
         $endpoint->tpl->assign("config_data", $row['data']);
     }
     if(isset($_REQUEST['product_select'])) {
-        $sql = "SELECT cfg_dir,directory,config_files FROM mihuendpoint_product_list,mihuendpoint_brand_list WHERE mihuendpoint_product_list.brand = mihuendpoint_brand_list.id AND mihuendpoint_product_list.id ='" . $_REQUEST['product_select'] . "'";
+        $sql = "SELECT cfg_dir,directory,config_files FROM endpointman_product_list,endpointman_brand_list WHERE endpointman_product_list.brand = endpointman_brand_list.id AND endpointman_product_list.id ='" . $_REQUEST['product_select'] . "'";
 
         $row = $endpoint->eda->sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
         $config_files = explode(",",$row['config_files']);
@@ -399,7 +399,7 @@ if($_REQUEST['pop_type'] == "alt_cfg_edit") {
             $file_list[$i]['text'] = $config_files_data;
             $i++;
         }
-        $sql = "SELECT * FROM mihuendpoint_custom_configs WHERE product_id = '". $_REQUEST['product_select'] . "'";
+        $sql = "SELECT * FROM endpointman_custom_configs WHERE product_id = '". $_REQUEST['product_select'] . "'";
         $res = $endpoint->eda->sql($sql);
         $i = 0;
         if(count($res)) {
@@ -431,7 +431,7 @@ if($_REQUEST['pop_type'] == "alt_cfg_edit") {
         $template_file_list[0]['value'] = "template_data_custom.xml";
         $template_file_list[0]['text'] = "template_data_custom.xml";
 
-        $sql = "SELECT model FROM `mihuendpoint_model_list` WHERE `product_id` LIKE '1-2' AND `enabled` = 1 AND `hidden` = 0";
+        $sql = "SELECT model FROM `endpointman_model_list` WHERE `product_id` LIKE '1-2' AND `enabled` = 1 AND `hidden` = 0";
         $data = $endpoint->eda->sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
         $i = 1;
         foreach($data as $list) {

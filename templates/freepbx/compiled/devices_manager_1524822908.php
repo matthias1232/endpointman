@@ -23,7 +23,7 @@
    $(function(){
         $("select#brand_edit").change(function(){
             $.ajaxSetup({ cache: false });
-            $.getJSON("config.php?type=tool&quietmode=1&handler=file&module=mihuendpoint&file=ajax_select.html.php&atype=model",{id: $(this).val()}, function(j){
+            $.getJSON("config.php?type=tool&quietmode=1&handler=file&module=endpointman&file=ajax_select.html.php&atype=model",{id: $(this).val()}, function(j){
                 var options = '';
                 for (var i = 0; i < j.length; i++) {
                     options += '<option value="' + j[i].optionValue + '">' + j[i].optionDisplay + '</option>';
@@ -38,7 +38,7 @@
     $(function(){
         $("select#product_select").change(function(){
             $.ajaxSetup({ cache: false });
-            $.getJSON("config.php?type=tool&quietmode=1&handler=file&module=mihuendpoint&file=ajax_select.html.php&atype=template",{id: $(this).val()}, function(j){
+            $.getJSON("config.php?type=tool&quietmode=1&handler=file&module=endpointman&file=ajax_select.html.php&atype=template",{id: $(this).val()}, function(j){
                 var options = '';
                 for (var i = 0; i < j.length; i++) {
                     options += '<option value="' + j[i].optionValue + '">' + j[i].optionDisplay + '</option>';
@@ -51,7 +51,7 @@
     $(function(){
         $("select#model_select").change(function(){
             $.ajaxSetup({ cache: false });
-            $.getJSON("config.php?type=tool&quietmode=1&handler=file&module=mihuendpoint&file=ajax_select.html.php&atype=mtemplate",{id: $(this).val()}, function(j){
+            $.getJSON("config.php?type=tool&quietmode=1&handler=file&module=endpointman&file=ajax_select.html.php&atype=mtemplate",{id: $(this).val()}, function(j){
                 var options = '';
                 for (var i = 0; i < j.length; i++) {
                     options += '<option value="' + j[i].optionValue + '">' + j[i].optionDisplay + '</option>';
@@ -64,7 +64,7 @@
     $(function(){
         $("select#model_new").change(function(){
             $.ajaxSetup({ cache: false });
-            $.getJSON("config.php?type=tool&quietmode=1&handler=file&module=mihuendpoint&file=ajax_select.html.php&atype=template2",{id: $(this).val()}, function(j){
+            $.getJSON("config.php?type=tool&quietmode=1&handler=file&module=endpointman&file=ajax_select.html.php&atype=template2",{id: $(this).val()}, function(j){
                 var options = '';
                 for (var i = 0; i < j.length; i++) {
                     options += '<option value="' + j[i].optionValue + '">' + j[i].optionDisplay + '</option>';
@@ -73,7 +73,7 @@
                 $('#template_list option:first').attr('selected', 'selected');
             }),
             $.ajaxSetup({ cache: false });
-            $.getJSON("config.php?type=tool&quietmode=1&handler=file&module=mihuendpoint&file=ajax_select.html.php&atype=lines",{id: $(this).val()}, function(j){
+            $.getJSON("config.php?type=tool&quietmode=1&handler=file&module=endpointman&file=ajax_select.html.php&atype=lines",{id: $(this).val()}, function(j){
                 var options = '';
                 for (var i = 0; i < j.length; i++) {
                     options += '<option value="' + j[i].optionValue + '">' + j[i].optionDisplay + '</option>';
@@ -87,7 +87,7 @@
     $(function(){
         $("select#brand_list_selected").change(function(){
             $.ajaxSetup({ cache: false });
-            $.getJSON("config.php?type=tool&quietmode=1&handler=file&module=mihuendpoint&file=ajax_select.html.php&atype=model",{id: $(this).val()}, function(j){
+            $.getJSON("config.php?type=tool&quietmode=1&handler=file&module=endpointman&file=ajax_select.html.php&atype=model",{id: $(this).val()}, function(j){
                 var options = '';
                 for (var i = 0; i < j.length; i++) {
                     options += '<option value="' + j[i].optionValue + '">' + j[i].optionDisplay + '</option>';
@@ -205,7 +205,7 @@
     }
 
     function submit_stype(type,id) {
-        newwindow=window.open('config.php?display=epm_config&quietmode=1&handler=file&file=popup.html.php&module=mihuendpoint&pop_type=edit_specifics&edit_id=' + id + '&rand=' + new Date().getTime(),'name2','height=700,width=750,scrollbars=yes,location=no');
+        newwindow=window.open('config.php?display=epm_config&quietmode=1&handler=file&file=popup.html.php&module=endpointman&pop_type=edit_specifics&edit_id=' + id + '&rand=' + new Date().getTime(),'name2','height=700,width=750,scrollbars=yes,location=no');
         if (window.focus) {newwindow.focus()}
         return false;
     }
@@ -228,10 +228,12 @@
     <tr>
 
         <th width="13%" align='center'><?php echo _('MAC Address')?></th>
+		<th width="13%" align='center'><?php echo _('IPEI (DECT Handset)')?></th>
         <th width="13%" align='center'><?php echo _('Brand')?></th>
         <th width="10%" align='center'><?php echo _('Model')?></th>
         <th width="10%" align='center'><?php echo _('Line')?></th>
         <th width="19%" align='center'><?php echo _('Extension Number')?></th>
+		
         <th width="15%" align='center'><?php echo _('Template')?></th>
 
         <th width="6%"></th>
@@ -256,6 +258,20 @@
 		else{
 ?>
         <input name='mac' type='text' tabindex='1' size="17" maxlength="17">
+		
+	<?php
+		}
+?></td>
+	
+	   <td align='center'>
+	<?php
+		if( $var["mode"] == 'EDIT' ){
+?>
+	<?php
+		}
+		else{
+?>
+<input name='ipei' type='text' tabindex='1' size="17" maxlength="17">
 	<?php
 		}
 ?></td>
@@ -372,7 +388,7 @@
 		}
 ?>
             </select>
-            <a href="#" onclick="return popitup('config.php?display=epm_config&amp;quietmode=1&amp;handler=file&amp;file=popup.html.php&amp;module=mihuendpoint&amp;pop_type=edit_template&amp;edit_id=<?php echo $var["edit_id"];?>', 'Template Editor', '<?php echo $var["edit_id"];?>')"><i class='icon-pencil'></i></a></div>
+            <a href="#" onclick="return popitup('config.php?display=epm_templates&subpage=editor&custom=<?php echo $var["custom"];?>&idsel=<?php echo $var["template_id"];?>', 'Template Editor', '<?php echo $var["template_id"];?>')"><i class='icon-pencil'></i></a></div>
         </label></td>
     <td align='center'>
 	<?php
@@ -403,8 +419,8 @@
 ?>
 <tr>
     <td align='center' width='2%'>&nbsp;</td>
-
-    <td align='center'></td>
+	
+<td align='center'><input name='ipei_<?php echo $value1["luid"];?>' value='<?php echo $value1["ipei"];?>' type='text' tabindex='1' size="17" maxlength="17"></td>
     <td align='center'></td>
     <td align='center'></td>
     <td align='center'>
@@ -614,11 +630,12 @@
 							<tr>
 								<th data-sortable="false"><?php echo _(" ")?></th>
 								<th data-sortable="true"><?php echo _("MAC Address")?></th>
-								<th data-sortable="true"><?php echo _("Brand")?></th>
-								<th data-sortable="true"><?php echo _("Model")?></th>
-								<th data-sortable="true"><?php echo _("Line")?></th>
-								<th data-sortable="true"><?php echo _("Extension")?></th>
-								<th data-sortable="true"><?php echo _("Template")?></th>
+								<th data-sortable="false"><?php echo _("IPEI")?></th>
+								<th data-sortable="false"><?php echo _("Brand")?></th>
+								<th data-sortable="false"><?php echo _("Model")?></th>
+								<th data-sortable="false"><?php echo _("Line")?></th>
+								<th data-sortable="false"><?php echo _("Extension")?></th>
+								<th data-sortable="false"><?php echo _("Template")?></th>
 								<th ><?php echo _("Edit")?></th>
 								<th ><?php echo _("Delete")?></th>
 
@@ -630,6 +647,7 @@
 		$counter1 = 0;
 		foreach( $var["list"] as $key1 => $value1 ){ 
 ?>
+	
         <tr class="headerRow">
             <td align='center' width="7%"><i class="icon-off icon-large <?php
 		if( $value1["status"]["status"] === TRUE ){
@@ -640,6 +658,7 @@
 		}
 ?>" alt="<?php echo $value1["status"]["ip"];?>:<?php echo $value1["status"]["port"];?>"></i><input type="checkbox" class="device" name="selected[]" value="<?php echo $value1["id"];?>"></td>
             <td align='center' width='13%'><?php echo $value1["mac"];?></td>
+			<td align='center' width='13%'></td>
             <td width="13%" align='center'><?php echo $value1["name"];?></td>
             <td width="10%" align='center'><?php echo $value1["model"];?></td>
             <td width="10%" align='center'><div id="demo"><a><i class="info icon-chevron-down" id="img2rowGroup<?php echo $value1["master_id"];?>" onclick="toggleDisplay(document.getElementById('devList'),'rowGroup<?php echo $value1["master_id"];?>')" title="Click to Expand Line Information"></i></a></div></td>
@@ -648,20 +667,26 @@
             <td align='center' width='6%'><div id="demo"><a href="#" onclick="submit_wtype('edit',<?php echo $value1["id"];?>);"><i class='blue icon-pencil' alt='<?php echo _('Edit')?>' title="Edit phone"></i></a></div></td>
             <td align='center' width='7%'><div id="demo"><a href="#" onclick="delete_device(<?php echo $value1["id"];?>);"><i class='red icon-trash' alt='<?php echo _('Delete')?>' title="Delete phone"></i></a></div></td>
         </tr>
-        <?php
+     <?php
 		if( isset( $value1["line"] ) && is_array( $value1["line"] ) ){
 			$counter2 = 0;
 			foreach( $value1["line"] as $key2 => $value2 ){ 
 ?>
+	<?php $value3 = array_merge($value1, $value2);
+	//print_r($value3);
+	?>
+
+	
         <tr class="rowGroup<?php echo $value2["master_id"];?> toggle_all" id="<?php echo $value2["master_id"];?>" style="display:none;">
-            <td align='center' width='7%' ></td>
-            <td align='center' width='13%'></td>
-            <td width="13%" align='center'></td>
-            <td width="10%" align='center'></td>
+			<td align='center' width="7%"></td>
+            <td align='center' width='13%'><?php echo $value3[mac];?></td>
+			<td align='center' width='13%'><?php echo $value3[ipei];?></td>
+            <td width="13%" align='center'><?php echo $value3[name];?></td>
+            <td width="10%" align='center'><?php echo $value3[model];?></td>
             <td width="10%" align='center'><?php echo $value2["line"];?></td>
             <td width="19%" align='center'><?php echo $value2["ext"];?> - <?php echo $value2["description"];?></td>
-            <td align='center' width='15%'></td>
-            <td align='center' width='6%'></td>
+            <td align='center' width='15%'><a href="#" onclick="submit_stype('edit',<?php echo $value3['id'];?>);"><?php echo $value3[template_name];?></a></td>
+			<td align='center' width='6%'><div id="demo"><a href="#" onclick="submit_wtype('edit',<?php echo $value3['id'];?>);"><i class='blue icon-pencil' alt='<?php echo _('Edit')?>' title="Edit phone"></i></a></div></td>
             <td align='center' width='7%'><div id="demo"><a href="#" onclick="submit_wtype('delete_line',<?php echo $value2["luid"];?>);"><i class="red icon-remove" alt='<?php echo _('Delete')?>' title='Delete Line'></i></a></div></td>
         </tr>
         <?php

@@ -1,7 +1,7 @@
 <?php
 	if (!defined('FREEPBX_IS_AUTH')) { die('No direct script access allowed'); }
 	
-	$sql = 'SELECT * from mihuendpoint_brand_list WHERE id > 0 ORDER BY name ASC';
+	$sql = 'SELECT * from endpointman_brand_list WHERE id > 0 ORDER BY name ASC';
 	$brands = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
 	unset ($sql);
 	

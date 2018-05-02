@@ -20,11 +20,11 @@ if (!@include_once(getenv('FREEPBX_CONF') ? getenv('FREEPBX_CONF') : '/etc/freep
     include_once('/etc/asterisk/freepbx.conf');
 }
 
-$epm = FreePBX::create()->Mihuendpoint;
+$epm = FreePBX::create()->Endpointman;
 
 
 define('PROVISIONER_BASE', $amp_conf['AMPWEBROOT'].'/admin/modules/_ep_phone_modules/');
-$server_type = FreePBX::Mihuendpoint()->configmod->get("server_type");
+$server_type = FreePBX::Endpointman()->configmod->get("server_type");
 
 
 //Check if it's allowed in FreePBX through Endpoint Manager first
@@ -36,7 +36,7 @@ if ((!isset($server_type)) OR ($server_type != 'http')) {
 }
 
 
-$provis_ip = FreePBX::Mihuendpoint()->configmod->get("srvip");
+$provis_ip = FreePBX::Endpointman()->configmod->get("srvip");
 
 if(((getMethod() == 'PUT') OR (getMethod() == 'POST'))) {
     //write log files or other files to drive. not sussed out yet completely.
@@ -86,7 +86,7 @@ if(getMethod() == "GET") {
         
         #Just moved this Block of code up to fix the provisioning for Snom Phones
         require_once (PROVISIONER_BASE.'endpoint/base.php');
-        $data = Provisioner_Globals::dynamic_global_files($filename, FreePBX::Mihuendpoint()->configmod->get("config_location"), $web_path);
+        $data = Provisioner_Globals::dynamic_global_files($filename, FreePBX::Endpointman()->configmod->get("config_location"), $web_path);
         if($data !== FALSE) {
             echo $data;
         } 
@@ -100,10 +100,10 @@ if(getMethod() == "GET") {
     	exit;
         $mac_address = $matches[0];
         
-        $sql = "SELECT id FROM `mihuendpoint_mac_list` WHERE `mac` LIKE '%" . $mac_address . "%'";
+        $sql = "SELECT id FROM `endpointman_mac_list` WHERE `mac` LIKE '%" . $mac_address . "%'";
         $mac_id = sql($sql, 'getOne');
-        $phone_info = FreePBX::Mihuendpoint()->get_phone_info($mac_id);
-		$files = FreePBX::Mihuendpoint()->prepare_configs($phone_info, FALSE, FALSE);
+        $phone_info = FreePBX::Endpointman()->get_phone_info($mac_id);
+		$files = FreePBX::Endpointman()->prepare_configs($phone_info, FALSE, FALSE);
         
         if(!$files) {
             header("HTTP/1.0 500 Internal Server Error", true, 500);

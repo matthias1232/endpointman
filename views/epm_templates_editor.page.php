@@ -6,10 +6,10 @@
 		return;
 	}
 	
-	$product_list = "SELECT * FROM mihuendpoint_product_list WHERE id > 0";
+	$product_list = "SELECT * FROM endpointman_product_list WHERE id > 0";
 	$product_list =sql($product_list,'getAll', DB_FETCHMODE_ASSOC);
 	
-	$mac_list = "SELECT * FROM mihuendpoint_mac_list";
+	$mac_list = "SELECT * FROM endpointman_mac_list";
 	$mac_list =sql($mac_list, 'getAll', DB_FETCHMODE_ASSOC);
 	
 	if((!$product_list) && (!$mac_list)) {
@@ -35,7 +35,7 @@
 		echo '</div>';
 		return;
 	}
-	$dtemplate = FreePBX::Mihuendpoint()->epm_templates->edit_template_display($_REQUEST['idsel'],$_REQUEST['custom']);
+	$dtemplate = FreePBX::Endpointman()->epm_templates->edit_template_display($_REQUEST['idsel'],$_REQUEST['custom']);
 	
 	echo load_view(__DIR__.'/epm_templates/editor.views.template.php', array('request' => $_REQUEST, 'dtemplate' => $dtemplate ));
 	echo load_view(__DIR__.'/epm_templates/editor.views.dialog.cfg.global.php', array('request' => $_REQUEST));

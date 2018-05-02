@@ -9,7 +9,7 @@
 
 if (!defined('FREEPBX_IS_AUTH')) { die('No direct script access allowed'); }
 
-$epm = FreePBX::create()->Mihuendpoint;
+$epm = FreePBX::create()->Endpointman;
 
 if ((! isset($_REQUEST['subpage'])) || ($_REQUEST['subpage'] == "")) {
 	$_REQUEST['subpage'] = "manager";

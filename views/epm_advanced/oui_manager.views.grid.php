@@ -6,7 +6,7 @@
 				<a class='btn btn-default' href="javascript:epm_advanced_tab_oui_manager_refresh_table();" ><i class='fa fa-refresh fa-spin'></i> <?php echo _('Refresh Table')?></a>
 			</div>
 			<table id="mygrid"
-				data-url="ajax.php?module=mihuendpoint&amp;module_sec=epm_advanced&amp;module_tab=oui_manager&amp;command=oui"
+				data-url="ajax.php?module=endpointman&amp;module_sec=epm_advanced&amp;module_tab=oui_manager&amp;command=oui"
 				data-cache="false"
 				data-cookie="true"
 				data-cookie-id-table="oui_manager-all"

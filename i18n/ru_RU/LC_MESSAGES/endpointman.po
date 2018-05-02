@@ -20,17 +20,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-24 15:27-0500\n"
+"POT-Creation-Date: 2018-04-25 18:19-0400\n"
 "PO-Revision-Date: 2016-05-04 17:44+0200\n"
 "Last-Translator: ded <ceo@postmet.com>\n"
 "Language-Team: Russian <http://weblate.freepbx.org/projects/fpbxcn/"
 "endpointman/ru_RU/>\n"
+"Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ru_RU\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 2.4\n"
 
 #: views/epm_advanced_settings.page.php:92
@@ -50,6 +50,162 @@ msgstr ""
 
 #: views/epm_devices_main.page.php:39
 msgid " to setup your configuration"
+msgstr ""
+
+#: page.epm_placeholders.php:158
+msgid "$accXallowedcodec"
+msgstr ""
+
+#: page.epm_placeholders.php:146
+msgid "$accXauthname"
+msgstr ""
+
+#: page.epm_placeholders.php:194
+msgid "$accXcallerid"
+msgstr ""
+
+#: page.epm_placeholders.php:128
+msgid "$accXdisplayname"
+msgstr ""
+
+#: page.epm_placeholders.php:200
+msgid "$accXencryption"
+msgstr ""
+
+#: page.epm_placeholders.php:152
+msgid "$accXextension"
+msgstr ""
+
+#: page.epm_placeholders.php:164
+msgid "$accXforcerport"
+msgstr ""
+
+#: page.epm_placeholders.php:212
+msgid "$accXgsSRTP"
+msgstr ""
+
+#: page.epm_placeholders.php:218
+msgid "$accXgsproto"
+msgstr ""
+
+#: page.epm_placeholders.php:170
+msgid "$accXmedia_encryption"
+msgstr ""
+
+#: page.epm_placeholders.php:122
+msgid "$accXsecret"
+msgstr ""
+
+#: page.epm_placeholders.php:206
+msgid "$accXserver_port"
+msgstr ""
+
+#: page.epm_placeholders.php:176
+msgid "$accXsipdriver"
+msgstr ""
+
+#: page.epm_placeholders.php:182
+msgid "$accXtransport"
+msgstr ""
+
+#: page.epm_placeholders.php:188
+msgid "$accXtrustrpid"
+msgstr ""
+
+#: page.epm_placeholders.php:134
+msgid "$accXuser_extension"
+msgstr ""
+
+#: page.epm_placeholders.php:140
+msgid "$accXusername"
+msgstr ""
+
+#: page.epm_placeholders.php:68
+msgid "$allowedcodec"
+msgstr ""
+
+#: page.epm_placeholders.php:20
+msgid "$authname"
+msgstr ""
+
+#: page.epm_placeholders.php:104
+msgid "$callerid"
+msgstr ""
+
+#: page.epm_placeholders.php:32
+msgid "$displayname"
+msgstr ""
+
+#: page.epm_placeholders.php:110
+msgid "$encryption"
+msgstr ""
+
+#: page.epm_placeholders.php:62
+msgid "$extension"
+msgstr ""
+
+#: page.epm_placeholders.php:74
+msgid "$forcerport"
+msgstr ""
+
+#: page.epm_placeholders.php:224
+msgid "$gsSRTP"
+msgstr ""
+
+#: page.epm_placeholders.php:230
+msgid "$gsproto"
+msgstr ""
+
+#: page.epm_placeholders.php:8
+msgid "$line"
+msgstr ""
+
+#: page.epm_placeholders.php:80
+msgid "$media_encryption"
+msgstr ""
+
+#: page.epm_placeholders.php:50
+msgid "$proto"
+msgstr ""
+
+#: page.epm_placeholders.php:26
+msgid "$secret"
+msgstr ""
+
+#: page.epm_placeholders.php:38
+msgid "$server_host"
+msgstr ""
+
+#: page.epm_placeholders.php:44
+msgid "$server_port"
+msgstr ""
+
+#: page.epm_placeholders.php:86
+msgid "$sipdriver"
+msgstr ""
+
+#: page.epm_placeholders.php:116
+msgid "$tech"
+msgstr ""
+
+#: page.epm_placeholders.php:92
+msgid "$transport"
+msgstr ""
+
+#: page.epm_placeholders.php:98
+msgid "$trustrpid"
+msgstr ""
+
+#: page.epm_placeholders.php:56
+msgid "$user_extension"
+msgstr ""
+
+#: page.epm_placeholders.php:14
+msgid "$username"
+msgstr ""
+
+#: ari/js/jquery-1.3.2.min.js:19
+msgid "+E:"
 msgstr ""
 
 #: Endpointman_Config.class.php:1435
@@ -87,9 +243,19 @@ msgstr "---Обновляем модель %_NAMEMOD_%"
 msgid "/tftpboot is not writable"
 msgstr ""
 
+#: Endpointman_Advanced.class.php:1198
+msgid ""
+"<font color='#FF0000'><b>Please reboot & rebuild all imported phones</b></"
+"font>"
+msgstr ""
+
 #: views/epm_advanced_settings.page.php:243
 msgid "ARP Executable Path"
 msgstr "Путь для выполнения запроса ARP"
+
+#: views/rnav.php:5
+msgid "About OSS Endpoint Manager"
+msgstr ""
 
 #: provisioning/p.php:34 provisioning/p.php:129
 msgid "Access denied!"
@@ -132,7 +298,12 @@ msgstr ""
 msgid "Address IP by my server PBX."
 msgstr ""
 
-#: page.epm_advanced.php:19 views/epm_devices_main.page.php:39
+#: views/rnav.php:11
+msgid "Advanced"
+msgstr ""
+
+#: endpointman.i18n.php:16 page.epm_advanced.php:19
+#: views/epm_devices_main.page.php:39
 msgid "Advanced Settings"
 msgstr "Расширенные настройки"
 
@@ -157,6 +328,16 @@ msgstr "Выглядит как действительный Provisioner.net JSO
 msgid "Asterisk Executable Path"
 msgstr "Исполнительный путь для Астериск"
 
+#: page.epm_placeholders.php:147
+msgid ""
+"Auth name for the Extension (change the X after acc with your line number)"
+msgstr ""
+
+#: page.epm_placeholders.php:21
+msgid "Auth name for the Extension (most likely the endpoint extension number)"
+msgstr ""
+
+#: page.epm_placeholders.php:257
 #: views/epm_advanced/oui_manager.views.grid.php:25
 #: views/epm_advanced/oui_manager.views.new.modal.php:36
 #: views/epm_advanced_iedl.page.php:90 views/epm_advanced_iedl.page.php:93
@@ -182,6 +363,10 @@ msgstr "Пакет бренда"
 #: views/epm_advanced_manual_upload.page.php:90
 msgid "Brand's Available"
 msgstr "Доступные бренды"
+
+#: views/rnav.php:9
+msgid "Brands"
+msgstr ""
 
 #: views/epm_config_editor.page.php:7
 msgid "Brands/Modules"
@@ -237,7 +422,7 @@ msgstr ""
 msgid "Click Here!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1094
+#: Endpointman_Advanced.class.php:1093
 msgid "Click this link to download:"
 msgstr "Кликнуть на линк для скачивания:"
 
@@ -253,9 +438,9 @@ msgstr ""
 msgid "Clone of Model:"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:103 Endpointman_Advanced.class.php:131
-#: Endpointman_Advanced.class.php:140 Endpointman_Advanced.class.php:174
-#: Endpointman_Advanced.class.php:187 Endpointman_Config.class.php:113
+#: Endpointman_Advanced.class.php:104 Endpointman_Advanced.class.php:132
+#: Endpointman_Advanced.class.php:141 Endpointman_Advanced.class.php:175
+#: Endpointman_Advanced.class.php:188 Endpointman_Config.class.php:113
 #: Endpointman_Devices.class.php:52 Endpointman_Templates.class.php:75
 #: Endpointman_Templates.class.php:106
 msgid "Command not found!"
@@ -263,6 +448,14 @@ msgstr "Команда не найдена!"
 
 #: lib/epm_system.class.php:170 lib/epm_system.class.php:180
 msgid "Complete"
+msgstr ""
+
+#: page.epm_placeholders.php:243
+msgid "Config File Placeholder Values"
+msgstr ""
+
+#: endpointman.i18n.php:18 views/rnav.php:13
+msgid "Config File Placeholders"
 msgstr ""
 
 #: Endpointman.class.php:152
@@ -289,6 +482,11 @@ msgstr ""
 msgid "Connectivity"
 msgstr "Подключения"
 
+#: views/epm_advanced/poce.views.textarea.file.php:24
+#: views/epm_templates/editor.views.dialog.edit.cfg.php:14
+msgid "Content of the file:"
+msgstr ""
+
 #: Endpointman_Config.class.php:1446
 msgid "Copy Error Detected! Aborting Install!"
 msgstr "Обнаружена ошибка при копировании! Инсталляция прервана!"
@@ -302,11 +500,11 @@ msgstr ""
 msgid "Creating EPM temp directory"
 msgstr "Создаётся временная EPM директория"
 
-#: Endpointman_Advanced.class.php:920
+#: Endpointman_Advanced.class.php:919
 msgid "Creating EPM temp directory..."
 msgstr "Создаётся временная EPM директория..."
 
-#: Endpointman_Advanced.class.php:998
+#: Endpointman_Advanced.class.php:997
 msgid "Creating Provisioner Directory... "
 msgstr ""
 
@@ -337,8 +535,16 @@ msgstr "Удалить"
 msgid "Delete Template OK!"
 msgstr "Удаление шаблона ОК!"
 
+#: page.epm_placeholders.php:259
+msgid "Description"
+msgstr ""
+
 #: views/epm_devices_main.page.php:238
 msgid "Device"
+msgstr ""
+
+#: endpointman.i18n.php:10
+msgid "Device List"
 msgstr ""
 
 #: views/epm_templates/editor.views.template.php:187
@@ -361,11 +567,11 @@ msgstr ""
 msgid "Devices"
 msgstr "Устройства"
 
-#: Endpointman_Advanced.class.php:339 Endpointman_Templates.class.php:238
+#: Endpointman_Advanced.class.php:340 Endpointman_Templates.class.php:238
 msgid "Directory Not Writable!"
 msgstr "Директория не имеет прав на запись!"
 
-#: Endpointman_Advanced.class.php:890
+#: Endpointman_Advanced.class.php:889
 msgid "Directory no exists: "
 msgstr "Директория не существует: "
 
@@ -385,21 +591,31 @@ msgstr "Отключить проверку сервера TFTP"
 msgid "Disable Tooltips"
 msgstr "Отключить подсказки"
 
+#: page.epm_placeholders.php:33
+msgid "Display name for the Extension (The Name of the Extension"
+msgstr ""
+
+#: page.epm_placeholders.php:129
+msgid ""
+"Display name for the Extension (The Name of the Extension (change the X "
+"after acc with your line number)"
+msgstr ""
+
 #: views/epm_templates/editor.views.template.php:45
 msgid "Display:"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:922 Endpointman_Advanced.class.php:937
-#: Endpointman_Advanced.class.php:995 Endpointman_Advanced.class.php:1000
-#: Endpointman_Advanced.class.php:1015 Endpointman_Advanced.class.php:1091
-#: Endpointman_Advanced.class.php:1178 Endpointman_Config.class.php:890
-#: Endpointman_Config.class.php:993 Endpointman_Config.class.php:1007
-#: Endpointman_Config.class.php:1012 Endpointman_Config.class.php:1101
-#: Endpointman_Config.class.php:1106 Endpointman_Config.class.php:1170
-#: Endpointman_Config.class.php:1206 Endpointman_Config.class.php:1235
-#: Endpointman_Config.class.php:1278 Endpointman_Config.class.php:1293
-#: Endpointman_Config.class.php:1303 Endpointman_Config.class.php:1358
-#: Endpointman_Config.class.php:1451 Endpointman_Config.class.php:1484
+#: Endpointman_Advanced.class.php:921 Endpointman_Advanced.class.php:936
+#: Endpointman_Advanced.class.php:994 Endpointman_Advanced.class.php:999
+#: Endpointman_Advanced.class.php:1014 Endpointman_Advanced.class.php:1090
+#: Endpointman_Config.class.php:890 Endpointman_Config.class.php:993
+#: Endpointman_Config.class.php:1007 Endpointman_Config.class.php:1012
+#: Endpointman_Config.class.php:1101 Endpointman_Config.class.php:1106
+#: Endpointman_Config.class.php:1170 Endpointman_Config.class.php:1206
+#: Endpointman_Config.class.php:1235 Endpointman_Config.class.php:1278
+#: Endpointman_Config.class.php:1293 Endpointman_Config.class.php:1303
+#: Endpointman_Config.class.php:1358 Endpointman_Config.class.php:1451
+#: Endpointman_Config.class.php:1484
 msgid "Done!"
 msgstr "Готово!"
 
@@ -424,7 +640,7 @@ msgstr "Загружается пакет бренда..."
 msgid "Downloading firmware..."
 msgstr "Загружаются прошивки..."
 
-#: Endpointman.class.php:417
+#: Endpointman.class.php:462
 msgid "Dropping all relevant tables"
 msgstr "Обнуляются все соответствующие таблицы"
 
@@ -462,9 +678,13 @@ msgstr ""
 msgid "End Point Configuration Manager"
 msgstr "Менеджер конфигураций конечных устройств"
 
-#: functions.inc.php:233
+#: functions.inc.php:236
 msgid "End Point Manager"
 msgstr "Менеджер абонентских устройств"
+
+#: views/rnav.php:6
+msgid "Endpoint Manager"
+msgstr ""
 
 #: provisioning/p.php:33 provisioning/p.php:128
 msgid "Error 403 Forbidden"
@@ -494,8 +714,8 @@ msgstr "Ошибка при скачивании пакета бренда!"
 msgid "Error download frimware package!"
 msgstr "Ошибка скачивания пакета прошивой!"
 
-#: Endpointman_Advanced.class.php:88 Endpointman_Advanced.class.php:925
-#: Endpointman_Advanced.class.php:1003 Endpointman_Config.class.php:87
+#: Endpointman_Advanced.class.php:89 Endpointman_Advanced.class.php:924
+#: Endpointman_Advanced.class.php:1002 Endpointman_Config.class.php:87
 #: Endpointman_Config.class.php:1029
 msgid "Error!"
 msgstr "Ошибка!"
@@ -504,7 +724,7 @@ msgstr "Ошибка!"
 msgid "Error: "
 msgstr ""
 
-#: Endpointman_Advanced.class.php:905 Endpointman_Advanced.class.php:979
+#: Endpointman_Advanced.class.php:904 Endpointman_Advanced.class.php:978
 #: Endpointman_Advanced.class.php:1131
 #, php-format
 msgid "Error: %s"
@@ -516,8 +736,8 @@ msgid ""
 "Issues!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:898 Endpointman_Advanced.class.php:971
-#: Endpointman_Advanced.class.php:1122
+#: Endpointman_Advanced.class.php:897 Endpointman_Advanced.class.php:970
+#: Endpointman_Advanced.class.php:1121
 msgid "Error: Can Not Find Uploaded Files!"
 msgstr ""
 
@@ -534,16 +754,16 @@ msgstr "Ошибка: команда не найдена!"
 msgid "Error: Failed to create the directory '%s', please Check Permissions!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1139
+#: Endpointman_Advanced.class.php:1140
 #, php-format
 msgid "Error: File %s size is 0!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1019
+#: Endpointman_Advanced.class.php:1018
 msgid "Error: File Temp no Exists!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1079
+#: Endpointman_Advanced.class.php:1078
 msgid "Error: ID Package send not valid, brand not exist!"
 msgstr ""
 
@@ -551,17 +771,17 @@ msgstr ""
 msgid "Error: Installing brands is disabled while in repo mode!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1186
+#: Endpointman_Advanced.class.php:1187
 #, php-format
 msgid "Error: Invalid Brand Specified on line %d!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1180 Endpointman_Advanced.class.php:1183
+#: Endpointman_Advanced.class.php:1181
 #, php-format
 msgid "Error: Invalid Extension Specified on line %d!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:961 Endpointman_Advanced.class.php:1022
+#: Endpointman_Advanced.class.php:960 Endpointman_Advanced.class.php:1021
 msgid "Error: Invalid File Extension!"
 msgstr ""
 
@@ -570,16 +790,21 @@ msgstr ""
 msgid "Error: Invalid JSON Structure in %s/brand_data.json"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1189
+#: Endpointman_Advanced.class.php:1190
 #, php-format
 msgid "Error: Invalid Mac on line %d!"
+msgstr ""
+
+#: Endpointman_Advanced.class.php:1184
+#, php-format
+msgid "Error: Invalid Model Specified on line %d!"
 msgstr ""
 
 #: Endpointman_Config.class.php:1298
 msgid "Error: No 'brand_data.xml' file exists!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:956
+#: Endpointman_Advanced.class.php:955
 msgid "Error: No File Provided!"
 msgstr ""
 
@@ -588,7 +813,7 @@ msgstr ""
 msgid "Error: No Local File for %s !"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1067
+#: Endpointman_Advanced.class.php:1066
 msgid "Error: No package set!"
 msgstr ""
 
@@ -605,11 +830,11 @@ msgstr ""
 msgid "Error: Not allowed in repo mode!!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1070
+#: Endpointman_Advanced.class.php:1069
 msgid "Error: Package not valid!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1199
+#: Endpointman_Advanced.class.php:1200
 msgid "Error: Possible file upload attack!"
 msgstr ""
 
@@ -641,7 +866,7 @@ msgstr ""
 msgid "Error: Value send is not number!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1136
+#: Endpointman_Advanced.class.php:1137
 #, php-format
 msgid "Error: We support only CVS and TXT files, type file %s no support!"
 msgstr ""
@@ -683,7 +908,7 @@ msgstr "Экспорт CSV файла устройств"
 msgid "Export data configuracion devices."
 msgstr "Экспорт данных о конфигурации устройств."
 
-#: Endpointman_Advanced.class.php:1082
+#: Endpointman_Advanced.class.php:1081
 #, php-format
 msgid "Exporting %s ... "
 msgstr ""
@@ -692,20 +917,24 @@ msgstr ""
 msgid "Extension"
 msgstr "Внутренний номер"
 
+#: views/rnav.php:8
+msgid "Extension Mapping"
+msgstr ""
+
 #: views/epm_devices_main.page.php:247 views/epm_devices_main.page.php:470
 msgid "Extension Number"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:992
+#: Endpointman_Advanced.class.php:991
 msgid "Extracting Provisioner Package... "
 msgstr ""
 
-#: Endpointman_Advanced.class.php:931
+#: Endpointman_Advanced.class.php:930
 #, php-format
 msgid "Extracting Tarball %s to %s... "
 msgstr ""
 
-#: Endpointman_Advanced.class.php:933
+#: Endpointman_Advanced.class.php:932
 msgid "Extracting Tarball... "
 msgstr ""
 
@@ -725,11 +954,11 @@ msgstr ""
 msgid "FW Update"
 msgstr ""
 
-#: functions.inc.php:342
+#: functions.inc.php:355
 msgid "Failed to install "
 msgstr "Ошибка при инсталлировании "
 
-#: Endpointman_Advanced.class.php:1302
+#: Endpointman_Advanced.class.php:1303
 msgid "Failed to write file to disk"
 msgstr "Ошибка при записи на диск"
 
@@ -747,11 +976,11 @@ msgstr "Файл (TFTP/FTP)"
 msgid "File not Found!"
 msgstr "Файл не найден!"
 
-#: Endpointman_Advanced.class.php:591
+#: Endpointman_Advanced.class.php:592
 msgid "File not readable, check the permission! "
 msgstr "Файл не читается, проверьте права на чтение! "
 
-#: Endpointman_Advanced.class.php:1304
+#: Endpointman_Advanced.class.php:1305
 msgid "File upload stopped by extension"
 msgstr "Загрузка файла остановлена по расширению"
 
@@ -775,9 +1004,29 @@ msgstr "Раздел GIT"
 msgid "Generate list Ok!"
 msgstr "Генерирование списка ОК!"
 
-#: Endpointman_Advanced.class.php:321 views/epm_advanced_settings.page.php:23
+#: Endpointman_Advanced.class.php:322 views/epm_advanced_settings.page.php:23
 msgid "Git not installed!"
 msgstr "Git не инсталлирован!"
+
+#: page.epm_placeholders.php:7 page.epm_placeholders.php:13
+#: page.epm_placeholders.php:19 page.epm_placeholders.php:25
+#: page.epm_placeholders.php:31 page.epm_placeholders.php:37
+#: page.epm_placeholders.php:43 page.epm_placeholders.php:49
+#: page.epm_placeholders.php:55 page.epm_placeholders.php:61
+#: page.epm_placeholders.php:67 page.epm_placeholders.php:73
+#: page.epm_placeholders.php:79 page.epm_placeholders.php:85
+#: page.epm_placeholders.php:91 page.epm_placeholders.php:97
+#: page.epm_placeholders.php:103 page.epm_placeholders.php:109
+#: page.epm_placeholders.php:115 page.epm_placeholders.php:121
+#: page.epm_placeholders.php:127 page.epm_placeholders.php:133
+#: page.epm_placeholders.php:139 page.epm_placeholders.php:145
+#: page.epm_placeholders.php:151 page.epm_placeholders.php:157
+#: page.epm_placeholders.php:163 page.epm_placeholders.php:169
+#: page.epm_placeholders.php:175 page.epm_placeholders.php:181
+#: page.epm_placeholders.php:187 page.epm_placeholders.php:193
+#: page.epm_placeholders.php:199 page.epm_placeholders.php:205
+msgid "Global"
+msgstr ""
 
 #: Endpointman_Templates.class.php:199
 msgid "Global Config Read OK!"
@@ -796,12 +1045,17 @@ msgstr ""
 msgid "Globals Reset to Default!"
 msgstr ""
 
+#: page.epm_placeholders.php:211 page.epm_placeholders.php:217
+#: page.epm_placeholders.php:223 page.epm_placeholders.php:229
+msgid "Grandstream"
+msgstr ""
+
 #: views/epm_advanced_manual_upload.page.php:97
 msgid "Heads up!"
 msgstr "Носы вверх!"
 
 #: Endpointman.class.php:145 Endpointman.class.php:152
-#: Endpointman_Advanced.class.php:1095
+#: Endpointman_Advanced.class.php:1094
 msgid "Here"
 msgstr "Здесь"
 
@@ -817,7 +1071,7 @@ msgstr ""
 msgid "Hide"
 msgstr "Скрыть"
 
-#: Endpointman_Advanced.class.php:1216
+#: Endpointman_Advanced.class.php:1217
 msgid "ID  not valid!"
 msgstr "ID не подходит!"
 
@@ -898,21 +1152,21 @@ msgstr "Импорт пакета Provisioner  в ручном режиме."
 msgid "Import a package brand in manual mode."
 msgstr "Импорт пакета производителей  в ручном режиме."
 
-#: Endpointman_Advanced.class.php:64
+#: Endpointman_Advanced.class.php:65
 msgid "Import/Export My Devices List"
 msgstr "Импорт/Экспорт Списка Моих Устройств"
 
 #: Endpointman_Advanced.class.php:1128
 #, php-format
-msgid "Importing CVS file %s ... "
+msgid "Importing CVS file %s ...<br />"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:976
+#: Endpointman_Advanced.class.php:975
 #, php-format
 msgid "Importing Provisioner file %s..."
 msgstr ""
 
-#: Endpointman_Advanced.class.php:902
+#: Endpointman_Advanced.class.php:901
 #, php-format
 msgid "Importing brand file %s..."
 msgstr ""
@@ -946,15 +1200,7 @@ msgstr ""
 msgid "Installing Firmware..."
 msgstr "Установка прошивки...."
 
-#: Endpointman.class.php:804
-msgid "Invalid MAC Address"
-msgstr "Неверный MAC-адрес"
-
-#: Endpointman.class.php:799
-msgid "Invalid Model Selected, Can't Sync System"
-msgstr "Выбрана неверная модель, не могу синхронизировать систему"
-
-#: Endpointman_Advanced.class.php:91 Endpointman_Config.class.php:95
+#: Endpointman_Advanced.class.php:92 Endpointman_Config.class.php:95
 msgid "Invalid Option!"
 msgstr "Неверная опция!"
 
@@ -962,7 +1208,7 @@ msgstr "Неверная опция!"
 msgid "Invalid Value!"
 msgstr "Неверное значение!"
 
-#: Endpointman.class.php:234 Endpointman.class.php:273
+#: Endpointman.class.php:248 Endpointman.class.php:294
 msgid "Invalid section module!"
 msgstr ""
 
@@ -983,6 +1229,20 @@ msgstr "Узнать как  загрузить пакеты  вручную  м
 msgid "Line"
 msgstr "Строка"
 
+#: page.epm_placeholders.php:6 page.epm_placeholders.php:12
+#: page.epm_placeholders.php:18 page.epm_placeholders.php:24
+#: page.epm_placeholders.php:30 page.epm_placeholders.php:36
+#: page.epm_placeholders.php:42 page.epm_placeholders.php:48
+#: page.epm_placeholders.php:54 page.epm_placeholders.php:60
+#: page.epm_placeholders.php:66 page.epm_placeholders.php:72
+#: page.epm_placeholders.php:78 page.epm_placeholders.php:84
+#: page.epm_placeholders.php:90 page.epm_placeholders.php:96
+#: page.epm_placeholders.php:102 page.epm_placeholders.php:108
+#: page.epm_placeholders.php:114 page.epm_placeholders.php:222
+#: page.epm_placeholders.php:228
+msgid "Line Loop"
+msgstr ""
+
 #: views/epm_templates/editor.views.template.php:55
 msgid "Line settings on this page"
 msgstr ""
@@ -991,7 +1251,7 @@ msgstr ""
 msgid "List Bran's Availables empty."
 msgstr "Список доступных брендов пустой."
 
-#: Endpointman_Advanced.class.php:881
+#: Endpointman_Advanced.class.php:880
 msgid "List Done!"
 msgstr "Список готов!"
 
@@ -1012,8 +1272,7 @@ msgid "List packages generated in other exports."
 msgstr "Список пакетов, созданных в других экспортируемых данных."
 
 #: views/epm_advanced_manual_upload.page.php:140
-#: views/epm_config/manager.list.all.php:12
-#: views/epm_config_editor.page.php:12
+#: views/epm_config/manager.list.all.php:12 views/epm_config_editor.page.php:12
 msgid "Loading..."
 msgstr "Загрузка..."
 
@@ -1030,11 +1289,11 @@ msgid ""
 "Location where configuration files and firmware for terminals are housed."
 msgstr ""
 
-#: Endpointman_Advanced.class.php:945
+#: Endpointman_Advanced.class.php:944
 msgid "Looking file and update brand's ... "
 msgstr ""
 
-#: Endpointman_Advanced.class.php:943
+#: Endpointman_Advanced.class.php:942
 #, php-format
 msgid "Looking for file %s to pass on to update_brand() ... "
 msgstr ""
@@ -1070,7 +1329,7 @@ msgstr "Совпадает!"
 msgid "Maximum stack depth exceeded"
 msgstr "Превышена максимальная глубина стека"
 
-#: Endpointman_Advanced.class.php:1300
+#: Endpointman_Advanced.class.php:1301
 msgid "Missing a temporary folder"
 msgstr "Неверная временная директория"
 
@@ -1136,7 +1395,7 @@ msgstr ""
 msgid "NTP server that syncs the time the terminals."
 msgstr ""
 
-#: Endpointman_Advanced.class.php:401
+#: Endpointman_Advanced.class.php:402
 msgid "Name invalid: "
 msgstr "Наименование неверно: "
 
@@ -1167,11 +1426,11 @@ msgstr "Нет"
 msgid "No Brand Selected for Reboot"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1238
+#: Endpointman_Advanced.class.php:1239
 msgid "No Brand set!"
 msgstr "Не установлен бренд!"
 
-#: Endpointman_Advanced.class.php:345 Endpointman_Templates.class.php:246
+#: Endpointman_Advanced.class.php:346 Endpointman_Templates.class.php:246
 msgid "No Configuration Location Defined!"
 msgstr "Не определено местоположение конфигурации!"
 
@@ -1183,19 +1442,11 @@ msgstr ""
 msgid "No Devices Found"
 msgstr ""
 
-#: Endpointman.class.php:837 Endpointman.class.php:855
-msgid "No Devices/Extensions Left to Add"
-msgstr "Нет устройств/Внутренних номеров для добавления"
-
-#: Endpointman_Advanced.class.php:1213
+#: Endpointman_Advanced.class.php:1214
 msgid "No ID set!"
 msgstr "ID не установлен!"
 
-#: Endpointman.class.php:841 Endpointman.class.php:859
-msgid "No Lines Left to Add"
-msgstr "Нет строк для добавления"
-
-#: Endpointman_Advanced.class.php:1235
+#: Endpointman_Advanced.class.php:1236
 msgid "No OUI set!"
 msgstr "Не установлен OUI!"
 
@@ -1217,11 +1468,11 @@ msgstr ""
 msgid "No Selected"
 msgstr "Не выбрано"
 
-#: Endpointman.class.php:229
+#: Endpointman.class.php:243
 msgid "No command was sent!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1298
+#: Endpointman_Advanced.class.php:1299
 msgid "No file was uploaded"
 msgstr "Файл не был загружен"
 
@@ -1234,11 +1485,11 @@ msgstr ""
 msgid "No send ID!"
 msgstr "ID не отправлено!"
 
-#: Endpointman_Advanced.class.php:437 Endpointman_Advanced.class.php:645
+#: Endpointman_Advanced.class.php:438 Endpointman_Advanced.class.php:646
 msgid "No send Product Select!"
 msgstr "Product Select не отправлен!"
 
-#: Endpointman_Advanced.class.php:651
+#: Endpointman_Advanced.class.php:652
 msgid "No send SendID!"
 msgstr "SendID не отправлен!"
 
@@ -1247,12 +1498,12 @@ msgstr "SendID не отправлен!"
 msgid "No send TID!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:648
+#: Endpointman_Advanced.class.php:649
 msgid "No send Type File!"
 msgstr "Тип файла не отправлен!"
 
-#: Endpointman_Advanced.class.php:275 Endpointman_Advanced.class.php:530
-#: Endpointman_Advanced.class.php:695 Endpointman_Advanced.class.php:811
+#: Endpointman_Advanced.class.php:276 Endpointman_Advanced.class.php:531
+#: Endpointman_Advanced.class.php:696 Endpointman_Advanced.class.php:810
 #: Endpointman_Config.class.php:333 Endpointman_Templates.class.php:342
 msgid "No send value!"
 msgstr "Значение не отправлено!"
@@ -1261,7 +1512,7 @@ msgstr "Значение не отправлено!"
 msgid "Not a Vaild Directory"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:342
+#: Endpointman_Advanced.class.php:343
 msgid "Not a Vaild Directory.<br /> Try to run 'mkdir "
 msgstr "Неверная директория .<br /> Попробуйте запустить  'mkdir "
 
@@ -1274,25 +1525,13 @@ msgstr ""
 msgid "Not able to connect to repository. Using local brand [%s] file instead."
 msgstr ""
 
-#: Endpointman_Advanced.class.php:887
+#: Endpointman_Advanced.class.php:886
 msgid "Not is directory: "
 msgstr "Это не директория: "
 
-#: endpointman.i18n.php:16
-msgid "OSS Endpoint Advanced Settings"
-msgstr "Расширенные настройки OSS Endpoint"
-
-#: endpointman.i18n.php:10
-msgid "OSS Endpoint Device List"
-msgstr "Список устройств OSS Endpoint"
-
-#: endpointman.i18n.php:14
-msgid "OSS Endpoint Package Manager"
-msgstr "Менеджер пакетов OSS Endpoint"
-
-#: endpointman.i18n.php:12
-msgid "OSS Endpoint Template Manager"
-msgstr "Менеджер шаблонов OSS Endpoint"
+#: endpointman.i18n.php:20
+msgid "OSS Endpoint Manager"
+msgstr ""
 
 #: endpointman.i18n.php:4
 msgid "OSS PBX End Point Manager"
@@ -1325,11 +1564,11 @@ msgstr "OUI"
 msgid "OUI Brand"
 msgstr "Бренд OUI"
 
-#: Endpointman_Advanced.class.php:56
+#: Endpointman_Advanced.class.php:57
 msgid "OUI Manager"
 msgstr "Менеджер OUI"
 
-#: Endpointman_Advanced.class.php:431
+#: Endpointman_Advanced.class.php:432
 msgid "Ok!"
 msgstr ""
 
@@ -1337,11 +1576,15 @@ msgstr ""
 msgid "Old Data Detected! Migrating ... "
 msgstr ""
 
+#: views/rnav.php:4
+msgid "Open Source Information"
+msgstr ""
+
 #: Endpointman.class.php:146
 msgid "Or run this command on SSH:"
 msgstr "Или запустите эту команду в SSH:"
 
-#: Endpointman_Advanced.class.php:68
+#: Endpointman_Advanced.class.php:69
 msgid "Package Import/Export"
 msgstr "Импорт/Экспорт пакета"
 
@@ -1349,13 +1592,23 @@ msgstr "Импорт/Экспорт пакета"
 msgid "Package Last Modified"
 msgstr "Последнее изменение пакета"
 
-#: page.epm_config.php:17
+#: endpointman.i18n.php:14 page.epm_config.php:17 views/rnav.php:10
 msgid "Package Manager"
 msgstr "Менеджер пакетов"
 
 #: views/epm_advanced_settings.page.php:297
 msgid "Package Server"
 msgstr "Сервер пакетов"
+
+#: page.epm_placeholders.php:27
+msgid "Password for the mapped Extension"
+msgstr ""
+
+#: page.epm_placeholders.php:123
+msgid ""
+"Password for the mapped Extension (change the X after acc with your line "
+"number)"
+msgstr ""
 
 #: views/epm_advanced_settings.page.php:255
 msgid "Path location ARP."
@@ -1377,6 +1630,10 @@ msgstr ""
 msgid "Path...."
 msgstr ""
 
+#: page.epm_placeholders.php:258
+msgid "Placeholder"
+msgstr ""
+
 #: Endpointman.class.php:145
 msgid "Please change the location:"
 msgstr "Пожалуйста измените расположение:"
@@ -1385,13 +1642,9 @@ msgstr "Пожалуйста измените расположение:"
 msgid "Please create /tftpboot, even if you won't use it"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:951
+#: Endpointman_Advanced.class.php:950
 msgid "Please name the Package the same name as your brand!"
 msgstr "Пожалуйста назовите  пакет аналогично названию бренда!"
-
-#: Endpointman_Advanced.class.php:1197
-msgid "Please reboot & rebuild all imported phones"
-msgstr "Пожалуйста перезагрузите  все импортируемые телефоны"
 
 #: views/epm_devices_main.page.php:1172
 msgid "Please select a Brand and/or Model"
@@ -1409,11 +1662,35 @@ msgstr ""
 msgid "Please select a template"
 msgstr ""
 
+#: page.epm_placeholders.php:9
+msgid "Prints the line Number of the mapped extension"
+msgstr ""
+
+#: page.epm_placeholders.php:69
+msgid "Prints you allowed codecs you set in your extension settings"
+msgstr ""
+
+#: page.epm_placeholders.php:159
+msgid ""
+"Prints you allowed codecs you set in your extension settings (change the X "
+"after acc with your line number)"
+msgstr ""
+
+#: page.epm_placeholders.php:105
+msgid "Prints your full callerid including name and number"
+msgstr ""
+
+#: page.epm_placeholders.php:195
+msgid ""
+"Prints your full callerid including name and number (change the X after acc "
+"with your line number)"
+msgstr ""
+
 #: Endpointman_Config.class.php:1048
 msgid "Processing "
 msgstr ""
 
-#: Endpointman_Advanced.class.php:60
+#: Endpointman_Advanced.class.php:61
 msgid "Product Configuration Editor"
 msgstr "Редактор конфигурации продукта"
 
@@ -1430,11 +1707,11 @@ msgstr ""
 msgid "Product Select"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:440 Endpointman_Advanced.class.php:534
+#: Endpointman_Advanced.class.php:441 Endpointman_Advanced.class.php:535
 msgid "Product Select send is not number!"
 msgstr "Product Select send не является числовым значением!"
 
-#: Endpointman_Advanced.class.php:443 Endpointman_Advanced.class.php:537
+#: Endpointman_Advanced.class.php:444 Endpointman_Advanced.class.php:538
 msgid "Product Select send is number not valid!"
 msgstr "Product Select send является неверным числовым значением!"
 
@@ -1483,7 +1760,7 @@ msgstr "Обновить таблицу"
 msgid "Reload Config"
 msgstr ""
 
-#: Endpointman.class.php:405
+#: Endpointman.class.php:450
 msgid "Removing Phone Modules Directory"
 msgstr "Удаление директории модулей телефона"
 
@@ -1491,7 +1768,7 @@ msgstr "Удаление директории модулей телефона"
 msgid "Removing Temporary Files... "
 msgstr ""
 
-#: Endpointman.class.php:409
+#: Endpointman.class.php:454
 msgid "Removing symlink to web provisioner"
 msgstr "Удаление символической ссылки на web-снабжение"
 
@@ -1520,11 +1797,11 @@ msgstr "Сохранить Как..."
 msgid "Saved"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:89 Endpointman_Config.class.php:89
+#: Endpointman_Advanced.class.php:90 Endpointman_Config.class.php:89
 msgid "Saving Changes..."
 msgstr "Сохранение изменений..."
 
-#: Endpointman_Advanced.class.php:90 Endpointman_Config.class.php:90
+#: Endpointman_Advanced.class.php:91 Endpointman_Config.class.php:90
 msgid "Saving Changes... Ok!"
 msgstr "Сохранение изменений... Ок!"
 
@@ -1564,6 +1841,12 @@ msgstr ""
 msgid "Selected Phone(s) Options"
 msgstr ""
 
+#: page.epm_placeholders.php:39
+msgid ""
+"Server Hostname for the Extension (You can set your Hostname in your global "
+"settings)"
+msgstr ""
+
 #: views/epm_templates/editor.views.template.php:188
 msgid "Server IP For Line 1"
 msgstr ""
@@ -1584,13 +1867,25 @@ msgstr ""
 msgid "Server Port For Line 1"
 msgstr ""
 
+#: page.epm_placeholders.php:231
+msgid ""
+"Sets the Protocol you set in you extension (TCP,UDP,TLS - Values:0,1,2),"
+"tested with HT812"
+msgstr ""
+
+#: page.epm_placeholders.php:219
+msgid ""
+"Sets the Protocol you set in you extension (TCP,UDP,TLS - Values:0,1,2),"
+"tested with HT812 (change the X after acc with your line number)"
+msgstr ""
+
 #: views/epm_advanced_settings.page.php:38
 #: views/epm_templates/editor.views.dialog.cfg.global.php:26
 msgid "Setting Provision"
 msgstr "Установки снабжения"
 
-#: Endpointman_Advanced.class.php:52
-#: views/epm_templates/editor.views.template.php:70
+#: Endpointman_Advanced.class.php:53
+#: views/epm_templates/editor.views.template.php:70 views/rnav.php:7
 msgid "Settings"
 msgstr "Установки"
 
@@ -1602,6 +1897,70 @@ msgstr "Поделиться"
 msgid "Show"
 msgstr "Показать"
 
+#: page.epm_placeholders.php:75
+msgid "Shows you if you are using rport"
+msgstr ""
+
+#: page.epm_placeholders.php:165
+msgid ""
+"Shows you if you are using rport (change the X after acc with your line "
+"number)"
+msgstr ""
+
+#: page.epm_placeholders.php:111
+msgid "Shows you if you have enabled encryption"
+msgstr ""
+
+#: page.epm_placeholders.php:201
+msgid ""
+"Shows you if you have enabled encryption (change the X after acc with your "
+"line number)"
+msgstr ""
+
+#: page.epm_placeholders.php:81
+msgid "Shows you if you have enabled media encryption"
+msgstr ""
+
+#: page.epm_placeholders.php:171
+msgid ""
+"Shows you if you have enabled media encryption (change the X after acc with "
+"your line number)"
+msgstr ""
+
+#: page.epm_placeholders.php:87 page.epm_placeholders.php:117
+msgid "Shows you if you use SIP or PJSIP"
+msgstr ""
+
+#: page.epm_placeholders.php:177
+msgid ""
+"Shows you if you use SIP or PJSIP (change the X after acc with your line "
+"number)"
+msgstr ""
+
+#: page.epm_placeholders.php:93
+msgid "Shows you your prefered transport protocol"
+msgstr ""
+
+#: page.epm_placeholders.php:183
+msgid ""
+"Shows you your prefered transport protocol (change the X after acc with your "
+"line number)"
+msgstr ""
+
+#: page.epm_placeholders.php:57 page.epm_placeholders.php:63
+msgid "Shows your Extension number you are using"
+msgstr ""
+
+#: page.epm_placeholders.php:135 page.epm_placeholders.php:153
+msgid ""
+"Shows your Extension number you are using (change the X after acc with your "
+"line number)"
+msgstr ""
+
+#: page.epm_placeholders.php:51
+msgid "Shows your Protocol your extension is using"
+msgstr ""
+
 #: Endpointman_Config.class.php:1397
 msgid "Skipping download, updated local version..."
 msgstr ""
@@ -1609,6 +1968,18 @@ msgstr ""
 #: page.epm_devices.php:41
 msgid "Sorry, Only Asterisk is supported currently"
 msgstr "Извините, сейчас поддерживается только Asterisk"
+
+#: page.epm_placeholders.php:120 page.epm_placeholders.php:126
+#: page.epm_placeholders.php:132 page.epm_placeholders.php:138
+#: page.epm_placeholders.php:144 page.epm_placeholders.php:150
+#: page.epm_placeholders.php:156 page.epm_placeholders.php:162
+#: page.epm_placeholders.php:168 page.epm_placeholders.php:174
+#: page.epm_placeholders.php:180 page.epm_placeholders.php:186
+#: page.epm_placeholders.php:192 page.epm_placeholders.php:198
+#: page.epm_placeholders.php:204 page.epm_placeholders.php:210
+#: page.epm_placeholders.php:216
+msgid "Static"
+msgstr ""
 
 #: views/epm_advanced_iedl.page.php:87
 msgid "Structure"
@@ -1631,7 +2002,7 @@ msgstr "Системная ошибка!"
 msgid "TID is not number!"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:192
+#: Endpointman_Advanced.class.php:193
 msgid "Tab is not valid!"
 msgstr "Закладка неверная!"
 
@@ -1646,6 +2017,10 @@ msgstr ""
 #: Endpointman_Templates.class.php:32
 msgid "Template Editor"
 msgstr "Редактор шаблона"
+
+#: endpointman.i18n.php:12 views/rnav.php:12
+msgid "Template Manager"
+msgstr ""
 
 #: views/epm_templates/editor.views.rnav.php:17
 #: views/epm_templates/manager.views.grid.php:25
@@ -1698,11 +2073,23 @@ msgstr ""
 "обновить. Кнопка .<br />  \"Обновить\" появляется когда обнаружена  новая "
 "версия для данной модели."
 
+#: page.epm_placeholders.php:45
+msgid ""
+"The port your extension uses to connect. (The prefered Port you set in your "
+"extension will be used)"
+msgstr ""
+
+#: page.epm_placeholders.php:207
+msgid ""
+"The port your extension uses to connect. The prefered Port you set in your "
+"extension will be used. (change the X after acc with your line number)"
+msgstr ""
+
 #: views/epm_devices_main.page.php:587
 msgid "The project is maintained at"
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1294
+#: Endpointman_Advanced.class.php:1295
 msgid ""
 "The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in "
 "the HTML form"
@@ -1710,13 +2097,13 @@ msgstr ""
 "Загруженный файл превысил значение директивы MAX_FILE_SIZE, указанную в  "
 "HTML-форме"
 
-#: Endpointman_Advanced.class.php:1292
+#: Endpointman_Advanced.class.php:1293
 msgid "The uploaded file exceeds the upload_max_filesize directive in php.ini"
 msgstr ""
 "Загруженный файл превысил значение директивы upload_max_filesize, указанную "
 "в  php.ini"
 
-#: Endpointman_Advanced.class.php:1296
+#: Endpointman_Advanced.class.php:1297
 msgid "The uploaded file was only partially uploaded"
 msgstr "Файл был загружен частично"
 
@@ -1729,8 +2116,18 @@ msgid ""
 "They are the first 6 characters of the MAC device that identifies the brand "
 "(manufacturer)."
 msgstr ""
-"Это первые  6 символов MAC-адреса устройства, которые идентифицируют бренд"
-"(производителя)."
+"Это первые  6 символов MAC-адреса устройства, которые идентифицируют "
+"бренд(производителя)."
+
+#: page.epm_placeholders.php:225
+msgid "This is the SRTP Value (0/1) for Grandstream, tested with HT812"
+msgstr ""
+
+#: page.epm_placeholders.php:213
+msgid ""
+"This is the SRTP Value (0/1) for Grandstream, tested with HT812 (change the "
+"X after acc with your line number)"
+msgstr ""
 
 #: views/epm_config/manager.list.hide.php:25
 msgid ""
@@ -1762,15 +2159,24 @@ msgstr ""
 msgid "TimeZone configuration terminasl. Like England/London"
 msgstr ""
 
+#: page.epm_placeholders.php:99
+msgid "Trustrpid?"
+msgstr ""
+
+#: page.epm_placeholders.php:189
+msgid "Trustrpid? (change the X after acc with your line number)"
+msgstr ""
+
 #: page.epm_devices.php:20
 msgid "Turn Off Safe Mode"
 msgstr "Выключить Безопасный режим"
 
+#: page.epm_placeholders.php:256
 #: views/epm_advanced/oui_manager.views.grid.php:26
 msgid "Type"
 msgstr "Тип"
 
-#: Endpointman_Advanced.class.php:825
+#: Endpointman_Advanced.class.php:824
 msgid "Type File not valid!"
 msgstr "Тип файла неверный!"
 
@@ -1814,7 +2220,7 @@ msgstr "Удаление бренда..."
 msgid "Uninstalla frimware... "
 msgstr ""
 
-#: Endpointman.class.php:1085 views/epm_devices_main.page.php:122
+#: views/epm_devices_main.page.php:122
 msgid "Unknown"
 msgstr "Неизвестно"
 
@@ -1822,7 +2228,7 @@ msgstr "Неизвестно"
 msgid "Unknown error"
 msgstr "Неизвестная ошибка"
 
-#: Endpointman_Advanced.class.php:1306
+#: Endpointman_Advanced.class.php:1307
 msgid "Unknown upload error"
 msgstr "Неизвестная ошибка  загрузки"
 
@@ -1870,7 +2276,7 @@ msgstr ""
 msgid "Updating Family Lines ..."
 msgstr ""
 
-#: Endpointman_Advanced.class.php:1012
+#: Endpointman_Advanced.class.php:1011
 msgid "Updating Last Modified... "
 msgstr ""
 
@@ -1908,6 +2314,15 @@ msgstr ""
 #: views/epm_advanced/poce.views.button.up.files.php:31
 msgid "User File Configs"
 msgstr "Пользовательские конфигурационный файлы"
+
+#: page.epm_placeholders.php:141
+msgid ""
+"Username for the Extension (change the X after acc with your line number)"
+msgstr ""
+
+#: page.epm_placeholders.php:15
+msgid "Username for the Extension (most likely the endpoint extension number)"
+msgstr ""
 
 #: Endpointman_Config.class.php:340 Endpointman_Templates.class.php:349
 msgid "Value send is not number!"
@@ -1961,29 +2376,17 @@ msgid ""
 "a>"
 msgstr ""
 
-#: Endpointman.class.php:736
-msgid "You Must Select A Model From the Drop Down"
-msgstr "Вы должны выбрать модель из выпадающего списка"
-
-#: Endpointman.class.php:739
-msgid "You Must Select an Extension/Device From the Drop Down"
-msgstr "Вы должны выбрать Внутренний номер/Устройство из выпадающего списка"
-
 #: Endpointman_Config.class.php:737
 #, php-format
 msgid ""
 "You can not add the mark (%s) as the ID (%d) already exists in the database!"
 msgstr ""
 
-#: Endpointman.class.php:1915
-msgid "You can't remove the only line left"
-msgstr "Вы не можете удалить единственную строку"
-
 #: Endpointman_Config.class.php:1459
 msgid "Your Firmware is already up to date."
 msgstr ""
 
-#: Endpointman_Advanced.class.php:385
+#: Endpointman_Advanced.class.php:386
 msgid "Your permissions are wrong on "
 msgstr "Ваши права доступа неверные "
 
@@ -2004,6 +2407,42 @@ msgstr "требуется"
 #: views/epm_devices_main.page.php:553 views/epm_devices_main.page.php:560
 msgid "with"
 msgstr ""
+
+#~ msgid "Invalid MAC Address"
+#~ msgstr "Неверный MAC-адрес"
+
+#~ msgid "Invalid Model Selected, Can't Sync System"
+#~ msgstr "Выбрана неверная модель, не могу синхронизировать систему"
+
+#~ msgid "No Devices/Extensions Left to Add"
+#~ msgstr "Нет устройств/Внутренних номеров для добавления"
+
+#~ msgid "No Lines Left to Add"
+#~ msgstr "Нет строк для добавления"
+
+#~ msgid "OSS Endpoint Advanced Settings"
+#~ msgstr "Расширенные настройки OSS Endpoint"
+
+#~ msgid "OSS Endpoint Device List"
+#~ msgstr "Список устройств OSS Endpoint"
+
+#~ msgid "OSS Endpoint Package Manager"
+#~ msgstr "Менеджер пакетов OSS Endpoint"
+
+#~ msgid "OSS Endpoint Template Manager"
+#~ msgstr "Менеджер шаблонов OSS Endpoint"
+
+#~ msgid "Please reboot & rebuild all imported phones"
+#~ msgstr "Пожалуйста перезагрузите  все импортируемые телефоны"
+
+#~ msgid "You Must Select A Model From the Drop Down"
+#~ msgstr "Вы должны выбрать модель из выпадающего списка"
+
+#~ msgid "You Must Select an Extension/Device From the Drop Down"
+#~ msgstr "Вы должны выбрать Внутренний номер/Устройство из выпадающего списка"
+
+#~ msgid "You can't remove the only line left"
+#~ msgstr "Вы не можете удалить единственную строку"
 
 #~ msgid "- Copied %_FILE_% to %_FILETO_%."
 #~ msgstr "- Скопировано %_FILE_% в %_FILETO_%."
@@ -2312,11 +2751,11 @@ msgstr ""
 #~ "поддерживается!"
 
 #~ msgid ""
-#~ "You Can Also Manually Update The Repository By Downloading Files here: %"
-#~ "_URL_INI_% Release Repo %_URL_END_%"
+#~ "You Can Also Manually Update The Repository By Downloading Files here: "
+#~ "%_URL_INI_% Release Repo %_URL_END_%"
 #~ msgstr ""
-#~ "Вы можете также вручную обновить репозитарий, скачав файлы здесь: %"
-#~ "_URL_INI_% Release Repo %_URL_END_%"
+#~ "Вы можете также вручную обновить репозитарий, скачав файлы здесь: "
+#~ "%_URL_INI_% Release Repo %_URL_END_%"
 
 #~ msgid "Your Firmware is already up to date"
 #~ msgstr "Ваша прошивка самая свежая"

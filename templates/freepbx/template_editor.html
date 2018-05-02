@@ -18,7 +18,7 @@
     </head>
     <body>
 {else}
-        <link href="assets/mihuendpoint/theme/coda-slider.css" media="screen, projection" rel="stylesheet" type="text/css" />
+        <link href="assets/endpointman/theme/coda-slider.css" media="screen, projection" rel="stylesheet" type="text/css" />
 
 <script language="javascript" type="text/javascript">
     $().ready(function() {
@@ -66,7 +66,7 @@
         </select><br/>
         <strong><?php echo _('Display')?></strong>
         {if condition="isset($silent_mode)"}
-        <select name="area_list" onchange="window.location.href='config.php?display=epm_config&quietmode=1&handler=file&file=popup.html.php&module=mihuendpoint&pop_type=edit_template&edit_id={$hidden_id}&model_list=126&template_list=0&rand='+ new Date().getTime() + '&maxlines='+this.options[this.selectedIndex].value">
+        <select name="area_list" onchange="window.location.href='config.php?display=epm_config&quietmode=1&handler=file&file=popup.html.php&module=endpointman&pop_type=edit_template&edit_id={$hidden_id}&model_list=126&template_list=0&rand='+ new Date().getTime() + '&maxlines='+this.options[this.selectedIndex].value">
         {else}
         <select name="area_list" onchange="window.location.href='config.php?type=tool&edit_template=true&display=epm_templates&custom='+ document.getElementById('custom').value +'&id='+ document.getElementById('id').value +'&maxlines='+this.options[this.selectedIndex].value">
         {/if}
@@ -77,12 +77,12 @@
         <strong><?php echo _('Line settings on this page')?></strong><i><font size="-2"> (Note: This is NOT the number of supported lines on the phone(s))</font></i>
 	{/if}
         <br />
-        <strong><?php echo _('Edit Global Settings Overrides')?>: </strong> <a href="#" onclick="return popitup3('config.php?type=tool&display=epm_config&amp;quietmode=1&amp;handler=file&amp;file=popup.html.php&amp;module=mihuendpoint&amp;pop_type=global_over')"><?php echo _('Global Settings')?> <i class='icon-pencil blue' ALT='<?php echo _('Edit')?>'></i></a>
+        <strong><?php echo _('Edit Global Settings Overrides')?>: </strong> <a href="#" onclick="return popitup3('config.php?type=tool&display=epm_config&amp;quietmode=1&amp;handler=file&amp;file=popup.html.php&amp;module=endpointman&amp;pop_type=global_over')"><?php echo _('Global Settings')?> <i class='icon-pencil blue' ALT='<?php echo _('Edit')?>'></i></a>
         <br />
 	{if condition="$alt != 0"}
         {loop name="alt_configs"}
             <p><strong><?php echo _('Edit File Configurations for:')?></strong>
-            <a href="#" onclick="return popitup('config.php?type=tool&display=epm_config&amp;quietmode=1&amp;handler=file&amp;file=popup.html.php&amp;module=mihuendpoint&amp;pop_type=alt_cfg_edit', '{$value.name}')">
+            <a href="#" onclick="return popitup('config.php?type=tool&display=epm_config&amp;quietmode=1&amp;handler=file&amp;file=popup.html.php&amp;module=endpointman&amp;pop_type=alt_cfg_edit', '{$value.name}')">
             <code>{$value.name}</code> <i class='icon-pencil blue' ALT='<?php echo _('Edit')?> {$value.name}'></i></a>
             <br>
             <strong><?php echo _('Select Alternative File Configurations for')?> <code>{$value.name}</code></strong>
@@ -98,7 +98,7 @@
 	{/if}
         {loop name="only_configs"}
             <strong><?php echo _('Edit File Configurations for:')?></strong>&nbsp;
-            <a href="#" onclick="return popitup2('config.php?type=tool&display=epm_config&amp;quietmode=1&amp;handler=file&amp;file=popup.html.php&amp;module=mihuendpoint&amp;pop_type=alt_cfg_edit', '{$value.name}')"><code>{$value.name}</code>&nbsp;<i class='icon-pencil blue' ALT='<?php echo _('Edit')?>'></i></a>
+            <a href="#" onclick="return popitup2('config.php?type=tool&display=epm_config&amp;quietmode=1&amp;handler=file&amp;file=popup.html.php&amp;module=endpointman&amp;pop_type=alt_cfg_edit', '{$value.name}')"><code>{$value.name}</code>&nbsp;<i class='icon-pencil blue' ALT='<?php echo _('Edit')?>'></i></a>
             <br/>
         {/loop}
             <br />

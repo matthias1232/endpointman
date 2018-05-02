@@ -7,7 +7,7 @@
  * @package Provisioner
  */
 
-namespace FreePBX\modules\Mihuendpoint;
+namespace FreePBX\modules\Endpointman;
 
 class Config {
 	private $module_conf;
@@ -20,7 +20,7 @@ class Config {
 	public function getConfigModuleSQL($clear = true)
 	{
 		if ($clear) { $this->module_conf = ""; }
-		$sql = "SELECT var_name, value FROM mihuendpoint_global_vars";
+		$sql = "SELECT var_name, value FROM endpointman_global_vars";
 		foreach (sql($sql, 'getAll', DB_FETCHMODE_ASSOC) as $row) {
 			$this->module_conf[$row['var_name']] = $row['value'];
 		}

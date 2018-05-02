@@ -32,7 +32,7 @@ button.double-wide {
 <br><br>
 
 {if condition="1 == 0"}
-<script type="text/javascript" src="/admin/modules/mihuendpoint/templates/javascript/jquery.jstree.js"></script>
+<script type="text/javascript" src="/admin/modules/endpointman/templates/javascript/jquery.jstree.js"></script>
 <script type="text/javascript" class="source">
 $(function () {
 	$("#demo1").jstree({
@@ -113,7 +113,7 @@ function generateHiddenFieldsForTree(treeId) {
 var box;
 function process_module_actions(actions) {
     $(document).ready(function() {
-	urlStr = "config.php?display=epm_config&amp;quietmode=1&amp;handler=file&amp;file=installer.html.php&amp;module=mihuendpoint&amp;type={$installer.type}&amp;id={$installer.id}";
+	urlStr = "config.php?display=epm_config&amp;quietmode=1&amp;handler=file&amp;file=installer.html.php&amp;module=endpointman&amp;type={$installer.type}&amp;id={$installer.id}";
 	urlStr += "&amp;rand="+Math.random ( );
         for (var i in actions) {
             urlStr += "&amp;moduleaction["+i+"]="+actions[i];

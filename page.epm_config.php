@@ -9,7 +9,7 @@
  
 if (!defined('FREEPBX_IS_AUTH')) { die('No direct script access allowed'); }
 
-$epm = FreePBX::create()->Mihuendpoint;
+$epm = FreePBX::create()->Endpointman;
 ?>
 
 <div class="container-fluid" id="epm_config">

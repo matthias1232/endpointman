@@ -1,7 +1,7 @@
 <?php
 	if (!defined('FREEPBX_IS_AUTH')) { die('No direct script access allowed'); }
 	
-	$sql = "SELECT value FROM mihuendpoint_global_vars WHERE var_name LIKE 'endpoint_vers'";
+	$sql = "SELECT value FROM endpointman_global_vars WHERE var_name LIKE 'endpoint_vers'";
 	$provisioner_ver = sql($sql, 'getOne');
 	$provisioner_ver = date("d-M-Y", $provisioner_ver) . " at " . date("g:ia", $provisioner_ver);
 ?>
@@ -92,7 +92,7 @@
 						</div>
 						<div class="col-md-9">
 							<?php
-							$brand_ava = FreePBX::Mihuendpoint()->brands_available("",false);
+							$brand_ava = FreePBX::Endpointman()->brands_available("",false);
 							if ($brand_ava == "") : ?>
 								<div class="alert alert-info text-left" role="alert"> <strong><?php echo _("Heads up!"); ?></strong> <?php echo _("List Bran's Availables empty."); ?> <i class='icon-globe'></i></div>
 							<?php else: ?>

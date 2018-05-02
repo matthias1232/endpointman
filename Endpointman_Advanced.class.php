@@ -10,7 +10,7 @@
 namespace FreePBX\modules;
 use FreePBX;
 
-class Mihuendpoint_Advanced
+class Endpointman_Advanced
 {
     public $MODULES_PATH;
 	public $LOCAL_PATH;
@@ -25,8 +25,8 @@ class Mihuendpoint_Advanced
 		$this->epm_config = $epm_config;
 
         $this->MODULES_PATH = $this->config->get('AMPWEBROOT') . '/admin/modules/';
-        if (file_exists($this->MODULES_PATH . "mihuendpoint/")) {
-            $this->LOCAL_PATH = $this->MODULES_PATH . "mihuendpoint/";
+        if (file_exists($this->MODULES_PATH . "endpointman/")) {
+            $this->LOCAL_PATH = $this->MODULES_PATH . "endpointman/";
         } else {
             die("Can't Load Local Endpoint Manager Directory!");
         }
@@ -110,8 +110,8 @@ class Mihuendpoint_Advanced
 			switch ($command)
 			{
 				case "oui":
-					//$sql = 'SELECT mihuendpoint_oui_list.id, mihuendpoint_oui_list.oui , mihuendpoint_brand_list.name, mihuendpoint_oui_list.custom FROM mihuendpoint_oui_list , mihuendpoint_brand_list WHERE mihuendpoint_oui_list.brand = mihuendpoint_brand_list.id ORDER BY mihuendpoint_oui_list.oui ASC';
-					$sql = 'SELECT T1.id, T1.oui, T2.name, T1.custom FROM mihuendpoint_oui_list as T1 , mihuendpoint_brand_list as T2 WHERE T1.brand = T2.id ORDER BY T1.oui ASC';
+					//$sql = 'SELECT endpointman_oui_list.id, endpointman_oui_list.oui , endpointman_brand_list.name, endpointman_oui_list.custom FROM endpointman_oui_list , endpointman_brand_list WHERE endpointman_oui_list.brand = endpointman_brand_list.id ORDER BY endpointman_oui_list.oui ASC';
+					$sql = 'SELECT T1.id, T1.oui, T2.name, T1.custom FROM endpointman_oui_list as T1 , endpointman_brand_list as T2 WHERE T1.brand = T2.id ORDER BY T1.oui ASC';
 					$data = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
 					$ret = array();
 					foreach ($data as $item) {
@@ -283,37 +283,37 @@ class Mihuendpoint_Advanced
 		switch($dget['name']) {
 			case "enable_ari":
 				$dget['value'] = strtolower($dget['value']);
-				$sql = "UPDATE mihuendpoint_global_vars SET value='" . ($dget['value'] == "yes" ? "1": "0") . "' WHERE var_name='enable_ari'";
+				$sql = "UPDATE endpointman_global_vars SET value='" . ($dget['value'] == "yes" ? "1": "0") . "' WHERE var_name='enable_ari'";
 				break;
 
 			case "enable_debug":
 				$dget['value'] = strtolower($dget['value']);
-				$sql = "UPDATE mihuendpoint_global_vars SET value='" . ($dget['value'] == "yes" ? "1": "0") . "' WHERE var_name='debug'";
+				$sql = "UPDATE endpointman_global_vars SET value='" . ($dget['value'] == "yes" ? "1": "0") . "' WHERE var_name='debug'";
 				break;
 
 			case "disable_help":
 				$dget['value'] = strtolower($dget['value']);
-				$sql = "UPDATE mihuendpoint_global_vars SET value='" . ($dget['value'] == "yes" ? "1": "0") . "' WHERE var_name='disable_help'";
+				$sql = "UPDATE endpointman_global_vars SET value='" . ($dget['value'] == "yes" ? "1": "0") . "' WHERE var_name='disable_help'";
 				break;
 
 			case "allow_dupext":
 				$dget['value'] = strtolower($dget['value']);
-				$sql = "UPDATE mihuendpoint_global_vars SET value='" . ($dget['value'] == "yes" ? "1": "0") . "' WHERE var_name='show_all_registrations'";
+				$sql = "UPDATE endpointman_global_vars SET value='" . ($dget['value'] == "yes" ? "1": "0") . "' WHERE var_name='show_all_registrations'";
 				break;
 
 			case "allow_hdfiles":
 				$dget['value'] = strtolower($dget['value']);
-				$sql = "UPDATE mihuendpoint_global_vars SET value='" . ($dget['value'] == "yes" ? "1": "0") . "' WHERE var_name='allow_hdfiles'";
+				$sql = "UPDATE endpointman_global_vars SET value='" . ($dget['value'] == "yes" ? "1": "0") . "' WHERE var_name='allow_hdfiles'";
 				break;
 
 			case "tftp_check":
 				$dget['value'] = strtolower($dget['value']);
-				$sql = "UPDATE mihuendpoint_global_vars SET value='" . ($dget['value'] == "yes" ? "1": "0") . "' WHERE var_name='tftp_check'";
+				$sql = "UPDATE endpointman_global_vars SET value='" . ($dget['value'] == "yes" ? "1": "0") . "' WHERE var_name='tftp_check'";
 				break;
 
 			case "backup_check":
 				$dget['value'] = strtolower($dget['value']);
-				$sql = "UPDATE mihuendpoint_global_vars SET value='" . ($dget['value'] == "yes" ? "1": "0") . "' WHERE var_name='backup_check'";
+				$sql = "UPDATE endpointman_global_vars SET value='" . ($dget['value'] == "yes" ? "1": "0") . "' WHERE var_name='backup_check'";
 				break;
 
 			case "use_repo":
@@ -322,7 +322,7 @@ class Mihuendpoint_Advanced
 					$retarr = array("status" => false, "message" => _("Git not installed!"));
 				}
 				else {
-					$sql = "UPDATE mihuendpoint_global_vars SET value='" . ($dget['value'] == "yes" ? "1": "0") . "' WHERE var_name='use_repo'";
+					$sql = "UPDATE endpointman_global_vars SET value='" . ($dget['value'] == "yes" ? "1": "0") . "' WHERE var_name='use_repo'";
 				}
 				break;
 
@@ -335,7 +335,7 @@ class Mihuendpoint_Advanced
 				if ($dget['value'] != "") {
 					if ((file_exists($dget['value'] = $dget['value'])) AND (is_dir($dget['value'] = $dget['value']))) {
 						if (is_writable($dget['value'] = $dget['value'])) {
-							$sql = "UPDATE mihuendpoint_global_vars SET value='" . $dget['value'] . "' WHERE var_name='config_location'";
+							$sql = "UPDATE endpointman_global_vars SET value='" . $dget['value'] . "' WHERE var_name='config_location'";
 						} else {
 							$retarr = array("status" => false, "message" => _("Directory Not Writable!"));
 						}
@@ -349,32 +349,32 @@ class Mihuendpoint_Advanced
 
 			case "srvip":
 				$dget['value'] = trim($dget['value']);
-				$sql = "UPDATE mihuendpoint_global_vars SET value='" . $dget['value'] . "' WHERE var_name='srvip'";
+				$sql = "UPDATE endpointman_global_vars SET value='" . $dget['value'] . "' WHERE var_name='srvip'";
 				break;
 
 			case "tz":
-				$sql = "UPDATE mihuendpoint_global_vars SET value='" . $dget['value'] . "' WHERE var_name='tz'";
+				$sql = "UPDATE endpointman_global_vars SET value='" . $dget['value'] . "' WHERE var_name='tz'";
 				break;
 
 			case "ntp_server":
 				$dget['value'] = trim($dget['value']);
-				$sql = "UPDATE mihuendpoint_global_vars SET value='" . $dget['value'] . "' WHERE var_name='ntp'";
+				$sql = "UPDATE endpointman_global_vars SET value='" . $dget['value'] . "' WHERE var_name='ntp'";
 				break;
 
 			case "nmap_loc":
-				$sql = "UPDATE mihuendpoint_global_vars SET value='" . $dget['value'] . "' WHERE var_name='nmap_location'";
+				$sql = "UPDATE endpointman_global_vars SET value='" . $dget['value'] . "' WHERE var_name='nmap_location'";
 				break;
 
 			case "arp_loc":
-				$sql = "UPDATE mihuendpoint_global_vars SET value='" . $dget['value'] . "' WHERE var_name='arp_location'";
+				$sql = "UPDATE endpointman_global_vars SET value='" . $dget['value'] . "' WHERE var_name='arp_location'";
 				break;
 
 			case "asterisk_loc":
-				$sql = "UPDATE mihuendpoint_global_vars SET value='" . $dget['value'] . "' WHERE var_name='asterisk_location'";
+				$sql = "UPDATE endpointman_global_vars SET value='" . $dget['value'] . "' WHERE var_name='asterisk_location'";
 				break;
 
 			case "package_server":
-				$sql = "UPDATE mihuendpoint_global_vars SET value='" . $dget['value'] . "' WHERE var_name='update_server'";
+				$sql = "UPDATE endpointman_global_vars SET value='" . $dget['value'] . "' WHERE var_name='update_server'";
 				break;
 
 			case "cfg_type":
@@ -395,7 +395,7 @@ class Mihuendpoint_Advanced
 				} else {
 					$dget['value'] = 'file';
 				}
-				$sql = "UPDATE mihuendpoint_global_vars SET value='" . $dget['value'] . "' WHERE var_name='server_type'";
+				$sql = "UPDATE endpointman_global_vars SET value='" . $dget['value'] . "' WHERE var_name='server_type'";
 				break;
 
 			default:
@@ -416,9 +416,9 @@ class Mihuendpoint_Advanced
 	/**** FUNCIONES SEC MODULO "epm_advanced\poce" ****/
 	public function epm_advanced_poce_list_brands()
 	{
-		//$sql = 'SELECT * FROM mihuendpoint_product_list WHERE hidden = 0 AND id > 0 ORDER BY long_name ASC';
-		//$sql = 'SELECT * FROM mihuendpoint_product_list WHERE hidden = 0 AND id > 0 AND brand IN (SELECT id FROM asterisk.mihuendpoint_brand_list where hidden = 0) ORDER BY long_name ASC';
-		$sql = 'SELECT * FROM mihuendpoint_product_list WHERE hidden = 0 AND id IN (SELECT DISTINCT product_id FROM asterisk.mihuendpoint_model_list where enabled = 1) AND brand IN (SELECT id FROM asterisk.mihuendpoint_brand_list where hidden = 0) ORDER BY long_name ASC';
+		//$sql = 'SELECT * FROM endpointman_product_list WHERE hidden = 0 AND id > 0 ORDER BY long_name ASC';
+		//$sql = 'SELECT * FROM endpointman_product_list WHERE hidden = 0 AND id > 0 AND brand IN (SELECT id FROM asterisk.endpointman_brand_list where hidden = 0) ORDER BY long_name ASC';
+		$sql = 'SELECT * FROM endpointman_product_list WHERE hidden = 0 AND id IN (SELECT DISTINCT product_id FROM asterisk.endpointman_model_list where enabled = 1) AND brand IN (SELECT id FROM asterisk.endpointman_brand_list where hidden = 0) ORDER BY long_name ASC';
 		$product_list = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
 		$i = 0;
 		$temp = array();
@@ -447,10 +447,10 @@ class Mihuendpoint_Advanced
 		{
 			$dget['product_select'] = $_REQUEST['product_select'];
 
-			$sql = 'SELECT * FROM `mihuendpoint_product_list` WHERE `hidden` = 0 AND `id` = '.$dget['product_select'];
+			$sql = 'SELECT * FROM `endpointman_product_list` WHERE `hidden` = 0 AND `id` = '.$dget['product_select'];
 			$product_select_info = sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
 
-			$sql = "SELECT cfg_dir,directory,config_files FROM mihuendpoint_product_list,mihuendpoint_brand_list WHERE mihuendpoint_product_list.brand = mihuendpoint_brand_list.id AND mihuendpoint_product_list.id ='" . $dget['product_select'] . "'";
+			$sql = "SELECT cfg_dir,directory,config_files FROM endpointman_product_list,endpointman_brand_list WHERE endpointman_product_list.brand = endpointman_brand_list.id AND endpointman_product_list.id ='" . $dget['product_select'] . "'";
 			$row =  sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
 			$config_files = explode(",", $row['config_files']);
 			$i = 0;
@@ -463,7 +463,7 @@ class Mihuendpoint_Advanced
 				}
 			} else { $file_list = NULL; }
 
-			$sql = "SELECT * FROM mihuendpoint_custom_configs WHERE product_id = '" . $dget['product_select'] . "'";
+			$sql = "SELECT * FROM endpointman_custom_configs WHERE product_id = '" . $dget['product_select'] . "'";
 			$data = sql($sql,'getAll', DB_FETCHMODE_ASSOC);
 			$i = 0;
 			if (count($data)) {
@@ -502,7 +502,7 @@ class Mihuendpoint_Advanced
 			$template_file_list[0]['value'] = "template_data_custom.xml";
 			$template_file_list[0]['text'] = "template_data_custom.xml";
 
-			$sql = "SELECT id, model FROM mihuendpoint_model_list WHERE product_id = '" . $dget['product_select'] . "' AND enabled = 1 AND hidden = 0";
+			$sql = "SELECT id, model FROM endpointman_model_list WHERE product_id = '" . $dget['product_select'] . "' AND enabled = 1 AND hidden = 0";
 			$data = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
 			$i = 1;
 			foreach ($data as $list) {
@@ -544,7 +544,7 @@ class Mihuendpoint_Advanced
 		$dget['type_file'] = $_REQUEST['type_file'];
 
 		if ($dget['type_file'] == "sql") {
-			$sql = 'SELECT * FROM mihuendpoint_custom_configs WHERE id =' . $dget['file_id'];
+			$sql = 'SELECT * FROM endpointman_custom_configs WHERE id =' . $dget['file_id'];
 			$row = sql($sql, 'getrow', DB_FETCHMODE_ASSOC);
 
 			$type = $dget['type_file'];
@@ -558,7 +558,7 @@ class Mihuendpoint_Advanced
 
 		}
 		elseif ($dget['type_file'] == "file") {
-			$sql = "SELECT cfg_dir,directory,config_files FROM mihuendpoint_product_list,mihuendpoint_brand_list WHERE mihuendpoint_product_list.brand = mihuendpoint_brand_list.id AND mihuendpoint_product_list.id = '" . $dget['product_select'] . "'";
+			$sql = "SELECT cfg_dir,directory,config_files FROM endpointman_product_list,endpointman_brand_list WHERE endpointman_product_list.brand = endpointman_brand_list.id AND endpointman_product_list.id = '" . $dget['product_select'] . "'";
 			$row = sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
 
 			$config_files = explode(",", $row['config_files']);
@@ -602,7 +602,7 @@ class Mihuendpoint_Advanced
 			}
 			else {
 
-				$sql = "SELECT * FROM mihuendpoint_model_list WHERE id = '" . $dget['file_id'] . "'";
+				$sql = "SELECT * FROM endpointman_model_list WHERE id = '" . $dget['file_id'] . "'";
 				$data = sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
 
 				$sendidt = $data['id'];
@@ -663,13 +663,13 @@ class Mihuendpoint_Advanced
 			//DEBUGGGGGGGGGGGGG
 			return;
 			if ($dget['type_file'] == "sql") {
-				$sql = "SELECT cfg_dir,directory,config_files FROM mihuendpoint_product_list,mihuendpoint_brand_list WHERE mihuendpoint_product_list.brand = mihuendpoint_brand_list.id AND mihuendpoint_product_list.id = '" . $dget['product_select'] . "'";
+				$sql = "SELECT cfg_dir,directory,config_files FROM endpointman_product_list,endpointman_brand_list WHERE endpointman_product_list.brand = endpointman_brand_list.id AND endpointman_product_list.id = '" . $dget['product_select'] . "'";
 				$row = sql($sql, 'getrow', DB_FETCHMODE_ASSOC);
 				$this->submit_config($row['directory'], $row['cfg_dir'], $dget['original_name'], $dget['config_text']);
 				$retarr = array("status" => true, "message" => "Sent! Thanks :-)");
 			}
 			elseif ($dget['type_file'] == "file") {
-				$sql = "SELECT cfg_dir,directory,config_files FROM mihuendpoint_product_list,mihuendpoint_brand_list WHERE mihuendpoint_product_list.brand = mihuendpoint_brand_list.id AND mihuendpoint_product_list.id = '" . $dget['product_select'] . "'";
+				$sql = "SELECT cfg_dir,directory,config_files FROM endpointman_product_list,endpointman_brand_list WHERE endpointman_product_list.brand = endpointman_brand_list.id AND endpointman_product_list.id = '" . $dget['product_select'] . "'";
 				$row = sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
 				$error = $this->submit_config($row['directory'], $row['cfg_dir'], $dget['original_name'], $dget['config_text']);
 				$retarr = array("status" => true, "message" => "Sent! Thanks :-)");
@@ -709,7 +709,7 @@ class Mihuendpoint_Advanced
 		if ($dget['type_file'] == "file") {
 			if ($dget['command'] == "poce_save_file")
 			{
-				$sql = "SELECT cfg_dir,directory,config_files FROM mihuendpoint_product_list,mihuendpoint_brand_list WHERE mihuendpoint_product_list.brand = mihuendpoint_brand_list.id AND mihuendpoint_product_list.id = '" . $dget['product_select'] . "'";
+				$sql = "SELECT cfg_dir,directory,config_files FROM endpointman_product_list,endpointman_brand_list WHERE endpointman_product_list.brand = endpointman_brand_list.id AND endpointman_product_list.id = '" . $dget['product_select'] . "'";
 				$row = sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
 				$config_files = explode(",", $row['config_files']);
 
@@ -738,7 +738,7 @@ class Mihuendpoint_Advanced
 			elseif ($dget['command'] == "poce_save_as_file")
 			{
 				$db = $this->db;
-				$sql = 'INSERT INTO mihuendpoint_custom_configs (name, original_name, product_id, data) VALUES (?,?,?,?)';
+				$sql = 'INSERT INTO endpointman_custom_configs (name, original_name, product_id, data) VALUES (?,?,?,?)';
 				$q = $db->prepare($sql);
 				$ob = $q->execute(array(addslashes($dget['save_as_name']), addslashes($dget['original_name']), $dget['product_select'], addslashes($dget['config_text'])));
 				$newidinsert = $db->lastInsertId();
@@ -756,14 +756,14 @@ class Mihuendpoint_Advanced
 		{
 			if ($dget['command'] == "poce_save_file")
 			{
-				$sql = "UPDATE mihuendpoint_custom_configs SET data = '" . addslashes($dget['config_text']) . "' WHERE id = " . $dget['sendid'];
+				$sql = "UPDATE endpointman_custom_configs SET data = '" . addslashes($dget['config_text']) . "' WHERE id = " . $dget['sendid'];
 				sql($sql);
 				$retarr = array("status" => true, "message" => "Saved to Database!");
 			}
 			elseif ($dget['command'] == "poce_save_as_file")
 			{
 				$db = $this->db;
-				$sql = 'INSERT INTO mihuendpoint_custom_configs (name, original_name, product_id, data) VALUES (?,?,?,?)';
+				$sql = 'INSERT INTO endpointman_custom_configs (name, original_name, product_id, data) VALUES (?,?,?,?)';
 				$q = $db->prepare($sql);
 				$ob = $q->execute(array(addslashes($dget['save_as_name']), addslashes($dget['original_name']), $dget['product_select'], addslashes($dget['config_text'])));
 				$newidinsert = $db->lastInsertId();
@@ -782,9 +782,9 @@ class Mihuendpoint_Advanced
 			/*
 			
 			$db = $this->db;
-			$sql = 'INSERT INTO mihuendpoint_custom_configs (name, original_name, product_id, data) VALUES (?,?,?,?)';
+			$sql = 'INSERT INTO endpointman_custom_configs (name, original_name, product_id, data) VALUES (?,?,?,?)';
 			$q = $db->prepare($sql);
-@ -790,7 +790,7 @@ class Mihuendpoint_Advanced
+@ -790,7 +790,7 @@ class Endpointman_Advanced
 			$retarr['type_file'] = "sql";
 			$retarr['location'] = "SQL: ". $dget['save_as_name'];
 			$retarr['sendidt'] = $newidinsert;
@@ -816,7 +816,7 @@ class Mihuendpoint_Advanced
 		$dget['sql_select'] = $_REQUEST['sql_select'];
 
 		if ($dget['type_file'] == "sql") {
-			$sql = "DELETE FROM mihuendpoint_custom_configs WHERE id =" . $dget['sql_select'];
+			$sql = "DELETE FROM endpointman_custom_configs WHERE id =" . $dget['sql_select'];
 			sql($sql);
 			unset ($sql);
 			$retarr = array("status" => true, "message" => "File delete ok!");
@@ -1009,7 +1009,7 @@ class Mihuendpoint_Advanced
 								rename($this->PHONE_MODULES_PATH."temp/endpoint/base.php", $this->PHONE_MODULES_PATH."endpoint/base.php");
 
 								outn(_("Updating Last Modified... "));
-								$sql = "UPDATE mihuendpoint_global_vars SET value = '".$endpoint_last_mod."' WHERE var_name = 'endpoint_vers'";
+								$sql = "UPDATE endpointman_global_vars SET value = '".$endpoint_last_mod."' WHERE var_name = 'endpoint_vers'";
 								sql($sql);
 								out(_("Done!"));
 							}
@@ -1071,7 +1071,7 @@ class Mihuendpoint_Advanced
 		else {
 			$dget['package'] = $_REQUEST['package'];
 
-			$sql = 'SELECT `name`, `directory` FROM `mihuendpoint_brand_list` WHERE `id` = '.$dget['package'].'';
+			$sql = 'SELECT `name`, `directory` FROM `endpointman_brand_list` WHERE `id` = '.$dget['package'].'';
 			$row = sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
 
 			if ($row == "") {
@@ -1105,7 +1105,7 @@ class Mihuendpoint_Advanced
 		header("Content-type: text/csv");
 		header('Content-Disposition: attachment; filename="'.$sFileName.'"');
 		$outstream = fopen("php://output",'w');
-		$sql = 'SELECT mihuendpoint_mac_list.mac, mihuendpoint_brand_list.name, mihuendpoint_model_list.model, mihuendpoint_line_list.ext,mihuendpoint_line_list.line FROM mihuendpoint_mac_list, mihuendpoint_model_list, mihuendpoint_brand_list, mihuendpoint_line_list WHERE mihuendpoint_line_list.mac_id = mihuendpoint_mac_list.id AND mihuendpoint_model_list.id = mihuendpoint_mac_list.model AND mihuendpoint_model_list.brand = mihuendpoint_brand_list.id';
+		$sql = 'SELECT endpointman_mac_list.mac, endpointman_brand_list.name, endpointman_model_list.model, endpointman_line_list.ext,endpointman_line_list.line FROM endpointman_mac_list, endpointman_model_list, endpointman_brand_list, endpointman_line_list WHERE endpointman_line_list.mac_id = endpointman_mac_list.id AND endpointman_model_list.id = endpointman_mac_list.model AND endpointman_model_list.brand = endpointman_brand_list.id';
 		$result = sql($sql,'getAll',DB_FETCHMODE_ASSOC);
 		foreach($result as $row) {
 			fputcsv($outstream, $row);
@@ -1150,7 +1150,7 @@ class Mihuendpoint_Advanced
 							while (($device = fgetcsv($handle, filesize($uploadfile))) !== FALSE) {
 								if ($device[0] != "") {
 									if ($mac = $this->mac_check_clean($device[0])) {
-										$sql = "SELECT id FROM mihuendpoint_brand_list WHERE name LIKE '%" . $device[1] . "%' LIMIT 1";
+										$sql = "SELECT id FROM endpointman_brand_list WHERE name LIKE '%" . $device[1] . "%' LIMIT 1";
 										//$res = sql($sql);
 										$res = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
 
@@ -1158,7 +1158,7 @@ class Mihuendpoint_Advanced
 											$brand_id = sql($sql, 'getOne');
 										//	$brand_id = $brand_id[0];
 
-											$sql_model = "SELECT id FROM mihuendpoint_model_list WHERE brand = " . $brand_id . " AND model LIKE '%" . $device[2] . "%' LIMIT 1";
+											$sql_model = "SELECT id FROM endpointman_model_list WHERE brand = " . $brand_id . " AND model LIKE '%" . $device[2] . "%' LIMIT 1";
 											$sql_ext = "SELECT extension, name FROM users WHERE extension LIKE '%" . $device[3] . "%' LIMIT 1";
 
 											$line_id = isset($device[4]) ? $device[4] : 1;
@@ -1174,7 +1174,7 @@ class Mihuendpoint_Advanced
 													$description = $ext['name'];
 													$ext = $ext['extension'];
 //TODO: PENDIENTE ASIGNAR OBJ
-FreePBX::Mihuendpoint()->add_device($mac, $model_id, $ext, 0, $line_id, $description);
+FreePBX::Endpointman()->add_device($mac, $model_id, $ext, 0, $line_id, $description);
 
 													//out(_("Done!"));
 												} else {
@@ -1220,7 +1220,7 @@ FreePBX::Mihuendpoint()->add_device($mac, $model_id, $ext, 0, $line_id, $descrip
 		{
 			$dget['id'] = $_REQUEST['id_del'];
 
-			$sql = "DELETE FROM mihuendpoint_oui_list WHERE id = " . $dget['id'];
+			$sql = "DELETE FROM endpointman_oui_list WHERE id = " . $dget['id'];
 			sql($sql);
 
 			$retarr = array("status" => true, "message" => "OK", "id" => $dget['id']);
@@ -1242,7 +1242,7 @@ FreePBX::Mihuendpoint()->add_device($mac, $model_id, $ext, 0, $line_id, $descrip
 			$dget['oui'] = $_REQUEST['number_new_oui'];
 			$dget['brand'] = $_REQUEST['brand_new_oui'];
 
-			$sql = "INSERT INTO  mihuendpoint_oui_list (oui, brand, custom) VALUES ('" . $dget['oui'] . "',  '" . $dget['brand'] . "',  '1')";
+			$sql = "INSERT INTO  endpointman_oui_list (oui, brand, custom) VALUES ('" . $dget['oui'] . "',  '" . $dget['brand'] . "',  '1')";
 			sql($sql);
 
 			$retarr = array("status" => true, "message" => "OK", "oui" => $dget['oui'], "brand" => $dget['brand']);

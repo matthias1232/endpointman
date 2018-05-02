@@ -62,7 +62,7 @@ switch ($sub_type) {
                     $endpoint->error['page:devices_manager'] = _("No Device Selected to Edit!")."!";
                 } else {
                     $template_editor = TRUE;
-                    $sql = "UPDATE  mihuendpoint_mac_list SET  model =  '".$_REQUEST['model_list']."' WHERE  id =".$_REQUEST['edit_id'];
+                    $sql = "UPDATE  endpointman_mac_list SET  model =  '".$_REQUEST['model_list']."' WHERE  id =".$_REQUEST['edit_id'];
                     $endpoint->eda->sql($sql);
                     if ($_REQUEST['template_list'] == 0) {
                         $endpoint->edit_template_display($_REQUEST['edit_id'],1);
@@ -73,7 +73,7 @@ switch ($sub_type) {
                 break;
             case "button_save":
 
-                $sql = 'SELECT * FROM mihuendpoint_line_list WHERE mac_id = '. $_REQUEST['edit_id'];
+                $sql = 'SELECT * FROM endpointman_line_list WHERE mac_id = '. $_REQUEST['edit_id'];
 
                 $lines_list = $endpoint->eda->sql($sql,'getAll',DB_FETCHMODE_ASSOC);
 
@@ -81,11 +81,11 @@ switch ($sub_type) {
                     $sql = "SELECT description FROM devices WHERE id = ".$_REQUEST['ext_list_'.$row['luid']];
                     $name = $endpoint->eda->sql($sql,'getOne');
 
-                    $sql = "UPDATE mihuendpoint_line_list SET line = '".$_REQUEST['line_list_'.$row['luid']]."', ext = '".$_REQUEST['ext_list_'.$row['luid']]."', description = '".$endpoint->eda->escapeSimple($name)."' WHERE luid =  ". $row['luid'];
+                    $sql = "UPDATE endpointman_line_list SET ipei = '".$_REQUEST['ipei_'.$row['luid']]."', line = '".$_REQUEST['line_list_'.$row['luid']]."', ext = '".$_REQUEST['ext_list_'.$row['luid']]."', description = '".$endpoint->eda->escapeSimple($name)."' WHERE luid =  ". $row['luid'];
                     $endpoint->eda->sql($sql);
                 }
 
-                $sql = "UPDATE mihuendpoint_mac_list SET template_id = '".$_REQUEST['template_list']."', model = '".$_REQUEST['model_list']."' WHERE id =  ". $_REQUEST['edit_id'];
+                $sql = "UPDATE endpointman_mac_list SET template_id = '".$_REQUEST['template_list']."', model = '".$_REQUEST['model_list']."' WHERE id =  ". $_REQUEST['edit_id'];
                 $endpoint->eda->sql($sql);
 
 
@@ -96,7 +96,7 @@ switch ($sub_type) {
                 $mode = NULL;
                 break;
             case "delete":
-                $sql = 'SELECT mac_id FROM mihuendpoint_line_list WHERE luid = '.$_REQUEST['edit_id'] ;
+                $sql = 'SELECT mac_id FROM endpointman_line_list WHERE luid = '.$_REQUEST['edit_id'] ;
                 $mac_id = $endpoint->eda->sql($sql,'getOne');
                 $row = $endpoint->get_phone_info($mac_id);
 
@@ -119,7 +119,7 @@ switch ($sub_type) {
             $endpoint->error['page:devices_manager'] = _("No Device Selected to Edit!")."!";
         } else {
             $template_editor = TRUE;
-            $sql = "UPDATE  mihuendpoint_mac_list SET  model =  '".$_REQUEST['model_list']."' WHERE  id =".$_REQUEST['edit_id'];
+            $sql = "UPDATE  endpointman_mac_list SET  model =  '".$_REQUEST['model_list']."' WHERE  id =".$_REQUEST['edit_id'];
             $endpoint->eda->sql($sql);
             if ($_REQUEST['template_list'] == 0) {
                 $endpoint->edit_template_display($_REQUEST['edit_id'],1);
@@ -161,12 +161,12 @@ switch ($sub_type) {
         }
         break;
     case "rebuild_configs_for_all_phones" :
-        $sql = "SELECT mihuendpoint_mac_list.id FROM mihuendpoint_mac_list, mihuendpoint_brand_list, mihuendpoint_product_list, mihuendpoint_model_list WHERE mihuendpoint_brand_list.id = mihuendpoint_product_list.brand AND mihuendpoint_product_list.id = mihuendpoint_model_list.product_id AND mihuendpoint_mac_list.model = mihuendpoint_model_list.id ORDER BY mihuendpoint_product_list.cfg_dir ASC";
+        $sql = "SELECT endpointman_mac_list.id FROM endpointman_mac_list, endpointman_brand_list, endpointman_product_list, endpointman_model_list WHERE endpointman_brand_list.id = endpointman_product_list.brand AND endpointman_product_list.id = endpointman_model_list.product_id AND endpointman_mac_list.model = endpointman_model_list.id ORDER BY endpointman_product_list.cfg_dir ASC";
         $mac_list = $endpoint->eda->sql($sql,'getAll',DB_FETCHMODE_ASSOC);
         foreach($mac_list as $data) {
             $phone_info = $endpoint->get_phone_info($data['id']);
             foreach($phone_info['line'] as $line) {
-                $sql = "UPDATE mihuendpoint_line_list SET description = '".$endpoint->eda->escapeSimple($line['description'])."' WHERE luid = ".$line['luid'];
+                $sql = "UPDATE endpointman_line_list SET description = '".$endpoint->eda->escapeSimple($line['description'])."' WHERE luid = ".$line['luid'];
                 $endpoint->eda->sql($sql);
             }
             if(isset($_REQUEST['reboot'])) {
@@ -181,7 +181,7 @@ switch ($sub_type) {
         break;
     case "reboot_brand" :
         if($_REQUEST['rb_brand'] != "") {
-            $sql = 'SELECT mihuendpoint_mac_list.id FROM mihuendpoint_mac_list , mihuendpoint_model_list , mihuendpoint_brand_list , mihuendpoint_product_list WHERE mihuendpoint_brand_list.id = mihuendpoint_model_list.brand AND mihuendpoint_model_list.id = mihuendpoint_mac_list.model AND mihuendpoint_model_list.product_id = mihuendpoint_product_list.id AND mihuendpoint_brand_list.id = '.$_REQUEST['rb_brand'].' ORDER BY mihuendpoint_product_list.cfg_dir ASC';
+            $sql = 'SELECT endpointman_mac_list.id FROM endpointman_mac_list , endpointman_model_list , endpointman_brand_list , endpointman_product_list WHERE endpointman_brand_list.id = endpointman_model_list.brand AND endpointman_model_list.id = endpointman_mac_list.model AND endpointman_model_list.product_id = endpointman_product_list.id AND endpointman_brand_list.id = '.$_REQUEST['rb_brand'].' ORDER BY endpointman_product_list.cfg_dir ASC';
             $data = $endpoint->eda->sql($sql,'getAll',DB_FETCHMODE_ASSOC);
             if(!empty($data)) {
                 foreach($data as $row) {
@@ -232,7 +232,7 @@ switch ($sub_type) {
         }
         break;
     case "go" :
-        $sql = "UPDATE mihuendpoint_global_vars SET value = '".$_REQUEST['netmask']."' WHERE var_name = 'nmap_search'";
+        $sql = "UPDATE endpointman_global_vars SET value = '".$_REQUEST['netmask']."' WHERE var_name = 'nmap_search'";
         $endpoint->eda->sql($sql);
         $endpoint->global_cfg['nmap_search'] = $_REQUEST['netmask'];
         if ((isset($_REQUEST['nmap'])) AND ($_REQUEST['nmap'] == 1)) {
@@ -245,7 +245,7 @@ switch ($sub_type) {
             if ((!$data['endpoint_managed']) AND ($data['brand'])) {
                 $final[$key] = $data;
                 $final[$key]['id'] = $key;
-                $sqln = "SELECT * FROM mihuendpoint_model_list WHERE enabled = 1 AND brand =".$data['brand_id'];
+                $sqln = "SELECT * FROM endpointman_model_list WHERE enabled = 1 AND brand =".$data['brand_id'];
                 $model_list = $endpoint->eda->sql($sqln,'getAll',DB_FETCHMODE_ASSOC);
                 $j = 0;
                 foreach($model_list as $row) {
@@ -280,7 +280,7 @@ switch ($sub_type) {
         if(isset($_REQUEST['selected'])) {
             if(($_REQUEST['brand_list_selected'] > 0) AND ($_REQUEST['model_list_selected'] > 0)) {
                 foreach($_REQUEST['selected'] as $key => $data) {
-                    $sql = "UPDATE mihuendpoint_mac_list SET global_custom_cfg_data = '', template_id = 0, global_user_cfg_data = '', config_files_override = '', model = '".$_REQUEST['model_list_selected']."' WHERE id =  ". $_REQUEST['selected'][$key];
+                    $sql = "UPDATE endpointman_mac_list SET global_custom_cfg_data = '', template_id = 0, global_user_cfg_data = '', config_files_override = '', model = '".$_REQUEST['model_list_selected']."' WHERE id =  ". $_REQUEST['selected'][$key];
                     $endpoint->eda->sql($sql);
 
                     $phone_info = $endpoint->get_phone_info($_REQUEST['selected'][$key]);
@@ -307,10 +307,10 @@ switch ($sub_type) {
         } elseif($_REQUEST['template_selector'] == "") {
             $message = _("Please select a template");
         } else {
-            $sql = "SELECT mihuendpoint_mac_list.id FROM mihuendpoint_mac_list, mihuendpoint_brand_list, mihuendpoint_product_list, mihuendpoint_model_list WHERE mihuendpoint_brand_list.id = mihuendpoint_product_list.brand AND mihuendpoint_product_list.id = mihuendpoint_model_list.product_id AND mihuendpoint_mac_list.model = mihuendpoint_model_list.id AND mihuendpoint_product_list.id = '".$_REQUEST['product_select']."'";
+            $sql = "SELECT endpointman_mac_list.id FROM endpointman_mac_list, endpointman_brand_list, endpointman_product_list, endpointman_model_list WHERE endpointman_brand_list.id = endpointman_product_list.brand AND endpointman_product_list.id = endpointman_model_list.product_id AND endpointman_mac_list.model = endpointman_model_list.id AND endpointman_product_list.id = '".$_REQUEST['product_select']."'";
             $data = $endpoint->eda->sql($sql,'getAll',DB_FETCHMODE_ASSOC);
             foreach($data as $row) {
-                $sql = "UPDATE mihuendpoint_mac_list SET template_id = '".$_REQUEST['template_selector']."' WHERE id =  ". $row['id'];
+                $sql = "UPDATE endpointman_mac_list SET template_id = '".$_REQUEST['template_selector']."' WHERE id =  ". $row['id'];
                 $endpoint->eda->sql($sql);
                 $phone_info = $endpoint->get_phone_info($row['id']);
                 if(isset($_REQUEST['reboot'])) {
@@ -321,7 +321,7 @@ switch ($sub_type) {
                     $rebooted_msg = "";
                 }
                 foreach($phone_info['line'] as $line) {
-                    $sql = "UPDATE mihuendpoint_line_list SET description = '".$endpoint->eda->escapeSimple($line['description'])."' WHERE luid = ".$line['luid'];
+                    $sql = "UPDATE endpointman_line_list SET description = '".$endpoint->eda->escapeSimple($line['description'])."' WHERE luid = ".$line['luid'];
                     $endpoint->eda->sql($sql);
                 }
             }
@@ -334,10 +334,10 @@ switch ($sub_type) {
         } elseif($_REQUEST['model_template_selector'] == "") {
             $message = _("Please select a template");
         } else {
-            $sql = "SELECT mihuendpoint_mac_list.id FROM mihuendpoint_mac_list, mihuendpoint_brand_list, mihuendpoint_product_list, mihuendpoint_model_list WHERE mihuendpoint_brand_list.id = mihuendpoint_product_list.brand AND mihuendpoint_product_list.id = mihuendpoint_model_list.product_id AND mihuendpoint_mac_list.model = mihuendpoint_model_list.id AND mihuendpoint_model_list.id = '".$_REQUEST['model_select']."'";
+            $sql = "SELECT endpointman_mac_list.id FROM endpointman_mac_list, endpointman_brand_list, endpointman_product_list, endpointman_model_list WHERE endpointman_brand_list.id = endpointman_product_list.brand AND endpointman_product_list.id = endpointman_model_list.product_id AND endpointman_mac_list.model = endpointman_model_list.id AND endpointman_model_list.id = '".$_REQUEST['model_select']."'";
             $data = $endpoint->eda->sql($sql,'getAll',DB_FETCHMODE_ASSOC);
             foreach($data as $row) {
-                $sql = "UPDATE mihuendpoint_mac_list SET template_id = '".$_REQUEST['model_template_selector']."' WHERE id =  ". $row['id'];
+                $sql = "UPDATE endpointman_mac_list SET template_id = '".$_REQUEST['model_template_selector']."' WHERE id =  ". $row['id'];
                 $endpoint->eda->sql($sql);
                 $phone_info = $endpoint->get_phone_info($row['id']);
                 if(isset($_REQUEST['reboot'])) {
@@ -348,7 +348,7 @@ switch ($sub_type) {
                     $rebooted_msg = "";
                 }
                 foreach($phone_info['line'] as $line) {
-                    $sql = "UPDATE mihuendpoint_line_list SET description = '".$endpoint->eda->escapeSimple($line['description'])."' WHERE luid = ".$line['luid'];
+                    $sql = "UPDATE endpointman_line_list SET description = '".$endpoint->eda->escapeSimple($line['description'])."' WHERE luid = ".$line['luid'];
                     $endpoint->eda->sql($sql);
                 }
             }
@@ -405,7 +405,7 @@ foreach($devices_list as $devices_row) {
     } elseif((!isset($devices_row['custom_cfg_data'])) && ($devices_row['template_id'] == 0)) {
         $list[$i]['template_name'] = "N/A";
     } else {
-        $sql = "SELECT name FROM mihuendpoint_template_list WHERE id =".$devices_row['template_id'];
+        $sql = "SELECT name FROM endpointman_template_list WHERE id =".$devices_row['template_id'];
         $template_name = $endpoint->eda->sql($sql,'getOne');
         $list[$i]['template_name'] = $template_name;
     }
@@ -418,6 +418,7 @@ foreach($devices_list as $devices_row) {
         $list[$i]['line'][$z]['line'] = $line_row['line'];
         $list[$i]['line'][$z]['description'] = $line_row['description'];
         $list[$i]['line'][$z]['luid'] = $line_row['luid'];
+		$list[$i]['line'][$z]['ipei'] = $line_row['ipei'];
         $list[$i]['line'][$z]['master_id'] = $i;
         $z++;
     }
@@ -446,7 +447,7 @@ $amp_send['AMPDBUSER'] = $amp_conf['AMPDBUSER'];
 $amp_send['AMPDBPASS'] = $amp_conf['AMPDBPASS'];
 $amp_send['AMPDBNAME'] = $amp_conf['AMPDBNAME'];
 
-$sql = "SELECT DISTINCT mihuendpoint_product_list.* FROM mihuendpoint_product_list, mihuendpoint_model_list WHERE mihuendpoint_product_list.id = mihuendpoint_model_list.product_id AND mihuendpoint_model_list.hidden = 0 AND mihuendpoint_model_list.enabled = 1 AND mihuendpoint_product_list.hidden != 1 AND mihuendpoint_product_list.cfg_dir !=  ''";
+$sql = "SELECT DISTINCT endpointman_product_list.* FROM endpointman_product_list, endpointman_model_list WHERE endpointman_product_list.id = endpointman_model_list.product_id AND endpointman_model_list.hidden = 0 AND endpointman_model_list.enabled = 1 AND endpointman_product_list.hidden != 1 AND endpointman_product_list.cfg_dir !=  ''";
 
 $template_list = $endpoint->eda->sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
 $i = 1;
@@ -459,7 +460,7 @@ foreach($template_list as $row) {
         $i++;
 }
 
-$sql = "SELECT DISTINCT mihuendpoint_model_list.* FROM mihuendpoint_product_list, mihuendpoint_model_list WHERE mihuendpoint_product_list.id = mihuendpoint_model_list.product_id AND mihuendpoint_model_list.hidden = 0 AND mihuendpoint_model_list.enabled = 1 AND mihuendpoint_product_list.hidden != 1 AND mihuendpoint_product_list.cfg_dir !=  ''";
+$sql = "SELECT DISTINCT endpointman_model_list.* FROM endpointman_product_list, endpointman_model_list WHERE endpointman_product_list.id = endpointman_model_list.product_id AND endpointman_model_list.hidden = 0 AND endpointman_model_list.enabled = 1 AND endpointman_product_list.hidden != 1 AND endpointman_product_list.cfg_dir !=  ''";
 $template_list = $endpoint->eda->sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
 $i = 1;
 $model_list = array();
@@ -496,8 +497,19 @@ if (isset($template_editor)) {
     $endpoint->tpl->assign("no_add", $no_add);
     $endpoint->tpl->assign("mode", $mode);
 
+	
     $edit_row['id'] = isset($edit_row['id']) ? $edit_row['id'] : '0';
     $endpoint->tpl->assign("edit_id", $edit_row['id']);
+	$endpoint->tpl->assign("template_id", $edit_row['template_id']);
+	
+	if ($edit_row['template_id'] == "0"){
+	$endpoint->tpl->assign("custom", 1);
+	
+	$endpoint->tpl->assign("template_id", $edit_row['id']);
+	}
+	else{
+	$endpoint->tpl->assign("custom", 0);
+	}
 
     if(isset($final)) {
         $_SESSION['dev_cache'] = base64_encode(serialize($final));

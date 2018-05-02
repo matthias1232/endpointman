@@ -48,7 +48,7 @@
 							<label class="control-label" for="bt_import_csv"><?php echo _("Import CSV file of devices")?></label>
 							<i class="fa fa-question-circle fpbx-help-icon" data-for="bt_import_csv"></i>
 							<!-- 
-							data-url="ajax.php?module=mihuendpoint&amp;module_sec=epm_advanced&amp;module_tab=iedl&amp;command=upload&amp;MAX_FILE_SIZE=30000"
+							data-url="ajax.php?module=endpointman&amp;module_sec=epm_advanced&amp;module_tab=iedl&amp;command=upload&amp;MAX_FILE_SIZE=30000"
 							<button type="submit" class='btn btn-default' id='button_import' name='button_import'><i class='fa fa-upload'></i><?php echo _("Import")?></button>
 							 -->
 						</div>

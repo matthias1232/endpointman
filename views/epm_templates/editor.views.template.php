@@ -93,7 +93,7 @@
 								//}
                                 
 								
-								$list_all_files = FreePBX::Mihuendpoint()->epm_templates->edit_template_display_files_list($_REQUEST['idsel'],$_REQUEST['custom']);
+								$list_all_files = FreePBX::Endpointman()->epm_templates->edit_template_display_files_list($_REQUEST['idsel'],$_REQUEST['custom']);
                                 foreach($list_all_files as $row): 
 								//config.php?display=epm_templates&subpage=&custom=0&idsel=41
 								$row['idrefbox'] = $row['id']."_".$row['id_d']."_".$row['id_p'];
@@ -102,15 +102,15 @@
                                 	<div class="input-group input-group-br files_edit_configs" name="boxselect_<?php echo $row['idrefbox']; ?>" id="boxselect_<?php echo $row['idrefbox']; ?>">
                                         <select 
                                         	class="form-control selectpicker show-tick" 
-                                            data-url="ajax.php?module=mihuendpoint&amp;module_sec=epm_templates&amp;module_tab=editor&amp;command=list_files_edit&amp;idsel=<?php echo $_REQUEST['idsel']; ?>&amp;custom=<?php echo $_REQUEST['custom']; ?>&amp;namefile=<?php echo $row['name']; ?>"
+                                            data-url="ajax.php?module=endpointman&amp;module_sec=epm_templates&amp;module_tab=editor&amp;command=list_files_edit&amp;idsel=<?php echo $_REQUEST['idsel']; ?>&amp;custom=<?php echo $_REQUEST['custom']; ?>&amp;namefile=<?php echo $row['name']; ?>"
 											data-cache="false"
                                             data-id = "id"
 											data-label = "name"
                                             data-style = ""
 											data-live-search-placeholder = "Search..."
 											data-live-search = "true"
-                                            name="sl_boxselect_<?php echo $row['idrefbox']; ?>" 
-                                            id="sl_boxselect_<?php echo $row['idrefbox']; ?>">
+                                            name="config_files[<?php echo $row['id']; ?>]" 
+                                            id="config_files[<?php echo $row['id']; ?>]">
                                         </select>
                                         <span class="input-group-btn">
                                             <button class="btn btn-default" type="button" name="bt_boxselect_<?php echo $row['idrefbox']; ?>" id="bt_boxselect_<?php echo $row['idrefbox']; ?>"><i class='fa fa-files-o'>&nbsp;</i></button>
@@ -140,7 +140,7 @@
 	{if condition="$alt != 0"}
         {loop name="alt_configs"}
             <p><strong><?php echo _('Edit File Configurations for:')?></strong>
-            <a href="#" onclick="return popitup('config.php?type=tool&display=epm_config&amp;quietmode=1&amp;handler=file&amp;file=popup.html.php&amp;module=mihuendpoint&amp;pop_type=alt_cfg_edit', '{$value.name}')">
+            <a href="#" onclick="return popitup('config.php?type=tool&display=epm_config&amp;quietmode=1&amp;handler=file&amp;file=popup.html.php&amp;module=endpointman&amp;pop_type=alt_cfg_edit', '{$value.name}')">
             <code>{$value.name}</code> <i class='icon-pencil blue' ALT='<?php echo _('Edit')?> {$value.name}'></i></a>
             <br>
 			
@@ -159,7 +159,7 @@
     
     {loop name="only_configs"}
         <strong><?php echo _('Edit File Configurations for:')?></strong>&nbsp;
-        <a href="#" onclick="return popitup2('config.php?type=tool&display=epm_config&amp;quietmode=1&amp;handler=file&amp;file=popup.html.php&amp;module=mihuendpoint&amp;pop_type=alt_cfg_edit', '{$value.name}')"><code>{$value.name}</code>&nbsp;<i class='icon-pencil blue' ALT='<?php echo _('Edit')?>'></i></a>
+        <a href="#" onclick="return popitup2('config.php?type=tool&display=epm_config&amp;quietmode=1&amp;handler=file&amp;file=popup.html.php&amp;module=endpointman&amp;pop_type=alt_cfg_edit', '{$value.name}')"><code>{$value.name}</code>&nbsp;<i class='icon-pencil blue' ALT='<?php echo _('Edit')?>'></i></a>
         <br/>
     {/loop}
 	*/ ?>
@@ -628,7 +628,7 @@ return;
 /*
 
 if($default_display) {
-	$sql = 'SELECT mihuendpoint_template_list.*, mihuendpoint_product_list.short_name as model_class, mihuendpoint_model_list.model as model_clone, mihuendpoint_model_list.enabled FROM mihuendpoint_template_list, mihuendpoint_model_list, mihuendpoint_product_list WHERE mihuendpoint_model_list.hidden = 0 AND mihuendpoint_template_list.model_id = mihuendpoint_model_list.id AND mihuendpoint_template_list.product_id = mihuendpoint_product_list.id';
+	$sql = 'SELECT endpointman_template_list.*, endpointman_product_list.short_name as model_class, endpointman_model_list.model as model_clone, endpointman_model_list.enabled FROM endpointman_template_list, endpointman_model_list, endpointman_product_list WHERE endpointman_model_list.hidden = 0 AND endpointman_template_list.model_id = endpointman_model_list.id AND endpointman_template_list.product_id = endpointman_product_list.id';
  	$template_list =& $endpoint->eda->sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
  	$i = 0;
  	$row_out = array();
@@ -640,10 +640,10 @@ if($default_display) {
  		}
  		$i++;
 	}
-	$sql = 'SELECT mihuendpoint_mac_list.mac, mihuendpoint_mac_list.id, mihuendpoint_mac_list.model, mihuendpoint_model_list.model as model_clone, mihuendpoint_product_list.short_name as model_class FROM mihuendpoint_mac_list, mihuendpoint_model_list, mihuendpoint_product_list WHERE  mihuendpoint_product_list.id = mihuendpoint_model_list.product_id AND mihuendpoint_mac_list.global_custom_cfg_data IS NOT NULL AND mihuendpoint_model_list.id = mihuendpoint_mac_list.model AND mihuendpoint_mac_list.template_id = 0';
+	$sql = 'SELECT endpointman_mac_list.mac, endpointman_mac_list.id, endpointman_mac_list.model, endpointman_model_list.model as model_clone, endpointman_product_list.short_name as model_class FROM endpointman_mac_list, endpointman_model_list, endpointman_product_list WHERE  endpointman_product_list.id = endpointman_model_list.product_id AND endpointman_mac_list.global_custom_cfg_data IS NOT NULL AND endpointman_model_list.id = endpointman_mac_list.model AND endpointman_mac_list.template_id = 0';
 	$template_list =& $db->getAll($sql, array(), DB_FETCHMODE_ASSOC);
 	foreach($template_list as $row) {
-		$sql = 'SELECT  description , line FROM  mihuendpoint_line_list WHERE  mac_id ='. $row['id'].' ORDER BY line ASC';
+		$sql = 'SELECT  description , line FROM  endpointman_line_list WHERE  mac_id ='. $row['id'].' ORDER BY line ASC';
 		$line_list =& $db->getAll($sql, array(), DB_FETCHMODE_ASSOC);
 		$description = "";
 		$c = 0;
@@ -660,7 +660,7 @@ if($default_display) {
 		$i++;
 	}
 	
- 	$sql = "SELECT DISTINCT mihuendpoint_product_list.* FROM mihuendpoint_product_list, mihuendpoint_model_list WHERE mihuendpoint_product_list.id = mihuendpoint_model_list.product_id AND mihuendpoint_model_list.hidden = 0 AND mihuendpoint_model_list.enabled = 1 AND mihuendpoint_product_list.hidden != 1 AND mihuendpoint_product_list.cfg_dir !=  ''";
+ 	$sql = "SELECT DISTINCT endpointman_product_list.* FROM endpointman_product_list, endpointman_model_list WHERE endpointman_product_list.id = endpointman_model_list.product_id AND endpointman_model_list.hidden = 0 AND endpointman_model_list.enabled = 1 AND endpointman_product_list.hidden != 1 AND endpointman_product_list.cfg_dir !=  ''";
  	$template_list =& $db->getAll($sql, array(), DB_FETCHMODE_ASSOC);
  	$i = 1;
  	$class_row[0]['value'] = 0;

@@ -1,4 +1,4 @@
-<html>
+<?php if(!defined('IN_RAINTPL')){exit('Hacker attempt');}?><html>
     <head>
         <title>PBX Endpoint Configuration Manager</title>
         <script type="text/javascript" src="assets/js/jquery-1.7.1.min.js" language="javascript"></script>
@@ -18,14 +18,22 @@
         </div>
         <h1><face="Arial"><center><?php echo _('End Point Configuration Manager')?></center></h1>
         <hr>
-{if condition="isset($show_error_box)"}
-    {include="message_box"}
-{/if}
+<?php
+	if( isset($var["show_error_box"]) ){
+?>
+    <?php
+		$tpl = new RainTPL( RainTPL::$tpl_dir . dirname("message_box"));
+		$tpl->assign( $var );
+				$tpl->draw(basename("message_box"));
+?>
+<?php
+	}
+?>
 <form action='' method='POST'>
 <table width='90%' align='center'>
 <tr>
 <td width='50%' align='right'><?php echo _("IP address of phone server")?>:</td>
-<td width='50%' align='left'><input type='text' id='srvip' name='srvip' value='{$srvip}'><a href='#' onclick="document.getElementById('srvip').value = '{$ip}'; "><?php echo _("Determine for me")?></a></td>
+<td width='50%' align='left'><input type='text' id='srvip' name='srvip' value='<?php echo $var["srvip"];?>'><a href='#' onclick="document.getElementById('srvip').value = '<?php echo $var["ip"];?>'; "><?php echo _("Determine for me")?></a></td>
 </tr>
 <tr>
   <td align='right'><?php echo _("Configuration Type")?></td>
@@ -39,7 +47,7 @@
 <tr>
   <td align='right'><?php echo _("Global Final Config & Firmware Directory")?></td>
   <td align='left'><label>
-    <input type="text" name="config_loc" value="{$config_location}">
+    <input type="text" name="config_loc" value="<?php echo $var["config_location"];?>">
   </label></td>
 </tr>
 <tr>
@@ -49,16 +57,28 @@
 <tr>
 <td width='50%' align='right'><?php echo _("Time Zone")?> (<?php echo _('like')?> USA-5)</td>
 <td width='50%' align='left'><select name="tz" id="tz">
-	{loop name="list_tz"}
-	<option value="{$value.value}" {if condition="$value.selected == 1"}selected='selected'{/if}>{$value.text}</option>
-	{/loop}
+	<?php
+	if( isset( $var["list_tz"] ) && is_array( $var["list_tz"] ) ){
+		$counter1 = 0;
+		foreach( $var["list_tz"] as $key1 => $value1 ){ 
+?>
+	<option value="<?php echo $value1["value"];?>" <?php
+		if( $value1["selected"] == 1 ){
+?>selected='selected'<?php
+		}
+?>><?php echo $value1["text"];?></option>
+	<?php
+			$counter1++;
+		}
+	}
+?>
 </select>
 </td>
 </tr>
 <tr>
 <td width='50%' align='right'><?php echo _("Time Server (NTP Server)")?></td>
   <td align='left'><label>
-    <input type="text" name="ntp_server" value="{$ntp_server}">
+    <input type="text" name="ntp_server" value="<?php echo $var["ntp_server"];?>">
   </label></td>
 </tr>
 <tr>

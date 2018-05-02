@@ -9,7 +9,7 @@
 
 namespace FreePBX\modules;
 
-class Mihuendpoint_Templates
+class Endpointman_Templates
 {
 	public function __construct($freepbx = null, $cfgmod = null, $epm_config, $eda) 
 	{
@@ -177,16 +177,16 @@ class Mihuendpoint_Templates
 			
 			if($dget['custom'] == 0) {
 				//This is a group template
-		        $sql = 'SELECT global_settings_override FROM mihuendpoint_template_list WHERE id = '.$dget['tid'];
+		        $sql = 'SELECT global_settings_override FROM endpointman_template_list WHERE id = '.$dget['tid'];
 			} else {
 				//This is an individual template
-		        $sql = 'SELECT global_settings_override FROM mihuendpoint_mac_list WHERE id = '.$dget['tid'];;
+		        $sql = 'SELECT global_settings_override FROM endpointman_mac_list WHERE id = '.$dget['tid'];;
 			}
 			$settings = sql($sql, 'getOne');
 
 			if ((isset($settings)) and (strlen($settings) > 0)) {
 				$settings = unserialize($settings);
-				//$settings['tz'] = FreePBX::Mihuendpoint()->listTZ(FreePBX::Mihuendpoint()->configmod->get("tz"));
+				//$settings['tz'] = FreePBX::Endpointman()->listTZ(FreePBX::Endpointman()->configmod->get("tz"));
 			} 
 			else {
 				$settings['srvip'] = ""; //$this->configmod->get("srvip");
@@ -258,10 +258,10 @@ class Mihuendpoint_Templates
 			
 			if($dget['custom'] == 0) {
 				//This is a group template
-				$sql = "UPDATE mihuendpoint_template_list SET global_settings_override = '".addslashes($settings_ser)."' WHERE id = ".$dget['tid'];
+				$sql = "UPDATE endpointman_template_list SET global_settings_override = '".addslashes($settings_ser)."' WHERE id = ".$dget['tid'];
 			} else {
 				//This is an individual template
-				$sql = "UPDATE mihuendpoint_mac_list SET global_settings_override = '".addslashes($settings_ser)."' WHERE id = ".$dget['tid'];
+				$sql = "UPDATE endpointman_mac_list SET global_settings_override = '".addslashes($settings_ser)."' WHERE id = ".$dget['tid'];
 			}
 			unset($settings_ser);
 			sql($sql);
@@ -292,10 +292,10 @@ class Mihuendpoint_Templates
 			
 			if($dget['custom'] == 0) {
 				//This is a group template
-				$sql = "UPDATE mihuendpoint_template_list SET global_settings_override = NULL WHERE id = ".$dget['tid'];
+				$sql = "UPDATE endpointman_template_list SET global_settings_override = NULL WHERE id = ".$dget['tid'];
 			} else {
 				//This is an individual template
-				$sql = "UPDATE mihuendpoint_mac_list SET global_settings_override = NULL WHERE id = ".$dget['tid'];
+				$sql = "UPDATE endpointman_mac_list SET global_settings_override = NULL WHERE id = ".$dget['tid'];
 			}
 			sql($sql);
 			
@@ -323,9 +323,9 @@ class Mihuendpoint_Templates
 		else {
 			$dget['idsel'] = $_REQUEST['idsel'];
 			
-			$sql = "DELETE FROM mihuendpoint_template_list WHERE id = ". $dget['idsel'];
+			$sql = "DELETE FROM endpointman_template_list WHERE id = ". $dget['idsel'];
 			sql($sql);
-			$sql = "UPDATE mihuendpoint_mac_list SET template_id = 0 WHERE template_id = ".$dget['idsel'];
+			$sql = "UPDATE endpointman_mac_list SET template_id = 0 WHERE template_id = ".$dget['idsel'];
 			sql($sql);
 			
 			$retarr = array("status" => true, "message" => _("Delete Template OK!"));
@@ -365,7 +365,7 @@ class Mihuendpoint_Templates
 			$dget['newclonemodel'] = $_REQUEST['newclonemodel'];
 
 			$db = $this->db;
-			$sql = "INSERT INTO mihuendpoint_template_list (product_id, name, model_id) VALUES (?,?,?)";
+			$sql = "INSERT INTO endpointman_template_list (product_id, name, model_id) VALUES (?,?,?)";
 			$q = $db->prepare($sql);
 			$ob = $q->execute(array($dget['newproductselec'], addslashes($dget['newnametemplate']), $dget['newclonemodel']));
 			$newid = $db->lastInsertId();
@@ -394,7 +394,7 @@ class Mihuendpoint_Templates
 			
 			$i=0;
 			$out = array();
-			$sql = "SELECT mihuendpoint_model_list.id, mihuendpoint_model_list.model as model FROM mihuendpoint_model_list, mihuendpoint_product_list WHERE mihuendpoint_product_list.id = mihuendpoint_model_list.product_id AND mihuendpoint_model_list.enabled = 1 AND mihuendpoint_model_list.hidden = 0 AND product_id = '". $dget['id']."'";
+			$sql = "SELECT endpointman_model_list.id, endpointman_model_list.model as model FROM endpointman_model_list, endpointman_product_list WHERE endpointman_product_list.id = endpointman_model_list.product_id AND endpointman_model_list.enabled = 1 AND endpointman_model_list.hidden = 0 AND product_id = '". $dget['id']."'";
 			$result = sql($sql,'getAll', DB_FETCHMODE_ASSOC);
 			foreach($result as $row) {
 				$out[$i]['optionValue'] = $row['id'];
@@ -411,7 +411,7 @@ class Mihuendpoint_Templates
 	public function epm_templates_list_current_templates ()
 	{
 	
-		$sql = 'SELECT mihuendpoint_template_list.*, mihuendpoint_product_list.short_name as model_class, mihuendpoint_model_list.model as model_clone, mihuendpoint_model_list.enabled FROM mihuendpoint_template_list, mihuendpoint_model_list, mihuendpoint_product_list WHERE mihuendpoint_model_list.hidden = 0 AND mihuendpoint_template_list.model_id = mihuendpoint_model_list.id AND mihuendpoint_template_list.product_id = mihuendpoint_product_list.id';
+		$sql = 'SELECT endpointman_template_list.*, endpointman_product_list.short_name as model_class, endpointman_model_list.model as model_clone, endpointman_model_list.enabled FROM endpointman_template_list, endpointman_model_list, endpointman_product_list WHERE endpointman_model_list.hidden = 0 AND endpointman_template_list.model_id = endpointman_model_list.id AND endpointman_template_list.product_id = endpointman_product_list.id';
 		$template_list = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
 		$i = 0;
 		$row_out = array();
@@ -424,10 +424,10 @@ class Mihuendpoint_Templates
 			$i++;
 		}
 		
-		$sql = 'SELECT mihuendpoint_mac_list.mac, mihuendpoint_mac_list.id, mihuendpoint_mac_list.model, mihuendpoint_model_list.model as model_clone, mihuendpoint_product_list.short_name as model_class FROM mihuendpoint_mac_list, mihuendpoint_model_list, mihuendpoint_product_list WHERE  mihuendpoint_product_list.id = mihuendpoint_model_list.product_id AND mihuendpoint_mac_list.global_custom_cfg_data IS NOT NULL AND mihuendpoint_model_list.id = mihuendpoint_mac_list.model AND mihuendpoint_mac_list.template_id = 0';
+		$sql = 'SELECT endpointman_mac_list.mac, endpointman_mac_list.id, endpointman_mac_list.model, endpointman_model_list.model as model_clone, endpointman_product_list.short_name as model_class FROM endpointman_mac_list, endpointman_model_list, endpointman_product_list WHERE  endpointman_product_list.id = endpointman_model_list.product_id AND endpointman_mac_list.global_custom_cfg_data IS NOT NULL AND endpointman_model_list.id = endpointman_mac_list.model AND endpointman_mac_list.template_id = 0';
 		$template_list = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
 		foreach($template_list as $row) {
-			$sql = 'SELECT  description , line FROM  mihuendpoint_line_list WHERE  mac_id ='. $row['id'].' ORDER BY line ASC';
+			$sql = 'SELECT  description , line FROM  endpointman_line_list WHERE  mac_id ='. $row['id'].' ORDER BY line ASC';
 			$line_list = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
 			$description = "";
 			$c = 0;
@@ -446,8 +446,8 @@ class Mihuendpoint_Templates
 		}
 		
 	/*
-		//$sql = 'SELECT mihuendpoint_oui_list.id, mihuendpoint_oui_list.oui , mihuendpoint_brand_list.name, mihuendpoint_oui_list.custom FROM mihuendpoint_oui_list , mihuendpoint_brand_list WHERE mihuendpoint_oui_list.brand = mihuendpoint_brand_list.id ORDER BY mihuendpoint_oui_list.oui ASC';
-		$sql = 'SELECT T1.id, T1.oui, T2.name, T1.custom FROM mihuendpoint_oui_list as T1 , mihuendpoint_brand_list as T2 WHERE T1.brand = T2.id ORDER BY T1.oui ASC';
+		//$sql = 'SELECT endpointman_oui_list.id, endpointman_oui_list.oui , endpointman_brand_list.name, endpointman_oui_list.custom FROM endpointman_oui_list , endpointman_brand_list WHERE endpointman_oui_list.brand = endpointman_brand_list.id ORDER BY endpointman_oui_list.oui ASC';
+		$sql = 'SELECT T1.id, T1.oui, T2.name, T1.custom FROM endpointman_oui_list as T1 , endpointman_brand_list as T2 WHERE T1.brand = T2.id ORDER BY T1.oui ASC';
 		$data = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
 		$ret = array();
 		foreach ($data as $item) {
@@ -468,9 +468,9 @@ class Mihuendpoint_Templates
 	function edit_template_display_files($id, $custom, $namefile = "")
 	{
     	if ($custom == 0) {
-    		$sql = "SELECT model_id FROM mihuendpoint_template_list WHERE id=" . $id;
+    		$sql = "SELECT model_id FROM endpointman_template_list WHERE id=" . $id;
     	} else {
-    		$sql = "SELECT model FROM mihuendpoint_mac_list WHERE id=" . $id;
+    		$sql = "SELECT model FROM endpointman_mac_list WHERE id=" . $id;
     	}
     	$model_id = sql($sql, 'getOne');
     	if (!$this->epm_config->sync_model($model_id)) {
@@ -479,9 +479,9 @@ class Mihuendpoint_Templates
 		
     	$dReturn = array();
 		if ($custom == 0) {
-			$sql = "SELECT mihuendpoint_model_list.max_lines, mihuendpoint_model_list.model as model_name, mihuendpoint_template_list.global_custom_cfg_data,  mihuendpoint_product_list.config_files, mihuendpoint_product_list.short_name, mihuendpoint_product_list.id as product_id, mihuendpoint_model_list.template_data, mihuendpoint_model_list.id as model_id, mihuendpoint_template_list.* FROM mihuendpoint_product_list, mihuendpoint_model_list, mihuendpoint_template_list WHERE mihuendpoint_product_list.id = mihuendpoint_template_list.product_id AND mihuendpoint_template_list.model_id = mihuendpoint_model_list.id AND mihuendpoint_template_list.id = " . $id;
+			$sql = "SELECT endpointman_model_list.max_lines, endpointman_model_list.model as model_name, endpointman_template_list.global_custom_cfg_data,  endpointman_product_list.config_files, endpointman_product_list.short_name, endpointman_product_list.id as product_id, endpointman_model_list.template_data, endpointman_model_list.id as model_id, endpointman_template_list.* FROM endpointman_product_list, endpointman_model_list, endpointman_template_list WHERE endpointman_product_list.id = endpointman_template_list.product_id AND endpointman_template_list.model_id = endpointman_model_list.id AND endpointman_template_list.id = " . $id;
 		} else {
-			$sql = "SELECT mihuendpoint_model_list.max_lines, mihuendpoint_model_list.model as model_name, mihuendpoint_mac_list.global_custom_cfg_data, mihuendpoint_product_list.config_files, mihuendpoint_mac_list.*, mihuendpoint_line_list.*, mihuendpoint_model_list.id as model_id, mihuendpoint_model_list.template_data, mihuendpoint_product_list.id as product_id, mihuendpoint_product_list.short_name, mihuendpoint_product_list.cfg_dir, mihuendpoint_brand_list.directory FROM mihuendpoint_brand_list, mihuendpoint_mac_list, mihuendpoint_model_list, mihuendpoint_product_list, mihuendpoint_line_list WHERE mihuendpoint_mac_list.id=" . $id . " AND mihuendpoint_mac_list.id = mihuendpoint_line_list.mac_id AND mihuendpoint_mac_list.model = mihuendpoint_model_list.id AND mihuendpoint_model_list.brand = mihuendpoint_brand_list.id AND mihuendpoint_model_list.product_id = mihuendpoint_product_list.id";
+			$sql = "SELECT endpointman_model_list.max_lines, endpointman_model_list.model as model_name, endpointman_mac_list.global_custom_cfg_data, endpointman_product_list.config_files, endpointman_mac_list.*, endpointman_line_list.*, endpointman_model_list.id as model_id, endpointman_model_list.template_data, endpointman_product_list.id as product_id, endpointman_product_list.short_name, endpointman_product_list.cfg_dir, endpointman_brand_list.directory FROM endpointman_brand_list, endpointman_mac_list, endpointman_model_list, endpointman_product_list, endpointman_line_list WHERE endpointman_mac_list.id=" . $id . " AND endpointman_mac_list.id = endpointman_line_list.mac_id AND endpointman_mac_list.model = endpointman_model_list.id AND endpointman_model_list.brand = endpointman_brand_list.id AND endpointman_model_list.product_id = endpointman_product_list.id";
 		}
 		$row = sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
 		
@@ -506,9 +506,9 @@ class Mihuendpoint_Templates
 			$only_configs[$b]['id_d'] = $id;
 			$only_configs[$b]['id_p'] = $row['product_id'];
 			$only_configs[$b]['name'] = $files;
-			$only_configs[$b]['selected'] = "ON";
+			$only_configs[$b]['select'] = "ON";
 			
-			$sql = "SELECT * FROM  mihuendpoint_custom_configs WHERE product_id = '" . $row['product_id'] . "' AND original_name = '" . $files . "'";
+			$sql = "SELECT * FROM  endpointman_custom_configs WHERE product_id = '" . $row['product_id'] . "' AND original_name = '" . $files . "'";
 			$alt_configs_list = sql($sql, 'getAll', DB_FETCHMODE_ASSOC );
 			
 			if ( count($alt_configs_list) > 0) 
@@ -518,11 +518,11 @@ class Mihuendpoint_Templates
 				{
 					$cf_key = $files;
 					if ((isset($config_files_saved[$cf_key])) AND (is_array($config_files_saved)) AND ($config_files_saved[$cf_key] == $ccf['id'])) {
-						$alt_configs[$i]['selected'] = 'ON';
-						$only_configs[$b]['selected'] = "OFF";
+						$alt_configs[$i]['select'] = 'ON';
+						$only_configs[$b]['select'] = "OFF";
 					}
 					else {
-						$alt_configs[$i]['selected'] = 'OFF';
+						$alt_configs[$i]['select'] = 'OFF';
 					}
 					$alt_configs[$i]['id'] = $ccf['id'];
 					$alt_configs[$i]['id_p'] = $row['product_id'];
@@ -543,9 +543,9 @@ class Mihuendpoint_Templates
 	function edit_template_display_files_list($id, $custom)
 	{
     	if ($custom == 0) {
-    		$sql = "SELECT model_id FROM mihuendpoint_template_list WHERE id=" . $id;
+    		$sql = "SELECT model_id FROM endpointman_template_list WHERE id=" . $id;
     	} else {
-    		$sql = "SELECT model FROM mihuendpoint_mac_list WHERE id=" . $id;
+    		$sql = "SELECT model FROM endpointman_mac_list WHERE id=" . $id;
     	}
     	$model_id = sql($sql, 'getOne');
     	if (!$this->epm_config->sync_model($model_id)) {
@@ -554,9 +554,9 @@ class Mihuendpoint_Templates
 		
 
 		if ($custom == 0) {
-			$sql = "SELECT mihuendpoint_model_list.max_lines, mihuendpoint_model_list.model as model_name, mihuendpoint_template_list.global_custom_cfg_data,  mihuendpoint_product_list.config_files, mihuendpoint_product_list.short_name, mihuendpoint_product_list.id as product_id, mihuendpoint_model_list.template_data, mihuendpoint_model_list.id as model_id, mihuendpoint_template_list.* FROM mihuendpoint_product_list, mihuendpoint_model_list, mihuendpoint_template_list WHERE mihuendpoint_product_list.id = mihuendpoint_template_list.product_id AND mihuendpoint_template_list.model_id = mihuendpoint_model_list.id AND mihuendpoint_template_list.id = " . $id;
+			$sql = "SELECT endpointman_model_list.max_lines, endpointman_model_list.model as model_name, endpointman_template_list.global_custom_cfg_data,  endpointman_product_list.config_files, endpointman_product_list.short_name, endpointman_product_list.id as product_id, endpointman_model_list.template_data, endpointman_model_list.id as model_id, endpointman_template_list.* FROM endpointman_product_list, endpointman_model_list, endpointman_template_list WHERE endpointman_product_list.id = endpointman_template_list.product_id AND endpointman_template_list.model_id = endpointman_model_list.id AND endpointman_template_list.id = " . $id;
 		} else {
-			$sql = "SELECT mihuendpoint_model_list.max_lines, mihuendpoint_model_list.model as model_name, mihuendpoint_mac_list.global_custom_cfg_data, mihuendpoint_product_list.config_files, mihuendpoint_mac_list.*, mihuendpoint_line_list.*, mihuendpoint_model_list.id as model_id, mihuendpoint_model_list.template_data, mihuendpoint_product_list.id as product_id, mihuendpoint_product_list.short_name, mihuendpoint_product_list.cfg_dir, mihuendpoint_brand_list.directory FROM mihuendpoint_brand_list, mihuendpoint_mac_list, mihuendpoint_model_list, mihuendpoint_product_list, mihuendpoint_line_list WHERE mihuendpoint_mac_list.id=" . $id . " AND mihuendpoint_mac_list.id = mihuendpoint_line_list.mac_id AND mihuendpoint_mac_list.model = mihuendpoint_model_list.id AND mihuendpoint_model_list.brand = mihuendpoint_brand_list.id AND mihuendpoint_model_list.product_id = mihuendpoint_product_list.id";
+			$sql = "SELECT endpointman_model_list.max_lines, endpointman_model_list.model as model_name, endpointman_mac_list.global_custom_cfg_data, endpointman_product_list.config_files, endpointman_mac_list.*, endpointman_line_list.*, endpointman_model_list.id as model_id, endpointman_model_list.template_data, endpointman_product_list.id as product_id, endpointman_product_list.short_name, endpointman_product_list.cfg_dir, endpointman_brand_list.directory FROM endpointman_brand_list, endpointman_mac_list, endpointman_model_list, endpointman_product_list, endpointman_line_list WHERE endpointman_mac_list.id=" . $id . " AND endpointman_mac_list.id = endpointman_line_list.mac_id AND endpointman_mac_list.model = endpointman_model_list.id AND endpointman_model_list.brand = endpointman_brand_list.id AND endpointman_model_list.product_id = endpointman_product_list.id";
 		}
 		$row = sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
 		$config_files_list = explode(",", $row['config_files']);
@@ -589,14 +589,14 @@ class Mihuendpoint_Templates
      * @param integer $custom
      */
     function edit_template_display($id, $custom) {
-    	//mihuendpoint_flush_buffers();
+    	//endpointman_flush_buffers();
     	
     	$alt_configs = NULL;
     
     	if ($custom == 0) {
-    		$sql = "SELECT model_id FROM mihuendpoint_template_list WHERE id=" . $id;
+    		$sql = "SELECT model_id FROM endpointman_template_list WHERE id=" . $id;
     	} else {
-    		$sql = "SELECT model FROM mihuendpoint_mac_list WHERE id=" . $id;
+    		$sql = "SELECT model FROM endpointman_mac_list WHERE id=" . $id;
     	}
     
     	$model_id = sql($sql, 'getOne');
@@ -611,9 +611,9 @@ class Mihuendpoint_Templates
     	
 		//Determine if we are dealing with a general template or a specific [for that phone only] template (custom =0 means general)
 		if ($custom == 0) {
-			$sql = "SELECT mihuendpoint_model_list.max_lines, mihuendpoint_model_list.model as model_name, mihuendpoint_template_list.global_custom_cfg_data,  mihuendpoint_product_list.config_files, mihuendpoint_product_list.short_name, mihuendpoint_product_list.id as product_id, mihuendpoint_model_list.template_data, mihuendpoint_model_list.id as model_id, mihuendpoint_template_list.* FROM mihuendpoint_product_list, mihuendpoint_model_list, mihuendpoint_template_list WHERE mihuendpoint_product_list.id = mihuendpoint_template_list.product_id AND mihuendpoint_template_list.model_id = mihuendpoint_model_list.id AND mihuendpoint_template_list.id = " . $id;
+			$sql = "SELECT endpointman_model_list.max_lines, endpointman_model_list.model as model_name, endpointman_template_list.global_custom_cfg_data,  endpointman_product_list.config_files, endpointman_product_list.short_name, endpointman_product_list.id as product_id, endpointman_model_list.template_data, endpointman_model_list.id as model_id, endpointman_template_list.* FROM endpointman_product_list, endpointman_model_list, endpointman_template_list WHERE endpointman_product_list.id = endpointman_template_list.product_id AND endpointman_template_list.model_id = endpointman_model_list.id AND endpointman_template_list.id = " . $id;
 		} else {
-			$sql = "SELECT mihuendpoint_model_list.max_lines, mihuendpoint_model_list.model as model_name, mihuendpoint_mac_list.global_custom_cfg_data, mihuendpoint_product_list.config_files, mihuendpoint_mac_list.*, mihuendpoint_line_list.*, mihuendpoint_model_list.id as model_id, mihuendpoint_model_list.template_data, mihuendpoint_product_list.id as product_id, mihuendpoint_product_list.short_name, mihuendpoint_product_list.cfg_dir, mihuendpoint_brand_list.directory FROM mihuendpoint_brand_list, mihuendpoint_mac_list, mihuendpoint_model_list, mihuendpoint_product_list, mihuendpoint_line_list WHERE mihuendpoint_mac_list.id=" . $id . " AND mihuendpoint_mac_list.id = mihuendpoint_line_list.mac_id AND mihuendpoint_mac_list.model = mihuendpoint_model_list.id AND mihuendpoint_model_list.brand = mihuendpoint_brand_list.id AND mihuendpoint_model_list.product_id = mihuendpoint_product_list.id";
+			$sql = "SELECT endpointman_model_list.max_lines, endpointman_model_list.model as model_name, endpointman_mac_list.global_custom_cfg_data, endpointman_product_list.config_files, endpointman_mac_list.*, endpointman_line_list.*, endpointman_model_list.id as model_id, endpointman_model_list.template_data, endpointman_product_list.id as product_id, endpointman_product_list.short_name, endpointman_product_list.cfg_dir, endpointman_brand_list.directory FROM endpointman_brand_list, endpointman_mac_list, endpointman_model_list, endpointman_product_list, endpointman_line_list WHERE endpointman_mac_list.id=" . $id . " AND endpointman_mac_list.id = endpointman_line_list.mac_id AND endpointman_mac_list.model = endpointman_model_list.id AND endpointman_model_list.brand = endpointman_brand_list.id AND endpointman_model_list.product_id = endpointman_product_list.id";
 		}
 		$row = sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
 		
@@ -658,7 +658,7 @@ class Mihuendpoint_Templates
 		$b = 0;
 		$only_configs = array();
 		foreach ($config_files_list as $files) {
-			$sql = "SELECT * FROM  mihuendpoint_custom_configs WHERE product_id = '" . $row['product_id'] . "' AND original_name = '" . $files . "'";
+			$sql = "SELECT * FROM  endpointman_custom_configs WHERE product_id = '" . $row['product_id'] . "' AND original_name = '" . $files . "'";
 			$alt_configs_list_count = sql($sql, 'getAll', DB_FETCHMODE_ASSOC );
 			if (! empty($alt_configs_list_count)) {
 				$alt_configs_list = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
@@ -759,7 +759,7 @@ class Mihuendpoint_Templates
 	
 	
 	function areaAvailable($model, $area=NULL) {
-    	$sql = "SELECT max_lines FROM mihuendpoint_model_list WHERE id = '" . $model . "'";
+    	$sql = "SELECT max_lines FROM endpointman_model_list WHERE id = '" . $model . "'";
     	$count = sql($sql, 'getOne');
     
     	for ($z = 0; $z < $count; $z++) {
@@ -796,7 +796,7 @@ class Mihuendpoint_Templates
     	//take the data out of the database and turn it back into an array for use
     	$cfg_data = unserialize($cfg_data);
     	$template_type = 'GENERAL';
-    	//Check to see if there is a custom template for this phone already listed in the mihuendpoint_mac_list database
+    	//Check to see if there is a custom template for this phone already listed in the endpointman_mac_list database
     	if (!empty($custom_cfg_data)) {
     		$custom_cfg_data = unserialize($custom_cfg_data);
     		if (array_key_exists('data', $custom_cfg_data)) {
@@ -877,7 +877,7 @@ class Mihuendpoint_Templates
     					switch ($type) {
     						case "loop_line_options":
     							//$a is the line number
-    							$sql = "SELECT line FROM mihuendpoint_line_list WHERE  ext = " . $ext;
+    							$sql = "SELECT line FROM endpointman_line_list WHERE  ext = " . $ext;
     							$a = $this->eda->sql($sql, 'getOne');
     							//TODO: fix this area
     							$template_variables_array[$group_count]['data'][$variables_count]['type'] = "break";

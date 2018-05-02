@@ -7,7 +7,7 @@
     <div class="input-group">
         <span class="input-group-addon"><?php echo _("Hidden Brands:") ?></span>
         <select 
-			data-url="ajax.php?module=mihuendpoint&amp;module_sec=epm_config&amp;module_tab=manager&amp;command=list_brand_model_hide"
+			data-url="ajax.php?module=endpointman&amp;module_sec=epm_config&amp;module_tab=manager&amp;command=list_brand_model_hide"
             data-cache="false"
             data-id = ""
 			data-label = ""

@@ -4,9 +4,9 @@
         <?php
 	if( (isset($var["silent_mode"])) ){
 ?>
-        <script type="text/javascript" src="assets/mihuendpoint/js/jquery.tools.min.js"></script>
-        <script type="text/javascript" src="assets/mihuendpoint/js/jquery.easing.1.3.js"></script>
-        <script type="text/javascript" src="assets/mihuendpoint/js/jquery.coda-slider-3.0.js"></script>
+        <script type="text/javascript" src="assets/endpointman/js/jquery.tools.min.js"></script>
+        <script type="text/javascript" src="assets/endpointman/js/jquery.easing.1.3.js"></script>
+        <script type="text/javascript" src="assets/endpointman/js/jquery.coda-slider-3.0.js"></script>
         <?php
 	}
 ?>
@@ -15,7 +15,7 @@
         <style>
             .tooltip {
                 display:none;
-                background:transparent url('assets/mihuendpoint/images/black_arrow.png');
+                background:transparent url('assets/endpointman/images/black_arrow.png');
                 font-size:12px;
                 height:70px;
                 width:160px;
@@ -30,7 +30,7 @@
                 position: fixed;
                 top: 40%;
                 left: 55%;
-                background:url('assets/mihuendpoint/images/ajax-loader.gif') no-repeat center #fff;
+                background:url('assets/endpointman/images/ajax-loader.gif') no-repeat center #fff;
                 text-align:center;
                 padding:10px;
                 font:normal 16px Tahoma, Geneva, sans-serif;
