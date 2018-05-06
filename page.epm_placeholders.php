@@ -229,7 +229,31 @@
         "brand": "<?php echo _('Grandstream')?>",
         "placeholder": "<?php echo _('$gsproto')?>",
 		"description": "<?php echo _('Sets the Protocol you set in you extension (TCP,UDP,TLS - Values:0,1,2),tested with HT812')?>"
-    }
+    },
+	{
+		"type": "<?php echo _('Line Loop')?>",
+        "brand": "<?php echo _('Global')?>",
+        "placeholder": "<?php echo _('$primtimeserver')?>",
+		"description": "<?php echo _('Hostname of the Primary NTP Server from Global Settings')?>"
+	},
+	{
+		"type": "<?php echo _('Static')?>",
+        "brand": "<?php echo _('Global')?>",
+        "placeholder": "<?php echo _('$primtimeserver')?>",
+		"description": "<?php echo _('Hostname of the Primary NTP Server from Global Settings')?>"
+	},
+	{
+		"type": "<?php echo _('Line Loop')?>",
+        "brand": "<?php echo _('Global')?>",
+        "placeholder": "<?php echo _('$myvoicemail')?>",
+		"description": "<?php echo _('Number of the Voicemail from Featurecodes')?>"
+	},
+	{
+		"type": "<?php echo _('Static')?>",
+        "brand": "<?php echo _('Global')?>",
+        "placeholder": "<?php echo _('$myvoicemail')?>",
+		"description": "<?php echo _('Number of the Voicemail from Featurecodes')?>"
+	}
 	
 ];
 

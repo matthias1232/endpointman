@@ -793,6 +793,30 @@ class endpointmanager {
 			'providedest' => $row['providedest']
 			
 			);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
+			
 		
 	
 	}	
@@ -1880,6 +1904,24 @@ class endpointmanager {
 
                 $provisioner_lib->settings = $new_template_data;
 
+				
+				
+//LOAD FEATURECODES					
+	$featurecodes=$this->getFeatureCodes();
+
+
+//Calculate Voicemail Number
+	if (!$featurecodes[myvoicemail][customcode]) {
+		$provisioner_lib->settings['myvoicemail'] = $featurecodes[myvoicemail][defaultcode];
+	}
+	else  {
+		$provisioner_lib->settings['myvoicemail'] = $featurecodes[myvoicemail][customcode];
+	}				
+				
+				
+				
+				
+				
                 //Loop through Lines!
                 $li = 0;
                 foreach ($phone_info['line'] as $line) {
@@ -1904,11 +1946,14 @@ class endpointmanager {
 					'callerid' => $line['callerid'],
 					'encryption' => $line['encryption'],							
 					'tech' => $line['tech'],
-					'ipei' => $line['ipei']
+					'ipei' => $line['ipei'],
+					'myvoicemail' => $provisioner_lib->settings['myvoicemail'],
+					'primtimeserver' => $this->global_cfg['ntp']
 					);
 					
-					
-					
+
+
+	
 
 					
 
@@ -1931,10 +1976,11 @@ class endpointmanager {
 					$provisioner_lib->settings['acc' . $line[line] . 'server_port'] = $line['server_port'];
 					$provisioner_lib->settings['acc' . $line[line] . 'ipei'] = $line['ipei'];
 					$provisioner_lib->settings['server_host'] = $this->global_cfg['srvip'];
+					$provisioner_lib->settings['primtimeserver'] = $this->global_cfg['ntp'];
 					
 					$provisioner_lib->settings['timestamp'] = time();
 		
-		
+
 		
 		
 				//THIS ARE EXTRA VALUES FOR GRANDSTREAM
