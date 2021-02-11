@@ -838,7 +838,7 @@ class endpointmanager {
 	public function getSysadminSettings(){
 	//SYSADMIN IS A COMERCIAL MODULE - CHECK IF IT IS INSTALLED, ELSE THIS FEATURE WILL BE SKIPPED.
 	global $active_modules;
-	if (!empty($active_modules[sysadmin][rawname])) {	
+	if (!empty($active_modules['sysadmin']['rawname'])) {	
 		$ret = array();
 		
 		$sql = "SELECT * FROM sysadmin_options";
