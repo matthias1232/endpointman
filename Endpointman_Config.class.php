@@ -1528,7 +1528,7 @@ if ($this->configmod->get('debug')) echo format_txt(_("---Inserting Model %_NAME
         $sql = "SELECT * FROM  endpointman_product_list WHERE hidden = 0 AND id ='" . $id . "'";
         $res = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
 
-        if (count($res) > 0) {
+        if (count(array($res)) > 0) {
             $row = sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
 
             $sql = "SELECT directory FROM  endpointman_brand_list WHERE hidden = 0 AND id ='" . $row['brand'] . "'";
