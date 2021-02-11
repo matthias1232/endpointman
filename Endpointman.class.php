@@ -2059,9 +2059,9 @@ $this->error['parse_configs'] = "File not written to hard drive!";
         while ($i < count($config_files)) {
             $config_files[$i] = str_replace(".", "_", $config_files[$i]);
 
-            if (isset($variables[config_files][$i])) {
+            if (isset($variables['config_files'][$i])) {
 
-                $variables[$config_files[$i]] = explode("_", $variables[config_files][$i], 2);
+                $variables[$config_files[$i]] = explode("_", $variables['config_files'][$i], 2);
 
                 $variables[$config_files[$i]] = $variables[$config_files[$i]][0];
                 if ($variables[$config_files[$i]] > 0) {

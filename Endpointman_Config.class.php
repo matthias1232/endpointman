@@ -406,7 +406,7 @@ class Endpointman_Config
 			$row_out[$i]['installed'] = $row['installed'];
 			$row_out[$i]['hidden'] = $row['hidden'];
 			$row_out[$i]['count'] = $i;
-			$row_out[$i]['products'] = "";
+			$row_out[$i]['products'] = array();
 			if ($row['hidden'] == 1)
 			{
 				$i++;
@@ -423,7 +423,7 @@ class Endpointman_Config
 				$row_out[$i]['products'][$j]['short_name'] = $row2['short_name'];
 				$row_out[$i]['products'][$j]['hidden'] = $row2['hidden'];
 				$row_out[$i]['products'][$j]['count'] = $j;
-				$row_out[$i]['products'][$j]['models'] = "";
+				$row_out[$i]['products'][$j]['models'] = array();
 				if ($row2['hidden'] == 1)
 				{
 					$j++;
