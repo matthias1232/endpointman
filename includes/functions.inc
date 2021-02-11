@@ -933,95 +933,95 @@ class endpointmanager {
                 $phone_info['line'][$line['line']]['description'] = $line['epm_description'];
 				$phone_info['line'][$line['line']]['extension'] = $line['ext'];
 				$phone_info['line'][$line['line']]['user_extension'] = $line['user'];
-				$phone_info['line'][$line['line']]['allowedcodec']=$sipextensions[$phone_info['line'][$line['line']]['extension'] . '-' . 'allow'][data];
-				$phone_info['line'][$line['line']]['forcerport']=$sipextensions[$phone_info['line'][$line['line']]['extension'] . '-' . 'force_rport'][data];
-				$phone_info['line'][$line['line']]['media_encryption']=$sipextensions[$phone_info['line'][$line['line']]['extension'] . '-' . 'media_encryption'][data];
-				$phone_info['line'][$line['line']]['sipdriver']=$sipextensions[$phone_info['line'][$line['line']]['extension'] . '-' . 'sipdriver'][data];
-				$phone_info['line'][$line['line']]['transport']=$sipextensions[$phone_info['line'][$line['line']]['extension'] . '-' . 'transport'][data];
-				$phone_info['line'][$line['line']]['trustrpid']=$sipextensions[$phone_info['line'][$line['line']]['extension'] . '-' . 'trustrpid'][data];
-				$phone_info['line'][$line['line']]['callerid']=$sipextensions[$phone_info['line'][$line['line']]['extension'] . '-' . 'callerid'][data];
-				$phone_info['line'][$line['line']]['encryption']=$sipextensions[$phone_info['line'][$line['line']]['extension'] . '-' . 'encryption'][data];
+				$phone_info['line'][$line['line']]['allowedcodec']=$sipextensions[$phone_info['line'][$line['line']]['extension'] . '-' . 'allow']['data'];
+				$phone_info['line'][$line['line']]['forcerport']=$sipextensions[$phone_info['line'][$line['line']]['extension'] . '-' . 'force_rport']['data'];
+				$phone_info['line'][$line['line']]['media_encryption']=$sipextensions[$phone_info['line'][$line['line']]['extension'] . '-' . 'media_encryption']['data'];
+				$phone_info['line'][$line['line']]['sipdriver']=$sipextensions[$phone_info['line'][$line['line']]['extension'] . '-' . 'sipdriver']['data'];
+				$phone_info['line'][$line['line']]['transport']=$sipextensions[$phone_info['line'][$line['line']]['extension'] . '-' . 'transport']['data'];
+				$phone_info['line'][$line['line']]['trustrpid']=$sipextensions[$phone_info['line'][$line['line']]['extension'] . '-' . 'trustrpid']['data'];
+				$phone_info['line'][$line['line']]['callerid']=$sipextensions[$phone_info['line'][$line['line']]['extension'] . '-' . 'callerid']['data'];
+				$phone_info['line'][$line['line']]['encryption']=$sipextensions[$phone_info['line'][$line['line']]['extension'] . '-' . 'encryption']['data'];
 				$phone_info['line'][$line['line']]['timestamp']=time();
 				
 				
 //Calculate the right SIP PORT (SIP/PJSIP/TLS/TCP)
 	//TLS
 	if ($phone_info['line'][$line['line']]['sipdriver'] == "chan_pjsip" and $phone_info['line'][$line['line']]['transport'] == '0.0.0.0-tls') {
-	$phone_info['line'][$line['line']]['server_port'] = $SipSettings2['tlsport-0.0.0.0'][val];
+	$phone_info['line'][$line['line']]['server_port'] = $SipSettings2['tlsport-0.0.0.0']['val'];
 	$phone_info['line'][$line['line']]['proto'] = 'tls';
 	}
 	if ($phone_info['line'][$line['line']]['sipdriver'] == "chan_pjsip" and $phone_info['line'][$line['line']]['transport'] == '127.0.0.1-tls') {
-	$phone_info['line'][$line['line']]['server_port'] = $SipSettings2['tlsport-127.0.0.1'][val];
+	$phone_info['line'][$line['line']]['server_port'] = $SipSettings2['tlsport-127.0.0.1']['val'];
 	$phone_info['line'][$line['line']]['proto'] = 'tls';
 	}
 	if ($phone_info['line'][$line['line']]['sipdriver'] == "chan_sip" and $phone_info['line'][$line['line']]['transport'] == 'tls,udp,tcp') {
-	$phone_info['line'][$line['line']]['server_port'] = $SipSettings1['tlsbindport'][data];
+	$phone_info['line'][$line['line']]['server_port'] = $SipSettings1['tlsbindport']['data'];
 	$phone_info['line'][$line['line']]['proto'] = 'tls';
 	}
 	if ($phone_info['line'][$line['line']]['sipdriver'] == "chan_sip" and $phone_info['line'][$line['line']]['transport'] == 'tls,udp') {
-	$phone_info['line'][$line['line']]['server_port'] = $SipSettings1['tlsbindport'][data];
+	$phone_info['line'][$line['line']]['server_port'] = $SipSettings1['tlsbindport']['data'];
 	$phone_info['line'][$line['line']]['proto'] = 'tls';
 	}
 	if ($phone_info['line'][$line['line']]['sipdriver'] == "chan_sip" and $phone_info['line'][$line['line']]['transport'] == 'tls,tcp') {
-	$phone_info['line'][$line['line']]['server_port'] = $SipSettings1['tlsbindport'][data];
+	$phone_info['line'][$line['line']]['server_port'] = $SipSettings1['tlsbindport']['data'];
 	$phone_info['line'][$line['line']]['proto'] = 'tls';
 	}
 	if ($phone_info['line'][$line['line']]['sipdriver'] == "chan_sip" and $phone_info['line'][$line['line']]['transport'] == 'tls') {
-	$phone_info['line'][$line['line']]['server_port'] = $SipSettings1['tlsbindport'][data];
+	$phone_info['line'][$line['line']]['server_port'] = $SipSettings1['tlsbindport']['data'];
 	$phone_info['line'][$line['line']]['proto'] = 'tls';
 	}
 	//TCP
 	if ($phone_info['line'][$line['line']]['sipdriver'] == "chan_pjsip" and $phone_info['line'][$line['line']]['transport'] == '0.0.0.0-tcp') {
-	$phone_info['line'][$line['line']]['server_port'] = $SipSettings2['tcpport-0.0.0.0'][val];
+	$phone_info['line'][$line['line']]['server_port'] = $SipSettings2['tcpport-0.0.0.0']['val'];
 	$phone_info['line'][$line['line']]['proto'] = 'tcp';
 	}
 	if ($phone_info['line'][$line['line']]['sipdriver'] == "chan_pjsip" and $phone_info['line'][$line['line']]['transport'] == '127.0.0.1-tcp') {
-	$phone_info['line'][$line['line']]['server_port'] = $SipSettings2['tcpport-127.0.0.1'][val];
+	$phone_info['line'][$line['line']]['server_port'] = $SipSettings2['tcpport-127.0.0.1']['val'];
 	$phone_info['line'][$line['line']]['proto'] = 'tcp';
 	}
 	if ($phone_info['line'][$line['line']]['sipdriver'] == "chan_sip" and $phone_info['line'][$line['line']]['transport'] == 'tcp,udp,tls') {
-	$phone_info['line'][$line['line']]['server_port'] = $SipSettings1['bindport'][data];
+	$phone_info['line'][$line['line']]['server_port'] = $SipSettings1['bindport']['data'];
 	$phone_info['line'][$line['line']]['proto'] = 'tcp';
 	}
 	if ($phone_info['line'][$line['line']]['sipdriver'] == "chan_sip" and $phone_info['line'][$line['line']]['transport'] == 'tcp,udp') {
-	$phone_info['line'][$line['line']]['server_port'] = $SipSettings1['bindport'][data];
+	$phone_info['line'][$line['line']]['server_port'] = $SipSettings1['bindport']['data'];
 	$phone_info['line'][$line['line']]['proto'] = 'tcp';
 	}
 	if ($phone_info['line'][$line['line']]['sipdriver'] == "chan_sip" and $phone_info['line'][$line['line']]['transport'] == 'tcp,tls') {
-	$phone_info['line'][$line['line']]['server_port'] = $SipSettings1['bindport'][data];
+	$phone_info['line'][$line['line']]['server_port'] = $SipSettings1['bindport']['data'];
 	$phone_info['line'][$line['line']]['proto'] = 'tcp';
 	}
 	if ($phone_info['line'][$line['line']]['sipdriver'] == "chan_sip" and $phone_info['line'][$line['line']]['transport'] == 'tcp') {
-	$phone_info['line'][$line['line']]['server_port'] = $SipSettings1['bindport'][data];
+	$phone_info['line'][$line['line']]['server_port'] = $SipSettings1['bindport']['data'];
 	$phone_info['line'][$line['line']]['proto'] = 'tcp';
 	}
 	//UDP
 	if ($phone_info['line'][$line['line']]['sipdriver'] == "chan_pjsip" and $phone_info['line'][$line['line']]['transport'] == '') {
-	$phone_info['line'][$line['line']]['server_port'] = $SipSettings2['udpport-0.0.0.0'][val];
+	$phone_info['line'][$line['line']]['server_port'] = $SipSettings2['udpport-0.0.0.0']['val'];
 	$phone_info['line'][$line['line']]['proto'] = 'udp';
 	}
 	if ($phone_info['line'][$line['line']]['sipdriver'] == "chan_pjsip" and $phone_info['line'][$line['line']]['transport'] == '0.0.0.0-udp') {
-	$phone_info['line'][$line['line']]['server_port'] = $SipSettings2['udpport-0.0.0.0'][val];
+	$phone_info['line'][$line['line']]['server_port'] = $SipSettings2['udpport-0.0.0.0']['val'];
 	$phone_info['line'][$line['line']]['proto'] = 'udp';
 	}
 	if ($phone_info['line'][$line['line']]['sipdriver'] == "chan_pjsip" and $phone_info['line'][$line['line']]['transport'] == '127.0.0.1-udp') {
-	$phone_info['line'][$line['line']]['server_port'] = $SipSettings2['udpport-127.0.0.1'][val];
+	$phone_info['line'][$line['line']]['server_port'] = $SipSettings2['udpport-127.0.0.1']['val'];
 	$phone_info['line'][$line['line']]['proto'] = 'udp';
 	}
 	if ($phone_info['line'][$line['line']]['sipdriver'] == "chan_sip" and $phone_info['line'][$line['line']]['transport'] == 'udp,tcp,tls') {
-	$phone_info['line'][$line['line']]['server_port'] = $SipSettings1['bindport'][data];
+	$phone_info['line'][$line['line']]['server_port'] = $SipSettings1['bindport']['data'];
 	$phone_info['line'][$line['line']]['proto'] = 'udp';
 	}
 	if ($phone_info['line'][$line['line']]['sipdriver'] == "chan_sip" and $phone_info['line'][$line['line']]['transport'] == 'udp,tcp') {
-	$phone_info['line'][$line['line']]['server_port'] = $SipSettings1['bindport'][data];
+	$phone_info['line'][$line['line']]['server_port'] = $SipSettings1['bindport']['data'];
 	$phone_info['line'][$line['line']]['proto'] = 'udp';
 	}
 	if ($phone_info['line'][$line['line']]['sipdriver'] == "chan_sip" and $phone_info['line'][$line['line']]['transport'] == 'udp,tls') {
-	$phone_info['line'][$line['line']]['server_port'] = $SipSettings1['bindport'][data];
+	$phone_info['line'][$line['line']]['server_port'] = $SipSettings1['bindport']['data'];
 	$phone_info['line'][$line['line']]['proto'] = 'udp';
 	}
 	if ($phone_info['line'][$line['line']]['sipdriver'] == "chan_sip" and $phone_info['line'][$line['line']]['transport'] == 'udp') {
-	$phone_info['line'][$line['line']]['server_port'] = $SipSettings1['bindport'][data];
+	$phone_info['line'][$line['line']]['server_port'] = $SipSettings1['bindport']['data'];
 	$phone_info['line'][$line['line']]['proto'] = 'udp';
 	}				
 				
