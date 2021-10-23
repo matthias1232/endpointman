@@ -2013,32 +2013,32 @@ class endpointmanager {
 	
 
 //Calculate Voicemail Number
-	if (!$featurecodes[myvoicemail][customcode]) {
-		$provisioner_lib->settings['myvoicemail'] = $featurecodes[myvoicemail][defaultcode];
+	if (!$featurecodes['myvoicemail']['customcode']) {
+		$provisioner_lib->settings['myvoicemail'] = $featurecodes['myvoicemail']['defaultcode'];
 	}
 	else  {
-		$provisioner_lib->settings['myvoicemail'] = $featurecodes[myvoicemail][customcode];
+		$provisioner_lib->settings['myvoicemail'] = $featurecodes['myvoicemail']['customcode'];
 	}
 //Calculate DND_ON_NUMBER
-	if (!$featurecodes[dnd_on][customcode]) {
-		$provisioner_lib->settings['dnd_on'] = $featurecodes[dnd_on][defaultcode];
+	if (!$featurecodes['dnd_on']['customcode']) {
+		$provisioner_lib->settings['dnd_on'] = $featurecodes['dnd_on']['defaultcode'];
 	}
 	else  {
-		$provisioner_lib->settings['dnd_on'] = $featurecodes[dnd_on][customcode];
+		$provisioner_lib->settings['dnd_on'] = $featurecodes['dnd_on']['customcode'];
 	}	
 //Calculate DND_OFF_NUMBER
-	if (!$featurecodes[dnd_off][customcode]) {
-		$provisioner_lib->settings['dnd_off'] = $featurecodes[dnd_off][defaultcode];
+	if (!$featurecodes['dnd_off']['customcode']) {
+		$provisioner_lib->settings['dnd_off'] = $featurecodes['dnd_off']['defaultcode'];
 	}
 	else  {
-		$provisioner_lib->settings['dnd_off'] = $featurecodes[dnd_off][customcode];
+		$provisioner_lib->settings['dnd_off'] = $featurecodes['dnd_off']['customcode'];
 	}
 //Calculate DND_TOGGLE_NUMBER
-	if (!$featurecodes[dnd_toggle][customcode]) {
-		$provisioner_lib->settings['dnd_toggle'] = $featurecodes[dnd_toggle][defaultcode];
+	if (!$featurecodes['dnd_toggle']['customcode']) {
+		$provisioner_lib->settings['dnd_toggle'] = $featurecodes['dnd_toggle']['defaultcode'];
 	}
 	else  {
-		$provisioner_lib->settings['dnd_toggle'] = $featurecodes[dnd_toggle][customcode];
+		$provisioner_lib->settings['dnd_toggle'] = $featurecodes['dnd_toggle']['customcode'];
 	}		
 				
 				
@@ -2077,10 +2077,10 @@ class endpointmanager {
 					'primtimeserver' => $this->global_cfg['ntp'],
 					'globaladminpassword' => $this->global_cfg['adminpass'],
 					'globaluserpassword' => $this->global_cfg['userpass'],
-					'provisuser' => $getSysadminSettings[provisuser][value],
-					'provispass' => $getSysadminSettings[provispass][value],
-					'sslhpro' => $getSysadminSettings[sslhpro][value],
-					'hpro' => $getSysadminSettings[hpro][value]
+					'provisuser' => $getSysadminSettings['provisuser']['value'],
+					'provispass' => $getSysadminSettings['provispass']['value'],
+					'sslhpro' => $getSysadminSettings['sslhpro']['value'],
+					'hpro' => $getSysadminSettings['hpro']['value']
 					);
 	
 
@@ -2088,30 +2088,30 @@ class endpointmanager {
 
 					//STATIC LINE SETTINGS WITHOUT LOOP (accXSetting)
 
-					$provisioner_lib->settings['acc' . $line[line] . 'secret'] = $line['secret'];
-					$provisioner_lib->settings['acc' . $line[line] . 'displayname'] = $line['description'];
-					$provisioner_lib->settings['acc' . $line[line] . 'user_extension'] = $line['user_extension'];
-					$provisioner_lib->settings['acc' . $line[line] . 'username'] = $line['ext'];
-					$provisioner_lib->settings['acc' . $line[line] . 'authname'] = $line['ext'];
-					$provisioner_lib->settings['acc' . $line[line] . 'extension'] = $line['extension'];
-					$provisioner_lib->settings['acc' . $line[line] . 'allowedcodec'] = $line['allowedcodec'];
-					$provisioner_lib->settings['acc' . $line[line] . 'forcerport'] = $line['forcerport'];
-					$provisioner_lib->settings['acc' . $line[line] . 'media_encryption'] = $line['media_encryption'];
-					$provisioner_lib->settings['acc' . $line[line] . 'sipdriver'] = $line['sipdriver'];
-					$provisioner_lib->settings['acc' . $line[line] . 'transport'] = $line['transport'];
-					$provisioner_lib->settings['acc' . $line[line] . 'trustrpid'] = $line['trustrpid'];
-					$provisioner_lib->settings['acc' . $line[line] . 'callerid'] = $line['callerid'];
-					$provisioner_lib->settings['acc' . $line[line] . 'encryption'] = $line['encryption'];
-					$provisioner_lib->settings['acc' . $line[line] . 'server_port'] = $line['server_port'];
-					$provisioner_lib->settings['acc' . $line[line] . 'ipei'] = $line['ipei'];
+					$provisioner_lib->settings['acc' . $line['line'] . 'secret'] = $line['secret'];
+					$provisioner_lib->settings['acc' . $line['line'] . 'displayname'] = $line['description'];
+					$provisioner_lib->settings['acc' . $line['line'] . 'user_extension'] = $line['user_extension'];
+					$provisioner_lib->settings['acc' . $line['line'] . 'username'] = $line['ext'];
+					$provisioner_lib->settings['acc' . $line['line'] . 'authname'] = $line['ext'];
+					$provisioner_lib->settings['acc' . $line['line'] . 'extension'] = $line['extension'];
+					$provisioner_lib->settings['acc' . $line['line'] . 'allowedcodec'] = $line['allowedcodec'];
+					$provisioner_lib->settings['acc' . $line['line'] . 'forcerport'] = $line['forcerport'];
+					$provisioner_lib->settings['acc' . $line['line'] . 'media_encryption'] = $line['media_encryption'];
+					$provisioner_lib->settings['acc' . $line['line'] . 'sipdriver'] = $line['sipdriver'];
+					$provisioner_lib->settings['acc' . $line['line'] . 'transport'] = $line['transport'];
+					$provisioner_lib->settings['acc' . $line['line'] . 'trustrpid'] = $line['trustrpid'];
+					$provisioner_lib->settings['acc' . $line['line'] . 'callerid'] = $line['callerid'];
+					$provisioner_lib->settings['acc' . $line['line'] . 'encryption'] = $line['encryption'];
+					$provisioner_lib->settings['acc' . $line['line'] . 'server_port'] = $line['server_port'];
+					$provisioner_lib->settings['acc' . $line['line'] . 'ipei'] = $line['ipei'];
 					$provisioner_lib->settings['server_host'] = $this->global_cfg['srvip'];
 					$provisioner_lib->settings['primtimeserver'] = $this->global_cfg['ntp'];
 					$provisioner_lib->settings['globaladminpassword'] = $this->global_cfg['adminpass'];
 					$provisioner_lib->settings['globaluserpassword'] = $this->global_cfg['userpass'];
-					$provisioner_lib->settings['provisuser'] = $getSysadminSettings[provisuser][value];
-					$provisioner_lib->settings['provispass'] = $getSysadminSettings[provispass][value];
-					$provisioner_lib->settings['sslhpro'] = $getSysadminSettings[sslhpro][value];
-					$provisioner_lib->settings['hpro'] = $getSysadminSettings[hpro][value];
+					$provisioner_lib->settings['provisuser'] = $getSysadminSettings['provisuser']['value'];
+					$provisioner_lib->settings['provispass'] = $getSysadminSettings['provispass']['value'];
+					$provisioner_lib->settings['sslhpro'] = $getSysadminSettings['sslhpro']['value'];
+					$provisioner_lib->settings['hpro'] = $getSysadminSettings['hpro']['value'];
 					
 					$provisioner_lib->settings['timestamp'] = time();
 
@@ -2123,30 +2123,30 @@ class endpointmanager {
 						
 						//PROTO UPD/TCP/TLS
 						if ($line['proto'] == "tcp") {
-							$line_statics[gsproto] = '1';
+							$line_statics['gsproto'] = '1';
 						}
 						if ($line['proto'] == "udp") {
-							$line_statics[gsproto] = '0';
+							$line_statics['gsproto'] = '0';
 						}					
 						if ($line['proto'] == "tls") {
-							$line_statics[gsproto] = '2';
+							$line_statics['gsproto'] = '2';
 						}
 						
 						
 						//GRANDSTREAM SRTP YES/NO
 	
 						if ($line['encryption'] == "yes" || $line['media_encryption'] == "sdes" ) {
-							$line_statics[gsSRTP] = '1';
+							$line_statics['gsSRTP'] = '1';
 						}
 						if ($line['encryption'] == "no" || $line['media_encryption'] == "no" ) {
-							$line_statics[gsSRTP] = '0';
+							$line_statics['gsSRTP'] = '0';
 						}
 						
 		
 					//Add static Values for Grandstream (Tested with Analog HT8XX Adapter)
 					
-						$provisioner_lib->settings['acc' . $line[line] . 'gsproto'] = $line_statics[gsproto];
-						$provisioner_lib->settings['acc' . $line[line] . 'gsSRTP'] = $line_statics[gsSRTP];
+						$provisioner_lib->settings['acc' . $line['line'] . 'gsproto'] = $line_statics['gsproto'];
+						$provisioner_lib->settings['acc' . $line['line'] . 'gsSRTP'] = $line_statics['gsSRTP'];
 					
 				//THIS ARE EXTRA VALUES FOR YEALINK
 					
@@ -2154,30 +2154,30 @@ class endpointmanager {
 						
 						//PROTO UPD/TCP/TLS
 						if ($line['proto'] == "tcp") {
-							$line_statics[yealinktransport] = '1';
+							$line_statics['yealinktransport'] = '1';
 						}
 						if ($line['proto'] == "udp") {
-							$line_statics[yealinktransport] = '0';
+							$line_statics['yealinktransport'] = '0';
 						}					
 						if ($line['proto'] == "tls") {
-							$line_statics[yealinktransport] = '2';
+							$line_statics['yealinktransport'] = '2';
 						}
 						
 						
 						//Yealink SRTP YES/NO
 	
 						if ($line['encryption'] == "yes" || $line['media_encryption'] == "sdes" ) {
-							$line_statics[yealinksrtp] = '2';
+							$line_statics['yealinksrtp'] = '2';
 						}
 						if ($line['encryption'] == "no" || $line['media_encryption'] == "no" ) {
-							$line_statics[yealinksrtp] = '0';
+							$line_statics['yealinksrtp'] = '0';
 						}
 						
 		
 					//Add static Values for Grandstream (Tested with Analog HT8XX Adapter)
 					
-						$provisioner_lib->settings['acc' . $line[line] . 'yealinktransport'] = $line_statics[gsproto];
-						$provisioner_lib->settings['acc' . $line[line] . 'yealinksrtp'] = $line_statics[gsSRTP];
+						$provisioner_lib->settings['acc' . $line['line'] . 'yealinktransport'] = $line_statics['gsproto'];
+						$provisioner_lib->settings['acc' . $line['line'] . 'yealinksrtp'] = $line_statics['gsSRTP'];
 					
 					
 					
@@ -3881,7 +3881,7 @@ function endpointmanager_read_header($ch, $string) {
 
 function endpointmanager_read_body($ch, $string) {
     global $fout, $file_size, $downloaded, $lastseen, $progress_bar;
-    $length = strlen($string);
+    $length = strlen($string)
     $downloaded += intval($length);
     $downloadProgress = round(100 * (1 - $downloaded / $file_size), 0);
     $downloadProgress = 100 - $downloadProgress;
