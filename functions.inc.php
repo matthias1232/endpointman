@@ -26,6 +26,9 @@ function endpointman_get_config($engine) {
                 $core_conf->addSipNotify('linksys-warm-restart', array('Event' => 'restart_now', 'Content-Length' => '0'));
                 $core_conf->addSipNotify('spa-reboot', array('Event' => 'reboot', 'Content-Length' => '0'));
                 $core_conf->addSipNotify('reboot-yealink', array('Event' => 'check-sync\;reboot=true', 'Content-Length' => '0'));
+			    $core_conf->addSipNotify('reboot-gigaset', array('Event' => 'check-sync;reboot=true', 'Content-Length' => '0'));
+				$core_conf->addSipNotify('panasonic-check-cfg', array('Event' => 'check-sync', 'Content-Length' => '0'));
+				$core_conf->addSipNotify('snom-check-cfg', array('Event' => 'check-sync', 'Content-Length' => '0'));
             }
             break;
     }
@@ -279,7 +282,7 @@ function endpointman_configpageload() {
                 $currentcomponent->addguielem($section, new gui_checkbox('epm_delete', $checked, 'Delete', 'Delete this Extension from Endpoint Manager'), 9);
 // phone web interface link
 	class gui_link_nw_tab extends guitext {
-    function gui_link_nw_tab($elemname, $text, $url, $userlang = true) {
+    function __construct($elemname, $text, $url, $userlang = true) {
         $parent_class = get_parent_class($this);
         $this->html_text = "<a href=\"$url\" target=\"_blank\" id =\"$this->elemname\">$text</a>";
     }

@@ -81,7 +81,7 @@ switch ($sub_type) {
                     $sql = "SELECT description FROM devices WHERE id = ".$_REQUEST['ext_list_'.$row['luid']];
                     $name = $endpoint->eda->sql($sql,'getOne');
 
-                    $sql = "UPDATE endpointman_line_list SET line = '".$_REQUEST['line_list_'.$row['luid']]."', ext = '".$_REQUEST['ext_list_'.$row['luid']]."', description = '".$endpoint->eda->escapeSimple($name)."' WHERE luid =  ". $row['luid'];
+                    $sql = "UPDATE endpointman_line_list SET ipei = '".$_REQUEST['ipei_'.$row['luid']]."', line = '".$_REQUEST['line_list_'.$row['luid']]."', ext = '".$_REQUEST['ext_list_'.$row['luid']]."', description = '".$endpoint->eda->escapeSimple($name)."' WHERE luid =  ". $row['luid'];
                     $endpoint->eda->sql($sql);
                 }
 
@@ -145,7 +145,23 @@ switch ($sub_type) {
         break;
     case "rebuild_selected_phones":
         if(isset($_REQUEST['selected'])) {
-            foreach($_REQUEST['selected'] as $key => $data) {
+            $sql = "SELECT mac_id, ext FROM endpointman_line_list";
+					$endpoint->eda->sql($sql);
+					$lines = $endpoint->eda->sql($sql,'getAll',DB_FETCHMODE_ASSOC);		
+			
+			foreach($_REQUEST['selected'] as $key => $data) {
+			
+				foreach($lines as $line){
+						if ($data == $line[ext]){
+						$sql = "SELECT mac_id FROM endpointman_line_list WHERE ext = " . $data;
+						$endpoint->eda->sql($sql);
+						$macid = $endpoint->eda->sql($sql,'getrow',DB_FETCHMODE_ASSOC);
+						$_REQUEST['selected'][$key] = $macid[mac_id];
+						
+						}
+				}
+
+					
                 $phone_info = $endpoint->get_phone_info($_REQUEST['selected'][$key]);
                 if(isset($_REQUEST['reboot'])) {
                     $endpoint->prepare_configs($phone_info);
@@ -279,7 +295,22 @@ switch ($sub_type) {
     case "change_brand" :
         if(isset($_REQUEST['selected'])) {
             if(($_REQUEST['brand_list_selected'] > 0) AND ($_REQUEST['model_list_selected'] > 0)) {
-                foreach($_REQUEST['selected'] as $key => $data) {
+                            $sql = "SELECT mac_id, ext FROM endpointman_line_list";
+					$endpoint->eda->sql($sql);
+					$lines = $endpoint->eda->sql($sql,'getAll',DB_FETCHMODE_ASSOC);		
+			
+			foreach($_REQUEST['selected'] as $key => $data) {
+			
+				foreach($lines as $line){
+						if ($data == $line[ext]){
+						$sql = "SELECT mac_id FROM endpointman_line_list WHERE ext = " . $data;
+						$endpoint->eda->sql($sql);
+						$macid = $endpoint->eda->sql($sql,'getrow',DB_FETCHMODE_ASSOC);
+						$_REQUEST['selected'][$key] = $macid[mac_id];
+						
+						}
+				}
+					
                     $sql = "UPDATE endpointman_mac_list SET global_custom_cfg_data = '', template_id = 0, global_user_cfg_data = '', config_files_override = '', model = '".$_REQUEST['model_list_selected']."' WHERE id =  ". $_REQUEST['selected'][$key];
                     $endpoint->eda->sql($sql);
 
@@ -418,6 +449,7 @@ foreach($devices_list as $devices_row) {
         $list[$i]['line'][$z]['line'] = $line_row['line'];
         $list[$i]['line'][$z]['description'] = $line_row['description'];
         $list[$i]['line'][$z]['luid'] = $line_row['luid'];
+		$list[$i]['line'][$z]['ipei'] = $line_row['ipei'];
         $list[$i]['line'][$z]['master_id'] = $i;
         $z++;
     }
@@ -496,8 +528,19 @@ if (isset($template_editor)) {
     $endpoint->tpl->assign("no_add", $no_add);
     $endpoint->tpl->assign("mode", $mode);
 
+	
     $edit_row['id'] = isset($edit_row['id']) ? $edit_row['id'] : '0';
     $endpoint->tpl->assign("edit_id", $edit_row['id']);
+	$endpoint->tpl->assign("template_id", $edit_row['template_id']);
+	
+	if ($edit_row['template_id'] == "0"){
+	$endpoint->tpl->assign("custom", 1);
+	
+	$endpoint->tpl->assign("template_id", $edit_row['id']);
+	}
+	else{
+	$endpoint->tpl->assign("custom", 0);
+	}
 
     if(isset($final)) {
         $_SESSION['dev_cache'] = base64_encode(serialize($final));

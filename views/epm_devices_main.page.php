@@ -99,6 +99,7 @@
 			$list[$i]['line'][$z]['line'] = $line_row['line'];
 			$list[$i]['line'][$z]['description'] = $line_row['description'];
 			$list[$i]['line'][$z]['luid'] = $line_row['luid'];
+			$list[$i]['line'][$z]['ipei'] = $line_row['ipei'];
 			$list[$i]['line'][$z]['master_id'] = $i;
 			$z++;
 		}

@@ -1,7 +1,89 @@
+<?php
+global $active_modules;
+
+if (!empty($active_modules['endpoint']['rawname'])) {
+	if (FreePBX::Endpointman()->configmod->get("disable_endpoint_warning") !== "1") {
+		include('page.epm_warning.php');  
+	}
+}
+?>
+
 <script>
  var $hwgrid = $('#hwgrid');
     var mydata = 
 [
+    {
+		"type": "<?php echo _('Line Loop')?>",
+        "brand": "<?php echo _('Global')?>",
+        "placeholder": "<?php echo _('$globaladminpassword')?>",
+		"description": "<?php echo _('Global Admin Password')?>"
+    },
+	    {
+		"type": "<?php echo _('Static')?>",
+        "brand": "<?php echo _('Global')?>",
+        "placeholder": "<?php echo _('$globaladminpassword')?>",
+		"description": "<?php echo _('Global Admin Password')?>"
+    },
+    {
+		"type": "<?php echo _('Line Loop')?>",
+        "brand": "<?php echo _('Global')?>",
+        "placeholder": "<?php echo _('$globaluserpassword')?>",
+		"description": "<?php echo _('Global User Password')?>"
+    },
+    {
+		"type": "<?php echo _('Static')?>",
+        "brand": "<?php echo _('Global')?>",
+        "placeholder": "<?php echo _('$globaluserpassword')?>",
+		"description": "<?php echo _('Global User Password')?>"
+    },
+    {
+		"type": "<?php echo _('Static')?>",
+        "brand": "<?php echo _('Global')?>",
+        "placeholder": "<?php echo _('$provisuser')?>",
+		"description": "<?php echo _('Sysadmin Pro Provisioning HTTP User')?>"
+    },
+    {
+		"type": "<?php echo _('Line Loop')?>",
+        "brand": "<?php echo _('Global')?>",
+        "placeholder": "<?php echo _('$provisuser')?>",
+		"description": "<?php echo _('Sysadmin Pro Provisioning HTTP User')?>"
+    },
+    {
+		"type": "<?php echo _('Static')?>",
+        "brand": "<?php echo _('Global')?>",
+        "placeholder": "<?php echo _('$provispass')?>",
+		"description": "<?php echo _('Sysadmin Pro Provisioning HTTP Password')?>"
+    },
+    {
+		"type": "<?php echo _('Line Loop')?>",
+        "brand": "<?php echo _('Global')?>",
+        "placeholder": "<?php echo _('$provispass')?>",
+		"description": "<?php echo _('Sysadmin Pro Provisioning HTTP Password')?>"
+    },
+    {
+		"type": "<?php echo _('Static')?>",
+        "brand": "<?php echo _('Global')?>",
+        "placeholder": "<?php echo _('$sslhpro')?>",
+		"description": "<?php echo _('Sysadmin Pro Provisioning HTTPS Port')?>"
+    },
+    {
+		"type": "<?php echo _('Line Loop')?>",
+        "brand": "<?php echo _('Global')?>",
+        "placeholder": "<?php echo _('$sslhpro')?>",
+		"description": "<?php echo _('Sysadmin Pro Provisioning HTTPS Port')?>"
+    },
+    {
+		"type": "<?php echo _('Static')?>",
+        "brand": "<?php echo _('Global')?>",
+        "placeholder": "<?php echo _('$hpro')?>",
+		"description": "<?php echo _('Sysadmin Pro Provisioning HTTP Port')?>"
+    },
+    {
+		"type": "<?php echo _('Line Loop')?>",
+        "brand": "<?php echo _('Global')?>",
+        "placeholder": "<?php echo _('$hpro')?>",
+		"description": "<?php echo _('Sysadmin Pro Provisioning HTTP Port')?>"
+    },
     {
 		"type": "<?php echo _('Line Loop')?>",
         "brand": "<?php echo _('Global')?>",
@@ -19,6 +101,30 @@
         "brand": "<?php echo _('Global')?>",
         "placeholder": "<?php echo _('$authname')?>",
 		"description": "<?php echo _('Auth name for the Extension (most likely the endpoint extension number)')?>"
+    },
+    {
+		"type": "<?php echo _('Line Loop')?>",
+        "brand": "<?php echo _('Yealink')?>",
+        "placeholder": "<?php echo _('$yealinktransport')?>",
+		"description": "<?php echo _('Transport protocoll for Yealink (UDP,TCP,TLS)')?>"
+    },
+    {
+		"type": "<?php echo _('Static')?>",
+        "brand": "<?php echo _('Yealink')?>",
+        "placeholder": "<?php echo _('$accXyealinktransport')?>",
+		"description": "<?php echo _('Transport protocoll for Yealink (UDP,TCP,TLS)')?>"
+    },
+    {
+		"type": "<?php echo _('Line Loop')?>",
+        "brand": "<?php echo _('Yealink')?>",
+        "placeholder": "<?php echo _('$yealinksrtp')?>",
+		"description": "<?php echo _('SRTP Value for Yealink')?>"
+    },
+    {
+		"type": "<?php echo _('Static')?>",
+        "brand": "<?php echo _('Yealink')?>",
+        "placeholder": "<?php echo _('$accXyealinksrtp')?>",
+		"description": "<?php echo _('SRTP Value for Yealink')?>"
     },
     {
 		"type": "<?php echo _('Line Loop')?>",
@@ -229,7 +335,31 @@
         "brand": "<?php echo _('Grandstream')?>",
         "placeholder": "<?php echo _('$gsproto')?>",
 		"description": "<?php echo _('Sets the Protocol you set in you extension (TCP,UDP,TLS - Values:0,1,2),tested with HT812')?>"
-    }
+    },
+	{
+		"type": "<?php echo _('Line Loop')?>",
+        "brand": "<?php echo _('Global')?>",
+        "placeholder": "<?php echo _('$primtimeserver')?>",
+		"description": "<?php echo _('Hostname of the Primary NTP Server from Global Settings')?>"
+	},
+	{
+		"type": "<?php echo _('Static')?>",
+        "brand": "<?php echo _('Global')?>",
+        "placeholder": "<?php echo _('$primtimeserver')?>",
+		"description": "<?php echo _('Hostname of the Primary NTP Server from Global Settings')?>"
+	},
+	{
+		"type": "<?php echo _('Line Loop')?>",
+        "brand": "<?php echo _('Global')?>",
+        "placeholder": "<?php echo _('$myvoicemail')?>",
+		"description": "<?php echo _('Number of the Voicemail from Featurecodes')?>"
+	},
+	{
+		"type": "<?php echo _('Static')?>",
+        "brand": "<?php echo _('Global')?>",
+        "placeholder": "<?php echo _('$myvoicemail')?>",
+		"description": "<?php echo _('Number of the Voicemail from Featurecodes')?>"
+	}
 	
 ];
 

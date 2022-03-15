@@ -295,6 +295,11 @@ class Endpointman_Advanced
 				$dget['value'] = strtolower($dget['value']);
 				$sql = "UPDATE endpointman_global_vars SET value='" . ($dget['value'] == "yes" ? "1": "0") . "' WHERE var_name='disable_help'";
 				break;
+	
+			case "disable_endpoint_warning":
+				$dget['value'] = strtolower($dget['value']);
+				$sql = "UPDATE endpointman_global_vars SET value='" . ($dget['value'] == "yes" ? "1": "0") . "' WHERE var_name='disable_endpoint_warning'";
+				break;
 
 			case "allow_dupext":
 				$dget['value'] = strtolower($dget['value']);
@@ -351,11 +356,23 @@ class Endpointman_Advanced
 				$dget['value'] = trim($dget['value']);
 				$sql = "UPDATE endpointman_global_vars SET value='" . $dget['value'] . "' WHERE var_name='srvip'";
 				break;
-
+			case "intsrvip":
+				$dget['value'] = trim($dget['value']);
+				$sql = "UPDATE endpointman_global_vars SET value='" . $dget['value'] . "' WHERE var_name='intsrvip'";
+				break;
 			case "tz":
 				$sql = "UPDATE endpointman_global_vars SET value='" . $dget['value'] . "' WHERE var_name='tz'";
 				break;
 
+			case "adminpass":
+				$dget['value'] = trim($dget['value']);
+				$sql = "UPDATE endpointman_global_vars SET value='" . $dget['value'] . "' WHERE var_name='adminpass'";
+				break;
+			case "userpass":
+				$dget['value'] = trim($dget['value']);
+				$sql = "UPDATE endpointman_global_vars SET value='" . $dget['value'] . "' WHERE var_name='userpass'";
+				break;
+				
 			case "ntp_server":
 				$dget['value'] = trim($dget['value']);
 				$sql = "UPDATE endpointman_global_vars SET value='" . $dget['value'] . "' WHERE var_name='ntp'";
@@ -378,7 +395,7 @@ class Endpointman_Advanced
 				break;
 
 			case "cfg_type":
-				if ($dget['value'] == 'http') {
+				if ($dget['value'] == 'http' or $dget['value'] == 'https' ) {
 					$symlink = $this->config->get('AMPWEBROOT') . "/provisioning";
 					$reallink = $this->LOCAL_PATH . "provisioning";
 					if ((!is_link($symlink)) OR (!readlink($symlink) == $reallink)) {
@@ -386,12 +403,12 @@ class Endpointman_Advanced
 							$retarr = array("status" => false, "message" => _("Your permissions are wrong on " . $this->config->get('AMPWEBROOT') . ", web provisioning link not created!"));
 							//$dget['value'] = 'file';
 							break;
-						} else {
-							$dget['value'] = 'http';
-						}
-					} else {
-						$dget['value'] = 'http';
-					}
+						} //else {
+							//$dget['value'] = 'http';
+						//}
+					}// else {
+						//$dget['value'] = 'http';
+					//}
 				} else {
 					$dget['value'] = 'file';
 				}
@@ -1105,7 +1122,7 @@ class Endpointman_Advanced
 		header("Content-type: text/csv");
 		header('Content-Disposition: attachment; filename="'.$sFileName.'"');
 		$outstream = fopen("php://output",'w');
-		$sql = 'SELECT endpointman_mac_list.mac, endpointman_brand_list.name, endpointman_model_list.model, endpointman_line_list.ext,endpointman_line_list.line FROM endpointman_mac_list, endpointman_model_list, endpointman_brand_list, endpointman_line_list WHERE endpointman_line_list.mac_id = endpointman_mac_list.id AND endpointman_model_list.id = endpointman_mac_list.model AND endpointman_model_list.brand = endpointman_brand_list.id';
+		$sql = 'SELECT endpointman_mac_list.mac, endpointman_line_list.ipei, endpointman_brand_list.name, endpointman_model_list.model, endpointman_line_list.ext,endpointman_line_list.line FROM endpointman_mac_list, endpointman_model_list, endpointman_brand_list, endpointman_line_list WHERE endpointman_line_list.mac_id = endpointman_mac_list.id AND endpointman_model_list.id = endpointman_mac_list.model AND endpointman_model_list.brand = endpointman_brand_list.id';
 		$result = sql($sql,'getAll',DB_FETCHMODE_ASSOC);
 		foreach($result as $row) {
 			fputcsv($outstream, $row);
@@ -1125,7 +1142,7 @@ class Endpointman_Advanced
 			//$allowedExtensions = array("application/csv", "text/plain", "text/csv", "application/vnd.ms-excel");
 			$allowedExtensions = array("csv", "txt");
 			foreach ($_FILES["files"]["error"] as $key => $error) {
-				outn(sprintf(_("Importing CVS file %s ...<br />"), $_FILES["files"]["name"][$key]));
+				outn(sprintf(_("Importing CSV file %s ...<br />"), $_FILES["files"]["name"][$key]));
 
 				if ($error != UPLOAD_ERR_OK) {
 					out(sprintf(_("Error: %s"), $this->file_upload_error_message($error)));
@@ -1134,7 +1151,7 @@ class Endpointman_Advanced
 				{
 					//if (!in_array($_FILES["files"]["type"][$key], $allowedExtensions)) {
 					if (!in_array(substr(strrchr($_FILES["files"]["name"][$key], "."), 1), $allowedExtensions)) {
-						out(sprintf(_("Error: We support only CVS and TXT files, type file %s no support!"), $_FILES["files"]["name"][$key]));
+						out(sprintf(_("Error: We support only CSV and TXT files, type file %s no support!"), $_FILES["files"]["name"][$key]));
 					}
 					elseif ($_FILES["files"]["size"][$key] == 0) {
 						out(sprintf(_("Error: File %s size is 0!"), $_FILES["files"]["name"][$key]));
@@ -1154,7 +1171,7 @@ class Endpointman_Advanced
 										//$res = sql($sql);
 										$res = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
 
-										if (count($res) > 0) {
+										if (count(array($res)) > 0) {
 											$brand_id = sql($sql, 'getOne');
 										//	$brand_id = $brand_id[0];
 
@@ -1164,12 +1181,12 @@ class Endpointman_Advanced
 											$line_id = isset($device[4]) ? $device[4] : 1;
 
 											$res_model = sql($sql_model);
-											if (count($res_model)) {
+											if (count(array($res_model))) {
 												$model_id = sql($sql_model, 'getRow', DB_FETCHMODE_ASSOC);
 												$model_id = $model_id['id'];
 
 												$res_ext = sql($sql_ext);
-												if (count($res_ext)) {
+												if (count(array($res_ext))) {
 													$ext = sql($sql_ext, 'getRow', DB_FETCHMODE_ASSOC);
 													$description = $ext['name'];
 													$ext = $ext['extension'];

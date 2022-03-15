@@ -63,11 +63,40 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<span class="help-block fpbx-help-block" id="srvip-help"><?php echo _("Address IP by my server PBX."); ?></span>
+				<span class="help-block fpbx-help-block" id="srvip-help"><?php echo _("IP Address of your PBX."); ?></span>
 			</div>
 		</div>
 	</div>
 	<!--END IP address of phone server-->
+	<!--Internal IP address of phone server-->
+	<div class="element-container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="form-group">
+						<div class="col-md-3">
+							<label class="control-label" for="intsrvip"><?php echo _("Internal IP address of phone server")?></label>
+							<i class="fa fa-question-circle fpbx-help-icon" data-for="intsrvip"></i>
+						</div>
+						<div class="col-md-9">
+							<div class="input-group">
+      							<input type="text" class="form-control" placeholder="Server PBX..." id="intsrvip" name="intsrvip" value="<?php echo FreePBX::Endpointman()->configmod->get("intsrvip"); ?>">
+      							<span class="input-group-btn">
+        							<button class="btn btn-default" type="button" id='autodetect' onclick="epm_advanced_tab_setting_input_value_change_bt('#intsrvip', sValue = '<?php echo $_SERVER["SERVER_ADDR"]; ?>', bSaveChange = true);"><i class='fa fa-search'></i> <?php echo _("Use me!")?></button>
+      							</span>
+    						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<span class="help-block fpbx-help-block" id="intsrvip-help"><?php echo _("Internal IP address of phone server"); ?></span>
+			</div>
+		</div>
+	</div>
+	<!--END Internal IP address of phone server-->
 	<!--Configuration Type-->
 	<?php
 		$server_type = FreePBX::Endpointman()->configmod->get("server_type");
@@ -85,12 +114,22 @@
 	                        <select class="form-control selectpicker show-tick" data-style="btn-info" name="cfg_type" id="cfg_type">
                             	<option data-icon="fa fa-upload" value="file" <?php echo ($server_type == "file" ? 'selected="selected"' : '') ?> ><?php echo _("File (TFTP/FTP)")?></option>
 								<option data-icon="fa fa-upload" value="http" <?php echo ($server_type == "http"? 'selected="selected"' : '') ?> ><?php echo _("Web (HTTP)")?></option>
-                                <option data-icon="fa fa-upload" value="https" <?php echo ($server_type == "https"? 'selected="selected"' : '') ?> disabled><?php echo _("Web (HTTPS)")?></option>
+                                <option data-icon="fa fa-upload" value="https" <?php echo ($server_type == "https"? 'selected="selected"' : '') ?>><?php echo _("Web (HTTPS)")?></option>
 							</select>
                             <br /><br />
-							<div class="alert alert-info" role="alert" id="cfg_type_alert">
-								<strong><?php echo _("Updated!"); ?></strong><?php echo _(" - Point your phones to: "); ?><a href="http://<?php echo $_SERVER['SERVER_ADDR']; ?>/provisioning/p.php/" class="alert-link" target="_blank">http://<?php echo $_SERVER['SERVER_ADDR']; ?>/provisioning/p.php/</a>.
-							</div>
+							<?php
+							if ($server_type == 'http') {
+							echo '<div class="alert alert-info" role="alert" id="cfg_type_alert">';
+								echo '<strong>' . _("Updated!") . '</strong>' . _(" - Point your phones to: ") . '<a href="' . $server_type . '://' . FreePBX::Endpointman()->configmod->get("srvip") . '/provisioning/p.php/" class="alert-link" target="_blank">' . $server_type . '://' . FreePBX::Endpointman()->configmod->get("srvip") . '/provisioning/p.php/</a>';
+							echo '</div>';	
+							}
+							if ($server_type == 'https') {
+							echo '<div class="alert alert-info" role="alert" id="cfg_type_alert">';
+								echo '<strong>' . _("Updated!") . '</strong>' . _(" - Point your phones to: ") . '<a href="' . $server_type . '://' . FreePBX::Endpointman()->configmod->get("srvip") . '/provisioning/p.php/" class="alert-link" target="_blank">' . $server_type . '://' . FreePBX::Endpointman()->configmod->get("srvip") . '/provisioning/p.php/</a>';
+							echo '</div>';	
+							}
+								?>
+
 						</div>
 					</div>
 				</div>
@@ -98,7 +137,7 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<span class="help-block fpbx-help-block" id="cfg_type-help"><?php echo _("Type the server by aprovisonament setting. Server TFTP, Server HTTP, Server HTTPS (not found, future version!)."); ?></span>
+				<span class="help-block fpbx-help-block" id="cfg_type-help"><?php echo _("Type the server by aprovisonament setting. Server TFTP, Server HTTP, Server HTTPS."); ?></span>
 			</div>
 		</div>
 	</div>
@@ -130,6 +169,54 @@
 		</div>
 	</div>
 	<!--END Global Final Config & Firmware Directory-->
+	<!--Global Admin Password-->
+	<div class="element-container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="form-group">
+						<div class="col-md-3">
+							<label class="control-label" for="adminpass"><?php echo _("Phone Admin Password")?></label>
+							<i class="fa fa-question-circle fpbx-help-icon" data-for="adminpass"></i>
+						</div>
+						<div class="col-md-9">
+							<input type="text" class="form-control" id="adminpass" name="adminpass" value="<?php echo FreePBX::Endpointman()->configmod->get("adminpass"); ?>">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<span class="help-block fpbx-help-block" id="adminpass-help"><?php echo _("Enter a admin password for your phones. Must be 6 characters and only nummeric is recommendet!"); ?></span>
+			</div>
+		</div>
+	</div>
+	<!--Global Admin Password-->
+	<!--Global User Password-->
+	<div class="element-container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="form-group">
+						<div class="col-md-3">
+							<label class="control-label" for="userpass"><?php echo _("Phone User Password")?></label>
+							<i class="fa fa-question-circle fpbx-help-icon" data-for="userpass"></i>
+						</div>
+						<div class="col-md-9">
+							<input type="text" class="form-control" id="userpass" name="userpass" value="<?php echo FreePBX::Endpointman()->configmod->get("userpass"); ?>">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<span class="help-block fpbx-help-block" id="userpass-help"><?php echo _("Enter a user password for your phones. Must be 6 characters and only nummeric is recommendet!"); ?></span>
+			</div>
+		</div>
+	</div>
+	<!--Global User Password-->
 </div>
 
 <div class="section-title" data-for="setting_time">
@@ -318,6 +405,41 @@
 	<!--END Package Server-->
 </div>
 
+<div class="section-title" data-for="setting_other">
+	<h3><i class="fa fa-minus"></i><?php echo _("Other Settings") ?></h3>
+</div>
+<div class="section" data-id="setting_other">
+	<?php $endpoint_warning_selected = FreePBX::Endpointman()->configmod->get("disable_endpoint_warning"); ?>
+	<!--Disable Tooltips-->
+	<div class="element-container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="form-group">
+						<div class="col-md-12">
+							<label class="control-label" for="disable_endpoint_warning"><?php echo _("Disable Endpoint Manager Conflict Warning")?></label>
+							<i class="fa fa-question-circle fpbx-help-icon" data-for="disable_endpoint_warning"></i>
+                            <div class="radioset pull-xs-right">
+                                <input type="radio" name="disable_endpoint_warning" id="disable_endpoint_warning_yes" value="Yes" <?php echo ($endpoint_warning_selected  == 1 ? "CHECKED" : "") ?>>
+                                <label for="disable_endpoint_warning_yes"><i class="fa fa-check"></i> <?php echo _("Yes");?></label>
+                                <input type="radio" name="disable_endpoint_warning" id="disable_endpoint_warning_no" value="No" <?php echo ($endpoint_warning_selected == 0 ? "CHECKED" : "") ?>>
+                                <label for="disable_endpoint_warning_no"><i class="fa fa-times"></i> <?php echo _("No");?></label>
+                            </div>
+                      	</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<span class="help-block fpbx-help-block" id="disable_endpoint_warning-help">Enable this setting if you dont want to get a warning message anymore if you have the Commercial Endpoint Manager installed together with OSS Endpoint Manager</span>
+			</div>
+		</div>
+	</div>
+	<?php unset($help_selected); ?>
+	<!--END Disable Tooltips-->
+
+</div>
 <div class="section-title" data-for="setting_experimental">
 	<h3><i class="fa fa-minus"></i><?php echo _("Experimental") ?></h3>
 </div>
@@ -355,9 +477,9 @@
 	<?php 
 		$debug_selected = FreePBX::Endpointman()->configmod->get("debug");
 		if ($debug_selected) {
-			//global $debug;
+			global $debug;
 			//$debug = $debug . print_r($_REQUEST, true);
-			//$endpoint->tpl->assign("debug", $debug);
+			//$endpointman->tpl->assign("debug", $debug);
 		}
 	?>
 	<div class="element-container">
@@ -366,11 +488,11 @@
 				<div class="row">
 					<div class="form-group">
 						<div class="col-md-12">
-							<label class="control-label" for="enable_debug"><?php echo _("Enable Debug Mode")?></label>
+							<label class="control-label" for="enable_debug" disabled><?php echo _("Enable Debug Mode")?> </label>
 							<i class="fa fa-question-circle fpbx-help-icon" data-for="enable_debug"></i>
                             <div class="radioset pull-xs-right">
-                                <input type="radio" name="enable_debug" id="enable_debug_yes" value="Yes" <?php echo ($debug_selected  == 1 ? "CHECKED" : "") ?>>
-                                <label for="enable_debug_yes"><i class="fa fa-check"></i> <?php echo _("Yes");?></label>
+                                <input disabled type="radio" name="enable_debug" id="enable_debug_yes" value="Yes" <?php echo ($debug_selected  == 1 ? "CHECKED" : "") ?>>
+                                <label disabled for="enable_debug_yes"><i class="fa fa-check"></i> <?php echo _("Yes");?></label>
                                 <input type="radio" name="enable_debug" id="enable_debug_no" value="No" <?php echo ($debug_selected == 0 ? "CHECKED" : "") ?>>
                                 <label for="enable_debug_no"><i class="fa fa-times"></i> <?php echo _("No");?></label>
                             </div>
@@ -531,98 +653,7 @@
 		</div>
 	</div>
 	<?php unset($backup_checked); ?>
-	<!--END Disable Configuration File Backups-->
-	<!--Use GITHUB Live Repo-->
-	<?php $use_repo = FreePBX::Endpointman()->configmod->get("use_repo"); ?>
-	<div class="element-container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="row">
-					<div class="form-group">
-						<div class="col-md-12">
-							<label class="control-label" for="use_repo"><?php echo _("Use GITHUB Live Repo")?></label>
-							<i class="fa fa-question-circle fpbx-help-icon" data-for="use_repo"></i>
-                            <div class="radioset pull-xs-right">
-                                <input type="radio" name="use_repo" id="use_repo_yes" value="Yes" <?php echo ($use_repo  == 1 ? "CHECKED" : "") ?>>
-                                <label for="use_repo_yes"><i class="fa fa-check"></i> <?php echo _("Yes");?></label>
-                                <input type="radio" name="use_repo" id="use_repo_no" value="No" <?php echo ($use_repo == 0 ? "CHECKED" : "") ?>>
-                                <label for="use_repo_no"><i class="fa fa-times"></i> <?php echo _("No");?></label>
-                            </div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<span class="help-block fpbx-help-block" id="use_repo-help">Use the live github repository (Requires git to be installed), (WARN: Beta!)</span>
-			</div>
-		</div>
-	</div>
-	<?php unset($use_repo); ?>
-	<!--END Use GITHUB Live Repo-->
-	<!--GIT Branch-->
-	<?php
-	if (FreePBX::Endpointman()->configmod->get("use_repo")) {
-		$path = $endpoint->has_git();
-		$o = getcwd();
-		chdir(PHONE_MODULES_PATH);
-		
-		if(isset($_REQUEST['git_branch'])) {
-			if(preg_match('/remotes\/origin\/(.*)/i', $_REQUEST['git_branch'],$matches)) {
-				//Pull from a remote.
-				if(!exec($path.' checkout origin_'. $matches[1])) {
-					//We must remote track this branch
-					exec($path . ' branch --track origin_'.$matches[1].' origin/'.$matches[1]);
-					exec($path . ' checkout origin_'.$matches[1]);
-				}
-				exec($path . ' pull origin ' . $matches[1]);
-			} else {
-				exec($path.' checkout '. $_REQUEST['git_branch'],$output);
-			}
-		}
-		
-		exec($path . ' fetch origin');
-		exec($path . ' branch -a',$output);
-		
-		$lnhtm = '';
-		foreach($output as $data) {
-			if(!preg_match('/Your branch is ahead of/i', $data)) {
-				$selected = preg_match('/\*/i', $data) ? TRUE : FALSE;
-				$data = preg_replace('/\*/i', '', $data);
-				
-				$lnhtm .= '<option value="'.$data.'" '. ($selected === TRUE ? 'selected' : '') .' > '.$data.'</option>';
-			}
-		}
-		chdir($o);
-	?>
-	<div class="element-container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="row">
-					<div class="form-group">
-						<div class="col-md-3">
-							<label class="control-label" for="git_branch"><?php echo _("GIT Branch")?></label>
-							<i class="fa fa-question-circle fpbx-help-icon" data-for="git_branch"></i>
-						</div>
-						<div class="col-md-9">
-							<select name="git_branch" class="form-control" id="git_branch">
-								<?php echo $lnhtm; ?>
-							</select>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<span class="help-block fpbx-help-block" id="git_branch-help">Select the live github repository branch (WARN: Beta!)</span>
-			</div>
-		</div>
-	</div>
-	<?php 
-		unset($lnhtm); 
-	}
-	?>
+
+
 	<!--END GIT Branch-->
 </div>

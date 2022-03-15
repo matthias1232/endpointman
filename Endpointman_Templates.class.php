@@ -506,23 +506,23 @@ class Endpointman_Templates
 			$only_configs[$b]['id_d'] = $id;
 			$only_configs[$b]['id_p'] = $row['product_id'];
 			$only_configs[$b]['name'] = $files;
-			$only_configs[$b]['selected'] = "ON";
+			$only_configs[$b]['select'] = "ON";
 			
 			$sql = "SELECT * FROM  endpointman_custom_configs WHERE product_id = '" . $row['product_id'] . "' AND original_name = '" . $files . "'";
 			$alt_configs_list = sql($sql, 'getAll', DB_FETCHMODE_ASSOC );
 			
-			if ( count($alt_configs_list) > 0) 
+			if ( count(array($alt_configs_list)) > 0) 
 			{
 				$files = str_replace(".", "_", $files);
 				foreach ($alt_configs_list as $ccf) 
 				{
 					$cf_key = $files;
 					if ((isset($config_files_saved[$cf_key])) AND (is_array($config_files_saved)) AND ($config_files_saved[$cf_key] == $ccf['id'])) {
-						$alt_configs[$i]['selected'] = 'ON';
-						$only_configs[$b]['selected'] = "OFF";
+						$alt_configs[$i]['select'] = 'ON';
+						$only_configs[$b]['select'] = "OFF";
 					}
 					else {
-						$alt_configs[$i]['selected'] = 'OFF';
+						$alt_configs[$i]['select'] = 'OFF';
 					}
 					$alt_configs[$i]['id'] = $ccf['id'];
 					$alt_configs[$i]['id_p'] = $row['product_id'];
@@ -784,7 +784,6 @@ class Endpointman_Templates
     	return($temp);
     }
 	
-	
 	/**
      * Generates the Visual Display for the end user
      * @param <type> $cfg_data
@@ -934,7 +933,8 @@ class Endpointman_Templates
     	}
     
     	return($template_variables_array);
-    }
+    }	
+
 	
 	 /**
      * Generate an array that will get parsed as HTML from an array of values from XML
